@@ -2,19 +2,54 @@ package epos_next.app.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import epos_next.app.Greeting
-import android.widget.TextView
-
-fun greet(): String {
-    return Greeting().greeting()
-}
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var viewPager: ViewPager2
+    private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // remove top bar
+        supportActionBar?.hide()
+
         setContentView(R.layout.activity_main)
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        // Instantiate a ViewPager2 and a PagerAdapter.
+        viewPager = findViewById(R.id.pager)
+
+        // The pager adapter, which provides the pages to the view pager widget.
+        val pagerAdapter = PagerAdapter(this)
+
+        viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                bottomNavigationView.selectedItemId = when (position) {
+                    0 -> R.id.bottom_navigation_item_home
+                    1 -> R.id.bottom_navigation_item_marks
+                    else -> R.id.bottom_navigation_item_profile
+                }
+                super.onPageSelected(position)
+            }
+        })
+
+        viewPager.adapter = pagerAdapter
+
+        // Instantiate bottomNavigationView
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view)
+
+        // Set icon tint for active icon changed
+        bottomNavigationView.itemIconTintList = null
+
+        // Set the listener for item selection in the bottom navigation view.
+        bottomNavigationView.setOnItemSelectedListener {
+            viewPager.currentItem = when (it.itemId) {
+                R.id.bottom_navigation_item_home -> 0
+                R.id.bottom_navigation_item_marks -> 1
+                else -> 2
+            }
+
+            return@setOnItemSelectedListener true
+        }
     }
 }

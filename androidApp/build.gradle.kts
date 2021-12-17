@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
 }
 
+val composeVersion = "1.1.0-rc01"
+
 android {
     compileSdk = 31
     defaultConfig {
@@ -17,11 +19,28 @@ android {
             isMinifyEnabled = false
         }
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = composeVersion
+    }
+
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
+
+    // Jetpack compose
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+
+    // View pager
+    val viewPager = "1.0.0";
+    implementation("androidx.viewpager2:viewpager2:$viewPager")
 }

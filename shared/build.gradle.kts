@@ -23,7 +23,12 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                val napierVersion = "2.2.0";
+                implementation("io.github.aakira:napier:$napierVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
