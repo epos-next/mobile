@@ -3,6 +3,7 @@ package epos_next.app.android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import epos_next.app.android.feats.login.LoginActivity
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // remove top bar
         supportActionBar?.hide()
+
 
         setContentView(R.layout.activity_main)
 
