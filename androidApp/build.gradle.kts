@@ -37,6 +37,7 @@ dependencies {
 
     // Jetpack compose
     implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.activity:activity-compose:$composeVersion")
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
