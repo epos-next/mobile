@@ -1,16 +1,47 @@
 import SwiftUI
 import shared
 
-struct ContentView: View {
-	let greet = Greeting().greeting()
+struct HomeView: View {
+    var body: some View {
+        Text("Home")
+    }
+}
 
-	var body: some View {
-		Text(greet)
-	}
+struct MarksView: View {
+    var body: some View {
+        Text("Marks")
+    }
+}
+
+struct ProfileView: View {
+    var body: some View {
+        Text("Profile")
+    }
+}
+
+
+struct ContentView: View {
+    @State var selectedTab: String
+    
+    init() {
+        UITabBar.appearance().isHidden = false
+        selectedTab = "home"
+    }
+    
+    var body: some View {
+        ZStack {
+            TabView (selection: $selectedTab) {
+                HomeView().tag("home")
+                MarksView().tag("marks")
+                ProfileView().tag("profile")
+            }
+            TabBarView(selectedTab: $selectedTab)
+        }.ignoresSafeArea()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }

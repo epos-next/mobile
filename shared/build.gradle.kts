@@ -25,8 +25,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                val napierVersion = "2.2.0";
-                implementation("io.github.aakira:napier:$napierVersion")
+                implementation("io.github.aakira:napier:2.2.0")
+                implementation("com.russhwolf:multiplatform-settings:0.8.1")
             }
         }
         val commonTest by getting {
