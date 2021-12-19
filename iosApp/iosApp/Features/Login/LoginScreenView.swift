@@ -15,7 +15,8 @@ struct LoginScreenView: View {
             LoginLogoView()
             LoginAppNameView().padding(.bottom, 6)
             LoginFormView()
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
     }
 }
 

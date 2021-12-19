@@ -26,7 +26,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.github.aakira:napier:2.2.0")
-                implementation("com.russhwolf:multiplatform-settings:0.8.1")
+                implementation("com.russhwolf:multiplatform-settings-no-arg:0.8.1")
+                implementation("io.arrow-kt:arrow-core:1.0.1")
+                implementation("org.kodein.di:kodein-di:7.9.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
             }
         }
         val commonTest by getting {
