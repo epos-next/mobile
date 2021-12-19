@@ -13,7 +13,7 @@ import kotlinx.datetime.Instant
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
-interface AuthDataStore {
+internal interface AuthDataStore {
     /**
      * Fetch token from data store
      * If no token found -> return null
