@@ -1,11 +1,3 @@
-//
-//  TabBarView.swift
-//  iosApp
-//
-//  Created by Ярослав Зотов on 19.12.2021.
-//  Copyright © 2021 orgName. All rights reserved.
-//
-
 import SwiftUI
 
 struct TabBarView: View {
@@ -37,6 +29,10 @@ struct TabIcon: View {
     var tab: String
     
     var body: some View {
+        if (true) {
+            
+        }
+        
         Button(action: { selectedTab = tab }, label: {
             VStack(spacing: 8){
                 Image(icon)
