@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.sp
 import epos_next.app.android.R
 
 val AvenirNext = FontFamily(
-    Font(R.font.avenirnextcyr_regular),
-    Font(R.font.avenirnextcyr_medium, weight = FontWeight.W500),
-    Font(R.font.avenirnextcyr_demi, weight = FontWeight.W600),
+    Font(R.font.avenirnext_regular),
+    Font(R.font.avenirnext_medium, weight = FontWeight.W500),
+    Font(R.font.avenirnext_demi, weight = FontWeight.W600),
 )
 
 val Typography = Typography(

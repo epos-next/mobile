@@ -44,4 +44,7 @@ dependencies {
     // View pager
     val viewPager = "1.0.0";
     implementation("androidx.viewpager2:viewpager2:$viewPager")
+
+    // DI kodein
+    implementation("org.kodein.di:kodein-di-framework-android-x:7.9.0")
 }

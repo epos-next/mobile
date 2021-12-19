@@ -3,6 +3,7 @@
     package="epos_next.app.android">
 
     <application
+        android:name=".ThisApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

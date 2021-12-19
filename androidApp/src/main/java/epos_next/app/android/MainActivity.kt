@@ -3,20 +3,34 @@ package epos_next.app.android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import epos_next.app.android.feats.login.LoginActivity
+import epos_next.app.data.auth.AuthDataStore
+import org.kodein.di.DIAware
+import org.kodein.di.android.closestDI
+import org.kodein.di.android.di
+import org.kodein.di.android.subDI
+import org.kodein.di.instance
+import kotlin.time.ExperimentalTime
 
-class MainActivity : AppCompatActivity() {
+@ExperimentalTime
+class MainActivity : AppCompatActivity(), DIAware {
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
+
+    override val di by subDI(closestDI()) {}
+
+    val authDataStore: AuthDataStore by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // remove top bar
         supportActionBar?.hide()
 
+        Log.d("222", authDataStore.getTokens().toString())
 
         setContentView(R.layout.activity_main)
 

@@ -1,6 +1,5 @@
 package epos_next.app.data.auth
 
-import arrow.core.Either
 import epos_next.app.data.settings
 import epos_next.app.models.AuthTokens
 import epos_next.app.models.SetAuthTokens
@@ -8,6 +7,7 @@ import epos_next.app.domain.exceptions.TokenExpiredException
 import epos_next.app.domain.exceptions.InvalidTokenFoundException
 import epos_next.app.domain.exceptions.NoTokenFoundException
 import epos_next.app.domain.exceptions.TokenException
+import epos_next.app.lib.Either
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlin.time.Duration
@@ -58,7 +58,7 @@ interface AuthDataStore {
     fun clearAll()
 }
 
-class AuthDataStoreImpl() : AuthDataStore {
+internal class AuthDataStoreImpl: AuthDataStore {
 
     private object Keys {
         const val accessToken = "auth_token"
