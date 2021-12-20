@@ -6,4 +6,5 @@ import org.kodein.di.singleton
 
 val useCasesModule = DI.Module("UseCase") {
     bind<IsAuthorizedUseCase>() with singleton { IsAuthorizedUseCaseImpl(di) }
+    bind<UpdateTokenIfNeed>() with singleton { UpdateTokenIfNeedImpl(di) }
 }

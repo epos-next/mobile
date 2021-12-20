@@ -23,7 +23,7 @@ internal interface AuthDataStore {
      * @exception InvalidTokenFoundException if set date is not ISO string
      */
     @ExperimentalTime
-    fun getTokens(): Either<TokenException, AuthTokens?>
+    fun getTokens(): Either<TokenException, AuthTokens>
 
     /**
      * Fetch token from data store
@@ -69,7 +69,7 @@ internal class AuthDataStoreImpl: AuthDataStore {
     }
 
     @ExperimentalTime
-    override fun getTokens(): Either<TokenException, AuthTokens?> {
+    override fun getTokens(): Either<TokenException, AuthTokens> {
         // checking should update tokens
         // do it before checking access because if refresh is expired too function will try to
         // update access using expired refresh

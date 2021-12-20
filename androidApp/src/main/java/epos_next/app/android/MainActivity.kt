@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import epos_next.app.android.feats.login.LoginActivity
 import epos_next.app.usecases.IsAuthorizedUseCase
+import epos_next.app.usecases.UpdateTokenIfNeed
 import org.kodein.di.DIAware
 import org.kodein.di.android.closestDI
 import org.kodein.di.android.subDI
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity(), DIAware {
 
     override val di by subDI(closestDI()) {}
 
-    val isAuthorizedUseCase: IsAuthorizedUseCase by instance()
+    private val isAuthorizedUseCase: IsAuthorizedUseCase by instance()
+    private val shouldUpdateAuthTokens: UpdateTokenIfNeed by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,10 +73,24 @@ class MainActivity : AppCompatActivity(), DIAware {
         if (!isAuthorizedUseCase.execute()) finishActivityAndPushToLogin()
     }
 
+    private suspend fun navigateToLoginActivityIfNeed() {
+        if (!isAuthorizedUseCase.execute()) {
+            finishActivityAndPushToLogin()
+        } else {
+            val result = shouldUpdateAuthTokens.execute()
+
+//            result.onFailure {
+//                logger.warn { "navigateToLoginActivityIfNeed() - doing redirect to login" }
+//                finishActivityAndPushToLogin()
+//            }
+        }
+    }
+
     private fun finishActivityAndPushToLogin() {
         val intent = Intent(this@MainActivity, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         finish()
         startActivity(intent)
     }
+
 }

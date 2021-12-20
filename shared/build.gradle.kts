@@ -23,12 +23,19 @@ kotlin {
     }
     
     sourceSets {
+        val ktorVersion = "1.6.7"
+
         val commonMain by getting {
             dependencies {
                 implementation("io.github.aakira:napier:2.2.0")
                 implementation("com.russhwolf:multiplatform-settings-no-arg:0.8.1")
                 implementation("org.kodein.di:kodein-di:7.9.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-auth:$ktorVersion")
+                implementation("io.ktor:ktor-client-auth-jwt:$ktorVersion")
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+
             }
         }
         val commonTest by getting {
@@ -37,7 +44,11 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
@@ -52,6 +63,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             //iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
