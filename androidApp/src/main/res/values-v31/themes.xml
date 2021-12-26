@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.EposNext.SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenIconBackgroundColor">@drawable/splash_screen_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.EposNext</item>
+    </style>
+</resources>

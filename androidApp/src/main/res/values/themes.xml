@@ -3,4 +3,10 @@
     <style name="Theme.EposNext" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorControlActivated">@color/white</item>
     </style>
+
+    <style name="Theme.EposNext.SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_icon</item>
+        <item name="postSplashScreenTheme">@style/Theme.EposNext</item>
+    </style>
 </resources>

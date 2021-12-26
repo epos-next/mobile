@@ -1,11 +1,10 @@
 package epos_next.app.android
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import epos_next.app.android.feats.login.LoginActivity
 import epos_next.app.usecases.IsAuthorizedUseCase
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
@@ -19,6 +18,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen()
+
         // remove top bar
         supportActionBar?.hide()
 
@@ -70,10 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun finishActivityAndPushToLogin() {
-        val intent = Intent(this@MainActivity, LoginActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        finish()
-        startActivity(intent)
+        setContentView(R.layout.login_fragment)
     }
 
 }

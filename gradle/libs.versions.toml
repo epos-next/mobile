@@ -40,3 +40,5 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 
 viewpager = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
+
+splashscreen = { module = "androidx.core:core-splashscreen", version = "1.0.0-alpha02" }

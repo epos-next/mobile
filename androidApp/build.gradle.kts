@@ -41,4 +41,6 @@ dependencies {
     implementation(libs.viewpager)
 
     implementation(libs.koin.android)
+
+    implementation(libs.splashscreen)
 }
