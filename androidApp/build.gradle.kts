@@ -6,11 +6,11 @@ plugins {
 val composeVersion = "1.1.0-rc01"
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "epos_next.app.android"
-        minSdk = 26
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
     }
@@ -31,20 +31,16 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
+    implementation(libs.google.material)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
 
     // Jetpack compose
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.activity:activity-compose:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation(libs.compose.ui)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.material)
+    implementation(libs.compose.tooling)
 
     // View pager
-    val viewPager = "1.0.0";
-    implementation("androidx.viewpager2:viewpager2:$viewPager")
-
-    // DI kodein
-    implementation("org.kodein.di:kodein-di-framework-android-x:7.9.0")
+    implementation(libs.viewpager)
 }

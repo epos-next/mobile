@@ -1,0 +1,41 @@
+[versions]
+# SDK
+minSdk = "26"
+targetSdk = "31"
+compileSdk = "31"
+
+# Dependencies
+kotlin = "1.5.31"
+compose = "1.1.0-rc01"
+ktor = "1.6.7"
+koin = "3.1.4"
+
+[libraries]
+
+napier = { module = "io.github.aakira:napier", version = "2.2.0" }
+
+multiplatformSettings = { module = "com.russhwolf:multiplatform-settings-no-arg", version = "0.8.1" }
+
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version = "0.3.1" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
+ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
+
+junit = { module = "junit:junit", version = "4.13.2" }
+
+google-material = { module = "com.google.android.material:material", version = "1.4.0" }
+
+appcompat = { module = "androidx.appcompat:appcompat", version = "1.4.0" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.2" }
+
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+
+viewpager = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }

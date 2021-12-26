@@ -24,18 +24,15 @@ kotlin {
     }
     
     sourceSets {
-        val ktorVersion = "1.6.7"
-        val koinVersion= "3.1.4"
-
         val commonMain by getting {
             dependencies {
-                implementation("io.github.aakira:napier:2.2.0")
-                implementation("com.russhwolf:multiplatform-settings-no-arg:0.8.1")
-                implementation("io.insert-koin:koin-core:$koinVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-auth:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation(libs.napier)
+                implementation(libs.multiplatformSettings)
+                implementation(libs.koin.core)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.auth)
+                implementation(libs.ktor.client.serialization)
 
             }
         }
@@ -47,13 +44,13 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation(libs.ktor.client.android)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.junit)
             }
         }
         val iosX64Main by getting
@@ -65,7 +62,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             //iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation(libs.ktor.client.ios)
             }
         }
         val iosX64Test by getting
@@ -81,10 +78,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 26
-        targetSdk = 31
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 }
