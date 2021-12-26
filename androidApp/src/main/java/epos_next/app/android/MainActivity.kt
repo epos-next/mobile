@@ -3,12 +3,10 @@ package epos_next.app.android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import epos_next.app.android.feats.login.LoginActivity
 import epos_next.app.usecases.IsAuthorizedUseCase
-import epos_next.app.usecases.UpdateTokenIfNeed
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
 
@@ -18,15 +16,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private val isAuthorizedUseCase: IsAuthorizedUseCase by inject()
-    private val shouldUpdateAuthTokens: UpdateTokenIfNeed by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // remove top bar
         supportActionBar?.hide()
 
-        Log.d("222", isAuthorizedUseCase.execute().toString())
+        if (!isAuthorizedUseCase.execute()) {
+            finishActivityAndPushToLogin()
+        } else {
+            setMainView()
+        }
+    }
 
+    private fun setMainView() {
         setContentView(R.layout.activity_main)
 
         // Instantiate a ViewPager2 and a PagerAdapter.
@@ -63,21 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             return@setOnItemSelectedListener true
-        }
-
-        if (!isAuthorizedUseCase.execute()) finishActivityAndPushToLogin()
-    }
-
-    private suspend fun navigateToLoginActivityIfNeed() {
-        if (!isAuthorizedUseCase.execute()) {
-            finishActivityAndPushToLogin()
-        } else {
-            val result = shouldUpdateAuthTokens.execute()
-
-//            result.onFailure {
-//                logger.warn { "navigateToLoginActivityIfNeed() - doing redirect to login" }
-//                finishActivityAndPushToLogin()
-//            }
         }
     }
 
