@@ -22,21 +22,33 @@ struct ProfileView: View {
 
 struct ContentView: View {
     @State var selectedTab: String
+    @ObservedObject var authStatus = AuthStatusObservable()
     
     init() {
         UITabBar.appearance().isHidden = false
         selectedTab = "home"
     }
     
+    
     var body: some View {
-        ZStack {
-            TabView (selection: $selectedTab) {
-                HomeView().tag("home")
-                MarksView().tag("marks")
-                ProfileView().tag("profile")
-            }
-            TabBarView(selectedTab: $selectedTab)
-        }.ignoresSafeArea()
+        if (authStatus.state is AuthStatusState.Loading) {
+            ProgressView()
+        }
+        
+        else if (authStatus.state is AuthStatusState.NotAuthorized) {
+            LoginScreenView()
+        }
+        
+        else {
+            ZStack {
+                TabView (selection: $selectedTab) {
+                    HomeView().tag("home")
+                    MarksView().tag("marks")
+                    ProfileView().tag("profile")
+                }
+                TabBarView(selectedTab: $selectedTab)
+            }.ignoresSafeArea()
+        }
     }
 }
 
