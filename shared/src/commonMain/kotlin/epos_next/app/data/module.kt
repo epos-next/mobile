@@ -2,10 +2,8 @@ package epos_next.app.data
 
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.singleton
+import org.koin.dsl.module
 
-val dataModule = DI.Module("Data") {
-    bind<AuthDataStore>() with singleton { AuthDataStoreImpl() }
+val dataModule = module {
+    single<AuthDataStore> { AuthDataStoreImpl() }
 }

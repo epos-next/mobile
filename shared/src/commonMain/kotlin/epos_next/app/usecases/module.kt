@@ -1,10 +1,9 @@
 package epos_next.app.usecases
 
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.singleton
+import org.koin.dsl.module
 
-val useCasesModule = DI.Module("UseCase") {
-    bind<IsAuthorizedUseCase>() with singleton { IsAuthorizedUseCaseImpl(di) }
-    bind<UpdateTokenIfNeed>() with singleton { UpdateTokenIfNeedImpl(di) }
+val useCasesModule = module {
+    single<IsAuthorizedUseCase> { IsAuthorizedUseCaseImpl() }
+    single<UpdateTokenIfNeed> { UpdateTokenIfNeedImpl() }
+    single<LoginUseCase> { LoginUseCaseImpl() }
 }

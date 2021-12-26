@@ -1,11 +1,11 @@
 package epos_next.app.network.responces.auth
 
-import epos_next.app.models.AuthTokens
+import epos_next.app.models.SetAuthTokens
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ReauthenticateResponse(
+data class AuthenticateResponse(
     val success: Boolean,
-    val tokens: AuthTokens?,
-    val id: Int?
+    val tokens: SetAuthTokens,
+    val id: Int,
 )

@@ -1,23 +1,20 @@
 package epos_next.app.usecases
 
 import epos_next.app.data.auth.AuthDataStore
-import epos_next.app.domain.exceptions.TokenException
-import epos_next.app.lib.Either
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.instance
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.time.ExperimentalTime
 
 interface UpdateTokenIfNeed {
     @ExperimentalTime
-    suspend fun execute(): Unit
+    suspend fun execute()
 }
 
-internal class UpdateTokenIfNeedImpl(override val di: DI) : UpdateTokenIfNeed, DIAware {
-    private val authDataStore: AuthDataStore by instance()
+class UpdateTokenIfNeedImpl : UpdateTokenIfNeed, KoinComponent {
+    private val authDataStore: AuthDataStore by inject()
 
     @ExperimentalTime
-    override suspend fun execute(): Unit {
+    override suspend fun execute() {
         authDataStore.shouldUpdateRefreshToken().fold(
             { print(it) },
             {  }

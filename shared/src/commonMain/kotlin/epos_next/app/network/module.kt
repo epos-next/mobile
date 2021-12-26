@@ -1,9 +1,7 @@
 package epos_next.app.network
 
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.singleton
+import org.koin.dsl.module
 
-val networkModule = DI.Module("network") {
-    bind<NetworkClient>() with singleton { NetworkClientImpl(di) }
+val networkModule = module {
+    single<NetworkClient> { NetworkClientImpl() }
 }

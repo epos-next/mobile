@@ -10,11 +10,9 @@ import io.ktor.client.features.auth.providers.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.http.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.instance
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.time.ExperimentalTime
 
 internal interface NetworkClient {
@@ -22,11 +20,11 @@ internal interface NetworkClient {
     val client: HttpClient
 }
 
-internal class NetworkClientImpl(override val di: DI) : NetworkClient, DIAware {
+internal class NetworkClientImpl : NetworkClient, KoinComponent {
 
-    private val authDataStore: AuthDataStore by instance();
+    private val authDataStore by inject<AuthDataStore>()
 
-    private val tokenClient = HttpClient() {
+    private val tokenClient = HttpClient {
         defaultRequest {
             url(ApiRoutes.baseRoute)
             contentType(ContentType.Application.Json)

@@ -1,10 +1,14 @@
 package epos_next.app.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class AuthTokens(
     val access: String?,
     val refresh: String,
 )
 
+@Serializable
 data class SetAuthTokens(
     val access: String,
     val refresh: String,

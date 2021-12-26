@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    kotlin("plugin.serialization") version "1.5.31"
 }
 
 version = "1.0"
@@ -24,16 +25,16 @@ kotlin {
     
     sourceSets {
         val ktorVersion = "1.6.7"
+        val koinVersion= "3.1.4"
 
         val commonMain by getting {
             dependencies {
                 implementation("io.github.aakira:napier:2.2.0")
                 implementation("com.russhwolf:multiplatform-settings-no-arg:0.8.1")
-                implementation("org.kodein.di:kodein-di:7.9.0")
+                implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-auth:$ktorVersion")
-                implementation("io.ktor:ktor-client-auth-jwt:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
 
             }
