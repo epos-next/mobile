@@ -9,21 +9,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import epos_next.app.android.feats.login.LoginActivity
 import epos_next.app.usecases.IsAuthorizedUseCase
 import epos_next.app.usecases.UpdateTokenIfNeed
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.android.subDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
-class MainActivity : AppCompatActivity(), DIAware {
+class MainActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    override val di by subDI(closestDI()) {}
-
-    private val isAuthorizedUseCase: IsAuthorizedUseCase by instance()
-    private val shouldUpdateAuthTokens: UpdateTokenIfNeed by instance()
+    private val isAuthorizedUseCase: IsAuthorizedUseCase by inject()
+    private val shouldUpdateAuthTokens: UpdateTokenIfNeed by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

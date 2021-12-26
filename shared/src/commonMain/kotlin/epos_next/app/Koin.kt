@@ -1,22 +1,22 @@
 package epos_next.app
 
+import epos_next.app.data.dataModule
+import epos_next.app.network.networkModule
+import epos_next.app.usecases.useCasesModule
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import org.koin.core.module.Module
 
 fun initKoin(appModule: Module): KoinApplication =
     startKoin {
         modules(
             appModule,
-            coreModule,
+            dataModule,
+            networkModule,
+            useCasesModule,
             platformModule,
         )
     }
 
-
-private val coreModule = module {
-
-}
 
 expect val platformModule: Module

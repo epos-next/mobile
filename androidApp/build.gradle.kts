@@ -3,8 +3,6 @@ plugins {
     kotlin("android")
 }
 
-val composeVersion = "1.1.0-rc01"
-
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
@@ -21,7 +19,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeVersion
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
 
     buildFeatures {
@@ -35,12 +33,12 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
 
-    // Jetpack compose
     implementation(libs.compose.ui)
     implementation(libs.compose.activity)
     implementation(libs.compose.material)
     implementation(libs.compose.tooling)
 
-    // View pager
     implementation(libs.viewpager)
+
+    implementation(libs.koin.android)
 }
