@@ -17,7 +17,7 @@ import kotlin.time.ExperimentalTime
 
 interface LoginUseCase {
     @ExperimentalTime
-    suspend fun execute(email: String, password: String): Either<AuthException, Boolean>
+    suspend fun execute(email: String, password: String): Either<AuthException, Int>
 }
 
 class LoginUseCaseImpl : LoginUseCase, KoinComponent {
@@ -26,7 +26,7 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
     private val authDataStore: AuthDataStore by inject()
 
     @ExperimentalTime
-    override suspend fun execute(email: String, password: String): Either<AuthException, Boolean> {
+    override suspend fun execute(email: String, password: String): Either<AuthException, Int> {
         return try {
             val response = networkClient.client.post<AuthenticateResponse>(ApiRoutes.authenticate) {
                 body = AuthenticateRequest(email, password)
@@ -35,7 +35,7 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
             authDataStore.setId(response.id)
             authDataStore.setTokens(response.tokens)
 
-            Either.Right(true)
+            Either.Right(response.id)
         } catch (e: ResponseException) {
             if (e.response.status.value == 400) Either.Left(InvalidCredentials())
             else Either.Left(InvalidAuthException())
