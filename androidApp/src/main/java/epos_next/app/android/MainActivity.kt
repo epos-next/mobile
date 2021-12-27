@@ -3,19 +3,22 @@ package epos_next.app.android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import epos_next.app.usecases.IsAuthorizedUseCase
+import epos_next.app.state.authStatus.AuthStatusReducer
+import epos_next.app.state.authStatus.AuthStatusState
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
+import kotlinx.coroutines.flow.collect
+
 
 @ExperimentalTime
+@InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
-    private val isAuthorizedUseCase: IsAuthorizedUseCase by inject()
+    private val authStatusReducer: AuthStatusReducer by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +34,13 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
 
-        if (isAuthorizedUseCase.execute()) {
-            navController.navigate(R.id.mainFragment)
-        } else {
-            navController.navigate(R.id.loginFragment)
+        lifecycleScope.launchWhenStarted {
+            authStatusReducer.state.collect {
+                when (it) {
+                    is AuthStatusState.Authorized -> navController.navigate(R.id.mainFragment)
+                    is AuthStatusState.NotAuthorized -> navController.navigate(R.id.loginFragment)
+                }
+            }
         }
     }
 }

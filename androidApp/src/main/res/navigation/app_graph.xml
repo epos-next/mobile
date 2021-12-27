@@ -9,18 +9,20 @@
         android:name="epos_next.app.android.MainFragment"
         android:label="MainFragment" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="epos_next.app.android.feats.login.LoginFragment"
-        android:label="LoginFragment" />
-    <fragment
         android:id="@+id/loadingFragment"
         android:name="epos_next.app.android.LoadingFragment"
         android:label="LoadingFragment" >
         <action
+            android:id="@+id/action_loadingFragment_to_mainFragment2"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/loadingFragment"
+            app:popUpToInclusive="true" />
+        <action
             android:id="@+id/action_loadingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_loadingFragment_to_mainFragment2"
-            app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="epos_next.app.android.feats.login.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

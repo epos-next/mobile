@@ -47,4 +47,6 @@ dependencies {
 
     implementation(libs.nav.fragment)
     implementation(libs.nav.ui)
+
+    implementation(libs.lifecycle.runtime)
 }

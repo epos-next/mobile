@@ -10,15 +10,19 @@ import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import epos_next.app.state.authStatus.AuthStatusReducer
+import org.koin.android.ext.android.inject
 
 class ProfileScreenFragment : Fragment() {
+    private val authStateReducer: AuthStatusReducer by inject()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                Button(onClick = {  }) {
+                Button(onClick = { authStateReducer.logout() }) {
                     Text("logout")
                 }
             }

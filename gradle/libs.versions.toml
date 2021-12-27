@@ -10,6 +10,7 @@ compose = "1.1.0-rc01"
 ktor = "1.6.7"
 koin = "3.1.4"
 nav = "2.3.5"
+lifecycle = "2.4.0"
 
 [libraries]
 
@@ -48,4 +49,6 @@ splashscreen = { module = "androidx.core:core-splashscreen", version = "1.0.0-al
 nav-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "nav" }
 
 nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "nav" }
+
+lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 

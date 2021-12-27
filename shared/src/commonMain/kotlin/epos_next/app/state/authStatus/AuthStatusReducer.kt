@@ -1,5 +1,6 @@
 package epos_next.app.state.authStatus
 
+import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.lib.BaseReducer
 import epos_next.app.usecases.IsAuthorizedUseCase
 import epos_next.app.usecases.LoginUseCase
@@ -10,6 +11,7 @@ import kotlin.time.ExperimentalTime
 class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
     private val isAuthorizedUseCase: IsAuthorizedUseCase by inject()
     private val loginUseCase: LoginUseCase by inject()
+    private val authDataState: AuthDataStore by inject()
 
     init {
         val isAuthorized = isAuthorizedUseCase.execute()
@@ -34,5 +36,10 @@ class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
                 null
             }
         )
+    }
+
+    fun logout() {
+        authDataState.clearAll()
+        stateFlow.update { AuthStatusState.NotAuthorized }
     }
 }
