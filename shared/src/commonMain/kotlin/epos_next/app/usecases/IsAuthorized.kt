@@ -11,5 +11,12 @@ interface IsAuthorizedUseCase {
 class IsAuthorizedUseCaseImpl: IsAuthorizedUseCase, KoinComponent {
     private val authDataStore: AuthDataStore by inject()
 
-    override fun execute(): Boolean = authDataStore.isAuthorized()
+    override fun execute(): Boolean {
+       return try {
+           authDataStore.isAuthorized()
+       } catch (e: Throwable) {
+           println(e)
+           false
+       }
+    }
 }

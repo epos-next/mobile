@@ -21,7 +21,9 @@ import epos_next.app.android.feats.login.parts.LogoAndName
 import epos_next.app.android.feats.login.parts.TopBar
 import epos_next.app.android.feats.login.parts.UnderFormText
 import epos_next.app.android.components.theme.ApplicationTheme
+import kotlin.time.ExperimentalTime
 
+@ExperimentalTime
 @ExperimentalAnimationApi
 class LoginFragment : Fragment() {
 

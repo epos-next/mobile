@@ -1,6 +1,5 @@
 package epos_next.app.state.authStatus
 
-import epos_next.app.domain.exceptions.AuthException
 import epos_next.app.lib.BaseReducer
 import epos_next.app.usecases.IsAuthorizedUseCase
 import epos_next.app.usecases.LoginUseCase
@@ -21,14 +20,14 @@ class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
     }
 
     @ExperimentalTime
-    suspend fun login(email: String, password: String): AuthException? {
+    suspend fun login(email: String, password: String): Exception? {
         return loginUseCase.execute(email, password).fold(
             {
-                print(it)
+                println(it)
                 it
             },
             { id ->
-                print("success login (id = $id)")
+                println("success login (id = $id)")
                 stateFlow.update {
                     AuthStatusState.Authorized(id = id)
                 }

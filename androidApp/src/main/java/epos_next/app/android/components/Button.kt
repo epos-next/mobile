@@ -7,7 +7,9 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
@@ -31,6 +33,7 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     disabled: Boolean = false,
+    loading: Boolean = false,
 ) {
     val background by animateColorAsState(
         if (disabled) MaterialTheme.colors.lightPrimary else MaterialTheme.colors.contrast
@@ -46,11 +49,17 @@ fun PrimaryButton(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(color = Color(255, 255, 255, 0x33))
             ) {
-                if (!disabled) onClick()
+                if (!disabled && !loading) onClick()
             }
             .composed { modifier }
     ) {
-        Text(
+
+        if (loading) CircularProgressIndicator(
+            modifier = Modifier.align(Alignment.Center).size(18.dp),
+            strokeWidth = 3.dp,
+            color = Color.White
+        )
+        else Text(
             text = text,
             modifier = Modifier.align(Alignment.Center),
             fontSize = 18.sp,

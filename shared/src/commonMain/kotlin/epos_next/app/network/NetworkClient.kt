@@ -18,6 +18,8 @@ import kotlin.time.ExperimentalTime
 internal interface NetworkClient {
     @ExperimentalTime
     val client: HttpClient
+
+    val authClient: HttpClient
 }
 
 internal class NetworkClientImpl : NetworkClient, KoinComponent {
@@ -26,7 +28,21 @@ internal class NetworkClientImpl : NetworkClient, KoinComponent {
 
     private val tokenClient = HttpClient {
         defaultRequest {
-            url(ApiRoutes.baseRoute)
+            url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
+                encodedPath += url.encodedPath
+            })
+            contentType(ContentType.Application.Json)
+        }
+        install(JsonFeature) {
+            serializer = KotlinxSerializer()
+        }
+    }
+
+    override val authClient = HttpClient {
+        defaultRequest {
+            url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
+                encodedPath += url.encodedPath
+            })
             contentType(ContentType.Application.Json)
         }
         install(JsonFeature) {
@@ -37,7 +53,9 @@ internal class NetworkClientImpl : NetworkClient, KoinComponent {
     @ExperimentalTime
     override val client: HttpClient = HttpClient {
         defaultRequest {
-            url(ApiRoutes.baseRoute)
+            url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
+                encodedPath += url.encodedPath
+            })
             contentType(ContentType.Application.Json)
         }
         install(JsonFeature) {

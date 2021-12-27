@@ -4,6 +4,7 @@ import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.domain.exceptions.AuthException
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
+import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
 import epos_next.app.network.ApiRoutes
 import epos_next.app.network.NetworkClient
@@ -17,7 +18,7 @@ import kotlin.time.ExperimentalTime
 
 interface LoginUseCase {
     @ExperimentalTime
-    suspend fun execute(email: String, password: String): Either<AuthException, Int>
+    suspend fun execute(email: String, password: String): Either<Exception, Int>
 }
 
 class LoginUseCaseImpl : LoginUseCase, KoinComponent {
@@ -26,9 +27,9 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
     private val authDataStore: AuthDataStore by inject()
 
     @ExperimentalTime
-    override suspend fun execute(email: String, password: String): Either<AuthException, Int> {
+    override suspend fun execute(email: String, password: String): Either<Exception, Int> {
         return try {
-            val response = networkClient.client.post<AuthenticateResponse>(ApiRoutes.authenticate) {
+            val response = networkClient.authClient.post<AuthenticateResponse>(ApiRoutes.authenticate) {
                 body = AuthenticateRequest(email, password)
             }
 
@@ -37,8 +38,12 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
 
             Either.Right(response.id)
         } catch (e: ResponseException) {
+            println(e)
             if (e.response.status.value == 400) Either.Left(InvalidCredentials())
             else Either.Left(InvalidAuthException())
+        } catch (e: Throwable) {
+            println(e)
+            Either.Left(NetworkException())
         }
     }
 

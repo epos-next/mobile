@@ -136,7 +136,7 @@ internal class AuthDataStoreImpl: AuthDataStore {
     private fun isAuthorizedInner(): Boolean {
         settings.getStringOrNull(Keys.refreshToken) ?: return false
         settings.getStringOrNull(Keys.accessToken) ?: return false
-        settings.getStringOrNull(Keys.id) ?: return false
+        settings.getIntOrNull(Keys.id) ?: return false
         return true
     }
 

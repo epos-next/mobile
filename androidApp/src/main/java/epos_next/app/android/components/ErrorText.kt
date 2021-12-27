@@ -21,6 +21,7 @@ fun ErrorText(
         fontSize = 16.sp,
         color = MaterialTheme.colors.error,
         textAlign = textAlign,
-        modifier = modifier
+        modifier = modifier,
+        maxLines = 2,
     )
 }
