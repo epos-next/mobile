@@ -1,7 +1,7 @@
 package epos_next.app.android
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import epos_next.app.android.feats.home.HomeScreenFragment
 import epos_next.app.android.feats.marks.MarkScreenFragment
@@ -9,7 +9,7 @@ import epos_next.app.android.feats.profile.ProfileScreenFragment
 
 private const val NUM_PAGES = 3
 
-class PagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity) {
+class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {

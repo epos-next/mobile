@@ -44,4 +44,7 @@ dependencies {
     implementation(libs.koin.compose)
 
     implementation(libs.splashscreen)
+
+    implementation(libs.nav.fragment)
+    implementation(libs.nav.ui)
 }
