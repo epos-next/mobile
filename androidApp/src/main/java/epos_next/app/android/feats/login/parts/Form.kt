@@ -1,6 +1,8 @@
 package epos_next.app.android.feats.login.parts
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -10,12 +12,15 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
 import epos_next.app.state.authStatus.AuthStatusReducer
 import org.koin.androidx.compose.get
 
+@ExperimentalAnimationApi
 @Composable
 fun Form() {
     val focusManager = LocalFocusManager.current
@@ -61,7 +66,35 @@ fun Form() {
 
     PrimaryButton(
         text = "Войти",
-        onClick = {},
+        onClick = { error = "test" },
         disabled = disabled,
     )
+
+    Spacer(modifier = Modifier.height(10.dp))
+
+    AnimatedContent(
+        targetState = error.isEmpty(),
+        transitionSpec = {
+            if (targetState) {
+                slideInVertically { height -> height } + fadeIn() with
+                        slideOutVertically { height -> -height } + fadeOut()
+            } else {
+                slideInVertically { height -> -height } + fadeIn() with
+                        slideOutVertically { height -> height } + fadeOut()
+            }.using(
+                // Disable clipping since the faded slide-in/out should
+                // be displayed out of bounds.
+                SizeTransform(clip = false)
+            )
+        },
+        modifier = Modifier.height(22.dp)
+    ) { targetDisabled ->
+        if (targetDisabled) UnderFormText()
+        else ErrorText(
+            error,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+        )
+    }
+
 }

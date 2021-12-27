@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import epos_next.app.android.feats.login.parts.TopBar
 import epos_next.app.android.feats.login.parts.UnderFormText
 import epos_next.app.android.components.theme.ApplicationTheme
 
+@ExperimentalAnimationApi
 class LoginFragment : Fragment() {
 
     override fun onCreateView(
@@ -47,11 +49,7 @@ class LoginFragment : Fragment() {
                             verticalArrangement = Arrangement.Center,
                         ) {
                             LogoAndName()
-
                             Form()
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            UnderFormText()
                         }
                     }
                 }
