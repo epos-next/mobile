@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -28,6 +29,7 @@ fun Input(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     passwordMasking: Boolean = false,
+    trailingIcon: @Composable () -> Unit = {},
 ) {
     OutlinedTextField(
         value = value,
@@ -48,7 +50,8 @@ fun Input(
         shape = RoundedCornerShape(10.dp),
         label = { Text(text = label) },
         placeholder = { Text(text = placeholder) },
-        maxLines = 1
+        maxLines = 1,
+        trailingIcon = trailingIcon
     )
 }
 

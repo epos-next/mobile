@@ -1,20 +1,23 @@
 package epos_next.app.android.feats.login.parts
 
 import androidx.compose.animation.*
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
@@ -35,6 +38,7 @@ fun Form() {
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
     var loading by remember { mutableStateOf(false) }
+    var passwordVisible by remember { mutableStateOf(false) }
 
     val disabled = email.isEmpty() || password.isEmpty() || error.isNotEmpty()
 
@@ -83,7 +87,20 @@ fun Form() {
             imeAction = ImeAction.Done,
             keyboardType = KeyboardType.Password
         ),
-        passwordMasking = false,
+        passwordMasking = !passwordVisible,
+        trailingIcon = {
+            val id = if (passwordVisible) R.drawable.ic_eye else R.drawable.ic_eye_closed
+            IconButton(
+                onClick = { passwordVisible = !passwordVisible },
+                modifier = Modifier.padding(end = 5.dp)
+            ) {
+                Image(
+                    painterResource(id = id),
+                    "eye",
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+        }
     )
     Spacer(modifier = Modifier.height(18.dp))
 
