@@ -36,9 +36,16 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             authStatusReducer.state.collect {
+                val current = navController.currentDestination?.id
                 when (it) {
-                    is AuthStatusState.Authorized -> navController.navigate(R.id.mainFragment)
-                    is AuthStatusState.NotAuthorized -> navController.navigate(R.id.loginFragment)
+                    is AuthStatusState.Authorized -> when(current) {
+                        R.id.loginFragment -> navController.navigate(R.id.action_loginFragment_to_mainFragment)
+                        else -> navController.navigate(R.id.action_loadingFragment_to_mainFragment)
+                    }
+                    is AuthStatusState.NotAuthorized -> when(current) {
+                        R.id.mainFragment -> navController.navigate(R.id.action_mainFragment_to_loginFragment)
+                        else -> navController.navigate(R.id.action_loadingFragment_to_loginFragment)
+                    }
                 }
             }
         }
