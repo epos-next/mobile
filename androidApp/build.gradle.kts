@@ -34,7 +34,6 @@ dependencies {
     implementation(libs.constraintlayout)
 
     implementation(libs.compose.ui)
-    implementation(libs.compose.activity)
     implementation(libs.compose.material)
     implementation(libs.compose.tooling)
 
@@ -49,4 +48,14 @@ dependencies {
     implementation(libs.nav.ui)
 
     implementation(libs.lifecycle.runtime)
+
+    implementation(libs.napier)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk.mockk)
+    testImplementation(libs.mockk.agent)
+    androidTestImplementation(libs.mockk.android)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.testJunit)
+    testImplementation(libs.androidx.test.junit)
 }

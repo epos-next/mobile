@@ -7,27 +7,62 @@
 //
 
 import SwiftUI
+import shared
 
 struct LoginFormView: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var error: String = ""
+    @State private var loading: Bool = false
+    
+    private var isDisabled: Bool {
+        get { return email.isEmpty || password.isEmpty || !error.isEmpty }
+    }
+    
+    @EnvironmentObject private var authStatus: AuthStatusObservable
     
     var body: some View {
         VStack(spacing: 15) {
             TextInput(placeholder: "Email", text: $email)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
+                .onChange(of: email, perform: { _ in
+                    if !error.isEmpty { withAnimation { error = "" } }
+                })
             
             SecureInput(placeholder: "Password", text: $password)
                 .textContentType(.password)
+                .onChange(of: password, perform: { _ in
+                    if !error.isEmpty { withAnimation { error = "" } }
+                })
             
-            MainButton("Login", action: {})
+            MainButton(
+                "Login",
+                action: {
+                    loading = true
+                    
+                    authStatus.reducer.login(
+                        email: email,
+                        password: password
+                    ) { exception, _ in
+                        loading = false
+                        if exception != nil {
+                            withAnimation {
+                                error = TransalateExceptionKt.translateException(exception: exception!)
+                            }
+                        } else {
+                            withAnimation {
+                                error = ""
+                            }
+                        }
+                    }
+                },
+                isDisabled: isDisabled,
+                isLoading: loading
+            )
             
-            Text("Email и пароль от аккаунта ЭПОС.Школа")
-                .font(.custom("AvenirNext-Medium", size: 14))
-                .foregroundColor(.lightPrimary)
-                .multilineTextAlignment(.center)
             
+            LoginErrorText(error: error)
         }
     }
 }

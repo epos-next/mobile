@@ -12,7 +12,9 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		551F1FC591FE7D9FCDEAFD90 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27664F7AA84B4BEFAB6F55F /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264F2AC276E6E7300B217B9 /* TabBarView.swift */; };
+		F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F270E110277B633B00F0EE9C /* LoginErrorText.swift */; };
 		F288D611276F546800FA9144 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288D610276F546800FA9144 /* MainButton.swift */; };
 		F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DC82778ABA5004EE815 /* Koin.swift */; };
 		F2C08DCC2778B3F4004EE815 /* AuthStatusObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DCB2778B3F4004EE815 /* AuthStatusObservable.swift */; };
@@ -37,7 +39,9 @@
 		88B6549F0AB7B693E6C39EA4 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		93E9F4147A3460C4E46E3728 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		D27664F7AA84B4BEFAB6F55F /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F264F2AC276E6E7300B217B9 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		F270E110277B633B00F0EE9C /* LoginErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorText.swift; sourceTree = "<group>"; };
 		F288D610276F546800FA9144 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		F2C08DC82778ABA5004EE815 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		F2C08DCB2778B3F4004EE815 /* AuthStatusObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStatusObservable.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				F2C08DC82778ABA5004EE815 /* Koin.swift */,
+				F22857072779ECD700513F97 /* MainView.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				F2E8B75B276F3BA900058A24 /* LoginLogoView.swift */,
+				F270E110277B633B00F0EE9C /* LoginErrorText.swift */,
 				F2E8B75D276F3CAF00058A24 /* LoginAppNameView.swift */,
 				F2E8B76D276F4BD900058A24 /* LoginFormView.swift */,
 			);
@@ -288,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */,
+				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
@@ -295,6 +302,7 @@
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
+				F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */,
 				F2E8B76E276F4BD900058A24 /* LoginFormView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				F2E8B76C276F488900058A24 /* TextInput.swift in Sources */,

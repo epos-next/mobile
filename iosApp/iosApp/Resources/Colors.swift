@@ -11,4 +11,5 @@ import SwiftUI
 extension Color {
     static let contrast = Color("contrast")
     static let lightPrimary = Color("light-primary")
+    static let error = Color("error")
 }

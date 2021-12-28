@@ -4,13 +4,10 @@ struct TabBarView: View {
     @Binding var selectedTab: String
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 0) {
-            Spacer()
-            HStack(spacing: 0) {
-                TabIcon(selectedTab: $selectedTab, icon: selectedTab == "home" ? "home_active_icon" : "home_disabled_icon", tab: "home")
-                TabIcon(selectedTab: $selectedTab, icon: selectedTab == "marks" ? "marks_active_icon" : "marks_disabled_icon", tab: "marks")
-                TabIcon(selectedTab: $selectedTab, icon: selectedTab == "profile" ? "user_active_icon" : "user_disabled_icon", tab: "profile")
-            }
+        HStack (spacing: 0) {
+            TabIcon(selectedTab: $selectedTab, icon: selectedTab == "home" ? "home_active_icon" : "home_disabled_icon", tab: "home")
+            TabIcon(selectedTab: $selectedTab, icon: selectedTab == "marks" ? "marks_active_icon" : "marks_disabled_icon", tab: "marks")
+            TabIcon(selectedTab: $selectedTab, icon: selectedTab == "profile" ? "user_active_icon" : "user_disabled_icon", tab: "profile")
         }
         .padding(.bottom,getSafeArea().bottom == 0 ? 15 : getSafeArea().bottom)
         .background(Color.white.opacity(0.01))

@@ -13,13 +13,18 @@ struct MainButtonStyle: ButtonStyle {
     let isDisabled: Bool
     
     func makeBody(configuration: Self.Configuration) -> some View {
+        let bg = isDisabled
+            ? Color.lightPrimary
+            : configuration.isPressed
+                ? Color.contrast.opacity(0.9)
+                : Color.contrast
+        
         return configuration.label
             .frame(height: 51)
             .frame(maxWidth: .infinity)
             .foregroundColor(Color.white)
-            .background(isDisabled ? Color.contrast.opacity(0.3) : configuration.isPressed ? Color.contrast.opacity(0.9) : Color.contrast)
-            .cornerRadius(6)
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.contrast, lineWidth: 1))
+            .background(bg)
+            .cornerRadius(10)
             .font(Font.system(size: 19, weight: .semibold))
             .scaleEffect(configuration.isPressed ? 0.99 : 1.0)
     }
@@ -27,17 +32,28 @@ struct MainButtonStyle: ButtonStyle {
 
 struct MainButton: View {
     var isDisabled: Bool = false
+    var isLoading: Bool = false
     let content: String
     var action: () -> ()
     
-    public init (_ content : String, action: @escaping () -> ()) {
+    public init (_ content : String, action: @escaping () -> (), isDisabled: Bool = false, isLoading: Bool = false) {
         self.content = content
         self.action = action
+        self.isDisabled = isDisabled
+        self.isLoading = isLoading
     }
     
     var body: some View {
-        Button(action: action) {
-            Text(content)
+        Button(action: {
+            if !isLoading && !isDisabled { action() }
+        }) {
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+            }
+            else {
+                Text(content)
+            }
         }
         .buttonStyle(MainButtonStyle(isDisabled: isDisabled))
         

@@ -1,54 +1,32 @@
 import SwiftUI
 import shared
 
-struct HomeView: View {
-    var body: some View {
-        Text("Home")
-    }
-}
-
-struct MarksView: View {
-    var body: some View {
-        Text("Marks")
-    }
-}
-
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile")
-    }
-}
-
 
 struct ContentView: View {
-    @State var selectedTab: String
-    @ObservedObject var authStatus = AuthStatusObservable()
+    @ObservedObject var authStatus: AuthStatusObservable
     
     init() {
-        UITabBar.appearance().isHidden = false
-        selectedTab = "home"
+        authStatus = AuthStatusObservable()
     }
-    
+
     
     var body: some View {
-        if (authStatus.state is AuthStatusState.Loading) {
-            ProgressView()
+        HStack {
+            if authStatus.state is AuthStatusState.Loading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+            }
+            
+            else if authStatus.state is AuthStatusState.NotAuthorized {
+                LoginScreenView()
+            }
+            
+            else {
+                MainView()
+            }
         }
-        
-        else if (authStatus.state is AuthStatusState.NotAuthorized) {
-            LoginScreenView()
-        }
-        
-        else {
-            ZStack {
-                TabView (selection: $selectedTab) {
-                    HomeView().tag("home")
-                    MarksView().tag("marks")
-                    ProfileView().tag("profile")
-                }
-                TabBarView(selectedTab: $selectedTab)
-            }.ignoresSafeArea()
-        }
+        .environmentObject(authStatus)
     }
 }
 

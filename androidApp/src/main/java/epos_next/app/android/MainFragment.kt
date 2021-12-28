@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import epos_next.app.usecases.IsAuthorizedUseCase
-import org.koin.android.ext.android.inject
 
 class MainFragment: Fragment() {
     private lateinit var viewPager: ViewPager2
