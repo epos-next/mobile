@@ -14,8 +14,17 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
 
     private val database: AppDatabase by inject()
 
-    override fun insertMany(lessons: Iterable<Lesson>) {
+    override fun cacheMany(lessons: Iterable<Lesson>) =
         database.lessonQueries.transaction {
+            // dates which will used to find previously cached lessons.
+            val from = lessons.first().date.date.toString()
+            val to = lessons.first().date.date.plus(1, DateTimeUnit.DAY).toString()
+
+            // delete previously cached
+            database.lessonQueries.deleteByDate(from, to)
+            Napier.i("deleteByDate($from, $to)", tag = "DB")
+
+            // save new lessons
             lessons.forEach {
                 Napier.i("insert($it)", tag = "DB")
                 database.lessonQueries.insert(
@@ -29,7 +38,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
                 )
             }
         }
-    }
+
 
     override fun getByDate(date: LocalDateTime): List<Lesson> {
         val from = date.date.toString()

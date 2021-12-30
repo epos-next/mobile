@@ -15,6 +15,10 @@ insert:
 INSERT OR IGNORE INTO lessonModel(id, subject, groupId, room, lessonNumber, date, duration)
 VALUES (?, ?, ?, ? , ?, ?, ?);
 
+deleteByDate:
+DELETE FROM lessonModel
+WHERE date BETWEEN date(:from) AND date(:to);
+
 getByDate:
 SELECT * FROM lessonModel
 WHERE date BETWEEN date(:from) AND date(:to);

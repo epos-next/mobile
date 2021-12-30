@@ -5,11 +5,13 @@ import kotlinx.datetime.LocalDateTime
 
 interface LessonsDataSource {
     /**
-     * Insert list of lessons to `Lessons` table
+     * Should used to cache lessons.
+     * Replace all currently saved lessons with [lessons].
+     * Used date of first element at [lessons] to find previously cached lessons.
      * @param lessons which should be saved
      * @return nothing
      */
-    fun insertMany(lessons: Iterable<Lesson>)
+    fun cacheMany(lessons: Iterable<Lesson>)
 
     /**
      * Grab all lessons from database where date is the same as provided
