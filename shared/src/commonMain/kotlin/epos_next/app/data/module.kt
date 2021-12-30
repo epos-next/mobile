@@ -7,7 +7,8 @@ import epos_next.app.data.auth.AuthDataStoreImpl
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.data.lessons.LessonsDataSourceImpl
 import epos_next.db.AppDatabase
-import eposnext.app.data.Lessons
+import eposnext.app.data.HomeworkModel
+import eposnext.app.data.LessonModel
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -15,10 +16,13 @@ val dataModule = module {
     single {
         AppDatabase(
             get(),
-            lessonsAdapter = Lessons.Adapter(
+            lessonModelAdapter = LessonModel.Adapter(
                 dateAdapter = localDateTimeAdapter,
                 durationAdapter = durationAdapter,
             ),
+            homeworkModelAdapter = HomeworkModel.Adapter(
+                dateAdapter = localDateTimeAdapter,
+            )
         )
     }
 

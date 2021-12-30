@@ -17,7 +17,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
     override fun insertMany(lessons: Iterable<Lesson>) {
         database.lessonQueries.transaction {
             lessons.forEach {
-                Napier.i("INSERT $it", tag = "DB")
+                Napier.i("insert($it)", tag = "DB")
                 database.lessonQueries.insert(
                     id = it.id,
                     subject = it.subject,
@@ -40,7 +40,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
             .executeAsList()
             .map { LessonMapper.mapDatabase(it) }
             .let {
-                Napier.i("SELECT BETWEEN $from AND $to = $it", tag = "DB")
+                Napier.i("getByDate($from, $to) = $it", tag = "DB")
                 it
             }
     }

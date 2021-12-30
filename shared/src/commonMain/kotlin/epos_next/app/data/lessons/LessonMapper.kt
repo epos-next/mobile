@@ -1,11 +1,11 @@
 package epos_next.app.data.lessons
 
 import epos_next.app.models.Lesson
-import eposnext.app.data.Lessons
+import eposnext.app.data.LessonModel
 
 object LessonMapper {
 
-    fun mapDatabase(db: Lessons): Lesson = Lesson(
+    fun mapDatabase(db: LessonModel): Lesson = Lesson(
         id = db.id,
         subject = db.subject,
         groupId = db.groupId,

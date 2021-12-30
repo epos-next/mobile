@@ -1,0 +1,18 @@
+import kotlinx.datetime.LocalDateTime;
+
+CREATE TABLE homeworkModel(
+    id INTEGER NOT NULL PRIMARY KEY,
+    lesson TEXT NOT NULL,
+    content TEXT NOT NULL,
+    done INTEGER AS Boolean NOT NULL,
+    date TEXT AS LocalDateTime NOT NULL
+);
+
+getFresh:
+SELECT * FROM homeworkModel
+WHERE date > datetime('now');
+
+insert:
+INSERT OR IGNORE INTO homeworkModel(id, lesson, content, done, date)
+VALUES (?, ?, ?, ?, ?);
+

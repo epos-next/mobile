@@ -46,7 +46,7 @@ kotlin {
                 implementation(libs.ktor.client.auth)
                 implementation(libs.ktor.client.serialization)
                 implementation(libs.sqlDelight.runtime)
-
+                implementation(libs.sqlDelight.coroutinesExt)
             }
         }
         val commonTest by getting {

@@ -1,7 +1,7 @@
 import kotlin.time.Duration;
 import kotlinx.datetime.LocalDateTime;
 
-CREATE TABLE lessons(
+CREATE TABLE lessonModel(
     id INTEGER NOT NULL PRIMARY KEY,
     subject TEXT NOT NULL,
     groupId INTEGER NOT NULL,
@@ -12,9 +12,9 @@ CREATE TABLE lessons(
 );
 
 insert:
-INSERT OR IGNORE INTO lessons(id, subject, groupId, room, lessonNumber, date, duration)
+INSERT OR IGNORE INTO lessonModel(id, subject, groupId, room, lessonNumber, date, duration)
 VALUES (?, ?, ?, ? , ?, ?, ?);
 
 getByDate:
-SELECT * FROM lessons
+SELECT * FROM lessonModel
 WHERE date BETWEEN date(:from) AND date(:to);
