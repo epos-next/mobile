@@ -19,3 +19,8 @@ VALUES (?, ?, ?, ?, ?);
 deleteAll:
 DELETE FROM homeworkModel;
 
+updateDone:
+UPDATE homeworkModel
+SET done = :done
+WHERE id = :id;
+

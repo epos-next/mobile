@@ -18,4 +18,12 @@ interface HomeworkDataSource {
      * @return nothing
      */
     fun cacheMany(homework: Iterable<Homework>)
+
+    /**
+     * Update done property of entity with given id
+     * @param id of homework which should be updated
+     * @param done value of homework to which entity should be updated
+     * @return nothing
+     */
+    fun updateDone(id: Long, done: Boolean)
 }

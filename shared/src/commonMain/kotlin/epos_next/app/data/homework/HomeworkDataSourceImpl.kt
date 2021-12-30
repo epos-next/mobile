@@ -30,7 +30,7 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
     }
 
     override fun cacheMany(homework: Iterable<Homework>) {
-        database.lessonQueries.transaction {
+        database.homeworkQueries.transaction {
             // delete all cache
             database.homeworkQueries.deleteAll()
             Napier.i("deleteAll()", tag = "DB")
@@ -49,4 +49,8 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
         }
     }
 
+    override fun updateDone(id: Long, done: Boolean) {
+        database.homeworkQueries.updateDone(id = id, done = done)
+        Napier.i("updateDone($id, $done)", tag = "DB")
+    }
 }
