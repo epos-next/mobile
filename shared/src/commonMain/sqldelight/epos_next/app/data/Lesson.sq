@@ -14,3 +14,7 @@ CREATE TABLE lessons(
 insert:
 INSERT OR IGNORE INTO lessons(id, subject, groupId, room, lessonNumber, date, duration)
 VALUES (?, ?, ?, ? , ?, ?, ?);
+
+getByDate:
+SELECT * FROM lessons
+WHERE date BETWEEN date(:from) AND date(:to);
