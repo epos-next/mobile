@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.5.31"
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -44,6 +45,7 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.auth)
                 implementation(libs.ktor.client.serialization)
+                implementation(libs.sqlDelight.runtime)
 
             }
         }
@@ -56,6 +58,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktor.client.android)
+                implementation(libs.sqlDelight.android)
+                implementation(libs.sqlDelight.coroutinesExt)
             }
         }
         val androidTest by getting {
@@ -73,6 +77,7 @@ kotlin {
             //iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(libs.ktor.client.ios)
+                implementation(libs.sqlDelight.native)
             }
         }
         val iosX64Test by getting
@@ -94,5 +99,11 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "epos_next.db"
     }
 }
