@@ -29,4 +29,24 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
             }
     }
 
+    override fun cacheMany(homework: Iterable<Homework>) {
+        database.lessonQueries.transaction {
+            // delete all cache
+            database.homeworkQueries.deleteAll()
+            Napier.i("deleteAll()", tag = "DB")
+
+            // replace with new
+            homework.forEach {
+                Napier.i("insert($it)", tag = "DB")
+                database.homeworkQueries.insert(
+                    id = it.id,
+                    lesson = it.lesson,
+                    content = it.content,
+                    done = it.done,
+                    date = it.date,
+                )
+            }
+        }
+    }
+
 }

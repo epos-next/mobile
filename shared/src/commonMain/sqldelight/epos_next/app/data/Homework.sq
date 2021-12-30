@@ -16,3 +16,6 @@ insert:
 INSERT OR IGNORE INTO homeworkModel(id, lesson, content, done, date)
 VALUES (?, ?, ?, ?, ?);
 
+deleteAll:
+DELETE FROM homeworkModel;
+

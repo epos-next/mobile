@@ -10,4 +10,12 @@ interface HomeworkDataSource {
      * @return flow of [Homework]
      */
     fun get(): Flow<List<Homework>>
+
+    /**
+     * Should used to cache homework.
+     * Replace all currently saved lessons with [homework].
+     * @param homework which should be saved
+     * @return nothing
+     */
+    fun cacheMany(homework: Iterable<Homework>)
 }
