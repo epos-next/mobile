@@ -39,7 +39,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.napier)
-                implementation(libs.multiplatformSettings)
+                implementation(libs.multiplatformSettings.core)
+                implementation(libs.multiplatformSettings.serialization)
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.ktor.client.core)
@@ -90,6 +91,10 @@ kotlin {
             //iosSimulatorArm64Test.dependsOn(this)
         }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.RequiresOptIn")
 }
 
 android {
