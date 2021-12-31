@@ -7,6 +7,7 @@ import epos_next.app.data.auth.AuthDataStoreImpl
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.data.lessons.LessonsDataSourceImpl
 import epos_next.db.AppDatabase
+import eposnext.app.data.AdvertisementModel
 import eposnext.app.data.ControlWorkModel
 import eposnext.app.data.HomeworkModel
 import eposnext.app.data.LessonModel
@@ -25,7 +26,10 @@ val dataModule = module {
                 dateAdapter = localDateTimeAdapter,
             ),
             controlWorkModelAdapter = ControlWorkModel.Adapter(
-                dateAdapter = localDateTimeAdapter
+                dateAdapter = localDateTimeAdapter,
+            ),
+            advertisementModelAdapter = AdvertisementModel.Adapter(
+                targetDateAdapter = localDateTimeAdapter,
             )
         )
     }

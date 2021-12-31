@@ -1,0 +1,18 @@
+import kotlinx.datetime.LocalDateTime;
+
+CREATE TABLE advertisementModel(
+    id INTEGER NOT NULL PRIMARY KEY,
+    content TEXT NOT NULL,
+    targetDate TEXT AS LocalDateTime NOT NULL
+);
+
+insert:
+INSERT OR IGNORE INTO advertisementModel(id, content, targetDate)
+VALUES (?, ?, ?);
+
+getFresh:
+SELECT * FROM advertisementModel
+WHERE targetDate >= datetime('now');
+
+deleteAll:
+DELETE FROM advertisementModel;
