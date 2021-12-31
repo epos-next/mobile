@@ -1,0 +1,19 @@
+import kotlinx.datetime.LocalDateTime;
+
+CREATE TABLE controlWorkModel(
+     id INTEGER NOT NULL PRIMARY KEY,
+     lesson TEXT NOT NULL,
+     date TEXT AS LocalDateTime NOT NULL,
+     name TEXT NOT NULL
+);
+
+getFresh:
+SELECT * FROM controlWorkModel
+WHERE date >= datetime('now');
+
+insert:
+INSERT OR IGNORE INTO controlWorkModel(id, lesson, date, name)
+VALUES (?, ?, ?, ?);
+
+deleteAll:
+DELETE FROM controlWorkModel;

@@ -1,4 +1,4 @@
-package epos_next.app.models
+package epos_next.app.domain.entities
 
 import kotlinx.datetime.LocalDateTime
 

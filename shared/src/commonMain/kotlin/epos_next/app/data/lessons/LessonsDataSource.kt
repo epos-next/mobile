@@ -1,6 +1,6 @@
 package epos_next.app.data.lessons
 
-import epos_next.app.models.Lesson
+import epos_next.app.domain.entities.Lesson
 import kotlinx.datetime.LocalDateTime
 
 interface LessonsDataSource {

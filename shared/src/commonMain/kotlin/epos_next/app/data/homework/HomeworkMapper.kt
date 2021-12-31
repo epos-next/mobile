@@ -1,6 +1,6 @@
 package epos_next.app.data.homework
 
-import epos_next.app.models.Homework
+import epos_next.app.domain.entities.Homework
 import eposnext.app.data.HomeworkModel
 
 object HomeworkMapper {

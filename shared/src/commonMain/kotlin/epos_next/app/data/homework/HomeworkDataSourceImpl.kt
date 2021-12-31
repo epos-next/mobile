@@ -2,7 +2,7 @@ package epos_next.app.data.homework
 
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
-import epos_next.app.models.Homework
+import epos_next.app.domain.entities.Homework
 import epos_next.db.AppDatabase
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow

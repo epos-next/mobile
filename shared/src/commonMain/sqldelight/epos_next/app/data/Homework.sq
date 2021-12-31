@@ -10,7 +10,7 @@ CREATE TABLE homeworkModel(
 
 getFresh:
 SELECT * FROM homeworkModel
-WHERE date > datetime('now');
+WHERE date >= datetime('now');
 
 insert:
 INSERT OR IGNORE INTO homeworkModel(id, lesson, content, done, date)
