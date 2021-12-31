@@ -32,9 +32,11 @@ class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
         database.advertisementsQueries.transaction {
             // delete old cache
             database.advertisementsQueries.deleteAll()
+            Napier.i("deleteAll()", tag = "DB")
 
             // save new
             advertisements.forEach {
+                Napier.i("insert($it)", tag = "DB")
                 database.advertisementsQueries.insert(
                     id = it.id,
                     content = it.content,
