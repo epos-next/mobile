@@ -2,8 +2,8 @@ package epos_next.app.state.authStatus
 
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.lib.BaseReducer
-import epos_next.app.usecases.usecases.IsAuthorizedUseCase
-import epos_next.app.usecases.usecases.LoginUseCase
+import epos_next.app.usecases.IsAuthorizedUseCase
+import epos_next.app.usecases.LoginUseCase
 import kotlinx.coroutines.flow.update
 import org.koin.core.component.inject
 import kotlin.time.ExperimentalTime

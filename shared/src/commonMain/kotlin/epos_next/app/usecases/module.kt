@@ -1,4 +1,4 @@
-package epos_next.app.usecases.usecases
+package epos_next.app.usecases
 
 import org.koin.dsl.module
 

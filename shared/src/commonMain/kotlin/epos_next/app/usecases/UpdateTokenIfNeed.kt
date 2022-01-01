@@ -1,4 +1,4 @@
-package epos_next.app.usecases.usecases
+package epos_next.app.usecases
 
 import epos_next.app.data.auth.AuthDataStore
 import org.koin.core.component.KoinComponent

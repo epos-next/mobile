@@ -1,6 +1,5 @@
 package usecases
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
 import epos_next.app.lib.Either
@@ -8,7 +7,7 @@ import epos_next.app.models.SetAuthTokens
 import epos_next.app.network.Api
 import epos_next.app.network.ApiImpl
 import epos_next.app.network.responces.auth.AuthenticateResponse
-import epos_next.app.usecases.usecases.LoginUseCaseImpl
+import epos_next.app.usecases.LoginUseCaseImpl
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
