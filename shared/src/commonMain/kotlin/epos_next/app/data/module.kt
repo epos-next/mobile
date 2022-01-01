@@ -6,11 +6,9 @@ import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.data.lessons.LessonsDataSourceImpl
+import epos_next.app.data.marks.marksAdapter
 import epos_next.db.AppDatabase
-import eposnext.app.data.AdvertisementModel
-import eposnext.app.data.ControlWorkModel
-import eposnext.app.data.HomeworkModel
-import eposnext.app.data.LessonModel
+import eposnext.app.data.*
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -30,6 +28,9 @@ val dataModule = module {
             ),
             advertisementModelAdapter = AdvertisementModel.Adapter(
                 targetDateAdapter = localDateTimeAdapter,
+            ),
+            lessonMarkModelAdapter = LessonMarkModel.Adapter(
+                periodsAdapter = marksAdapter,
             )
         )
     }
