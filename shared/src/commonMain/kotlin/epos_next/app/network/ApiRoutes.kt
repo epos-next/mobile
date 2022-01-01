@@ -5,4 +5,6 @@ object ApiRoutes {
 
     const val authenticate = "/auth/authenticate"
     const val reauthenticate = "/auth/reauthenticate"
+
+    const val data = "/data"
 }

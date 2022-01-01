@@ -1,5 +1,6 @@
 package epos_next.app.network
 
+import epos_next.app.domain.entities.BigDataObject
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.NetworkException
@@ -24,37 +25,11 @@ interface Api {
         email: String,
         password: String
     ): Either<Exception, AuthenticateResponse>
+
+    /**
+     * The most important api request. Called on app start and fetch everything: user, control works,
+     * advertisements, homework, lesson schedule on current week and marks.
+     */
+    suspend fun getData(): Either<Exception, BigDataObject>
 }
 
-class ApiImpl: Api {
-
-    override suspend fun authenticate(
-        email: String,
-        password: String
-    ): Either<Exception, AuthenticateResponse> {
-        return try {
-            val response: AuthenticateResponse =
-                authClient.post(ApiRoutes.authenticate) {
-                    body = AuthenticateRequest(email, password)
-                }
-
-            Napier.i("API reply 200 on $email, $password. Response is $response")
-
-            Either.Right(response)
-        } catch (e: ResponseException) {
-            val statusCode = e.response.status.value
-            if (statusCode == 400) {
-                Napier.w("API reply 400 on $email, $password", e)
-                Either.Left(InvalidCredentials())
-            }
-            else {
-                Napier.e("API reply $statusCode on $email, $password", e)
-                Either.Left(InvalidAuthException())
-            }
-        } catch (e: Throwable) {
-            Napier.e("Network exception on $email, $password", e)
-            Napier.e(e.toString())
-            Either.Left(NetworkException())
-        }
-    }
-}

@@ -38,7 +38,7 @@ val authClient = HttpClient {
     }
 }
 
-@ExperimentalTime
+@OptIn(ExperimentalTime::class)
 val client: HttpClient = HttpClient {
     defaultRequest {
         url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
