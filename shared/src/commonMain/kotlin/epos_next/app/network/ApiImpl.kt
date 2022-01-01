@@ -25,22 +25,22 @@ class ApiImpl: Api {
                     body = AuthenticateRequest(email, password)
                 }
 
-            Napier.i("API reply 200 on $email, $password. Response is $response")
+            Napier.i("API reply 200 on $email, $password. Response is $response", tag = "API")
 
             Either.Right(response)
         } catch (e: ResponseException) {
             val statusCode = e.response.status.value
             if (statusCode == 400) {
-                Napier.w("API reply 400 on $email, $password", e)
+                Napier.w("API reply 400 on $email, $password", e, tag = "API")
                 Either.Left(InvalidCredentials())
             }
             else {
-                Napier.e("API reply $statusCode on $email, $password", e)
+                Napier.e("API reply $statusCode on $email, $password", e, tag = "API")
                 Either.Left(InvalidAuthException())
             }
         } catch (e: Throwable) {
-            Napier.e("Network exception on $email, $password", e)
-            Napier.e(e.toString())
+            Napier.e("Network exception on $email, $password", e, tag = "API")
+            Napier.e(e.toString(), tag = "API")
             Either.Left(NetworkException())
         }
     }
@@ -49,16 +49,16 @@ class ApiImpl: Api {
         return try {
             val response: BigDataObjectDto = client.get(ApiRoutes.data)
 
-            Napier.i("API reply 200. Response is $response")
+            Napier.i("API reply 200. Response is $response", tag = "API")
 
             Either.Right(response.toDomain())
         } catch (e: ResponseException) {
             val statusCode = e.response.status.value
-            Napier.e("API reply $statusCode", e)
+            Napier.e("API reply $statusCode", e, tag = "API")
             Either.Left(InvalidDataException(e))
         } catch (e: Throwable) {
-            Napier.e("Network exception", e)
-            Napier.e(e.toString())
+            Napier.e("Network exception", e, tag = "API")
+            Napier.e(e.toString(), tag = "API")
             Either.Left(NetworkException(e))
         }
     }
