@@ -41,28 +41,28 @@ fun LessonWithRoomAndTime(
     modifier: Modifier = Modifier,
     lesson: Lesson = defaultProps
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .composed { modifier }) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            LessonCircle(subject = lesson.subject)
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth().height(40.dp)
+    ) {
+        LessonCircle(subject = lesson.subject)
 
-            Column(
-                modifier = Modifier
-                    .padding(start = 15.dp)
-            ) {
-                LessonSubject(text = lesson.subject)
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    LessonSubtitle(text = lesson.room)
-                    LessonSubtitleDot()
-                    LessonSubtitle(
-                        text = UiHelper.formatLessonTime(
-                            lesson.date,
-                            lesson.duration
-                        )
+        Column(
+            modifier = Modifier
+                .padding(start = 15.dp)
+        ) {
+            LessonSubject(text = lesson.subject)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                LessonSubtitle(text = lesson.room)
+                LessonSubtitleDot()
+                LessonSubtitle(
+                    text = UiHelper.formatLessonTime(
+                        lesson.date,
+                        lesson.duration
                     )
-                }
+                )
             }
         }
+
     }
 }

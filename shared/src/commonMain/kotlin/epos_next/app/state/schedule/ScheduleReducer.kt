@@ -16,16 +16,27 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
         loadSchedule(today)
     }
 
-    fun loadDateSchedule(date: LocalDate) {
+    fun loadDateSchedule(date: LocalDate): Int {
         val datetime = date
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toLocalDateTime(TimeZone.currentSystemDefault())
         loadSchedule(datetime)
+
+        return state.value.let {
+            if (it is ScheduleState.Idle) it.lessons.size
+            else 0
+        }
     }
 
     private fun loadSchedule(date: LocalDateTime) = try {
         val lessons = lessonsDataSource.getByDate(date).sortedBy { it.date }
-        stateFlow.update { ScheduleState.Idle(lessons) }
+
+        if (lessons.isEmpty()) {
+            stateFlow.update { ScheduleState.Loading }
+        } else {
+            stateFlow.update { ScheduleState.Idle(lessons) }
+        }
+
     } catch (e: Exception) {
         Napier.e("failed to load schedule", e, tag = "Reducer")
         Napier.e(e.stackTraceToString(), tag = "Reducer")

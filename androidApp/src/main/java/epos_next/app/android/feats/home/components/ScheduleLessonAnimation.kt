@@ -15,7 +15,7 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun ScheduleLessonComponent(
     lesson: Lesson,
-    index: Int = 0
+    index: Int = 0,
 ) {
     val viewModel = getViewModel<MainViewModel>()
 

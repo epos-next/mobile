@@ -5,18 +5,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.feats.home.components.HomeTitle
 
 @Composable
 fun LessonSkeletonList(
-    modifier: Modifier = Modifier,
     count: Int = 5,
-    topPadding: Boolean = true,
     itemModifier: Modifier = Modifier.padding(horizontal = 20.dp),
     content: @Composable ColumnScope.() -> Unit = { LessonSkeleton(modifier = itemModifier) },
 ) {
-    Column(modifier = modifier.composed { Modifier.padding(top = 10.dp) }) {
+    Column {
+        HomeTitle(
+            modifier = Modifier.padding(
+                start = 20.dp,
+                end = 20.dp,
+                top = 20.dp,
+            ),
+            text = "Уроки"
+        )
         repeat(count) {
-            if (it != 0 && topPadding) Spacer(modifier = Modifier.height(if (it == 0) 15.dp else 25.dp))
+            Spacer(modifier = Modifier.height(if (it == 0) 10.dp else 25.dp))
             content()
         }
     }

@@ -17,27 +17,26 @@ import kotlin.random.Random
 
 @Composable
 fun LessonSkeleton(modifier: Modifier = Modifier, content: @Composable RowScope.() -> Unit = {}) {
-    Box(
-        modifier = Modifier
-            .composed { modifier }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
             .fillMaxWidth()
-            .height(36.dp),
+            .height(40.dp),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Circle()
-            Column(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.Center,
-            ) {
-                TextSkeleton(generateTitleWidthMultiplier())
-                Spacer(modifier = Modifier.height(5.dp))
-                TextSkeleton(generateSubtitleWidthMultiplier())
-            }
-            Spacer(modifier = Modifier.weight(1.0f))
-            content()
+        Circle()
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            TextSkeleton(generateTitleWidthMultiplier())
+            Spacer(modifier = Modifier.height(5.dp))
+            TextSkeleton(generateSubtitleWidthMultiplier())
         }
+        Spacer(modifier = Modifier.weight(1.0f))
+        content()
     }
+
 }
 
 private fun generateTitleWidthMultiplier() = Random.nextDouble(from = 0.3, until = 0.4).toFloat()
