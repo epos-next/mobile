@@ -4,5 +4,9 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.lifecycle.ViewModel
 
 class MainViewModel: ViewModel() {
-    val scheduleVisible = MutableTransitionState(false).apply { targetState = true }
+    var scheduleVisible = MutableTransitionState(false).apply { targetState = true }
+
+    fun resetScheduleVisible() {
+        scheduleVisible = MutableTransitionState(false).apply { targetState = true }
+    }
 }

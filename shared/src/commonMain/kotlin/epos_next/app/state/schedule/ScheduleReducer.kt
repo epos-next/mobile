@@ -4,10 +4,7 @@ import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.lib.BaseReducer
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.update
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.*
 import org.koin.core.component.inject
 
 class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
@@ -17,6 +14,13 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
     fun loadTodaySchedule() {
         val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         loadSchedule(today)
+    }
+
+    fun loadDateSchedule(date: LocalDate) {
+        val datetime = date
+            .atStartOfDayIn(TimeZone.currentSystemDefault())
+            .toLocalDateTime(TimeZone.currentSystemDefault())
+        loadSchedule(datetime)
     }
 
     private fun loadSchedule(date: LocalDateTime) = try {

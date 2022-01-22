@@ -29,14 +29,19 @@ import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
 import epos_next.app.utils.weekDays
 import java.time.LocalDate
+import kotlinx.datetime.LocalDate as KotlinLocalDate
 import java.time.Month
 import epos_next.app.android.R
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+import java.time.ZoneId
 
 @Preview
 @Composable
 fun Calendar(
     modifier: Modifier = Modifier.fillMaxWidth(),
-    onDaySelected: (date: LocalDate) -> Any = {}
+    onDaySelected: (date: KotlinLocalDate) -> Any = {}
 ) {
     // State
     val date = remember { mutableStateOf(LocalDate.now()) }
@@ -45,7 +50,11 @@ fun Calendar(
     // handlers
     fun onDaySelectedHandler(day: LocalDate) {
         date.value = day
-        onDaySelected(day)
+        val kotlinDate =
+            Instant.fromEpochSeconds(day.atStartOfDay(ZoneId.systemDefault()).toEpochSecond())
+                .toLocalDateTime(TimeZone.currentSystemDefault()).date
+        onDaySelected(kotlinDate)
+
     }
 
     Box(modifier = modifier) {

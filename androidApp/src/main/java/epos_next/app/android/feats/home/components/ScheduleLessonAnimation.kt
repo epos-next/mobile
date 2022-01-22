@@ -32,7 +32,7 @@ fun ScheduleLessonComponent(
     AnimatedVisibility(
         visibleState = viewModel.scheduleVisible,
         enter = slideAnimation + fadeAnimation,
-        exit = slideOutHorizontally { with(density) { -100.dp.roundToPx() } } + fadeOut()) {
+        exit = slideOutHorizontally { with(density) { -50.dp.roundToPx() } } + fadeOut()) {
         LessonWithRoomAndTime(
             modifier = Modifier.padding(
                 top = if (index == 0) 10.dp else 20.dp, start = 20.dp,

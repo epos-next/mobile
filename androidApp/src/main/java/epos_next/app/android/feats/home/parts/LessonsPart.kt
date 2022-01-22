@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.MainViewModel
 import epos_next.app.android.components.LessonSkeletonList
 import epos_next.app.android.feats.home.components.*
 import epos_next.app.domain.entities.Lesson
@@ -23,10 +24,16 @@ fun LessonPart() {
     val scheduleReducer = get<ScheduleReducer>()
     val state = scheduleReducer.state.collectAsState().value
 
+    val viewModel = getViewModel<MainViewModel>()
+
     Calendar(
         modifier = Modifier
             .padding(top = 25.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        onDaySelected = {
+            scheduleReducer.loadDateSchedule(it)
+            viewModel.resetScheduleVisible()
+        }
     )
 
     HomeTitle(
