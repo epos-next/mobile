@@ -1,7 +1,10 @@
 package epos_next.app.android.feats.home.parts
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -47,15 +50,13 @@ fun LessonPart() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun LessonsList(lessons: List<Lesson>) {
     for (i in lessons.indices) {
-        LessonWithRoomAndTime(
-            modifier = Modifier.padding(
-                top = if (i == 0) 10.dp else 20.dp, start = 20.dp,
-                end = 20.dp,
-            ),
-            lesson = lessons[i]
+        ScheduleLessonComponent(
+            lesson = lessons[i],
+            index = i,
         )
     }
 }
