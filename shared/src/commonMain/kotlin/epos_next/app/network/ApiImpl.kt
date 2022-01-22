@@ -9,6 +9,7 @@ import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import epos_next.app.network.responces.data.BigDataObjectDto
+import epos_next.app.network.responces.data.GetDataResponse
 import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
@@ -47,11 +48,9 @@ class ApiImpl: Api {
 
     override suspend fun getData(): Either<Exception, BigDataObject> {
         return try {
-            val response: BigDataObjectDto = client.get(ApiRoutes.data)
+            val response: GetDataResponse = client.get(ApiRoutes.data)
 
-            Napier.i("API reply 200. Response is $response", tag = "API")
-
-            Either.Right(response.toDomain())
+            Either.Right(response.data.toDomain())
         } catch (e: ResponseException) {
             val statusCode = e.response.status.value
             Napier.e("API reply $statusCode", e, tag = "API")

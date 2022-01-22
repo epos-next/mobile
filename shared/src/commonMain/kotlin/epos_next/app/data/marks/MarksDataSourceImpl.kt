@@ -20,7 +20,7 @@ class MarksDataSourceImpl: MarksDataSource, KoinComponent {
                 database.lessonMarkQueries.insert(
                     lesson = it.key,
                     periods = it.value.periods,
-                    total = it.value.total
+                    total = it.value.total?.toInt()
                 )
                 Napier.i("insert($it)", tag = "DB")
             }

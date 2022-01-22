@@ -3,15 +3,23 @@ package epos_next.app.android.feats.home.parts
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.components.LessonSkeletonList
 import epos_next.app.android.feats.home.components.*
 import epos_next.app.domain.entities.Lesson
+import epos_next.app.state.schedule.ScheduleReducer
+import epos_next.app.state.schedule.ScheduleState
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun LessonPart() {
+
+    val scheduleReducer = get<ScheduleReducer>()
+    val state = scheduleReducer.state.collectAsState().value
+
     Calendar(
         modifier = Modifier
             .padding(top = 25.dp)
@@ -27,18 +35,16 @@ fun LessonPart() {
         text = "Уроки"
     )
 
-    LessonSkeletonList()
-
-//    when (state) {
-//        is LessonState.IdleState -> {
-//            if (state.lessonSchedule.isNotEmpty()) {
-//                LessonsList(state.lessonSchedule)
-//            }
-//        }
-//        is LessonState.ErrorState -> TextError(Modifier.padding(top = 10.dp), state.error)
-//        is LessonState.LoadingState -> LessonSkeletonList()
-//        is LessonState.ItsSummerState -> NowSummerMessage()
-//    }
+    when (state) {
+        is ScheduleState.Idle -> {
+            if (state.lessons.isNotEmpty()) {
+                LessonsList(state.lessons)
+            }
+        }
+        is ScheduleState.Error -> TextError(Modifier.padding(top = 10.dp), state.message)
+        is ScheduleState.Loading -> LessonSkeletonList()
+        is ScheduleState.ItsSummer -> NowSummerMessage()
+    }
 }
 
 @Composable

@@ -8,6 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import epos_next.app.state.authStatus.AuthStatusReducer
 import epos_next.app.state.authStatus.AuthStatusState
+import epos_next.app.usecases.FetchBigDataObjectUseCase
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
@@ -19,6 +21,7 @@ import kotlinx.coroutines.flow.collect
 class MainActivity : AppCompatActivity() {
 
     private val authStatusReducer: AuthStatusReducer by inject()
+    private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                         else -> navController.navigate(R.id.action_loadingFragment_to_loginFragment)
                     }
                 }
+
+                Napier.d("authStatusReducer changed!! Calling FetchBigDataObject!!")
+                fetchBigDataObjectUseCase()
             }
         }
     }

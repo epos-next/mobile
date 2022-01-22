@@ -10,7 +10,7 @@ object UiHelper {
 
     fun formatLessonTime(startDate: LocalDateTime, duration: Duration): String {
         val javaStartDate = startDate.toJavaLocalDateTime()
-        val formatter = DateTimeFormatter.ofPattern("hh:mm")
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
         val startDateFormatted = javaStartDate.format(formatter)
         val endDate = javaStartDate.plusSeconds(duration.inWholeSeconds)
         val endDateFormatted = endDate.format(formatter)

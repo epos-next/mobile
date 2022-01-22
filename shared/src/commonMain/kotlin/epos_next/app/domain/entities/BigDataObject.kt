@@ -5,6 +5,6 @@ data class BigDataObject(
     val lessons: List<Lesson>,
     val homework: List<Homework>,
     val controlWorks: List<ControlWork>,
-    val advertisement: List<Advertisement>,
+    val advertisements: List<Advertisement>,
     val marks: Marks,
 )

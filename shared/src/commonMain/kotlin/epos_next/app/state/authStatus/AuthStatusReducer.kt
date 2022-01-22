@@ -1,7 +1,8 @@
 package epos_next.app.state.authStatus
 
-import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.lib.BaseReducer
+import epos_next.app.usecases.ClearAppAfterLogoutUseCase
+import epos_next.app.usecases.FetchBigDataObjectUseCase
 import epos_next.app.usecases.IsAuthorizedUseCase
 import epos_next.app.usecases.LoginUseCase
 import kotlinx.coroutines.flow.update
@@ -9,12 +10,13 @@ import org.koin.core.component.inject
 import kotlin.time.ExperimentalTime
 
 class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
-    private val isAuthorizedUseCase: IsAuthorizedUseCase by inject()
+    private val isAuthorized: IsAuthorizedUseCase by inject()
     private val loginUseCase: LoginUseCase by inject()
-    private val authDataState: AuthDataStore by inject()
+    private val clearAppAfterLogout: ClearAppAfterLogoutUseCase by inject()
+    private val fetchBigDataObject: FetchBigDataObjectUseCase by inject()
 
     init {
-        val isAuthorized = isAuthorizedUseCase.execute()
+        val isAuthorized = isAuthorized.execute()
         stateFlow.update {
             if (isAuthorized) AuthStatusState.Authorized(id = 1) // TODO: use real id, cached in db
             else AuthStatusState.NotAuthorized
@@ -33,13 +35,14 @@ class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
                 stateFlow.update {
                     AuthStatusState.Authorized(id = id)
                 }
+                fetchBigDataObject.invoke()
                 null
             }
         )
     }
 
-    fun logout() {
-        authDataState.clearAll()
+    suspend fun logout() {
         stateFlow.update { AuthStatusState.NotAuthorized }
+        clearAppAfterLogout()
     }
 }

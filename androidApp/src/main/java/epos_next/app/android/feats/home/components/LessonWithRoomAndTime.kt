@@ -41,22 +41,20 @@ fun LessonWithRoomAndTime(
         Row(verticalAlignment = Alignment.CenterVertically) {
             LessonCircle(subject = lesson.subject)
 
-            Box(
+            Column(
                 modifier = Modifier
                     .padding(start = 15.dp)
             ) {
-                Column {
-                    LessonSubject(text = lesson.subject)
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        LessonSubtitle(text = lesson.room)
-                        LessonSubtitleDot()
-                        LessonSubtitle(
-                            text = UiHelper.formatLessonTime(
-                                lesson.date,
-                                lesson.duration
-                            )
+                LessonSubject(text = lesson.subject)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    LessonSubtitle(text = lesson.room)
+                    LessonSubtitleDot()
+                    LessonSubtitle(
+                        text = UiHelper.formatLessonTime(
+                            lesson.date,
+                            lesson.duration
                         )
-                    }
+                    )
                 }
             }
         }

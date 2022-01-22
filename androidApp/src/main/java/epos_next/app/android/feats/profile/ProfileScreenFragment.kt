@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import epos_next.app.state.authStatus.AuthStatusReducer
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class ProfileScreenFragment : Fragment() {
@@ -22,7 +24,15 @@ class ProfileScreenFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                Button(onClick = { authStateReducer.logout() }) {
+                val coroutineScope = rememberCoroutineScope()
+
+                fun handleClick() {
+                    coroutineScope.launch {
+                        authStateReducer.logout()
+                    }
+                }
+
+                Button(onClick = ::handleClick) {
                     Text("logout")
                 }
             }

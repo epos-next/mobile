@@ -15,7 +15,7 @@ fun LessonSubject(modifier: Modifier = Modifier, text: String) {
     Box(modifier = modifier) {
         Text(
             text = text, style = TextStyle(
-                fontWeight = FontWeight.W500,
+                fontWeight = FontWeight.W400,
                 fontSize = 16.sp,
                 color = MaterialTheme.colors.textPrimary,
             )

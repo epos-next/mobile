@@ -8,6 +8,7 @@ import epos_next.app.domain.exceptions.InvalidTokenFoundException
 import epos_next.app.domain.exceptions.NoTokenFoundException
 import epos_next.app.domain.exceptions.TokenException
 import epos_next.app.lib.Either
+import io.github.aakira.napier.Napier
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlin.time.Duration
@@ -90,23 +91,23 @@ class AuthDataStoreImpl: AuthDataStore {
 
         if (refresh == null || access == null) return Either.Left(NoTokenFoundException())
 
-        print("I: getTokens() - successfully return 2 tokens")
+        Napier.i("successfully return 2 tokens")
 
         return Either.Right(AuthTokens(access, refresh))
     }
 
     override fun getRefreshToken(): String? {
-        print("I: getRefreshToken() - running")
+        Napier.i("running")
         return settings.getStringOrNull(Keys.refreshToken)
     }
 
     override fun getId(): Int? {
-        print("I: getId() - running")
+        Napier.i("running")
         return settings.getIntOrNull(Keys.id)
     }
 
     override fun setTokens(tokens: SetAuthTokens) {
-        print("I: setTokens() - running $tokens")
+        Napier.i("running $tokens")
 
         val setDate = Clock.System.now().toString()
 
@@ -118,18 +119,18 @@ class AuthDataStoreImpl: AuthDataStore {
         settings.putString(Keys.authTokenSetDate, setDate)
         settings.putString(Keys.refreshTokenSetDate, setDate)
 
-        print("setTokens() - successful")
+        Napier.i("successful")
     }
 
     override fun setId(id: Int) {
-        print("I: setId($id) - running")
+        Napier.i("running")
         settings.putInt(Keys.id, id)
-        print("I: setId($id) - successful")
+        Napier.i("successful")
     }
 
     override fun isAuthorized(): Boolean {
         val value = isAuthorizedInner()
-        print("isAuthorized() = $value")
+        Napier.i("$value")
         return value
     }
 
@@ -156,13 +157,13 @@ class AuthDataStoreImpl: AuthDataStore {
     )
 
     override fun clearAll() {
-        print("I: clearAll() - running")
+        Napier.i("running")
         settings.remove(Keys.accessToken)
         settings.remove(Keys.authTokenSetDate)
         settings.remove(Keys.id)
         settings.remove(Keys.refreshToken)
         settings.remove(Keys.refreshTokenSetDate)
-        print("I: clearAll() - successful")
+        Napier.i("successful")
     }
 
     /**
@@ -175,7 +176,7 @@ class AuthDataStoreImpl: AuthDataStore {
         tokenDateKey: String,
         lifetime: Duration
     ): Either<TokenException, Boolean> {
-        print("I: shouldUpdateToken($tokenDateKey, $lifetime) - running")
+        Napier.i("shouldUpdateToken($tokenDateKey, $lifetime) - running")
 
         // get date from store as ISO string
         // if no set date found --> there's no token --> user not authorize --> can't update token
@@ -196,7 +197,7 @@ class AuthDataStoreImpl: AuthDataStore {
         // if after --> token isn't expired, else need to update it
         val should = expiresAt >= Clock.System.now()
 
-        print("I: shouldUpdateToken($tokenDateKey, $lifetime) = $should")
+        Napier.i("shouldUpdateToken($tokenDateKey, $lifetime) = $should")
         return Either.Right(should)
     }
 }

@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AuthTokens(
-    val access: String?,
+    val access: String,
     val refresh: String,
 )
 
@@ -17,7 +17,7 @@ data class SetAuthTokens(
         fun fromAuthTokens(obj: AuthTokens): SetAuthTokens {
             return SetAuthTokens(
                 refresh = obj.refresh,
-                access = obj.access!!,
+                access = obj.access,
             )
         }
     }

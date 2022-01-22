@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ReauthenticateResponse(
     val success: Boolean,
-    val tokens: AuthTokens?,
-    val id: Int?
+    val tokens: AuthTokens,
+    val id: Int
 )

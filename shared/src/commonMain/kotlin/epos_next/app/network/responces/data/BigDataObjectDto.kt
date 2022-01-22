@@ -9,7 +9,7 @@ data class BigDataObjectDto(
     val lessons: List<LessonDto>,
     val homework: List<Homework>,
     val controlWorks: List<ControlWork>,
-    val advertisement: List<Advertisement>,
+    val advertisements: List<Advertisement>,
     val marks: Marks,
 ) {
     fun toDomain(): BigDataObject {
@@ -18,7 +18,7 @@ data class BigDataObjectDto(
             lessons = lessons.map { it.toDomain() },
             homework = homework,
             controlWorks = controlWorks,
-            advertisement = advertisement,
+            advertisements = advertisements,
             marks = marks,
         )
     }
