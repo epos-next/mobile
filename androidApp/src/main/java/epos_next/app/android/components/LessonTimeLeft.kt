@@ -7,13 +7,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import epos_next.app.android.components.theme.contrast
-import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.time.Duration
+import kotlin.time.toJavaDuration
 
 @Composable
 fun LessonTimeLeft(modifier: Modifier = Modifier, timeLeft: Duration) {
-    val date = LocalDateTime.of(1, 1, 1, 0, 0).plus(timeLeft)
+    val date = LocalDateTime.of(1, 1, 1, 0, 0).plus(timeLeft.toJavaDuration())
     val formatter = DateTimeFormatter.ofPattern("mm:ss")
     val formattedTimeLeft = date.format(formatter)
 
