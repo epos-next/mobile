@@ -2,9 +2,9 @@ package epos_next.app.android.feats.home.parts
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.lib.collectAsState
 import epos_next.app.android.components.LessonSkeletonList
 import epos_next.app.android.components.LessonSkeletonWithCheckbox
 import epos_next.app.android.feats.home.components.HomeTitle
@@ -18,7 +18,7 @@ import org.koin.androidx.compose.get
 fun HomeworkPart() {
     val reducer = get<HomeworkReducer>()
 
-    when (val state = reducer.state.collectAsState(initial = HomeworkState.Loading).value) {
+    when (val state = reducer.collectAsState()) {
         is HomeworkState.Idle -> {
             if (state.homework.isNotEmpty()) {
                 HomeTitle(text = "Домашнее задание")
@@ -27,9 +27,7 @@ fun HomeworkPart() {
                     HomeworkComponent(
                         modifier = Modifier.padding(top = 10.dp),
                         homework = homework,
-                        onTap = {
-//                            viewModel.handleHomeworkComplete(homework.id)
-                        }
+                        onTap = { reducer.updateDone(homework.id, it) }
                     )
                 }
             }

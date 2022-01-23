@@ -62,6 +62,7 @@ kotlin {
                 implementation(libs.ktor.client.android)
                 implementation(libs.sqlDelight.android)
                 implementation(libs.sqlDelight.coroutinesExt)
+                implementation(libs.compose.ui)
             }
         }
         val androidTest by getting {
