@@ -14,6 +14,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.http.cio.*
 import kotlin.time.ExperimentalTime
 
 val tokenClient = HttpClient {
@@ -64,7 +65,9 @@ val client: HttpClient = HttpClient {
         level = LogLevel.ALL
     }
     install(Auth) {
+
         bearer {
+            Napier.d("here at bearer")
             loadTokens {
                 val authDataStore = AuthDataStoreImpl()
                 authDataStore.getTokens().fold(
@@ -81,42 +84,42 @@ val client: HttpClient = HttpClient {
                     }
                 )
             }
-            refreshTokens {
-                val authDataStore = AuthDataStoreImpl()
-                val token = authDataStore.getRefreshToken()
-                val id = authDataStore.getId()
-
-                Napier.i("need to refresh tokens. Id is $id, refresh token is $token")
-
-                try {
-                    if (token != null && id != null) {
-
-                        val updateResponse: ReauthenticateResponse =
-                            tokenClient.post(ApiRoutes.reauthenticate) {
-                                body = ReauthenticateRequest(
-                                    refresh = token,
-                                    id = id,
-                                )
-                            }
-
-                        if (updateResponse.success) {
-                            val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
-                            authDataStore.setTokens(setPayload)
-                            authDataStore.setId(updateResponse.id)
-
-                            BearerTokens(
-                                accessToken = setPayload.access,
-                                refreshToken = setPayload.refresh,
-                            )
-                        }
-                    }
-                } catch (e: Exception) {
-                    Napier.e("failed to refresh auth tokens", e, tag = "HTTP")
-                    Napier.e(e.toString(), tag = "HTTP")
-                }
-
-                null
-            }
+//            refreshTokens {
+//                val authDataStore = AuthDataStoreImpl()
+//                val token = authDataStore.getRefreshToken()
+//                val id = authDataStore.getId()
+//
+//                Napier.i("need to refresh tokens. Id is $id, refresh token is $token")
+//
+//                try {
+//                    if (token != null && id != null) {
+//
+//                        val updateResponse: ReauthenticateResponse =
+//                            tokenClient.post(ApiRoutes.reauthenticate) {
+//                                body = ReauthenticateRequest(
+//                                    refresh = token,
+//                                    id = id,
+//                                )
+//                            }
+//
+//                        if (updateResponse.success) {
+//                            val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
+//                            authDataStore.setTokens(setPayload)
+//                            authDataStore.setId(updateResponse.id)
+//
+//                            BearerTokens(
+//                                accessToken = setPayload.access,
+//                                refreshToken = setPayload.refresh,
+//                            )
+//                        }
+//                    }
+//                } catch (e: Exception) {
+//                    Napier.e("failed to refresh auth tokens", e, tag = "HTTP")
+//                    Napier.e(e.toString(), tag = "HTTP")
+//                }
+//
+//                null
+//            }
         }
     }
 }

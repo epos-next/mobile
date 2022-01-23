@@ -41,5 +41,19 @@ interface Api {
      * @return lessons
      */
     suspend fun fetchLessons(from: LocalDate, to: LocalDate): Either<Exception, List<Lesson>>
+
+    /**
+     * Mark homework with [id] as completed
+     * @param id homework id
+     * @return nothing on success, otherwise [Exception]
+     */
+    suspend fun completeHomework(id: Long): Either<Exception, Nothing?>
+
+    /**
+     * Mark homework with [id] as not completed
+     * @param id homework id
+     * @return nothing on success, otherwise [Exception]
+     */
+    suspend fun cancelCompleteHomework(id: Long): Either<Exception, Nothing?>
 }
 

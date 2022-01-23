@@ -7,9 +7,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.core.component.KoinComponent
 
-abstract class BaseProxyReducer<T>(val initialState: T) {
+abstract class BaseProxyReducer<T>(val initialState: T): KoinComponent {
     abstract val state: Flow<T>
+
+    val scope = CoroutineScope(Dispatchers.Main)
 
     fun onChange(provideNewState: ((T) -> Unit)): Closeable {
         val job = Job()

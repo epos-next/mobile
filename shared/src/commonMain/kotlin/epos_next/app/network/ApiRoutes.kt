@@ -8,4 +8,6 @@ object ApiRoutes {
 
     const val data = "/data"
     fun fetchLesson(from: String, to: String) = "/data/lessons?from=$from&to=$to"
+    fun completeHomework(id: Long) = "/homework/$id/complete"
+    fun cancelCompleteHomework(id: Long) = "/homework/$id/cancel-complete"
 }
