@@ -11,6 +11,8 @@ abstract class BaseReducer<T>(initialState: T): KoinComponent {
     protected val stateFlow = MutableStateFlow(initialState)
     val state: StateFlow<T> get() = stateFlow.asStateFlow()
 
+    val scope = CoroutineScope(Dispatchers.Main)
+
     fun onChange(provideNewState: ((T) -> Unit)): Closeable {
         val job = Job()
 

@@ -11,6 +11,6 @@ val durationAdapter = object : ColumnAdapter<Duration, Long> {
     }
 
     override fun encode(value: Duration): Long {
-        return value.inWholeSeconds
+        return value.toLong(DurationUnit.SECONDS)
     }
 }

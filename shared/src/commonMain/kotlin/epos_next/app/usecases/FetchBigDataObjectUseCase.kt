@@ -9,6 +9,7 @@ import epos_next.app.domain.entities.Homework
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.network.Api
 import epos_next.app.state.homework.HomeworkReducer
+import epos_next.app.state.nextLesson.NextLessonReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import epos_next.app.state.schedule.ScheduleState
 import io.github.aakira.napier.Napier
@@ -25,6 +26,7 @@ interface FetchBigDataObjectUseCase {
 class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     private val api: Api by inject()
     private val scheduleReducer: ScheduleReducer by inject()
+    private val nextLessonReducer: NextLessonReducer by inject()
     private val lessonsDataSource: LessonsDataSource by inject()
     private val homeworkDataSource: HomeworkDataSource by inject()
     private val advertisementDataSource: AdvertisementDataSource by inject()
@@ -33,7 +35,7 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     override suspend fun invoke() {
         try {
             updateReducerWithCached()
-//            api.getData().fold(::handleError, ::handleSuccess)
+            api.getData().fold(::handleError, ::handleSuccess)
         } catch (e: Exception) {
             Napier.e("failed to fetch BDO", e, tag = "UseCase")
             Napier.e(e.stackTraceToString(), tag = "UseCase")
@@ -54,10 +56,16 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
 
     private fun updateReducerWithCached() {
         scheduleReducer.loadTodaySchedule()
+        nextLessonReducer.startCalculationProcess()
     }
 
     // cache new data
     private fun cache(data: BigDataObject) {
+
+        data.lessons.forEach {
+            Napier.d(it.duration.toString(), tag = "lessons")
+        }
+
         lessonsDataSource.cacheMany(data.lessons)
         homeworkDataSource.cacheMany(data.homework)
         advertisementDataSource.cacheMany(data.advertisements)

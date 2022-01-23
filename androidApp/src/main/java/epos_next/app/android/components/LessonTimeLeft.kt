@@ -1,5 +1,6 @@
 package epos_next.app.android.components
 
+import androidx.compose.animation.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

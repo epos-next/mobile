@@ -6,6 +6,7 @@ import epos_next.app.data.controlWork.ControlWorkDataSource
 import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.state.authStatus.AuthStatusReducer
+import epos_next.app.state.nextLesson.NextLessonReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -19,11 +20,13 @@ interface ClearAppAfterLogoutUseCase {
 
 class ClearAppAfterLogoutUseCaseImpl: ClearAppAfterLogoutUseCase, KoinComponent {
     private val scheduleReducer: ScheduleReducer by inject()
+    private val nextLessonReducer: NextLessonReducer by inject()
     private val authDataState: AuthDataStore by inject()
     private val lessonsDataSource: LessonsDataSource by inject()
     private val homeworkDataSource: HomeworkDataSource by inject()
     private val advertisementDataSource: AdvertisementDataSource by inject()
     private val controlWorkDataSource: ControlWorkDataSource by inject()
+
 
     override suspend fun invoke() {
         clearState()
@@ -40,5 +43,6 @@ class ClearAppAfterLogoutUseCaseImpl: ClearAppAfterLogoutUseCase, KoinComponent 
 
     private fun clearState() {
         scheduleReducer.clearSchedule()
+        nextLessonReducer.reset()
     }
 }
