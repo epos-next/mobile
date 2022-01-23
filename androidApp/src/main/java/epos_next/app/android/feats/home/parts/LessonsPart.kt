@@ -14,6 +14,7 @@ import epos_next.app.android.feats.home.components.*
 import epos_next.app.domain.entities.Lesson
 import epos_next.app.state.schedule.ScheduleReducer
 import epos_next.app.state.schedule.ScheduleState
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import java.lang.Integer.max
@@ -26,13 +27,17 @@ fun LessonPart() {
 
     val viewModel = getViewModel<MainViewModel>()
 
+    val coroutineScope = rememberCoroutineScope()
+
     Calendar(
         modifier = Modifier
             .padding(top = 25.dp)
             .fillMaxWidth(),
         onDaySelected = {
-            val amount = scheduleReducer.loadDateSchedule(it)
-            if (amount != 0) viewModel.resetScheduleVisible()
+            coroutineScope.launch {
+                val amount = scheduleReducer.loadDateSchedule(it)
+                if (amount != 0) viewModel.resetScheduleVisible()
+            }
         }
     )
 

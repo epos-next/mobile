@@ -7,4 +7,5 @@ object ApiRoutes {
     const val reauthenticate = "/auth/reauthenticate"
 
     const val data = "/data"
+    fun fetchLesson(from: String, to: String) = "/data/lessons?from=$from&to=$to"
 }

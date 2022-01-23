@@ -35,7 +35,7 @@ class AuthStatusReducer: BaseReducer<AuthStatusState>(AuthStatusState.Loading) {
                 stateFlow.update {
                     AuthStatusState.Authorized(id = id)
                 }
-                fetchBigDataObject.invoke()
+                fetchBigDataObject()
                 null
             }
         )

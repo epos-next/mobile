@@ -15,18 +15,22 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
 
     private val database: AppDatabase by inject()
 
-    override fun cacheMany(lessons: Iterable<Lesson>) =
+    override fun cacheMany(lessons: Iterable<Lesson>) {
+        val dates = lessons.map { it.date.date }.toSet()
         database.lessonQueries.transaction {
-            lessons.forEach {
+            dates.forEach {
                 // dates which will used to find previously cached lessons.
-                val from = lessons.first().date.date.toString()
-                val to = lessons.first().date.date.plus(1, DateTimeUnit.DAY).toString()
+                val from = it.toString()
+                val to = it.plus(1, DateTimeUnit.DAY).toString()
 
                 // delete previously cached
                 database.lessonQueries.deleteByDate(from, to)
                 Napier.i("deleteByDate($from, $to)", tag = "DB")
+            }
+        }
 
-
+        database.lessonQueries.transaction {
+            lessons.forEach {
                 database.lessonQueries.insert(
                     id = it.id,
                     subject = it.subject,
@@ -39,12 +43,13 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
                 Napier.i("insert($it)", tag = "DB")
             }
         }
+    }
 
-    override fun getByDate(date: LocalDateTime): List<Lesson>? {
-        val from = date.date.toString()
-        val to = date.date.plus(1, DateTimeUnit.DAY).toString()
+    override fun getByDate(date: LocalDate): List<Lesson>? {
+        val from = date.toString()
+        val to = date.plus(1, DateTimeUnit.DAY).toString()
 
-        val exists = database.lessonDatesQueries.isCached(date.date).executeAsOne()
+        val exists = database.lessonDatesQueries.isCached(date).executeAsOne()
         Napier.i("isCached($date) = $exists", tag = "DB")
 
         // If nothing is known about this date, null is returned
@@ -69,5 +74,10 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
                 date = date.plus(1, DateTimeUnit.DAY)
             }
         }
+    }
+
+    override fun clearAll() {
+        database.lessonQueries.deleteAll()
+        database.lessonDatesQueries.removeAll()
     }
 }

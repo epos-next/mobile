@@ -26,7 +26,7 @@ class ClearAppAfterLogoutUseCaseImpl: ClearAppAfterLogoutUseCase, KoinComponent 
 
     private fun clearData() {
         authDataState.clearAll()
-//        lessonsDataSource.
+        lessonsDataSource.clearAll()
     }
 
     private fun clearState() {

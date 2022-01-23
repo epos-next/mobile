@@ -25,7 +25,7 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     override suspend fun invoke() {
         try {
             updateReducerWithCached()
-//            api.getData().fold(::handleError, ::handleSuccess)
+            api.getData().fold(::handleError, ::handleSuccess)
         } catch (e: Exception) {
             Napier.e("failed to fetch BDO", e, tag = "UseCase")
             Napier.e(e.stackTraceToString(), tag = "UseCase")

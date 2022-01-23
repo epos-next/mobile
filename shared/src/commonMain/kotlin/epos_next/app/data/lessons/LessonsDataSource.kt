@@ -22,7 +22,7 @@ interface LessonsDataSource {
      * If it is known that there are no lessons on this day, then an empty list is returned
      * If nothing is known about this date, null is returned
      */
-    fun getByDate(date: LocalDateTime): List<Lesson>?
+    fun getByDate(date: LocalDate): List<Lesson>?
 
     /**
      * Set cache flags on day in range [from]...[to]
@@ -38,4 +38,9 @@ interface LessonsDataSource {
      * @return nothing
      */
     fun setCacheMarkers(from: LocalDate, to: LocalDate)
+
+    /**
+     * Remove all schedule data includes cache markers
+     */
+    fun clearAll()
 }

@@ -1,6 +1,7 @@
 package epos_next.app.network
 
 import epos_next.app.domain.entities.BigDataObject
+import epos_next.app.domain.entities.Lesson
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.InvalidDataException
@@ -9,10 +10,12 @@ import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import epos_next.app.network.responces.data.BigDataObjectDto
+import epos_next.app.network.responces.data.FetchLessonsResponse
 import epos_next.app.network.responces.data.GetDataResponse
 import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
+import kotlinx.datetime.LocalDate
 
 class ApiImpl: Api {
 
@@ -62,5 +65,24 @@ class ApiImpl: Api {
         }
     }
 
+    override suspend fun fetchLessons(
+        from: LocalDate,
+        to: LocalDate
+    ): Either<Exception, List<Lesson>> {
+        return try {
+            val route = ApiRoutes.fetchLesson(from.toString(), to.toString())
+            val response: FetchLessonsResponse = client.get(route)
 
+            val lessons = response.data.map { it.toDomain() }
+            Either.Right(lessons)
+        } catch (e: ResponseException) {
+            val statusCode = e.response.status.value
+            Napier.e("API reply $statusCode", e, tag = "API")
+            Either.Left(InvalidDataException(e))
+        } catch (e: Throwable) {
+            Napier.e("Network exception", e, tag = "API")
+            Napier.e(e.toString(), tag = "API")
+            Either.Left(NetworkException(e))
+        }
+    }
 }
