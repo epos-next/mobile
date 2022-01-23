@@ -44,4 +44,8 @@ class ControlWorkDataSourceImpl : ControlWorkDataSource, KoinComponent {
             }
         }
     }
+
+    override fun clearAll() {
+        database.controlWorkQueries.deleteAll()
+    }
 }

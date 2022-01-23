@@ -4,4 +4,5 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single<Api> { ApiImpl() }
+    single<NetworkClient> { NetworkClient() }
 }

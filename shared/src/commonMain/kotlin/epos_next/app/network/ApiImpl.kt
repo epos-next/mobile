@@ -16,8 +16,12 @@ import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class ApiImpl: Api {
+class ApiImpl: Api, KoinComponent {
+
+    private val client: NetworkClient by inject()
 
     override suspend fun authenticate(
         email: String,
@@ -81,18 +85,18 @@ private suspend fun <T> runApi(
     } catch (e: ResponseException) {
         val statusCode = e.response.status.value
 
-        if (handleUnauthorizedStatus(e)) {
-            try {
-                content()
-            } catch (e: ResponseException) {
-                Napier.e("API reply $statusCode", e, tag = "API")
-                Either.Left(InvalidDataException(e))
-            } catch (e: Throwable) {
-                Napier.e("Network exception", e, tag = "API")
-                Napier.e(e.toString(), tag = "API")
-                Either.Left(NetworkException(e))
-            }
-        }
+//        if (handleUnauthorizedStatus(e)) {
+//            try {
+//                content()
+//            } catch (e: ResponseException) {
+//                Napier.e("API reply $statusCode", e, tag = "API")
+//                Either.Left(InvalidDataException(e))
+//            } catch (e: Throwable) {
+//                Napier.e("Network exception", e, tag = "API")
+//                Napier.e(e.toString(), tag = "API")
+//                Either.Left(NetworkException(e))
+//            }
+//        }
 
         Napier.e("API reply $statusCode", e, tag = "API")
         Either.Left(InvalidDataException(e))
@@ -112,18 +116,18 @@ private suspend fun <T> runApi(
     } catch (e: ResponseException) {
         val statusCode = e.response.status.value
 
-        if (handleUnauthorizedStatus(e)) {
-            try {
-                content()
-            } catch (e: ResponseException) {
-                Napier.e("API reply $statusCode", e, tag = "API")
-                handleResponseException(e) ?: Either.Left(InvalidDataException(e))
-            } catch (e: Throwable) {
-                Napier.e("Network exception", e, tag = "API")
-                Napier.e(e.toString(), tag = "API")
-                Either.Left(NetworkException(e))
-            }
-        }
+//        if (handleUnauthorizedStatus(e)) {
+//            try {
+//                content()
+//            } catch (e: ResponseException) {
+//                Napier.e("API reply $statusCode", e, tag = "API")
+//                handleResponseException(e) ?: Either.Left(InvalidDataException(e))
+//            } catch (e: Throwable) {
+//                Napier.e("Network exception", e, tag = "API")
+//                Napier.e(e.toString(), tag = "API")
+//                Either.Left(NetworkException(e))
+//            }
+//        }
 
         Napier.e("API reply $statusCode", e, tag = "API")
         handleResponseException(e) ?: Either.Left(InvalidDataException(e))

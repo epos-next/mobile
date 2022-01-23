@@ -26,4 +26,9 @@ interface HomeworkDataSource {
      * @return nothing
      */
     fun updateDone(id: Long, done: Boolean)
+
+    /**
+     * Remove all cached homework
+     */
+    fun clearAll()
 }

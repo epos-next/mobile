@@ -45,4 +45,8 @@ class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
             }
         }
     }
+
+    override fun clearAll() {
+        database.advertisementsQueries.deleteAll()
+    }
 }

@@ -18,4 +18,9 @@ interface ControlWorkDataSource {
      * @return nothing
      */
     fun cacheMany(controlWorks: Iterable<ControlWork>)
+
+    /**
+     * Remove all cached control works
+     */
+    fun clearAll()
 }

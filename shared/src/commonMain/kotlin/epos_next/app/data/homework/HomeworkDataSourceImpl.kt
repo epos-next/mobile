@@ -54,4 +54,8 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
         database.homeworkQueries.updateDone(id = id, done = done)
         Napier.i("updateDone($id, $done)", tag = "DB")
     }
+
+    override fun clearAll() {
+        database.homeworkQueries.deleteAll()
+    }
 }

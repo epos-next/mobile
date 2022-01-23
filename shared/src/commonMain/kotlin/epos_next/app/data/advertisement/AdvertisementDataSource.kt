@@ -18,4 +18,9 @@ interface AdvertisementDataSource {
      * @return nothing
      */
     fun cacheMany(advertisements: Iterable<Advertisement>)
+
+    /**
+     * Remove all cached advertisements
+     */
+    fun clearAll()
 }

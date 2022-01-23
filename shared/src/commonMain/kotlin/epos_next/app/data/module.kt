@@ -3,8 +3,12 @@ package epos_next.app.data
 import epos_next.app.data.adapters.durationAdapter
 import epos_next.app.data.adapters.localDateAdapter
 import epos_next.app.data.adapters.localDateTimeAdapter
+import epos_next.app.data.advertisement.AdvertisementDataSource
+import epos_next.app.data.advertisement.AdvertisementDataSourceImpl
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
+import epos_next.app.data.controlWork.ControlWorkDataSource
+import epos_next.app.data.controlWork.ControlWorkDataSourceImpl
 import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.homework.HomeworkDataSourceImpl
 import epos_next.app.data.lessons.LessonsDataSource
@@ -43,4 +47,6 @@ val dataModule = module {
 
     single<LessonsDataSource> { LessonsDataSourceImpl() }
     single<HomeworkDataSource> { HomeworkDataSourceImpl() }
+    single<ControlWorkDataSource> { ControlWorkDataSourceImpl() }
+    single<AdvertisementDataSource> { AdvertisementDataSourceImpl() }
 }
