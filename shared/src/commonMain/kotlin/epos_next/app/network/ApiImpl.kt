@@ -52,7 +52,7 @@ class ApiImpl: Api {
     override suspend fun getData(): Either<Exception, BigDataObject> {
         return try {
             val response: GetDataResponse = client.get(ApiRoutes.data)
-
+            Napier.d("response.hw = ${response.data.homework}")
             Either.Right(response.data.toDomain())
         } catch (e: ResponseException) {
             val statusCode = e.response.status.value

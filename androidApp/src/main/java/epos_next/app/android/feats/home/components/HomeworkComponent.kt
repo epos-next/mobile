@@ -1,5 +1,6 @@
 package epos_next.app.android.feats.home.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -39,35 +40,31 @@ fun HomeworkComponent(
     onTap: (status: Boolean) -> Unit = {},
 ) {
 
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .clickable(
-            indication = null,
-            interactionSource = remember { MutableInteractionSource() }) { onTap(!homework.done) }
-        .composed { modifier }) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            LessonCircle(subject = homework.lesson)
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() })
+            { onTap(!homework.done) },
+    ) {
+        LessonCircle(subject = homework.lesson)
 
-            Box(
-                modifier = Modifier
-                    .padding(start = 15.dp)
-            ) {
-                Column {
-                    LessonSubject(text = homework.lesson)
-                    LessonSubtitle(text = homework.content)
-                }
-            }
-
-            Spacer(modifier = Modifier.weight(1.0f))
-
-            Checkbox(
-                checked = homework.done,
-                onCheckedChange = { onTap(it) },
-                colors = CheckboxDefaults.colors(
-                    checkedColor = Color(0xFF68D676),
-                    uncheckedColor = MaterialTheme.colors.lightPrimary
-                )
-            )
+        Column(modifier = Modifier.padding(start = 15.dp).weight(1f)) {
+            LessonSubject(text = homework.lesson)
+            LessonSubtitle(text = homework.content)
         }
+
+        Checkbox(
+            checked = homework.done,
+            onCheckedChange = { onTap(it) },
+            modifier = modifier.offset(12.dp),
+            colors = CheckboxDefaults.colors(
+                checkedColor = Color(0xFF68D676),
+                uncheckedColor = MaterialTheme.colors.lightPrimary
+            )
+        )
+
     }
 }

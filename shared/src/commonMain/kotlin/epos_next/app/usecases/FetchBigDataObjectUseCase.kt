@@ -1,9 +1,12 @@
 package epos_next.app.usecases
 
+import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.domain.entities.BigDataObject
+import epos_next.app.domain.entities.Homework
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.network.Api
+import epos_next.app.state.homework.HomeworkReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import epos_next.app.state.schedule.ScheduleState
 import io.github.aakira.napier.Napier
@@ -21,11 +24,12 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     private val api: Api by inject()
     private val scheduleReducer: ScheduleReducer by inject()
     private val lessonsDataSource: LessonsDataSource by inject()
+    private val homeworkDataSource: HomeworkDataSource by inject()
 
     override suspend fun invoke() {
         try {
             updateReducerWithCached()
-            api.getData().fold(::handleError, ::handleSuccess)
+//            api.getData().fold(::handleError, ::handleSuccess)
         } catch (e: Exception) {
             Napier.e("failed to fetch BDO", e, tag = "UseCase")
             Napier.e(e.stackTraceToString(), tag = "UseCase")
@@ -51,6 +55,8 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     // cache new data
     private fun cache(data: BigDataObject) {
         lessonsDataSource.cacheMany(data.lessons)
+        Napier.d("homework = ${data.homework}")
+        homeworkDataSource.cacheMany(data.homework)
 
         // for setCacheMarkers
         val sortedLessons = data.lessons.sortedBy { it.date }

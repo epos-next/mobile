@@ -30,10 +30,11 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
     }
 
     override fun cacheMany(homework: Iterable<Homework>) {
+        // delete all cache
+        database.homeworkQueries.deleteAll()
+        Napier.i("deleteAll()", tag = "DB")
+
         database.homeworkQueries.transaction {
-            // delete all cache
-            database.homeworkQueries.deleteAll()
-            Napier.i("deleteAll()", tag = "DB")
 
             // replace with new
             homework.forEach {

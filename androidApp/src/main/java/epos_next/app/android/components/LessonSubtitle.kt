@@ -10,20 +10,23 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
 fun LessonSubtitle(modifier: Modifier = Modifier, text: String) {
-    Box(modifier = modifier) {
-        Text(
-            text = text, style = TextStyle(
-                color = MaterialTheme.colors.secondary,
-                fontSize = 14.sp
-            )
+    Text(
+        modifier = modifier,
+        text = text,
+        overflow = TextOverflow.Visible,
+        style = TextStyle(
+            color = MaterialTheme.colors.secondary,
+            fontSize = 14.sp,
         )
-    }
+    )
 }
 
 @Composable

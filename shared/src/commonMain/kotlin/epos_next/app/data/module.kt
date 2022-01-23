@@ -5,6 +5,8 @@ import epos_next.app.data.adapters.localDateAdapter
 import epos_next.app.data.adapters.localDateTimeAdapter
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
+import epos_next.app.data.homework.HomeworkDataSource
+import epos_next.app.data.homework.HomeworkDataSourceImpl
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.data.lessons.LessonsDataSourceImpl
 import epos_next.app.data.marks.marksAdapter
@@ -40,4 +42,5 @@ val dataModule = module {
     }
 
     single<LessonsDataSource> { LessonsDataSourceImpl() }
+    single<HomeworkDataSource> { HomeworkDataSourceImpl() }
 }
