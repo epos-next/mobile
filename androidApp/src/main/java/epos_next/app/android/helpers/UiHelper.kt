@@ -1,9 +1,11 @@
 package epos_next.app.android.helpers
 
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.toLowerCase
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.toJavaLocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.time.Duration
 
 object UiHelper {
@@ -18,63 +20,65 @@ object UiHelper {
     }
 
     fun getLessonColor(lesson: String): LessonColor {
-        if (lesson.contains("Физика")) return LessonColor(
+        val subject = formatSubjectName(lesson)
+
+        if (subject.contains("Физика")) return LessonColor(
             color = Color(0xFFBBEDBF),
             colorAccent = Color(0xFF68D676),
         )
-        if (lesson.contains("Геометрия")) return LessonColor(
+        if (subject.contains("Геометрия")) return LessonColor(
             color = Color(0xFFFBDDC3),
             colorAccent = Color(0xFFF5A664),
         )
-        if (lesson.contains("География")) return LessonColor(
+        if (subject.contains("География")) return LessonColor(
             color = Color(0xFFFEF0C5),
             colorAccent = Color(0xFFFCCF62),
         )
-        if (lesson.contains("Английский")) return LessonColor(
+        if (subject.contains("Английский")) return LessonColor(
             color = Color(0xFFC5CAFE),
             colorAccent = Color(0xFF6D73FD),
         )
-        if (lesson.contains("Алгебра")) return LessonColor(
+        if (subject.contains("Алгебра")) return LessonColor(
             color = Color(0xFFF8CBC4),
             colorAccent = Color(0xFFF18477),
         )
-        if (lesson.contains("Русский")) return LessonColor(
+        if (subject.contains("Русский")) return LessonColor(
             color = Color(0xFFE9B6FC),
             colorAccent = Color(0xFFD46DF9),
         )
-        if (lesson.contains("Химия")) return LessonColor(
+        if (subject.contains("Химия")) return LessonColor(
             color = Color(0xFFC4EBFD),
             colorAccent = Color(0xFF83D4FC),
         )
-        if (lesson.contains("Биология")) return LessonColor(
+        if (subject.contains("Биология")) return LessonColor(
             color = Color(0xFFc4d0fd),
             colorAccent = Color(0xFF8387fc),
         )
-        if (lesson.contains("История")) return LessonColor(
+        if (subject.contains("История")) return LessonColor(
             color = Color(0xFFc4fdce),
             colorAccent = Color(0xFF6bd082),
         )
-        if (lesson.contains("Информатика")) return LessonColor(
+        if (subject.contains("Информатика")) return LessonColor(
             color = Color(0xFFc4fdee),
             colorAccent = Color(0xFF74debd),
         )
-        if (lesson.contains("Технология")) return LessonColor(
+        if (subject.contains("Технология")) return LessonColor(
             color = Color(0xFFc4fdee),
             colorAccent = Color(0xFF74debd),
         )
-        if (lesson.contains("Литература")) return LessonColor(
+        if (subject.contains("Литература")) return LessonColor(
             color = Color(0xFFe8c4fd),
             colorAccent = Color(0xFFe483fc),
         )
-        if (lesson.contains("Математика")) return LessonColor(
+        if (subject.contains("Математика")) return LessonColor(
             color = Color(0xFFfddcc4),
             colorAccent = Color(0xFFfcb983),
         )
-        if (lesson.contains("Обществознание")) return LessonColor(
+        if (subject.contains("Обществознание")) return LessonColor(
             color = Color(0xFFfdc4ca),
             colorAccent = Color(0xFFfc8383),
         )
-        if (lesson.contains("Физкультура")) return LessonColor(
+        if (subject.contains("Физкультура")) return LessonColor(
             color = Color(0xFFfdc4d0),
             colorAccent = Color(0xFFfc8393),
         )
@@ -83,6 +87,16 @@ object UiHelper {
             color = Color(0xFFcccccc),
             colorAccent = Color(0xFF8f8f8f)
         )
+    }
+
+    fun formatSubjectName(name: String): String {
+        val lowerCase = name.lowercase(Locale.getDefault())
+        if (lowerCase.contains("основы безопасности жизнедеятельности")) return "ОБЖ"
+        if (lowerCase.contains("изобразительное искусство")) return "ИЗО"
+        if (lowerCase.contains("английский язык")) return "Английский язык"
+        if (lowerCase.contains("история")) return "История"
+        if (lowerCase.contains("физическая культура")) return "Физкультура"
+        return name
     }
 }
 
