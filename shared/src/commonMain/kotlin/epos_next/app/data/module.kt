@@ -1,6 +1,7 @@
 package epos_next.app.data
 
 import epos_next.app.data.adapters.durationAdapter
+import epos_next.app.data.adapters.localDateAdapter
 import epos_next.app.data.adapters.localDateTimeAdapter
 import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.auth.AuthDataStoreImpl
@@ -31,6 +32,9 @@ val dataModule = module {
             ),
             lessonMarkModelAdapter = LessonMarkModel.Adapter(
                 periodsAdapter = marksAdapter,
+            ),
+            lessonsDatesAdapter = LessonsDates.Adapter(
+                dateAdapter = localDateAdapter,
             )
         )
     }

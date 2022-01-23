@@ -1,6 +1,7 @@
 package epos_next.app.usecases
 
 import epos_next.app.data.auth.AuthDataStore
+import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.state.authStatus.AuthStatusReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import org.koin.core.component.KoinComponent
@@ -15,8 +16,8 @@ interface ClearAppAfterLogoutUseCase {
 
 class ClearAppAfterLogoutUseCaseImpl: ClearAppAfterLogoutUseCase, KoinComponent {
     private val scheduleReducer: ScheduleReducer by inject()
-    private val authStatusReducer: AuthStatusReducer by inject()
     private val authDataState: AuthDataStore by inject()
+    private val lessonsDataSource: LessonsDataSource by inject()
 
     override suspend fun invoke() {
         clearState()
@@ -25,6 +26,7 @@ class ClearAppAfterLogoutUseCaseImpl: ClearAppAfterLogoutUseCase, KoinComponent 
 
     private fun clearData() {
         authDataState.clearAll()
+//        lessonsDataSource.
     }
 
     private fun clearState() {

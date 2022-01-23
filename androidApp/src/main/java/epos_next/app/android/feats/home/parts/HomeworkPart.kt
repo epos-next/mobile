@@ -1,6 +1,5 @@
 package epos_next.app.android.feats.home.parts
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -12,7 +11,7 @@ import epos_next.app.android.feats.home.components.TextError
 
 @Composable
 fun HomeworkPart() {
-    HomeTitle(text = "Домашнее задание", modifier = Modifier.padding(top = 25.dp))
+    HomeTitle(text = "Домашнее задание")
     LessonSkeletonList(count = 3) { LessonSkeletonWithCheckbox() }
 //    when (state) {
 //        is HomeworkState.IdleState -> {

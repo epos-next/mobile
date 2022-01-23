@@ -1,0 +1,18 @@
+import kotlinx.datetime.LocalDate;
+
+CREATE TABLE lessonsDates(
+     date TEXT AS LocalDate NOT NULL UNIQUE
+);
+
+isCached:
+SELECT EXISTS(SELECT 1 FROM lessonsDates WHERE date=:date);
+
+cache:
+INSERT OR IGNORE INTO lessonsDates(date)
+VALUES (?);
+
+removeAll:
+DELETE FROM lessonsDates;
+
+
+

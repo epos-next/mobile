@@ -51,6 +51,12 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     // cache new data
     private fun cache(data: BigDataObject) {
         lessonsDataSource.cacheMany(data.lessons)
+
+        // for setCacheMarkers
+        val sortedLessons = data.lessons.sortedBy { it.date }
+        val from = sortedLessons.first().date.date
+        val to = sortedLessons.last().date.date
+        lessonsDataSource.setCacheMarkers(from, to)
     }
 
 }

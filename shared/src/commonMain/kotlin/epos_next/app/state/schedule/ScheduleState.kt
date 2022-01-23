@@ -14,4 +14,6 @@ sealed class ScheduleState {
     ) : ScheduleState()
 
     object ItsSummer: ScheduleState()
+
+    object NoLessons: ScheduleState()
 }

@@ -1,6 +1,7 @@
 package epos_next.app.state.schedule
 
 import epos_next.app.data.lessons.LessonsDataSource
+import epos_next.app.domain.exceptions.translateException
 import epos_next.app.lib.BaseReducer
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.update
@@ -29,17 +30,19 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
     }
 
     private fun loadSchedule(date: LocalDateTime) = try {
-        val lessons = lessonsDataSource.getByDate(date).sortedBy { it.date }
+        val lessons = lessonsDataSource.getByDate(date)?.sortedBy { it.date }
 
-        if (lessons.isEmpty()) {
-            stateFlow.update { ScheduleState.Loading }
-        } else {
-            stateFlow.update { ScheduleState.Idle(lessons) }
+        when {
+            lessons == null -> stateFlow.update { ScheduleState.Loading }
+            lessons.isEmpty() -> stateFlow.update { ScheduleState.NoLessons }
+            else -> stateFlow.update { ScheduleState.Idle(lessons) }
         }
-
     } catch (e: Exception) {
         Napier.e("failed to load schedule", e, tag = "Reducer")
         Napier.e(e.stackTraceToString(), tag = "Reducer")
+
+        val message = translateException(e)
+        stateFlow.update { ScheduleState.Error(message) }
     }
 
     fun setError(message: String) {

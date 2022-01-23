@@ -19,6 +19,9 @@ deleteByDate:
 DELETE FROM lessonModel
 WHERE date BETWEEN date(:from) AND date(:to);
 
+deleteAll:
+DELETE FROM lessonModel;
+
 getByDate:
 SELECT * FROM lessonModel
 WHERE date BETWEEN date(:from) AND date(:to);

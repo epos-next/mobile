@@ -14,14 +14,6 @@ fun LessonSkeletonList(
     content: @Composable ColumnScope.() -> Unit = { LessonSkeleton(modifier = itemModifier) },
 ) {
     Column {
-        HomeTitle(
-            modifier = Modifier.padding(
-                start = 20.dp,
-                end = 20.dp,
-                top = 20.dp,
-            ),
-            text = "Уроки"
-        )
         repeat(count) {
             Spacer(modifier = Modifier.height(if (it == 0) 10.dp else 25.dp))
             content()
