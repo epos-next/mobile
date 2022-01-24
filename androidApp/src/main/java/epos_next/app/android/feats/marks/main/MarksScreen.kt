@@ -24,6 +24,7 @@ import epos_next.app.android.components.theme.disabled
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
 import epos_next.app.android.feats.marks.main.components.LessonWithMarks
+import epos_next.app.android.navigation.Routes
 import epos_next.app.state.marks.MarksReducer
 import epos_next.app.state.marks.MarksState
 import io.github.aakira.napier.Napier
@@ -65,7 +66,7 @@ fun MarksScreen(navController: NavController, scrollState: ScrollState) {
                                 lessonName = subject.key,
                                 totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
                                 marks = marks,
-                                onClick = { navController.navigate("detail/${subject.key}") }
+                                onClick = { navController.navigate(Routes.Main.Marks.detail(subject.key)) }
                             )
                         }
                     }
