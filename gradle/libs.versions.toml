@@ -48,6 +48,7 @@ compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version = "2.4.0-rc01" }
 
 viewpager = { module = "androidx.viewpager2:viewpager2", version = "1.0.0" }
 
@@ -73,3 +74,6 @@ sqlDelight-android = { module = "com.squareup.sqldelight:android-driver", versio
 sqlDelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 sqlDelight-native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
 sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
+
+accompanist-navAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version = "0.24.0-alpha" }
+

@@ -36,6 +36,9 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
     implementation(libs.compose.tooling)
+    implementation(libs.compose.navigation)
+
+    implementation(libs.accompanist.navAnimation)
 
     implementation(libs.viewpager)
 

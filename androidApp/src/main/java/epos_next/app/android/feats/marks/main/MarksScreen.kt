@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.marks
+package epos_next.app.android.feats.marks.main
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Column
@@ -15,16 +15,17 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import epos_next.app.android.R
 import epos_next.app.android.components.LessonDivider
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.components.theme.disabled
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
-import epos_next.app.android.feats.marks.components.LessonWithMarks
+import epos_next.app.android.feats.marks.main.components.LessonWithMarks
 
 @Composable
-fun MarksScreen() {
+fun MarksScreen(navController: NavHostController) {
     var text by remember { mutableStateOf(TextFieldValue()) }
 
     ApplicationTheme {
@@ -38,7 +39,7 @@ fun MarksScreen() {
 
                 for (i in 1..8) {
                     LessonDivider()
-                    LessonWithMarks(onClick = { /* TODO */ })
+                    LessonWithMarks(onClick = { navController.navigate("detail") })
                 }
             }
         }
