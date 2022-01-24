@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import epos_next.app.android.components.LessonDivider
 import epos_next.app.android.feats.marks.detail.components.CollapsedPeriodMarks
 import epos_next.app.android.feats.marks.detail.components.PrimaryMarkRow
@@ -33,7 +34,7 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun MarksDetailScreen(navController: NavController, subject: String) {
+fun MarksDetailScreen(navController: NavHostController, subject: String) {
     val reducer = get<MarksReducer>()
     val state = reducer.state.collectAsState().value
 

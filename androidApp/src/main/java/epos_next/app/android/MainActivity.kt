@@ -2,10 +2,17 @@ package epos_next.app.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import epos_next.app.android.components.theme.ApplicationTheme
+import epos_next.app.android.navigation.RootNavGraph
+import epos_next.app.android.navigation.Routes
 import epos_next.app.state.authStatus.AuthStatusReducer
 import epos_next.app.state.authStatus.AuthStatusState
 import epos_next.app.usecases.FetchBigDataObjectUseCase
@@ -23,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private val authStatusReducer: AuthStatusReducer by inject()
     private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
 
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,28 +39,38 @@ class MainActivity : AppCompatActivity() {
         // remove top bar
         supportActionBar?.hide()
 
-        setContentView(R.layout.activity_main)
+        setContent {
+            val navController = rememberAnimatedNavController()
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController: NavController = navHostFragment.navController
+            ApplicationTheme {
+                RootNavGraph(navController)
+            }
 
-        lifecycleScope.launchWhenStarted {
-            authStatusReducer.state.collect {
-                val current = navController.currentDestination?.id
-                when (it) {
-                    is AuthStatusState.Authorized -> when(current) {
-                        R.id.loginFragment -> navController.navigate(R.id.action_loginFragment_to_mainFragment)
-                        else -> navController.navigate(R.id.action_loadingFragment_to_mainFragment)
+            lifecycleScope.launchWhenStarted {
+                authStatusReducer.state.collect {
+                    when (it) {
+                        is AuthStatusState.Authorized -> {
+                            navController.navigate(Routes.Main.route) {
+                                navController.graph.startDestinationRoute?.let { screen_route ->
+                                    popUpTo(screen_route)
+                                }
+                            }
+
+                            fetchBigDataObjectUseCase()
+                        }
+                        is AuthStatusState.NotAuthorized -> {
+                            navController.navigate(Routes.login) {
+                                navController.graph.startDestinationRoute?.let { screen_route ->
+                                    popUpTo(screen_route)
+                                }
+                            }
+                        }
+                        else -> Unit
                     }
-                    is AuthStatusState.NotAuthorized -> when(current) {
-                        R.id.mainFragment -> navController.navigate(R.id.action_mainFragment_to_loginFragment)
-                        else -> navController.navigate(R.id.action_loadingFragment_to_loginFragment)
-                    }
+
+                    Napier.d("authStatusReducer changed!! Calling FetchBigDataObject!!")
                 }
 
-                Napier.d("authStatusReducer changed!! Calling FetchBigDataObject!!")
-                fetchBigDataObjectUseCase()
             }
         }
     }

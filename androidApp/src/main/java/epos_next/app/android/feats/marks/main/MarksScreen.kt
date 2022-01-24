@@ -15,6 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import epos_next.app.android.R
 import epos_next.app.android.components.LessonDivider
@@ -34,7 +35,7 @@ import kotlin.math.round
 import kotlin.math.roundToInt
 
 @Composable
-fun MarksScreen(navController: NavHostController) {
+fun MarksScreen(navController: NavController, scrollState: ScrollState) {
     val reducer = get<MarksReducer>()
     val state = reducer.state.collectAsState().value
 
@@ -44,7 +45,7 @@ fun MarksScreen(navController: NavHostController) {
         Scaffold {
             Column(
                 modifier = Modifier
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(scrollState)
                     .padding(bottom = 75.dp)
             ) {
                 SearchInput(text) { text = it }
