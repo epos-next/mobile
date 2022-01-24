@@ -23,28 +23,51 @@ import epos_next.app.android.R
 import epos_next.app.android.components.theme.contrast
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
+import epos_next.app.domain.entities.MarkUnitPeriods
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
-@ExperimentalAnimationApi
-@Preview
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun CollapsedPeriodMarks(text: String = "1 четверть") {
-    val isOpen = remember { mutableStateOf(false) }
+fun CollapsedPeriodMarks(
+    text: String = "1 четверть",
+    period: MarkUnitPeriods,
+    initiallyOpen: Boolean = false
+) {
+    val isOpen = remember { mutableStateOf(initiallyOpen) }
 
     Header(text, isOpen.value) { isOpen.value = isOpen.value.not() }
     CollapsedContent(isOpen.value) {
-        for (i in 1..5) {
-            MarkRow(modifier = Modifier.padding(bottom = 15.dp))
+        for (mark in period.all) {
+            val date = LocalDate.of(mark.date.year, mark.date.month, mark.date.dayOfMonth)
+
+            MarkRow(
+                modifier = Modifier.padding(bottom = 15.dp),
+                theme = mark.name,
+                date = date,
+                mark = mark.value
+            )
         }
 
-        PrimaryMarkRow(
-            modifier = Modifier.padding(bottom = 15.dp),
-            name = "Средний балл",
-            value = "4.15",
-            accent = true
-        )
-        PrimaryMarkRow(name = "Итоговая оценка", value = "4", accent = true)
+        if (period.all.isNotEmpty()) {
+            val totalExpected = period.all.sumOf { it.value }.toDouble() / period.all.size
+            PrimaryMarkRow(
+                modifier = Modifier.padding(bottom = 15.dp),
+                name = "Средний балл",
+                value = "%.2f".format(totalExpected).replace(',', '.'),
+                accent = true
+            )
+        }
+
+        val total = period.total?.roundToInt()
+        if (total != null) {
+            PrimaryMarkRow(
+                name = "Итоговая оценка",
+                value = "$total",
+                accent = true
+            )
+        }
     }
 }
 
@@ -102,8 +125,11 @@ private fun MarkRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Theme name
-        Text(theme, style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.secondary))
-        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            theme,
+            style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.secondary),
+            modifier = Modifier.weight(1f),
+        )
 
         // Date
         val dateFormatter = DateTimeFormatter.ofPattern("dd.MM")

@@ -54,21 +54,7 @@ fun MarksScreen(navController: NavHostController) {
                     is MarksState.Idle -> {
                         for (subject in state.marks) {
                             if (subject.value.periods.isEmpty()) continue
-
                             LessonDivider()
-
-                            if (subject.key == "Физика") {
-                                subject.value.periods.forEach {
-                                    Napier.d(it.all.firstOrNull()?.date.toString())
-                                }
-                            }
-
-//                            val tz = TimeZone.currentSystemDefault()
-//                            val totalMark = it.value.periods.lastOrNull { period ->
-//                                val lastMarkDate = period.all.lastOrNull()?.date
-//                                if (lastMarkDate == null) false
-//                                else lastMarkDate <= Clock.System.now().toLocalDateTime(tz)
-//                            }
 
                             val marks = subject.value.periods.lastOrNull()?.all
                                 ?.map { mark -> mark.value }
@@ -78,7 +64,7 @@ fun MarksScreen(navController: NavHostController) {
                                 lessonName = subject.key,
                                 totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
                                 marks = marks,
-                                onClick = { navController.navigate("detail") }
+                                onClick = { navController.navigate("detail/${subject.key}") }
                             )
                         }
                     }

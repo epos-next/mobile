@@ -33,7 +33,7 @@ class MarkScreenFragment : Fragment() {
                     }
 
                     composable(
-                        "detail",
+                        "detail/{subject}",
                         enterTransition = {
                             slideInHorizontally(
                                 initialOffsetX = { it },
@@ -47,8 +47,11 @@ class MarkScreenFragment : Fragment() {
                             )
                         }
 
-                    ) {
-                        MarksDetailScreen(navController)
+                    ) { backStackEntry ->
+                        val subject = backStackEntry.arguments?.getString("subject")
+                        if (subject != null) {
+                            MarksDetailScreen(navController, subject)
+                        }
                     }
                 }
             }
