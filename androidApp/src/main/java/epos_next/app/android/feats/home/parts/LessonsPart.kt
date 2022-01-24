@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import epos_next.app.android.MainViewModel
+import epos_next.app.android.feats.home.HomeViewModel
 import epos_next.app.android.components.LessonSkeleton
 import epos_next.app.android.feats.home.components.*
 import epos_next.app.domain.entities.Lesson
@@ -25,7 +25,7 @@ fun LessonPart() {
     val scheduleReducer = get<ScheduleReducer>()
     val state = scheduleReducer.state.collectAsState().value
 
-    val viewModel = getViewModel<MainViewModel>()
+    val viewModel = getViewModel<HomeViewModel>()
 
     val coroutineScope = rememberCoroutineScope()
 

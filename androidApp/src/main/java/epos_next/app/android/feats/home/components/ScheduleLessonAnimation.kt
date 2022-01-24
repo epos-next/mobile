@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import epos_next.app.android.MainViewModel
+import epos_next.app.android.feats.home.HomeViewModel
 import epos_next.app.domain.entities.Lesson
 import org.koin.androidx.compose.getViewModel
 
@@ -17,7 +17,7 @@ fun ScheduleLessonComponent(
     lesson: Lesson,
     index: Int = 0,
 ) {
-    val viewModel = getViewModel<MainViewModel>()
+    val viewModel = getViewModel<HomeViewModel>()
 
     val density = LocalDensity.current
 
