@@ -1,5 +1,8 @@
 package epos_next.app.android.feats.home.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,6 +20,7 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -32,10 +36,12 @@ import java.time.LocalDate
 import kotlinx.datetime.LocalDate as KotlinLocalDate
 import java.time.Month
 import epos_next.app.android.R
+import io.github.aakira.napier.Napier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import java.time.ZoneId
+import kotlin.math.ceil
 
 @Preview
 @Composable
@@ -54,10 +60,13 @@ fun Calendar(
             Instant.fromEpochSeconds(day.atStartOfDay(ZoneId.systemDefault()).toEpochSecond())
                 .toLocalDateTime(TimeZone.currentSystemDefault()).date
         onDaySelected(kotlinDate)
-
     }
 
+    Napier.d(dates.selectedIndex.toString(), tag = "SelectedIndex")
+
     Box(modifier = modifier) {
+        SelectedDateIndicator(dates.selectedIndex)
+
         Column {
 
             CalendarHeader(date.value, onDateChanged = { onDaySelectedHandler(it) })
@@ -65,7 +74,7 @@ fun Calendar(
             WeekdayRow()
 
             Grid(
-                list = dates,
+                list = dates.items,
                 cols = 7,
                 rowModifier = Modifier
                     .fillMaxWidth()
@@ -79,8 +88,39 @@ fun Calendar(
                 )
             }
         }
-
     }
+}
+
+@Composable
+private fun SelectedDateIndicator(index: Int) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp
+    val colSpace = (screenWidth - 22 - (7 * 34)).toDouble() / 6
+
+    val x = animateDpAsState(
+        ((if (index % 7 == 0) 6 else index % 7 - 1) * (34 + colSpace)).dp + 11.5.dp,
+        animationSpec = tween(250)
+    )
+    val y = animateDpAsState(
+        (ceil(index.toDouble() / 7) * (if (index > 21) 44.0 else 43.75)).dp + 30.dp,
+        animationSpec = tween(250)
+    )
+
+    Box(
+        modifier = Modifier
+            .offset(x.value, y.value)
+            .size(34.dp)
+            .clip(CircleShape)
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        Color(0xFF949EFD),
+                        Color(0xFF656DFD),
+                    ),
+                )
+            )
+
+    )
 }
 
 private data class Item(
@@ -89,11 +129,18 @@ private data class Item(
     val isSelected: Boolean,
 )
 
-private fun daysInMonthArray(date: LocalDate): List<Item> {
+private data class CalendarData(
+    val items: List<Item>,
+    val selectedIndex: Int,
+)
+
+private fun daysInMonthArray(date: LocalDate): CalendarData {
     val dates = mutableListOf<Item>()
     val firstDay = date.withDayOfMonth(1)
     val year = date.year
     val month = date.month
+
+    var selectedIndex = 0
 
     // before
     val need = firstDay.dayOfWeek.value
@@ -107,6 +154,7 @@ private fun daysInMonthArray(date: LocalDate): List<Item> {
                 false, LocalDate.of(prevMonth.year, prevMonth.month, i), false
             )
         )
+        selectedIndex++
     }
 
     // This month
@@ -114,6 +162,7 @@ private fun daysInMonthArray(date: LocalDate): List<Item> {
     for (i in 1..dayAmount) {
         val thisDate = LocalDate.of(year, month, i)
         dates.add(Item(true, thisDate, thisDate == date))
+        if (thisDate == date) selectedIndex += i
     }
 
     // After
@@ -130,7 +179,10 @@ private fun daysInMonthArray(date: LocalDate): List<Item> {
         )
     }
 
-    return dates
+    return CalendarData(
+        items = dates,
+        selectedIndex = selectedIndex,
+    )
 }
 
 @Composable
@@ -214,8 +266,7 @@ private fun CalendarItem(
     item: Item,
     onDaySelected: () -> Any
 ) {
-    val boxModifier = Modifier
-        .composed { modifier }
+    val boxModifier = modifier
         .clickable(
             indication = null,
             interactionSource = remember { MutableInteractionSource() }
@@ -228,22 +279,32 @@ private fun CalendarItem(
 
 @Composable
 private fun InnerCalendarCell(modifier: Modifier = Modifier, item: Item) {
-    val itemModifier = if (item.isSelected) Modifier
-        .size(34.dp)
-        .clip(CircleShape)
-        .background(
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    Color(0xFF949EFD),
-                    Color(0xFF656DFD),
-                ),
-            )
-        )
-    else Modifier
-        .size(34.dp)
-        .clip(CircleShape)
 
-    Box(modifier = itemModifier.composed { modifier }) {
+    val textColor = animateColorAsState(
+        targetValue = when {
+            item.isSelected -> Color.White
+            item.active -> MaterialTheme.colors.textPrimary
+            else -> MaterialTheme.colors.lightPrimary
+        },
+        animationSpec = tween(250)
+    )
+
+    val itemModifier = modifier
+        .size(34.dp)
+        .clip(CircleShape)
+//        .background(
+//            brush = Brush.linearGradient(
+//                colors = listOf(
+//                    gradientColorStart.value,
+//                    gradientColorEnd.value,
+//                ),
+//            )
+//        )
+//    else Modifier
+//        .size(34.dp)
+//        .clip(CircleShape)
+
+    Box(modifier = itemModifier) {
         Text(
             item.date.dayOfMonth.toString(),
             textAlign = TextAlign.Center,
@@ -251,11 +312,7 @@ private fun InnerCalendarCell(modifier: Modifier = Modifier, item: Item) {
             style = TextStyle(
                 textAlign = TextAlign.Center,
                 fontSize = 15.sp,
-                color = when {
-                    item.isSelected -> Color.White
-                    item.active -> MaterialTheme.colors.textPrimary
-                    else -> MaterialTheme.colors.lightPrimary
-                }
+                color = textColor.value
             )
         )
     }
