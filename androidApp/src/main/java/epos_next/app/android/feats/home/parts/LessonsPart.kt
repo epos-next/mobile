@@ -31,7 +31,7 @@ fun LessonPart() {
 
     Calendar(
         modifier = Modifier
-            .padding(top = 25.dp)
+            .padding(top = 20.dp)
             .fillMaxWidth(),
         onDaySelected = {
             coroutineScope.launch {

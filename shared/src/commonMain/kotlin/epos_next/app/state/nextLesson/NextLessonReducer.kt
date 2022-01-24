@@ -52,7 +52,7 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
 
         // checking is next lesson in nearest 2 hours.
         // That's need to not show "Next lesson is biology" in 3am
-        if ((nearestLesson.date.toInstant(tz) - now).toDouble(DurationUnit.HOURS) > 2) {
+        if ((nearestLesson.date.toInstant(tz) - now).toDouble(DurationUnit.HOURS) > 1) {
             Napier.d(nearestLesson.date.toInstant(tz).toString())
             return stateFlow.update { NextLessonState.NotStudyingTime }
         }
