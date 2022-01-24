@@ -13,6 +13,8 @@ import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.homework.HomeworkDataSourceImpl
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.data.lessons.LessonsDataSourceImpl
+import epos_next.app.data.marks.MarksDataSource
+import epos_next.app.data.marks.MarksDataSourceImpl
 import epos_next.app.data.marks.marksAdapter
 import epos_next.db.AppDatabase
 import eposnext.app.data.*
@@ -49,4 +51,5 @@ val dataModule = module {
     single<HomeworkDataSource> { HomeworkDataSourceImpl() }
     single<ControlWorkDataSource> { ControlWorkDataSourceImpl() }
     single<AdvertisementDataSource> { AdvertisementDataSourceImpl() }
+    single<MarksDataSource> { MarksDataSourceImpl() }
 }

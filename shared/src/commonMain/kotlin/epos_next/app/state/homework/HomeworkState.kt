@@ -2,7 +2,6 @@ package epos_next.app.state.homework
 
 import epos_next.app.domain.entities.Homework
 
-
 sealed class HomeworkState {
     object Loading : HomeworkState()
 

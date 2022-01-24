@@ -4,11 +4,13 @@ import epos_next.app.data.advertisement.AdvertisementDataSource
 import epos_next.app.data.controlWork.ControlWorkDataSource
 import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.lessons.LessonsDataSource
+import epos_next.app.data.marks.MarksDataSource
 import epos_next.app.domain.entities.BigDataObject
 import epos_next.app.domain.entities.Homework
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.network.Api
 import epos_next.app.state.homework.HomeworkReducer
+import epos_next.app.state.marks.MarksReducer
 import epos_next.app.state.nextLesson.NextLessonReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import epos_next.app.state.schedule.ScheduleState
@@ -27,10 +29,12 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     private val api: Api by inject()
     private val scheduleReducer: ScheduleReducer by inject()
     private val nextLessonReducer: NextLessonReducer by inject()
+    private val marksReducer: MarksReducer by inject()
     private val lessonsDataSource: LessonsDataSource by inject()
     private val homeworkDataSource: HomeworkDataSource by inject()
     private val advertisementDataSource: AdvertisementDataSource by inject()
     private val controlWorkDataSource: ControlWorkDataSource by inject()
+    private val marksDataSource: MarksDataSource by inject()
 
     override suspend fun invoke() {
         try {
@@ -57,11 +61,11 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     private fun updateReducerWithCached() {
         scheduleReducer.loadTodaySchedule()
         nextLessonReducer.startCalculationProcess()
+        marksReducer.loadMarks()
     }
 
     // cache new data
     private fun cache(data: BigDataObject) {
-
         data.lessons.forEach {
             Napier.d(it.duration.toString(), tag = "lessons")
         }
@@ -70,6 +74,7 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
         homeworkDataSource.cacheMany(data.homework)
         advertisementDataSource.cacheMany(data.advertisements)
         controlWorkDataSource.cacheMany(data.controlWorks)
+        marksDataSource.save(data.marks)
 
         // for setCacheMarkers
         val sortedLessons = data.lessons.sortedBy { it.date }

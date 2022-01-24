@@ -23,9 +23,21 @@ import epos_next.app.android.components.theme.disabled
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
 import epos_next.app.android.feats.marks.main.components.LessonWithMarks
+import epos_next.app.state.marks.MarksReducer
+import epos_next.app.state.marks.MarksState
+import io.github.aakira.napier.Napier
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+import org.koin.androidx.compose.get
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 @Composable
 fun MarksScreen(navController: NavHostController) {
+    val reducer = get<MarksReducer>()
+    val state = reducer.state.collectAsState().value
+
     var text by remember { mutableStateOf(TextFieldValue()) }
 
     ApplicationTheme {
@@ -37,10 +49,43 @@ fun MarksScreen(navController: NavHostController) {
             ) {
                 SearchInput(text) { text = it }
 
-                for (i in 1..8) {
-                    LessonDivider()
-                    LessonWithMarks(onClick = { navController.navigate("detail") })
+
+                when (state) {
+                    is MarksState.Idle -> {
+                        for (subject in state.marks) {
+                            if (subject.value.periods.isEmpty()) continue
+
+                            LessonDivider()
+
+                            if (subject.key == "Физика") {
+                                subject.value.periods.forEach {
+                                    Napier.d(it.all.firstOrNull()?.date.toString())
+                                }
+                            }
+
+//                            val tz = TimeZone.currentSystemDefault()
+//                            val totalMark = it.value.periods.lastOrNull { period ->
+//                                val lastMarkDate = period.all.lastOrNull()?.date
+//                                if (lastMarkDate == null) false
+//                                else lastMarkDate <= Clock.System.now().toLocalDateTime(tz)
+//                            }
+
+                            val marks = subject.value.periods.lastOrNull()?.all
+                                ?.map { mark -> mark.value }
+                                ?: listOf()
+
+                            LessonWithMarks(
+                                lessonName = subject.key,
+                                totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
+                                marks = marks,
+                                onClick = { navController.navigate("detail") }
+                            )
+                        }
+                    }
+                    else -> Unit
                 }
+
+
             }
         }
     }

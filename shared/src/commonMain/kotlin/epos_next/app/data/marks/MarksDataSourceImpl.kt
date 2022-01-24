@@ -17,12 +17,12 @@ class MarksDataSourceImpl: MarksDataSource, KoinComponent {
             Napier.i("deleteAll()", tag = "DB")
 
             marks.forEach {
+                Napier.i("insert($it)", tag = "DB")
                 database.lessonMarkQueries.insert(
                     lesson = it.key,
                     periods = it.value.periods,
                     total = it.value.total?.toInt()
                 )
-                Napier.i("insert($it)", tag = "DB")
             }
         }
     }

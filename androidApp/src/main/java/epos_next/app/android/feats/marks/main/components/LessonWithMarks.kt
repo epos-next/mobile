@@ -17,6 +17,8 @@ import epos_next.app.android.components.LessonSubject
 import epos_next.app.android.components.LessonSubtitle
 import epos_next.app.android.components.theme.contrast
 import epos_next.app.android.components.theme.lightContrast
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 
 @Preview(showBackground = true)
@@ -28,7 +30,8 @@ fun LessonWithMarks(
     totalMark: Int? = null,
     onClick: () -> Unit = {},
 ) {
-    val totalExpected = if (marks.isNotEmpty()) (marks.sum() / marks.size) else 0
+    val totalExpected = if (marks.isNotEmpty()) (marks.sum().toDouble() / marks.size).roundToInt()
+    else 0
 
     Row(
         verticalAlignment = Alignment.CenterVertically, modifier = modifier
