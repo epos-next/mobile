@@ -36,10 +36,12 @@ import java.time.LocalDate
 import kotlinx.datetime.LocalDate as KotlinLocalDate
 import java.time.Month
 import epos_next.app.android.R
+import epos_next.app.android.feats.home.HomeViewModel
 import io.github.aakira.napier.Napier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.koin.androidx.compose.getViewModel
 import java.time.ZoneId
 import kotlin.math.ceil
 
@@ -50,7 +52,7 @@ fun Calendar(
     onDaySelected: (date: KotlinLocalDate) -> Any = {}
 ) {
     // State
-    val date = remember { mutableStateOf(LocalDate.now()) }
+    val date = getViewModel<HomeViewModel>().calendarDate
     val dates = daysInMonthArray(date.value)
 
     // handlers
