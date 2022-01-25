@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import epos_next.app.android.feats.home.HomeScreen
-import epos_next.app.android.feats.profile.ProfileScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -26,8 +25,6 @@ fun MainNavGraph(navController: NavHostController) {
         marksNavGraph(navController, scrollState = marksScreenScrollState)
 
         // Profile
-        composable(
-            route = Routes.Main.profile,
-        ) { ProfileScreen() }
+        profileNavGraph(navController)
     }
 }

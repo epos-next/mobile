@@ -88,7 +88,7 @@ private val items = listOf(
     BottomBarItem(
         activeIcon = R.drawable.user_active_icon,
         disabledIcon = R.drawable.user_disabled_icon,
-        route = Routes.Main.profile,
+        route = Routes.Main.Profile.route,
         description = "profile"
     ),
 )

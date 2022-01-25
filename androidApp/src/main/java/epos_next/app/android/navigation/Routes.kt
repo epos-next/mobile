@@ -18,6 +18,12 @@ object Routes {
             fun detail(subject: String) = "main/marks/$subject"
         }
 
-        val profile = "main/profile"
+        object Profile {
+            const val route = "main/profile"
+
+            const val main = "main/profile/main"
+
+        }
+
     }
 }
