@@ -6,15 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
-import epos_next.app.state.authStatus.AuthStatusReducer
-import epos_next.app.state.authStatus.AuthStatusState
+import epos_next.app.state.user.UserReducer
+import epos_next.app.state.user.UserState
 import epos_next.app.usecases.FetchBigDataObjectUseCase
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -27,7 +24,7 @@ import kotlinx.coroutines.flow.collect
 @InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
-    private val authStatusReducer: AuthStatusReducer by inject()
+    private val userReducer: UserReducer by inject()
     private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
 
     @OptIn(ExperimentalAnimationApi::class)
@@ -47,9 +44,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             lifecycleScope.launchWhenStarted {
-                authStatusReducer.state.collect {
+                userReducer.state.collect {
                     when (it) {
-                        is AuthStatusState.Authorized -> {
+                        is UserState.Authorized -> {
                             navController.navigate(Routes.Main.route) {
                                 navController.graph.startDestinationRoute?.let { screen_route ->
                                     popUpTo(screen_route)
@@ -58,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
                             fetchBigDataObjectUseCase()
                         }
-                        is AuthStatusState.NotAuthorized -> {
+                        is UserState.NotAuthorized -> {
                             navController.navigate(Routes.login) {
                                 navController.graph.startDestinationRoute?.let { screen_route ->
                                     popUpTo(screen_route)

@@ -5,14 +5,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -22,7 +20,7 @@ import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
 import epos_next.app.domain.exceptions.translateException
-import epos_next.app.state.authStatus.AuthStatusReducer
+import epos_next.app.state.user.UserReducer
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.get
 import kotlin.time.ExperimentalTime
@@ -42,7 +40,7 @@ fun Form() {
 
     val disabled = email.isEmpty() || password.isEmpty() || error.isNotEmpty()
 
-    val authStatusReducer = get<AuthStatusReducer>()
+    val authStatusReducer = get<UserReducer>()
 
     val login: () -> Unit = {
         loading = true

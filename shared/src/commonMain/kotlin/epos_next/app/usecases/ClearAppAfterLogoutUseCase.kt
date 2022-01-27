@@ -5,7 +5,6 @@ import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.controlWork.ControlWorkDataSource
 import epos_next.app.data.homework.HomeworkDataSource
 import epos_next.app.data.lessons.LessonsDataSource
-import epos_next.app.state.authStatus.AuthStatusReducer
 import epos_next.app.state.nextLesson.NextLessonReducer
 import epos_next.app.state.schedule.ScheduleReducer
 import org.koin.core.component.KoinComponent

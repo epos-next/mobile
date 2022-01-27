@@ -1,13 +1,13 @@
 package epos_next.app.network
 
 object ApiRoutes {
-    const val baseRoute = "https://epos-api.zotov.dev/api/1.0/"
+    const val baseRoute = "https://epos-api.zotov.dev"
 
-    const val authenticate = "/auth/authenticate"
-    const val reauthenticate = "/auth/reauthenticate"
+    const val authenticate = "/api/1.1/auth/authenticate"
+    const val reauthenticate = "/api/1.0/auth/reauthenticate"
 
-    const val data = "/data"
-    fun fetchLesson(from: String, to: String) = "/data/lessons?from=$from&to=$to"
-    fun completeHomework(id: Long) = "/homework/$id/complete"
-    fun cancelCompleteHomework(id: Long) = "/homework/$id/cancel-complete"
+    const val data = "/api/1.0/data"
+    fun fetchLesson(from: String, to: String) = "/api/1.0/data/lessons?from=$from&to=$to"
+    fun completeHomework(id: Long) = "/api/1.0/homework/$id/complete"
+    fun cancelCompleteHomework(id: Long) = "/api/1.0/homework/$id/cancel-complete"
 }

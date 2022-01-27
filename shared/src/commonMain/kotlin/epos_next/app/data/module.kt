@@ -16,6 +16,8 @@ import epos_next.app.data.lessons.LessonsDataSourceImpl
 import epos_next.app.data.marks.MarksDataSource
 import epos_next.app.data.marks.MarksDataSourceImpl
 import epos_next.app.data.marks.marksAdapter
+import epos_next.app.data.user.UserDataSource
+import epos_next.app.data.user.UserDataSourceImpl
 import epos_next.db.AppDatabase
 import eposnext.app.data.*
 import org.koin.dsl.module
@@ -52,4 +54,5 @@ val dataModule = module {
     single<ControlWorkDataSource> { ControlWorkDataSourceImpl() }
     single<AdvertisementDataSource> { AdvertisementDataSourceImpl() }
     single<MarksDataSource> { MarksDataSourceImpl() }
+    single<UserDataSource> { UserDataSourceImpl() }
 }

@@ -17,6 +17,7 @@ import epos_next.app.state.schedule.ScheduleState
 import io.github.aakira.napier.Napier
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlin.time.ExperimentalTime
 
 interface FetchBigDataObjectUseCase {
     /**
@@ -65,6 +66,7 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     }
 
     // cache new data
+    @OptIn(ExperimentalTime::class)
     private fun cache(data: BigDataObject) {
         data.lessons.forEach {
             Napier.d(it.duration.toString(), tag = "lessons")
