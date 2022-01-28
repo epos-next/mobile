@@ -54,14 +54,5 @@ dependencies {
 
     implementation(libs.napier)
 
-    testImplementation(libs.junit)
-    testImplementation(libs.mockk.mockk)
-    testImplementation(libs.mockk.agent)
-    androidTestImplementation(libs.mockk.android)
-    testImplementation(libs.koin.test)
-    testImplementation(libs.koin.testJunit)
-    testImplementation(libs.androidx.test.junit)
-    implementation(libs.androidx.test.core)
-
     implementation(libs.kotlinx.datetime)
 }

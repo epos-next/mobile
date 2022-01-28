@@ -78,6 +78,7 @@ val httpClient: HttpClient = HttpClient {
                         null
                     },
                     {
+
                         Napier.i("loadTokens: ${it.access} ${it.refresh}")
                         BearerTokens(
                             accessToken = it.access,

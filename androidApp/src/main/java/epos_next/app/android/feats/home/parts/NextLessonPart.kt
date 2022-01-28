@@ -14,7 +14,6 @@ import epos_next.app.android.feats.home.components.LessonWithRoomTimeAndTimeLeft
 import epos_next.app.android.feats.home.components.LessonWithRoomTimeAndTimeLeftProps
 import epos_next.app.state.nextLesson.NextLessonReducer
 import epos_next.app.state.nextLesson.NextLessonState
-import io.github.aakira.napier.Napier
 import org.koin.androidx.compose.get
 
 @OptIn(ExperimentalAnimationApi::class)

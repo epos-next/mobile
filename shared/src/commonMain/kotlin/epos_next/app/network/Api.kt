@@ -8,7 +8,6 @@ import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.responces.auth.AuthenticateResponse
-import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate

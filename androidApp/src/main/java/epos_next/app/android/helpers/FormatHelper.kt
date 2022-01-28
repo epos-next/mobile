@@ -1,6 +1,5 @@
 package epos_next.app.android.helpers
 
-import io.github.aakira.napier.Napier
 import kotlinx.datetime.*
 import kotlin.time.Duration
 import kotlin.time.DurationUnit

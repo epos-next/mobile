@@ -19,7 +19,6 @@ import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
 import kotlinx.coroutines.flow.collect
 
-
 @ExperimentalTime
 @InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {

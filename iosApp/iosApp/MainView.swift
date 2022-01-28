@@ -21,7 +21,7 @@ struct MarksView: View {
 }
 
 struct ProfileView: View {
-    @EnvironmentObject var authStatus: AuthStatusObservable
+//    @EnvironmentObject var user: UserObservable
     
     init() {
         print("test")
@@ -29,7 +29,7 @@ struct ProfileView: View {
     
     var body: some View {
         Button("logout") {
-            authStatus.reducer.logout()
+//            user.reducer.logout()
         }
     }
 }

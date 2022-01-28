@@ -3,30 +3,30 @@ import shared
 
 
 struct ContentView: View {
-    @ObservedObject var authStatus: AuthStatusObservable
+    @ObservedObject var user: UserObservable
     
     init() {
-        authStatus = AuthStatusObservable()
+        user = UserObservable()
     }
 
     
     var body: some View {
         HStack {
-            if authStatus.state is AuthStatusState.Loading {
+            if user.state is UserState.Loading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
                     .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
             }
-            
-            else if authStatus.state is AuthStatusState.NotAuthorized {
+
+            else if user.state is UserState.NotAuthorized {
                 LoginScreenView()
             }
-            
-            else {
-                MainView()
-            }
+
+             else {
+                 MainView()
+             }
         }
-        .environmentObject(authStatus)
+        .environmentObject(user)
     }
 }
 

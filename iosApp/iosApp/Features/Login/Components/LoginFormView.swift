@@ -19,7 +19,7 @@ struct LoginFormView: View {
         get { return email.isEmpty || password.isEmpty || !error.isEmpty }
     }
     
-    @EnvironmentObject private var authStatus: AuthStatusObservable
+    @EnvironmentObject private var user: UserObservable
     
     var body: some View {
         VStack(spacing: 15) {
@@ -41,7 +41,7 @@ struct LoginFormView: View {
                 action: {
                     loading = true
                     
-                    authStatus.reducer.login(
+                    user.reducer.login(
                         email: email,
                         password: password
                     ) { exception, _ in

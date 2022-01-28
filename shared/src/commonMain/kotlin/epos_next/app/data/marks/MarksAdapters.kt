@@ -2,7 +2,6 @@ package epos_next.app.data.marks
 
 import com.squareup.sqldelight.ColumnAdapter
 import epos_next.app.domain.entities.MarkUnitPeriods
-import io.github.aakira.napier.Napier
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 

@@ -19,14 +19,18 @@ class UserReducer: BaseReducer<UserState>(UserState.Loading) {
     private val userDataSource: UserDataSource by inject()
 
     init {
-        val isAuthorized = isAuthorized.execute()
-        stateFlow.update {
-            if (isAuthorized) {
-                val user = userDataSource.get()
-                if (user == null) UserState.NotAuthorized
-                else UserState.Authorized(user)
+        try {
+            val isAuthorized = isAuthorized.execute()
+            stateFlow.update {
+                if (isAuthorized) {
+                    val user = userDataSource.get()
+                    if (user == null) UserState.NotAuthorized
+                    else UserState.Authorized(user)
+                }
+                else UserState.NotAuthorized
             }
-            else UserState.NotAuthorized
+        } catch (e: Throwable) {
+            Napier.e("error when init UserReducer", e)
         }
     }
 
