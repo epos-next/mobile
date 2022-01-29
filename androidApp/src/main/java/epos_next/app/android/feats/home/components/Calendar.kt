@@ -27,7 +27,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import epos_next.app.android.helpers.FormatHelper
 import epos_next.app.android.components.Grid
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
@@ -37,6 +36,7 @@ import kotlinx.datetime.LocalDate as KotlinLocalDate
 import java.time.Month
 import epos_next.app.android.R
 import epos_next.app.android.feats.home.HomeViewModel
+import epos_next.app.utils.FormatHelper
 import io.github.aakira.napier.Napier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone

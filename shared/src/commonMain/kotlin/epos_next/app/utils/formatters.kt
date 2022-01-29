@@ -1,10 +1,9 @@
-package epos_next.app.android.helpers
+package epos_next.app.utils
 
 import kotlinx.datetime.*
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
-
 
 object FormatHelper {
     private val months = listOf(
@@ -37,7 +36,7 @@ object FormatHelper {
         "Декабря"
     )
 
-    fun month(month: Month) = months[month.value - 1]
+    fun month(month: Month) = months[month.ordinal]
 
     @OptIn(ExperimentalTime::class)
     fun futureDate(date: LocalDateTime): String {
@@ -45,6 +44,6 @@ object FormatHelper {
         val duration: Duration = date.toInstant(tz) - Clock.System.now()
         return if (duration.toDouble(DurationUnit.DAYS) == 0.0) "Сегодня"
         else if (duration.toDouble(DurationUnit.DAYS) < 1) "Завтра"
-        else "${date.dayOfMonth} ${monthsRus[date.month.value - 1]}"
+        else "${date.dayOfMonth} ${monthsRus[date.month.ordinal]}"
     }
 }

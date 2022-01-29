@@ -10,7 +10,9 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        LessonCircleView(subject: "Физика")
+        CalendarView(onDaySelected: { date in
+            print("click")
+        })
     }
 }
 
@@ -57,5 +59,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(HomeViewModel())
     }
 }

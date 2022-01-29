@@ -9,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import epos_next.app.android.helpers.FormatHelper
 import epos_next.app.android.components.LessonCircle
 import epos_next.app.android.components.LessonSubject
 import epos_next.app.android.components.LessonSubtitle
 import epos_next.app.domain.entities.ControlWork
+import epos_next.app.utils.FormatHelper
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime

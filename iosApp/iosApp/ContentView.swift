@@ -4,9 +4,11 @@ import shared
 
 struct ContentView: View {
     @ObservedObject var user: UserObservable
+    @ObservedObject var homeViewModel: HomeViewModel
     
     init() {
         user = UserObservable()
+        homeViewModel = HomeViewModel()
     }
 
     
@@ -27,6 +29,7 @@ struct ContentView: View {
              }
         }
         .environmentObject(user)
+        .environmentObject(homeViewModel)
     }
 }
 
