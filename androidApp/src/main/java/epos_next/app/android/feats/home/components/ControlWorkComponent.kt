@@ -30,29 +30,25 @@ private val defaultProps = ControlWork(
 
 @Composable
 fun ControlWorkComponent(
-    modifier: Modifier = Modifier.fillMaxWidth(),
+    modifier: Modifier = Modifier,
     controlWork: ControlWork = defaultProps
 ) {
-    Box(modifier = modifier) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            LessonCircle(subject = controlWork.lesson)
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier.fillMaxWidth()) {
+        LessonCircle(subject = controlWork.lesson)
 
-            Box(modifier = Modifier.padding(start = 15.dp)) {
-                Column {
-                    LessonSubject(text = controlWork.lesson)
-                    LessonSubtitle(text = controlWork.name)
-                }
-            }
-
-            Spacer(modifier = Modifier.weight(1.0f))
-
-            Text(
-                text = FormatHelper.futureDate(controlWork.date),
-                style = TextStyle(
-                    fontSize = 13.sp,
-                    color = MaterialTheme.colors.secondary
-                )
-            )
+        Column(modifier = Modifier.padding(start = 15.dp)) {
+            LessonSubject(text = controlWork.lesson)
+            LessonSubtitle(text = controlWork.name)
         }
+
+        Spacer(modifier = Modifier.weight(1.0f))
+
+        Text(
+            text = FormatHelper.futureDate(controlWork.date),
+            style = TextStyle(
+                fontSize = 13.sp,
+                color = MaterialTheme.colors.secondary
+            )
+        )
     }
 }

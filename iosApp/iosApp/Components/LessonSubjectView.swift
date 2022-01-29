@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LessonSubject: View {
+struct LessonSubjectView: View {
     let subject: String
     
     init(_ subject: String) {
@@ -24,6 +24,6 @@ struct LessonSubject: View {
 
 struct LessonSubject_Previews: PreviewProvider {
     static var previews: some View {
-        LessonSubject("Физика")
+        LessonSubjectView("Физика")
     }
 }
