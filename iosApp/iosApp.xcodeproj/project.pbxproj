@@ -24,6 +24,7 @@
 		F26F34E227A5D005006141BC /* LessonWithRoomAndTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E127A5D005006141BC /* LessonWithRoomAndTimeView.swift */; };
 		F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E327A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift */; };
 		F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E527A5D59B006141BC /* NowSummerView.swift */; };
+		F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E727A5D684006141BC /* ScheduleLessonView.swift */; };
 		F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F270E110277B633B00F0EE9C /* LoginErrorText.swift */; };
 		F288D611276F546800FA9144 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288D610276F546800FA9144 /* MainButton.swift */; };
 		F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2B53627A53B7000233DC9 /* AdvertisementComponentView.swift */; };
@@ -64,6 +65,7 @@
 		F26F34E127A5D005006141BC /* LessonWithRoomAndTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonWithRoomAndTimeView.swift; sourceTree = "<group>"; };
 		F26F34E327A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonWithRoomAndTimeLeftView.swift; sourceTree = "<group>"; };
 		F26F34E527A5D59B006141BC /* NowSummerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowSummerView.swift; sourceTree = "<group>"; };
+		F26F34E727A5D684006141BC /* ScheduleLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleLessonView.swift; sourceTree = "<group>"; };
 		F270E110277B633B00F0EE9C /* LoginErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorText.swift; sourceTree = "<group>"; };
 		F288D610276F546800FA9144 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		F2A2B53627A53B7000233DC9 /* AdvertisementComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementComponentView.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				F26F34E127A5D005006141BC /* LessonWithRoomAndTimeView.swift */,
 				F26F34E327A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift */,
 				F26F34E527A5D59B006141BC /* NowSummerView.swift */,
+				F26F34E727A5D684006141BC /* ScheduleLessonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */,
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
 				F26F34E027A5CB49006141BC /* HomeworkView.swift in Sources */,
+				F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */,
 				F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */,
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
