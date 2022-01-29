@@ -19,7 +19,7 @@ struct LessonSubtitleView: View {
         Text(text)
             .font(.custom("AvenirNext-Regular", size: 14))
             .foregroundColor(Color.secondary)
-            .lineLimit(1)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 
