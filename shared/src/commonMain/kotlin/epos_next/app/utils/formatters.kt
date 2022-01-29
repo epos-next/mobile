@@ -46,4 +46,21 @@ object FormatHelper {
         else if (duration.toDouble(DurationUnit.DAYS) < 1) "Завтра"
         else "${date.dayOfMonth} ${monthsRus[date.month.ordinal]}"
     }
+
+    @OptIn(ExperimentalTime::class)
+    fun formatLessonTime(startDate: LocalDateTime, duration: Duration): String {
+        val tz = TimeZone.currentSystemDefault()
+        val endDate = (startDate.toInstant(tz) + duration).toLocalDateTime(tz)
+        return "${startDate.formatTime()} — ${endDate.formatTime()}"
+    }
+}
+
+fun LocalDateTime.formatTime(): String {
+    var h = this.hour.toString()
+    var m = this.minute.toString()
+
+    if (h.length == 1) h = "0$h"
+    if (m.length == 1) m = "0$m"
+
+    return "$h:$m"
 }
