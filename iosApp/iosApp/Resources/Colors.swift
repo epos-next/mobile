@@ -14,6 +14,7 @@ extension Color {
     static let error = Color("error")
     static let disabled = Color("disabled")
     static let textPrimary = Color("textPrimary")
+    static let lightError = Color("light-error")
     
     init(hex: UInt, alpha: Double = 1) {
         self.init(
