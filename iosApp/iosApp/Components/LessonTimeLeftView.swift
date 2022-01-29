@@ -25,7 +25,7 @@ struct LessonTimeLeftView: View {
 
 struct LessonTimeLeftView_Previews: PreviewProvider {
     static var previews: some View {
-        LessonTimeLeftView(20)
+        LessonTimeLeftView(2000)
     }
 }
     
