@@ -32,6 +32,7 @@
 		F2A2B53B27A54C7700233DC9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2B53A27A54C7700233DC9 /* HomeViewModel.swift */; };
 		F2BCBD6227A5DD5300F01E70 /* TextErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */; };
 		F2BCBD6427A5DEB700F01E70 /* HomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */; };
+		F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */; };
 		F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DC82778ABA5004EE815 /* Koin.swift */; };
 		F2C08DCC2778B3F4004EE815 /* UserObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DCB2778B3F4004EE815 /* UserObservable.swift */; };
 		F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8B758276F3B4300058A24 /* LoginScreenView.swift */; };
@@ -75,6 +76,7 @@
 		F2A2B53A27A54C7700233DC9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextErrorView.swift; sourceTree = "<group>"; };
 		F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleView.swift; sourceTree = "<group>"; };
+		F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithCreateButtonView.swift; sourceTree = "<group>"; };
 		F2C08DC82778ABA5004EE815 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		F2C08DCB2778B3F4004EE815 /* UserObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObservable.swift; sourceTree = "<group>"; };
 		F2E8B758276F3B4300058A24 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				F26F34E527A5D59B006141BC /* NowSummerView.swift */,
 				F26F34E727A5D684006141BC /* ScheduleLessonView.swift */,
 				F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */,
+				F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
+				F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */,
 				F26F34E227A5D005006141BC /* LessonWithRoomAndTimeView.swift in Sources */,
 				F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */,
 				F2C08DCC2778B3F4004EE815 /* UserObservable.swift in Sources */,
