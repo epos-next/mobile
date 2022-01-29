@@ -15,6 +15,7 @@
 		F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42E727A5100800C61A5F /* LessonDividerView.swift */; };
 		F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */; };
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
+		F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A2D2427A47AED00161390 /* LessonCircleView.swift */; };
 		F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264F2AC276E6E7300B217B9 /* TabBarView.swift */; };
@@ -46,6 +47,7 @@
 		F21F42E727A5100800C61A5F /* LessonDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDividerView.swift; sourceTree = "<group>"; };
 		F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubjectView.swift; sourceTree = "<group>"; };
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
+		F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTimeLeftView.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F25A2D2427A47AED00161390 /* LessonCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCircleView.swift; sourceTree = "<group>"; };
 		F264F2AC276E6E7300B217B9 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				F21F42E727A5100800C61A5F /* LessonDividerView.swift */,
 				F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */,
 				F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */,
+				F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				1A52DE650326647EF49476A5 /* Frameworks */,
-				2AC18D1A04DFCA9057228CE2 /* [CP] Embed Pods Frameworks */,
+				66F218B9D4D865B447205E84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,23 +280,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2AC18D1A04DFCA9057228CE2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		588C271F643892DEF8B364D0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,6 +300,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66F218B9D4D865B447205E84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -339,6 +342,7 @@
 				F2E8B76E276F4BD900058A24 /* LoginFormView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */,
+				F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */,
 				F2E8B76C276F488900058A24 /* TextInput.swift in Sources */,
 				F2E8B75E276F3CAF00058A24 /* LoginAppNameView.swift in Sources */,
 			);
