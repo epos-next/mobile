@@ -37,7 +37,7 @@ struct SchedulePartView: View {
             let lessons = (state as? ScheduleState.Idle)?.lessons ?? scheduleObservable.prevScheduleList
             
             VStack {
-                ForEach(0..<lessons.count, id: \.self) { i in
+                ForEach(0..<max(5, lessons.count), id: \.self) { i in
                     if state is ScheduleState.Idle {
                         ScheduleLessonView(lesson: lessons[i], index: i)
                     } else {

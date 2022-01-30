@@ -142,6 +142,8 @@ private struct CalendarHeader: View {
     
     var body: some View {
         HStack {
+            let month = homeViewModel.calendarDate.month
+            
             Button(action: { onMonthGoBackward() }) {
                 Image("left_icon")
                     .resizable()
@@ -151,7 +153,7 @@ private struct CalendarHeader: View {
             
             Spacer()
             
-            Text(FormatHelper.shared.month(month: homeViewModel.calendarDate.month))
+            Text(FormatHelper.shared.month(month: month))
                 .font(.custom("AvenirNext-regular", size: 16))
                 .foregroundColor(Color.textPrimary)
             

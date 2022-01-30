@@ -17,6 +17,8 @@
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
 		F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
+		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
+		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
 		F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F727A6677300FDDC4A /* HomeScreenView.swift */; };
@@ -65,6 +67,8 @@
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
 		F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTimeLeftView.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
+		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
 		F23B74F727A6677300FDDC4A /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F23B74F327A660D500FDDC4A /* SchedulePartView.swift */,
+				F231495027A7055000C23888 /* HomeworkPartView.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			children = (
 				F2C08DCB2778B3F4004EE815 /* UserObservable.swift */,
 				F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */,
+				F231495227A7057300C23888 /* HomeworkObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */,
+				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
 				F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */,
@@ -425,6 +432,7 @@
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
+				F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */,
 				F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */,
 				F2E8B76E276F4BD900058A24 /* LoginFormView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

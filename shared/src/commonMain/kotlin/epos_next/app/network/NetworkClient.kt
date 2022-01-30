@@ -19,8 +19,10 @@ import io.ktor.http.*
 import io.ktor.http.cio.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlin.native.concurrent.SharedImmutable
 import kotlin.time.ExperimentalTime
 
+@SharedImmutable
 val tokenClient = HttpClient {
     defaultRequest {
         url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
@@ -37,6 +39,7 @@ val tokenClient = HttpClient {
     }
 }
 
+@SharedImmutable
 val authClient = HttpClient {
     defaultRequest {
         url.takeFrom(URLBuilder().takeFrom(ApiRoutes.baseRoute).apply {
@@ -53,6 +56,7 @@ val authClient = HttpClient {
     }
 }
 
+@SharedImmutable
 @OptIn(ExperimentalTime::class)
 val httpClient: HttpClient = HttpClient {
     defaultRequest {
@@ -180,12 +184,13 @@ class NetworkClient: KoinComponent {
 
     suspend inline fun <reified T> put(route: String, body: Any = EmptyContent): T {
         try {
-            return httpClient.put(route) {
+            val res = httpClient.put<T>(route) {
                 this.body = body
                 headers {
                     append("Authorization", this@NetworkClient.getAuthorizationHeader())
                 }
             }
+            return res
         } catch (e: ResponseException) {
             if (handleUnauthorizedStatus(e)) {
                 return httpClient.put(route) {

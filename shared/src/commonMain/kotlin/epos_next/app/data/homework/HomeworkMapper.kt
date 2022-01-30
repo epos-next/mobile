@@ -2,7 +2,10 @@ package epos_next.app.data.homework
 
 import epos_next.app.domain.entities.Homework
 import eposnext.app.data.HomeworkModel
+import kotlin.native.concurrent.SharedImmutable
+import kotlin.native.concurrent.ThreadLocal
 
+@ThreadLocal
 object HomeworkMapper {
 
     fun mapDatabase(db: HomeworkModel): Homework = Homework(

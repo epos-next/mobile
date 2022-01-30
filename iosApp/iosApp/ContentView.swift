@@ -5,15 +5,17 @@ struct ContentView: View {
     @ObservedObject var user: UserObservable
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var scheduleObservable: ScheduleObservable
+    @ObservedObject var homeworkObservable: HomeworkObservable
     
     init() {
         user = UserObservable()
         homeViewModel = HomeViewModel()
         scheduleObservable = ScheduleObservable()
+        homeworkObservable = HomeworkObservable()
         
-//        FetchBigDataObjectUseCaseImpl().invoke(completionHandler: { data, error in
-//
-//        })
+        FetchBigDataObjectUseCaseImpl().invoke(completionHandler: { [self] data, error in
+            self.scheduleObservable.reducer.loadTodaySchedule()
+        })
     }
 
     
@@ -36,6 +38,7 @@ struct ContentView: View {
         .environmentObject(user)
         .environmentObject(homeViewModel)
         .environmentObject(scheduleObservable)
+        .environmentObject(homeworkObservable)
     }
 }
 

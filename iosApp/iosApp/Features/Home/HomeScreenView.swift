@@ -13,7 +13,7 @@ struct HomeScreenView: View {
         ScrollView {
             VStack {
                 SchedulePartView()
-                Text("*Какой-то еще контент внизу*")
+                HomeworkPartView()
             }.animation(.spring())
         }
     }

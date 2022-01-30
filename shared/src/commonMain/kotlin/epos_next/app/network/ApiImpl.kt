@@ -81,7 +81,8 @@ private suspend fun <T> runApi(
     content: suspend () -> Either<Exception, T>,
 ): Either<Exception, T> {
     return try {
-        content()
+        val c = content()
+        c
     } catch (e: ResponseException) {
         val statusCode = e.response.status.value
 

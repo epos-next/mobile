@@ -2,6 +2,7 @@ package epos_next.app.android.feats.home.parts
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.lib.collectAsState
@@ -12,11 +13,13 @@ import epos_next.app.android.feats.home.components.HomeworkComponent
 import epos_next.app.android.feats.home.components.TextError
 import epos_next.app.state.homework.HomeworkReducer
 import epos_next.app.state.homework.HomeworkState
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.get
 
 @Composable
 fun HomeworkPart() {
     val reducer = get<HomeworkReducer>()
+    var coroutineScope = rememberCoroutineScope()
 
     when (val state = reducer.collectAsState()) {
         is HomeworkState.Idle -> {
@@ -27,7 +30,11 @@ fun HomeworkPart() {
                     HomeworkComponent(
                         modifier = Modifier.padding(top = 10.dp),
                         homework = homework,
-                        onTap = { reducer.updateDone(homework.id, it) }
+                        onTap = {
+                            coroutineScope.launch {
+                                reducer.updateDone(homework.id, it)
+                            }
+                        }
                     )
                 }
             }

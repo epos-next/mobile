@@ -15,6 +15,7 @@ struct HomeTitleView: View {
         Text(text)
             .font(.custom("AvenirNext-Medium", size: 15))
             .foregroundColor(.textPrimary)
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
     }
 }
 

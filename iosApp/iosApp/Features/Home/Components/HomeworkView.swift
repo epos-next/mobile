@@ -12,11 +12,9 @@ import shared
 struct HomeworkView: View {
     var homework: Homework
     var onTap: (_ status: Bool) -> Void
-    
-    @State var checked: Bool = true
-    
+        
     var body: some View {
-        Button(action: { checked.toggle() }) {
+        Button(action: { onTap(!homework.done) }) {
             HStack(spacing: 0) {
                 LessonCircleView(subject: homework.lesson)
                 
@@ -27,8 +25,12 @@ struct HomeworkView: View {
                 
                 Spacer()
                 
-                Toggle("", isOn: $checked)
-                    .toggleStyle(CheckboxStyle())
+                Image(systemName: homework.done ? "checkmark.square.fill" : "square")
+                    .resizable()
+                    .animation(.spring())
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(homework.done ? Color(hex: 0xFF68D676) : Color.lightPrimary)
+                    .font(.system(size: 20, weight: .regular, design: .default))
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         }.buttonStyle(WrapperButtonStyle())
@@ -39,25 +41,7 @@ struct HomeworkView: View {
 private struct WrapperButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         return configuration.label
-            .scaleEffect(configuration.isPressed ? 0.99 : 1.0)
-    }
-}
-
-struct CheckboxStyle: ToggleStyle {
-
-    func makeBody(configuration: Self.Configuration) -> some View {
-        return HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
-                .resizable()
-                .animation(.spring())
-                .frame(width: 24, height: 24)
-                .foregroundColor(configuration.isOn ? Color(hex: 0xFF68D676) : Color.lightPrimary)
-                .font(.system(size: 20, weight: .regular, design: .default))
-                configuration.label
-                
-        }
-        .onTapGesture { configuration.isOn.toggle() }
-
+            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
     }
 }
 

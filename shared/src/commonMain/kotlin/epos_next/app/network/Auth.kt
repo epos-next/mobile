@@ -21,7 +21,6 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): Boolean {
 
     return try {
         if (token != null && id != null) {
-
             val updateResponse: ReauthenticateResponse =
                 tokenClient.post(ApiRoutes.reauthenticate) {
                     body = ReauthenticateRequest(
@@ -29,6 +28,8 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): Boolean {
                         id = id,
                     )
                 }
+
+            Napier.i("update token response = `$updateResponse")
 
             if (updateResponse.success) {
                 val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
