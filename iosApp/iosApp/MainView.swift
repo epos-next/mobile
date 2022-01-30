@@ -8,14 +8,6 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    var body: some View {
-        CalendarView(onDaySelected: { date in
-            print("click")
-        })
-    }
-}
-
 struct MarksView: View {
     var body: some View {
         Text("Marks")
@@ -47,7 +39,7 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView (selection: $selectedTab) {
-                HomeView().tag("home")
+                HomeScreenView().tag("home")
                 MarksView().tag("marks")
                 ProfileView().tag("profile")
             }

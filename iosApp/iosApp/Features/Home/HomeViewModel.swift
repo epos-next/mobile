@@ -6,6 +6,7 @@
 //  Copyright © 2022 orgName. All rights reserved.
 //
 
+import SwiftUI
 import Foundation
 import shared
 
@@ -23,5 +24,12 @@ class HomeViewModel: ObservableObject {
             month: Kotlinx_datetimeMonth.values().get(index: Int32(calendar.component(.month, from: now) - 1))!,
             dayOfMonth: Int32(calendar.component(.day, from: now))
         )
+    }
+    
+    func resetScheduleVisible() {
+//        withAnimation {
+            scheduleVisible = false
+            scheduleVisible = true
+//        }
     }
 }

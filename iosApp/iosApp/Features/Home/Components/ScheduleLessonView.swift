@@ -23,6 +23,7 @@ struct ScheduleLessonView: View {
                     removal: .move(edge: .leading)
                 ).combined(with: .opacity).animation(.spring().delay(Double(index) * 0.05)))
                 .animation(.spring().delay(Double(index) * 0.05))
+                .tag(lesson.id)
         }
     }
 }
@@ -51,11 +52,11 @@ struct ScheduleLessonView_Previews: PreviewProvider {
         VStack {
             let homeViewModel: HomeViewModel = HomeViewModel()
             Button("toggle") { withAnimation { homeViewModel.scheduleVisible.toggle() } }
-                ScheduleLessonView(lesson: lesson, index: 0).environmentObject(homeViewModel)
-                ScheduleLessonView(lesson: lesson, index: 1).environmentObject(homeViewModel)
-                ScheduleLessonView(lesson: lesson, index: 2).environmentObject(homeViewModel)
-                ScheduleLessonView(lesson: lesson, index: 3).environmentObject(homeViewModel)
-                ScheduleLessonView(lesson: lesson, index: 4).environmentObject(homeViewModel)
+            ScheduleLessonView(lesson: lesson, index: 0).environmentObject(homeViewModel)
+            ScheduleLessonView(lesson: lesson, index: 1).environmentObject(homeViewModel)
+            ScheduleLessonView(lesson: lesson, index: 2).environmentObject(homeViewModel)
+            ScheduleLessonView(lesson: lesson, index: 3).environmentObject(homeViewModel)
+            ScheduleLessonView(lesson: lesson, index: 4).environmentObject(homeViewModel)
             
         }
             

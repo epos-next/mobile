@@ -1,14 +1,19 @@
 import SwiftUI
 import shared
 
-
 struct ContentView: View {
     @ObservedObject var user: UserObservable
     @ObservedObject var homeViewModel: HomeViewModel
+    @ObservedObject var scheduleObservable: ScheduleObservable
     
     init() {
         user = UserObservable()
         homeViewModel = HomeViewModel()
+        scheduleObservable = ScheduleObservable()
+        
+//        FetchBigDataObjectUseCaseImpl().invoke(completionHandler: { data, error in
+//
+//        })
     }
 
     
@@ -30,6 +35,7 @@ struct ContentView: View {
         }
         .environmentObject(user)
         .environmentObject(homeViewModel)
+        .environmentObject(scheduleObservable)
     }
 }
 
