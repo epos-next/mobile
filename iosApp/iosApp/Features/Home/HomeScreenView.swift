@@ -11,9 +11,10 @@ import SwiftUI
 struct HomeScreenView: View {
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 15) {
                 SchedulePartView()
                 HomeworkPartView()
+                ControlWorkPartView()
             }.animation(.spring())
         }
     }

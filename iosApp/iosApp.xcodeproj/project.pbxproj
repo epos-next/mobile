@@ -19,6 +19,8 @@
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
+		F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495427A72AAF00C23888 /* ControlWorkPartView.swift */; };
+		F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495627A72ABD00C23888 /* ControlWorkObservable.swift */; };
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
 		F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F727A6677300FDDC4A /* HomeScreenView.swift */; };
@@ -69,6 +71,8 @@
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
+		F231495427A72AAF00C23888 /* ControlWorkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkPartView.swift; sourceTree = "<group>"; };
+		F231495627A72ABD00C23888 /* ControlWorkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkObservable.swift; sourceTree = "<group>"; };
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
 		F23B74F727A6677300FDDC4A /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			children = (
 				F23B74F327A660D500FDDC4A /* SchedulePartView.swift */,
 				F231495027A7055000C23888 /* HomeworkPartView.swift */,
+				F231495427A72AAF00C23888 /* ControlWorkPartView.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 				F2C08DCB2778B3F4004EE815 /* UserObservable.swift */,
 				F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */,
 				F231495227A7057300C23888 /* HomeworkObservable.swift */,
+				F231495627A72ABD00C23888 /* ControlWorkObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2BCBD6227A5DD5300F01E70 /* TextErrorView.swift in Sources */,
+				F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */,
 				F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */,
 				F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */,
 				F2A2B53B27A54C7700233DC9 /* HomeViewModel.swift in Sources */,
@@ -428,6 +435,7 @@
 				F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */,
 				F26F34E027A5CB49006141BC /* HomeworkView.swift in Sources */,
 				F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */,
+				F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */,
 				F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */,
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
