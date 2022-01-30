@@ -15,8 +15,18 @@ struct LessonSubjectView: View {
         self.subject = subject
     }
     
+    private var formattedSubject: String {
+        let lowercased = subject.lowercased()
+        if lowercased.contains("основы безопасности жизнедеятельности") { return "ОБЖ" }
+        if lowercased.contains("изобразительное искусство") { return "ИЗО" }
+        if lowercased.contains("английский язык") { return "Английский язык" }
+        if lowercased.contains("история") { return "История" }
+        if lowercased.contains("физическая культура") { return "Физкультура" }
+        else { return subject }
+    }
+    
     var body: some View {
-        Text(subject)
+        Text(formattedSubject)
             .font(.custom("AvenirNext-Regular", size: 20))
             .foregroundColor(Color.textPrimary)
     }

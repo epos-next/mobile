@@ -100,7 +100,6 @@ private struct CalendarHeader: View {
     
     private func onMonthGoForward() {
         let date = homeViewModel.calendarDate
-        print(date)
         
         if date.month.ordinal == 11 {
             homeViewModel.calendarDate = Kotlinx_datetimeLocalDate(
