@@ -33,15 +33,8 @@ struct HomeworkView: View {
                     .font(.system(size: 20, weight: .regular, design: .default))
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-        }.buttonStyle(WrapperButtonStyle())
+        }.buttonStyle(TappableButtonStyle())
         
-    }
-}
-
-private struct WrapperButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        return configuration.label
-            .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
     }
 }
 

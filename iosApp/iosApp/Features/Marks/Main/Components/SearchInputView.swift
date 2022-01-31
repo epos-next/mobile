@@ -25,6 +25,7 @@ struct SearchInputView: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Color.disabled)
         )
+        .padding(.horizontal, 20)
     }
 }
 
@@ -39,6 +40,6 @@ private struct CustomTextFieldStyle: TextFieldStyle {
 
 struct SearchInputView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchInputView(text: .constant("Физика")).padding(.all, 20)
+        SearchInputView(text: .constant("Физика"))
     }
 }

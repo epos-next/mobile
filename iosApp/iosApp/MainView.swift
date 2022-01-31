@@ -8,12 +8,6 @@
 
 import SwiftUI
 
-struct MarksView: View {
-    var body: some View {
-        Text("Marks")
-    }
-}
-
 struct ProfileView: View {
 //    @EnvironmentObject var user: UserObservable
     
@@ -40,7 +34,7 @@ struct MainView: View {
         ZStack(alignment: .bottom) {
             TabView (selection: $selectedTab) {
                 HomeScreenView().tag("home")
-                MarksView().tag("marks")
+                MarksScreenView().tag("marks")
                 ProfileView().tag("profile")
             }
             TabBarView(selectedTab: $selectedTab)
