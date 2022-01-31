@@ -15,6 +15,9 @@
 		F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */; };
 		F209D0F127A7DF58001E38C9 /* AdvertisementPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */; };
 		F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F227A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift */; };
+		F209D0F627A7E834001E38C9 /* MarksObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F527A7E834001E38C9 /* MarksObservable.swift */; };
+		F209D0FA27A7E918001E38C9 /* MarksScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F927A7E918001E38C9 /* MarksScreenView.swift */; };
+		F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0FC27A7E950001E38C9 /* LessonWithMarksView.swift */; };
 		F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42E727A5100800C61A5F /* LessonDividerView.swift */; };
 		F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */; };
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
@@ -70,6 +73,9 @@
 		F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementObservable.swift; sourceTree = "<group>"; };
 		F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementPartView.swift; sourceTree = "<group>"; };
 		F209D0F227A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementComponentSkeletonView.swift; sourceTree = "<group>"; };
+		F209D0F527A7E834001E38C9 /* MarksObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksObservable.swift; sourceTree = "<group>"; };
+		F209D0F927A7E918001E38C9 /* MarksScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksScreenView.swift; sourceTree = "<group>"; };
+		F209D0FC27A7E950001E38C9 /* LessonWithMarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonWithMarksView.swift; sourceTree = "<group>"; };
 		F21F42E727A5100800C61A5F /* LessonDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDividerView.swift; sourceTree = "<group>"; };
 		F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubjectView.swift; sourceTree = "<group>"; };
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
@@ -185,6 +191,39 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
+		F209D0F427A7E81D001E38C9 /* Marks */ = {
+			isa = PBXGroup;
+			children = (
+				F209D0F827A7E906001E38C9 /* Main */,
+				F209D0F727A7E901001E38C9 /* Detail */,
+			);
+			path = Marks;
+			sourceTree = "<group>";
+		};
+		F209D0F727A7E901001E38C9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		F209D0F827A7E906001E38C9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F209D0FB27A7E940001E38C9 /* Components */,
+				F209D0F927A7E918001E38C9 /* MarksScreenView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F209D0FB27A7E940001E38C9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F209D0FC27A7E950001E38C9 /* LessonWithMarksView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F23B74F227A660BC00FDDC4A /* Parts */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +289,7 @@
 				F231495227A7057300C23888 /* HomeworkObservable.swift */,
 				F231495627A72ABD00C23888 /* ControlWorkObservable.swift */,
 				F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */,
+				F209D0F527A7E834001E38C9 /* MarksObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -257,6 +297,7 @@
 		F2E8B756276F3B1D00058A24 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F209D0F427A7E81D001E38C9 /* Marks */,
 				F2A2B53427A53B4700233DC9 /* Home */,
 				F2E8B757276F3B2D00058A24 /* Login */,
 			);
@@ -430,6 +471,7 @@
 				F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */,
 				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
 				F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */,
 				F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */,
@@ -438,6 +480,7 @@
 				F2C08DCC2778B3F4004EE815 /* UserObservable.swift in Sources */,
 				F2A2B53927A54BA200233DC9 /* CalendarView.swift in Sources */,
 				F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */,
+				F209D0F627A7E834001E38C9 /* MarksObservable.swift in Sources */,
 				F2BCBD6427A5DEB700F01E70 /* HomeTitleView.swift in Sources */,
 				F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */,
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
@@ -451,6 +494,7 @@
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
 				F209D0F127A7DF58001E38C9 /* AdvertisementPartView.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
+				F209D0FA27A7E918001E38C9 /* MarksScreenView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
 				F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */,
 				F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */,
