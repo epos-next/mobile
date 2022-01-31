@@ -15,6 +15,7 @@ struct HomeScreenView: View {
                 SchedulePartView()
                 HomeworkPartView()
                 ControlWorkPartView()
+                AdvertisementPartView()
             }.animation(.spring())
         }
     }

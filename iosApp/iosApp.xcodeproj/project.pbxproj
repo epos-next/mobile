@@ -12,6 +12,9 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		2D89F509A96DE1F9C5839410 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3FED09FF6ABE0C94456C63 /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */; };
+		F209D0F127A7DF58001E38C9 /* AdvertisementPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */; };
+		F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0F227A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift */; };
 		F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42E727A5100800C61A5F /* LessonDividerView.swift */; };
 		F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */; };
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
@@ -64,6 +67,9 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75D650DD1FAD26574DDF2AE9 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		B645EAE275E006230BA0222F /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementObservable.swift; sourceTree = "<group>"; };
+		F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementPartView.swift; sourceTree = "<group>"; };
+		F209D0F227A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementComponentSkeletonView.swift; sourceTree = "<group>"; };
 		F21F42E727A5100800C61A5F /* LessonDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDividerView.swift; sourceTree = "<group>"; };
 		F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubjectView.swift; sourceTree = "<group>"; };
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				F23B74F327A660D500FDDC4A /* SchedulePartView.swift */,
 				F231495027A7055000C23888 /* HomeworkPartView.swift */,
 				F231495427A72AAF00C23888 /* ControlWorkPartView.swift */,
+				F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 				F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */,
 				F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */,
 				F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */,
+				F209D0F227A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -241,6 +249,7 @@
 				F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */,
 				F231495227A7057300C23888 /* HomeworkObservable.swift */,
 				F231495627A72ABD00C23888 /* ControlWorkObservable.swift */,
+				F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -434,10 +443,13 @@
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
 				F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */,
 				F26F34E027A5CB49006141BC /* HomeworkView.swift in Sources */,
+				F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */,
+				F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */,
 				F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */,
 				F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */,
 				F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */,
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
+				F209D0F127A7DF58001E38C9 /* AdvertisementPartView.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
 				F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */,
