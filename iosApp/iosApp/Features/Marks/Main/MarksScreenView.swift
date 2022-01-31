@@ -29,15 +29,19 @@ struct MarksScreenView: View {
         let lessons = getValidLesson()
         let keys = lessons.map { $0.key }.sorted()
         
-        ScrollView {
-            VStack {
-                SearchInputView(text: $searchText)
-                
-                ForEach(keys, id: \.self) { lesson in
-                    LessonView(lesson: lesson, unit: lessons[lesson]!).onAppear { print(lesson) }
+        NavigationView {
+            ScrollView {
+                VStack {
+                    SearchInputView(text: $searchText)
+                    
+                    ForEach(keys, id: \.self) { lesson in
+                        LessonView(lesson: lesson, unit: lessons[lesson]!)
+                    }
                 }
             }
+            .navigationBarHidden(true)
         }
+        
     }
 }
 
@@ -52,12 +56,14 @@ private struct LessonView: View {
         } else {
             let marks = unit.periods.last?.all.map { Int($0.value) } ?? []
             
-            LessonWithMarksView(
-                lessonName: lesson,
-                marks: marks,
-                totalMark: unit.periods.last?.total != nil ? Int(truncating: unit.periods.last!.total!) : nil,
-                onTap: { }
-            )
+            NavigationLink(destination: DetailMarksScreenView(lesson: lesson, unit: unit )) {
+                LessonWithMarksView(
+                    lessonName: lesson,
+                    marks: marks,
+                    totalMark: unit.periods.last?.total != nil ? Int(truncating: unit.periods.last!.total!) : nil,
+                    onTap: { }
+                )
+            }.buttonStyle(TappableButtonStyle())
         }
     }
 }

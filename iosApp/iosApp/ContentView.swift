@@ -24,7 +24,6 @@ struct ContentView: View {
             self.marksObservable.reducer.loadMarks()
         })
     }
-
     
     var body: some View {
         HStack {
@@ -49,6 +48,7 @@ struct ContentView: View {
         .environmentObject(controlWorkObservable)
         .environmentObject(advertisementObservable)
         .environmentObject(marksObservable)
+        
     }
 }
 

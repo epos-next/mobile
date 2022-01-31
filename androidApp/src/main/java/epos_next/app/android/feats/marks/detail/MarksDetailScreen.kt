@@ -29,6 +29,7 @@ import epos_next.app.android.components.theme.textPrimary
 import epos_next.app.android.helpers.UiHelper
 import epos_next.app.state.marks.MarksReducer
 import epos_next.app.state.marks.MarksState
+import epos_next.app.utils.FormatHelper
 import org.koin.androidx.compose.get
 import kotlin.math.roundToInt
 
@@ -124,7 +125,7 @@ private fun SubjectName(text: String, navController: NavController) {
         }
 
         Text(
-            UiHelper.formatSubjectName(text),
+            FormatHelper.formatSubjectName(text),
             style = TextStyle(
                 color = MaterialTheme.colors.textPrimary,
                 fontSize = 24.sp,

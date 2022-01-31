@@ -20,6 +20,10 @@
 		F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D0FC27A7E950001E38C9 /* LessonWithMarksView.swift */; };
 		F209D10127A7F0AA001E38C9 /* SearchInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10027A7F0AA001E38C9 /* SearchInputView.swift */; };
 		F209D10427A7FACD001E38C9 /* TappableButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10327A7FACD001E38C9 /* TappableButtonStyle.swift */; };
+		F209D10627A7FB2F001E38C9 /* DetailMarksScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10527A7FB2F001E38C9 /* DetailMarksScreenView.swift */; };
+		F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10827A7FF05001E38C9 /* SubjectNameView.swift */; };
+		F209D10B27A800D7001E38C9 /* PrimaryMarkRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10A27A800D7001E38C9 /* PrimaryMarkRowView.swift */; };
+		F209D10D27A816A8001E38C9 /* CollapsedPeriodMarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F209D10C27A816A8001E38C9 /* CollapsedPeriodMarksView.swift */; };
 		F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42E727A5100800C61A5F /* LessonDividerView.swift */; };
 		F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */; };
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
@@ -80,6 +84,10 @@
 		F209D0FC27A7E950001E38C9 /* LessonWithMarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonWithMarksView.swift; sourceTree = "<group>"; };
 		F209D10027A7F0AA001E38C9 /* SearchInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputView.swift; sourceTree = "<group>"; };
 		F209D10327A7FACD001E38C9 /* TappableButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButtonStyle.swift; sourceTree = "<group>"; };
+		F209D10527A7FB2F001E38C9 /* DetailMarksScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMarksScreenView.swift; sourceTree = "<group>"; };
+		F209D10827A7FF05001E38C9 /* SubjectNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectNameView.swift; sourceTree = "<group>"; };
+		F209D10A27A800D7001E38C9 /* PrimaryMarkRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryMarkRowView.swift; sourceTree = "<group>"; };
+		F209D10C27A816A8001E38C9 /* CollapsedPeriodMarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedPeriodMarksView.swift; sourceTree = "<group>"; };
 		F21F42E727A5100800C61A5F /* LessonDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDividerView.swift; sourceTree = "<group>"; };
 		F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubjectView.swift; sourceTree = "<group>"; };
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
@@ -207,6 +215,8 @@
 		F209D0F727A7E901001E38C9 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				F209D10727A7FEF8001E38C9 /* Components */,
+				F209D10527A7FB2F001E38C9 /* DetailMarksScreenView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -235,6 +245,16 @@
 				F209D10327A7FACD001E38C9 /* TappableButtonStyle.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		F209D10727A7FEF8001E38C9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F209D10827A7FF05001E38C9 /* SubjectNameView.swift */,
+				F209D10A27A800D7001E38C9 /* PrimaryMarkRowView.swift */,
+				F209D10C27A816A8001E38C9 /* CollapsedPeriodMarksView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		F23B74F227A660BC00FDDC4A /* Parts */ = {
@@ -480,6 +500,7 @@
 				F209D10427A7FACD001E38C9 /* TappableButtonStyle.swift in Sources */,
 				F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */,
 				F2A2B53B27A54C7700233DC9 /* HomeViewModel.swift in Sources */,
+				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
@@ -489,9 +510,11 @@
 				F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
 				F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */,
+				F209D10B27A800D7001E38C9 /* PrimaryMarkRowView.swift in Sources */,
 				F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */,
 				F26F34E227A5D005006141BC /* LessonWithRoomAndTimeView.swift in Sources */,
 				F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */,
+				F209D10627A7FB2F001E38C9 /* DetailMarksScreenView.swift in Sources */,
 				F2C08DCC2778B3F4004EE815 /* UserObservable.swift in Sources */,
 				F2A2B53927A54BA200233DC9 /* CalendarView.swift in Sources */,
 				F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */,
@@ -512,6 +535,7 @@
 				F209D0FA27A7E918001E38C9 /* MarksScreenView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
 				F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */,
+				F209D10D27A816A8001E38C9 /* CollapsedPeriodMarksView.swift in Sources */,
 				F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */,
 				F2E8B76E276F4BD900058A24 /* LoginFormView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

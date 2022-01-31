@@ -22,30 +22,32 @@ struct LessonWithMarksView: View {
     var body: some View {
         let totalExpected = calcTotalExpected()
         
-        Button(action: { onTap() }) {
-            HStack(spacing: 0) {
-                LessonCircleView(subject: lessonName)
+        HStack(spacing: 0) {
+            LessonCircleView(subject: lessonName)
+            
+            VStack(alignment: .leading, spacing: 0) {
+                LessonSubjectView(lessonName)
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    LessonSubjectView(lessonName)
-                    HStack(spacing: 0) {
-                        ForEach(marks, id: \.self) { mark in
-                            LessonSubtitleView(String(mark))
-                                .padding(.trailing, 20)
-                        }
+                HStack(spacing: 0) {
+                    ForEach(marks, id: \.self) { mark in
+                        LessonSubtitleView(String(mark))
+                            .padding(.trailing, 20)
                     }
-                }.padding(.leading, 15)
-                
-                Spacer()
-                
-                if totalExpected != 0 || totalMark != nil {
-                    TotalNumber(number: totalMark ?? totalExpected, active: totalMark != nil)
                 }
             }
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 16)
-        }.buttonStyle(TappableButtonStyle())
+            .padding(.leading, 15)
+            
+            Spacer()
+            
+                        
+            if totalExpected != 0 || totalMark != nil {
+                TotalNumber(number: totalMark ?? totalExpected, active: totalMark != nil)
+            }
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 16)
+        .contentShape(Rectangle())
     }
 }
 

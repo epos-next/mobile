@@ -19,9 +19,10 @@ class UserObservable: ObservableObject {
          reducer = UserReducer()
          reducer.onChange { [weak self] newState in
              self?.state = newState!
-             if (newState is UserState.Authorized) { self?.tag = "authorized" }
-             if (newState is UserState.NotAuthorized) { self?.tag = "not-authorized" }
-             if (newState is UserState.Loading) { self?.tag = "loading" }
+             if newState is UserState.Authorized { self?.tag = "authorized" }
+             if newState is UserState.NotAuthorized { self?.tag = "not-authorized" }
+             if newState is UserState.Loading { self?.tag = "loading" }
+             print(self?.tag)
          }
      }
 }

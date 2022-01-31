@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-//    @EnvironmentObject var user: UserObservable
+    //    @EnvironmentObject var user: UserObservable
     
     init() {
         print("test")
@@ -17,7 +17,7 @@ struct ProfileView: View {
     
     var body: some View {
         Button("logout") {
-//            user.reducer.logout()
+            //            user.reducer.logout()
         }
     }
 }
@@ -38,7 +38,11 @@ struct MainView: View {
                 ProfileView().tag("profile")
             }
             TabBarView(selectedTab: $selectedTab)
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        
     }
 }
 
