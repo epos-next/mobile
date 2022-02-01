@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.feats.home.components.AdvertisementBottomSheet
 import kotlin.math.roundToInt
 
 sealed class MainBottomSheetScreen {
@@ -31,7 +32,7 @@ sealed class MainBottomSheetScreen {
 }
 
 @Composable
-private fun BottomSheetWithCloseDialog(
+fun BottomSheetWithCloseDialog(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -125,7 +126,7 @@ fun MainSheetLayout(screen: MainBottomSheetScreen) {
 
     BottomSheetWithCloseDialog {
         when (screen) {
-            MainBottomSheetScreen.Advertisement -> Text("ads", modifier = modifier)
+            MainBottomSheetScreen.Advertisement -> AdvertisementBottomSheet()
             MainBottomSheetScreen.ControlWork -> Text("ads", modifier = modifier)
         }
     }
