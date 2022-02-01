@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import epos_next.app.android.R
+import epos_next.app.android.components.FilledInput
 import epos_next.app.android.components.LessonDivider
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.components.theme.disabled
@@ -82,17 +83,9 @@ fun MarksScreen(navController: NavController, scrollState: ScrollState) {
 
 @Composable
 private fun SearchInput(text: TextFieldValue, onChange: (value: TextFieldValue) -> Unit) {
-    TextField(
+    FilledInput(
         value = text,
         onValueChange = onChange,
-        modifier = Modifier
-            .padding(20.dp)
-            .fillMaxWidth(),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.disabled,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-        ),
         trailingIcon = {
             Image(
                 modifier = Modifier.size(21.dp),
@@ -100,13 +93,7 @@ private fun SearchInput(text: TextFieldValue, onChange: (value: TextFieldValue) 
                 contentDescription = "Search icon"
             )
         },
-        textStyle = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.textPrimary),
-        placeholder = {
-            Text(
-                "Поиск",
-                style = TextStyle(fontSize = 16.sp, color = MaterialTheme.colors.lightPrimary)
-            )
-        },
-        shape = RoundedCornerShape(10.dp)
+        placeholder = "Поиск",
+        modifier = Modifier.padding(20.dp),
     )
 }
