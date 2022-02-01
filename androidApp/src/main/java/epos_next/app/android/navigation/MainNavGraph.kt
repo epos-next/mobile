@@ -6,11 +6,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import epos_next.app.android.components.MainBottomSheetScreen
 import epos_next.app.android.feats.home.HomeScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph(navController: NavHostController, openSheet: (MainBottomSheetScreen) -> Unit) {
     val homeScreenScrollState = rememberScrollState()
     val marksScreenScrollState = rememberScrollState()
 
@@ -19,7 +20,7 @@ fun MainNavGraph(navController: NavHostController) {
         // home
         composable(
             route = Routes.Main.home,
-        ) { HomeScreen(homeScreenScrollState) }
+        ) { HomeScreen(homeScreenScrollState, openSheet) }
 
         // Marks
         marksNavGraph(navController, scrollState = marksScreenScrollState)

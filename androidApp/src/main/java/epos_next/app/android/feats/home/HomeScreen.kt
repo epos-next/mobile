@@ -7,10 +7,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.components.MainBottomSheetScreen
+import epos_next.app.android.feats.home.components.AdvertisementBottomSheet
 import epos_next.app.android.feats.home.parts.*
 
 @Composable
-fun HomeScreen(scrollState: ScrollState) {
+fun HomeScreen(scrollState: ScrollState, openSheet: (MainBottomSheetScreen) -> Unit) {
     Column(modifier = Modifier.verticalScroll(scrollState)) {
         NextLessonPart()
         LessonPart()
@@ -23,6 +25,7 @@ fun HomeScreen(scrollState: ScrollState) {
                 bottom = 75.dp
             )
         ) {
+            AdvertisementBottomSheet()
             HomeworkPart()
             ControlWorkPart()
             AdvertisementPart()
