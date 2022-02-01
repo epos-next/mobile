@@ -12,9 +12,11 @@ struct HomeScreenView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 15) {
+                NextLessonPartView()
                 SchedulePartView()
                 HomeworkPartView()
                 ControlWorkPartView()
+                AdvertisementPartView()
             }.animation(.spring())
         }
     }

@@ -9,6 +9,7 @@ struct ContentView: View {
     @ObservedObject var controlWorkObservable: ControlWorkObservable
     @ObservedObject var advertisementObservable: AdvertisementObservable
     @ObservedObject var marksObservable: MarksObservable
+    @ObservedObject var nextLessonObservable: NextLessonObservable
     
     init() {
         user = UserObservable()
@@ -18,6 +19,7 @@ struct ContentView: View {
         controlWorkObservable = ControlWorkObservable()
         advertisementObservable = AdvertisementObservable()
         marksObservable = MarksObservable()
+        nextLessonObservable = NextLessonObservable()
         
         FetchBigDataObjectUseCaseImpl().invoke(completionHandler: { [self] data, error in
             self.scheduleObservable.reducer.loadTodaySchedule()
@@ -48,7 +50,7 @@ struct ContentView: View {
         .environmentObject(controlWorkObservable)
         .environmentObject(advertisementObservable)
         .environmentObject(marksObservable)
-        
+        .environmentObject(nextLessonObservable)
     }
 }
 

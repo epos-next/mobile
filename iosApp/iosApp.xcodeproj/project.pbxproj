@@ -33,9 +33,10 @@
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
 		F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495427A72AAF00C23888 /* ControlWorkPartView.swift */; };
 		F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495627A72ABD00C23888 /* ControlWorkObservable.swift */; };
+		F23640A327A859D100E4AEC2 /* NextLessonPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */; };
+		F23640A527A85A2300E4AEC2 /* NextLessonObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */; };
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
-		F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F727A6677300FDDC4A /* HomeScreenView.swift */; };
 		F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */; };
 		F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A2D2427A47AED00161390 /* LessonCircleView.swift */; };
 		F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264F2AC276E6E7300B217B9 /* TabBarView.swift */; };
@@ -46,10 +47,11 @@
 		F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E527A5D59B006141BC /* NowSummerView.swift */; };
 		F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34E727A5D684006141BC /* ScheduleLessonView.swift */; };
 		F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F270E110277B633B00F0EE9C /* LoginErrorText.swift */; };
+		F2809F6327A99E21005F183C /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2809F6227A99E21005F183C /* HomeScreenView.swift */; };
+		F2809F6527A99E37005F183C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2809F6427A99E37005F183C /* HomeViewModel.swift */; };
 		F288D611276F546800FA9144 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288D610276F546800FA9144 /* MainButton.swift */; };
 		F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2B53627A53B7000233DC9 /* AdvertisementComponentView.swift */; };
 		F2A2B53927A54BA200233DC9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2B53827A54BA200233DC9 /* CalendarView.swift */; };
-		F2A2B53B27A54C7700233DC9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2B53A27A54C7700233DC9 /* HomeViewModel.swift */; };
 		F2BCBD6227A5DD5300F01E70 /* TextErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */; };
 		F2BCBD6427A5DEB700F01E70 /* HomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */; };
 		F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */; };
@@ -97,9 +99,10 @@
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
 		F231495427A72AAF00C23888 /* ControlWorkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkPartView.swift; sourceTree = "<group>"; };
 		F231495627A72ABD00C23888 /* ControlWorkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkObservable.swift; sourceTree = "<group>"; };
+		F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonPartView.swift; sourceTree = "<group>"; };
+		F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonObservable.swift; sourceTree = "<group>"; };
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
-		F23B74F727A6677300FDDC4A /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSkeletonView.swift; sourceTree = "<group>"; };
 		F25A2D2427A47AED00161390 /* LessonCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCircleView.swift; sourceTree = "<group>"; };
 		F264F2AC276E6E7300B217B9 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -110,10 +113,12 @@
 		F26F34E527A5D59B006141BC /* NowSummerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowSummerView.swift; sourceTree = "<group>"; };
 		F26F34E727A5D684006141BC /* ScheduleLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleLessonView.swift; sourceTree = "<group>"; };
 		F270E110277B633B00F0EE9C /* LoginErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrorText.swift; sourceTree = "<group>"; };
+		F2809F5E27A99DC7005F183C /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = ../../../../../../../../.Trash/HomeViewModel.swift; sourceTree = "<group>"; };
+		F2809F6227A99E21005F183C /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		F2809F6427A99E37005F183C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F288D610276F546800FA9144 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		F2A2B53627A53B7000233DC9 /* AdvertisementComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementComponentView.swift; sourceTree = "<group>"; };
 		F2A2B53827A54BA200233DC9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		F2A2B53A27A54C7700233DC9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextErrorView.swift; sourceTree = "<group>"; };
 		F2BCBD6327A5DEB700F01E70 /* HomeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleView.swift; sourceTree = "<group>"; };
 		F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithCreateButtonView.swift; sourceTree = "<group>"; };
@@ -264,6 +269,7 @@
 				F231495027A7055000C23888 /* HomeworkPartView.swift */,
 				F231495427A72AAF00C23888 /* ControlWorkPartView.swift */,
 				F209D0F027A7DF58001E38C9 /* AdvertisementPartView.swift */,
+				F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -289,8 +295,8 @@
 			children = (
 				F23B74F227A660BC00FDDC4A /* Parts */,
 				F2A2B53527A53B5900233DC9 /* Components */,
-				F2A2B53A27A54C7700233DC9 /* HomeViewModel.swift */,
-				F23B74F727A6677300FDDC4A /* HomeScreenView.swift */,
+				F2809F6227A99E21005F183C /* HomeScreenView.swift */,
+				F2809F6427A99E37005F183C /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 		F2A2B53527A53B5900233DC9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F2809F5E27A99DC7005F183C /* HomeViewModel.swift */,
 				F2A2B53627A53B7000233DC9 /* AdvertisementComponentView.swift */,
 				F2A2B53827A54BA200233DC9 /* CalendarView.swift */,
 				F26F34DD27A5C9B1006141BC /* ControlWorkView.swift */,
@@ -323,6 +330,7 @@
 				F231495627A72ABD00C23888 /* ControlWorkObservable.swift */,
 				F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */,
 				F209D0F527A7E834001E38C9 /* MarksObservable.swift */,
+				F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -497,14 +505,13 @@
 				F2BCBD6227A5DD5300F01E70 /* TextErrorView.swift in Sources */,
 				F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */,
 				F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */,
+				F2809F6327A99E21005F183C /* HomeScreenView.swift in Sources */,
 				F209D10427A7FACD001E38C9 /* TappableButtonStyle.swift in Sources */,
 				F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */,
-				F2A2B53B27A54C7700233DC9 /* HomeViewModel.swift in Sources */,
 				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
-				F23B74F827A6677300FDDC4A /* HomeScreenView.swift in Sources */,
 				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */,
@@ -531,6 +538,7 @@
 				F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */,
 				F21F42E827A5100800C61A5F /* LessonDividerView.swift in Sources */,
 				F209D0F127A7DF58001E38C9 /* AdvertisementPartView.swift in Sources */,
+				F2809F6527A99E37005F183C /* HomeViewModel.swift in Sources */,
 				F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */,
 				F209D0FA27A7E918001E38C9 /* MarksScreenView.swift in Sources */,
 				F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */,
@@ -538,10 +546,12 @@
 				F209D10D27A816A8001E38C9 /* CollapsedPeriodMarksView.swift in Sources */,
 				F270E111277B633C00F0EE9C /* LoginErrorText.swift in Sources */,
 				F2E8B76E276F4BD900058A24 /* LoginFormView.swift in Sources */,
+				F23640A527A85A2300E4AEC2 /* NextLessonObservable.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */,
 				F209D10127A7F0AA001E38C9 /* SearchInputView.swift in Sources */,
 				F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */,
+				F23640A327A859D100E4AEC2 /* NextLessonPartView.swift in Sources */,
 				F2E8B76C276F488900058A24 /* TextInput.swift in Sources */,
 				F2E8B75E276F3CAF00058A24 /* LoginAppNameView.swift in Sources */,
 				F26F34DE27A5C9B1006141BC /* ControlWorkView.swift in Sources */,
