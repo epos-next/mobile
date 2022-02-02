@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.components.MainBottomSheetScreen
-import epos_next.app.android.feats.home.components.AdvertisementBottomSheet
 import epos_next.app.android.feats.home.parts.*
 
 @Composable
