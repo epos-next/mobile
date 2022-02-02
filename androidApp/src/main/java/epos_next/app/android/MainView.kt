@@ -39,7 +39,7 @@ fun MainView() {
         sheetBackgroundColor = Color.Transparent,
         scaffoldState = bottomSheetState,
         sheetContent = {
-            currentBottomSheet?.let { currentSheet -> MainSheetLayout(currentSheet) }
+            currentBottomSheet?.let { currentSheet -> MainSheetLayout(currentSheet, ::closeSheet) }
         }
     ) {
         Scaffold(

@@ -10,4 +10,6 @@ object ApiRoutes {
     fun fetchLesson(from: String, to: String) = "/api/1.0/data/lessons?from=$from&to=$to"
     fun completeHomework(id: Long) = "/api/1.0/homework/$id/complete"
     fun cancelCompleteHomework(id: Long) = "/api/1.0/homework/$id/cancel-complete"
+
+    const val createControlWork = "/api/1.0/control-work"
 }

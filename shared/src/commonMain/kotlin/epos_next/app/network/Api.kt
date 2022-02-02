@@ -1,6 +1,7 @@
 package epos_next.app.network
 
 import epos_next.app.domain.entities.BigDataObject
+import epos_next.app.domain.entities.ControlWork
 import epos_next.app.domain.entities.Lesson
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
@@ -54,5 +55,12 @@ interface Api {
      * @return nothing on success, otherwise [Exception]
      */
     suspend fun cancelCompleteHomework(id: Long): Either<Exception, Nothing?>
+
+    /**
+     * Creates new control work
+     * @param controlWork entity, which represents new control work
+     * @return id of created control work on success, otherwise [Throwable]
+     */
+    suspend fun createControlWork(controlWork: ControlWork): Either<Throwable, Long>
 }
 

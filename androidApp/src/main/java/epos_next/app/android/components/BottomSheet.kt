@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import epos_next.app.android.feats.home.sheets.AdvertisementBottomSheet
+import epos_next.app.android.feats.home.sheets.ControlWorkBottomSheet
 
 sealed class MainBottomSheetScreen {
     object Advertisement : MainBottomSheetScreen()
@@ -112,13 +112,13 @@ fun BarSheetShading(show: Boolean) {
 }
 
 @Composable
-fun MainSheetLayout(screen: MainBottomSheetScreen) {
+fun MainSheetLayout(screen: MainBottomSheetScreen, close: () -> Unit) {
     val modifier = Modifier.fillMaxHeight(0.3F)
 
     BottomSheetWithCloseDialog {
         when (screen) {
-            MainBottomSheetScreen.Advertisement -> AdvertisementBottomSheet()
-            MainBottomSheetScreen.ControlWork -> Text("ads", modifier = modifier)
+            MainBottomSheetScreen.Advertisement -> Text("ads")
+            MainBottomSheetScreen.ControlWork -> ControlWorkBottomSheet(close)
         }
     }
 }

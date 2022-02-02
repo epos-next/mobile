@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.components.LessonSkeletonList
+import epos_next.app.android.components.MainBottomSheetScreen
 import epos_next.app.android.feats.home.components.ControlWorkComponent
 import epos_next.app.android.feats.home.components.TextError
 import epos_next.app.android.feats.home.components.TitleWithCreateButton
@@ -15,13 +16,14 @@ import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun ControlWorkPart() {
+fun ControlWorkPart(openBottomSheet: (MainBottomSheetScreen) -> Unit) {
 
     val reducer = get<SchoolTestsReducer>()
 
     TitleWithCreateButton(
         text = "Контрольные работы",
-        modifier = Modifier.padding(top = 25.dp)
+        modifier = Modifier.padding(top = 25.dp),
+        onTap = { openBottomSheet(MainBottomSheetScreen.ControlWork) }
     )
 
     when (val state = reducer.collectAsState()) {

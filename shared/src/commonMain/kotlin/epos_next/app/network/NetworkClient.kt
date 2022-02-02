@@ -171,7 +171,7 @@ class NetworkClient: KoinComponent {
             }
         } catch (e: ResponseException) {
             if (handleUnauthorizedStatus(e)) {
-                return httpClient.get(route) {
+                return httpClient.post(route) {
                     this.body = body
                     headers {
                         append("Authorization", this@NetworkClient.getAuthorizationHeader())

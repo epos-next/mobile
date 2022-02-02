@@ -20,6 +20,23 @@ interface ControlWorkDataSource {
     fun cacheMany(controlWorks: Iterable<ControlWork>)
 
     /**
+     * Should used when creating new control work
+     * @param controlWork which should be cached
+     * @return nothing
+     */
+    fun cacheOne(controlWork: ControlWork)
+
+    /**
+     * Replace fake id with real id. When creating new control work app will used fake id = -1 to
+     * cache it. When api return real id of newly created control work, then app should replace
+     * fake id of this entity to real id. This is for what this method should be used
+     * @param name of control work to identify id of which control work should be replaced if there's
+     * more than one control works, that waiting for id
+     * @param realId value on which fake id will be replaced
+     */
+    fun replaceFakeIdWithReal(name: String, realId: Long)
+
+    /**
      * Remove all cached control works
      */
     fun clearAll()

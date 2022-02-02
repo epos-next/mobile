@@ -1,6 +1,7 @@
 package epos_next.app.network
 
 import epos_next.app.domain.entities.BigDataObject
+import epos_next.app.domain.entities.ControlWork
 import epos_next.app.domain.entities.Lesson
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
@@ -8,8 +9,10 @@ import epos_next.app.domain.exceptions.InvalidDataException
 import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
+import epos_next.app.network.requests.data.CreateControlWorkRequest
 import epos_next.app.network.responces.SuccessResponse
 import epos_next.app.network.responces.auth.AuthenticateResponse
+import epos_next.app.network.responces.data.CreateControlWorkResponse
 import epos_next.app.network.responces.data.FetchLessonsResponse
 import epos_next.app.network.responces.data.GetDataResponse
 import io.github.aakira.napier.Napier
@@ -19,7 +22,7 @@ import kotlinx.datetime.LocalDate
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class ApiImpl: Api, KoinComponent {
+class ApiImpl : Api, KoinComponent {
 
     private val client: NetworkClient by inject()
 
@@ -74,6 +77,14 @@ class ApiImpl: Api, KoinComponent {
         val route = ApiRoutes.cancelCompleteHomework(id)
         client.put<String>(route)
         Either.Right(null)
+    }
+
+    override suspend fun createControlWork(controlWork: ControlWork): Either<Throwable, Long> {
+        return runApi {
+            val body = CreateControlWorkRequest.fromControlWork(controlWork)
+            val response: CreateControlWorkResponse = client.post(ApiRoutes.createControlWork, body)
+            Either.Right(response.id)
+        }
     }
 }
 

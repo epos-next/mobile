@@ -45,6 +45,23 @@ class ControlWorkDataSourceImpl : ControlWorkDataSource, KoinComponent {
         }
     }
 
+    override fun cacheOne(controlWork: ControlWork) {
+        database.controlWorkQueries.insert(
+            id = -1,
+            lesson = controlWork.lesson,
+            date = controlWork.date,
+            name = controlWork.name,
+        )
+    }
+
+    override fun replaceFakeIdWithReal(name: String, realId: Long) {
+        database.controlWorkQueries.replaceWithFakeId(
+            name = name,
+            realId = realId,
+            fakeId = -1,
+        )
+    }
+
     override fun clearAll() {
         database.controlWorkQueries.deleteAll()
     }

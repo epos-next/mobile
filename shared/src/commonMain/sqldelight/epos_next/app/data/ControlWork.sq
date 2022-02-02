@@ -15,5 +15,10 @@ insert:
 INSERT OR IGNORE INTO controlWorkModel(id, lesson, date, name)
 VALUES (?, ?, ?, ?);
 
+replaceWithFakeId:
+UPDATE controlWorkModel SET id = :realId
+WHERE id = :fakeId
+AND name LIKE :name;
+
 deleteAll:
 DELETE FROM controlWorkModel;

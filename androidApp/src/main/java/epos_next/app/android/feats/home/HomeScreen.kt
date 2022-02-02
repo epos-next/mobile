@@ -25,7 +25,7 @@ fun HomeScreen(scrollState: ScrollState, openSheet: (MainBottomSheetScreen) -> U
             )
         ) {
             HomeworkPart()
-            ControlWorkPart()
+            ControlWorkPart(openSheet)
             AdvertisementPart(openSheet)
         }
     }
