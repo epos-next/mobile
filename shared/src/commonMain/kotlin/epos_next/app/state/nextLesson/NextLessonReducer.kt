@@ -50,10 +50,10 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
         // get nearest lesson
         val nearestLesson = lessons.first()
 
-        // checking is next lesson in nearest 2 hours.
+        // checking is next lesson in nearest 1 hours.
         // That's need to not show "Next lesson is biology" in 3am
         if ((nearestLesson.date.toInstant(tz) - now).toDouble(DurationUnit.HOURS) > 1) {
-            Napier.d(nearestLesson.date.toInstant(tz).toString())
+            Napier.d(nearestLesson.date.toInstant(tz).toString(), tag = "calculateNextLesson")
             return stateFlow.update { NextLessonState.NotStudyingTime }
         }
 
@@ -83,6 +83,8 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
 
             return calculateNextLesson(lessons)
         }
+
+        Napier.d("not lesson", tag = "calculateNextLesson")
 
         now = Clock.System.now()
 
@@ -115,6 +117,8 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
 
             return calculateNextLesson(lessons)
         }
+
+        Napier.d("not break", tag = "calculateNextLesson")
 
         stateFlow.update { NextLessonState.NotStudyingTime }
     }

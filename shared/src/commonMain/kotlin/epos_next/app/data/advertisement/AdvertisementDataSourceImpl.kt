@@ -46,6 +46,22 @@ class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
         }
     }
 
+    override fun cacheOne(advertisement: Advertisement) {
+        database.advertisementsQueries.insert(
+            id = -1,
+            content = advertisement.content,
+            targetDate = advertisement.targetDate,
+        )
+    }
+
+    override fun replaceFakeIdWithReal(content: String, realId: Long) {
+        database.advertisementsQueries.replaceWithFakeId(
+            content = content,
+            realId = realId,
+            fakeId = -1,
+        )
+    }
+
     override fun clearAll() {
         database.advertisementsQueries.deleteAll()
     }

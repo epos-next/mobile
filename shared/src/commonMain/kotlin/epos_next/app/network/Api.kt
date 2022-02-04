@@ -1,5 +1,6 @@
 package epos_next.app.network
 
+import epos_next.app.domain.entities.Advertisement
 import epos_next.app.domain.entities.BigDataObject
 import epos_next.app.domain.entities.ControlWork
 import epos_next.app.domain.entities.Lesson
@@ -62,5 +63,12 @@ interface Api {
      * @return id of created control work on success, otherwise [Throwable]
      */
     suspend fun createControlWork(controlWork: ControlWork): Either<Throwable, Long>
+
+    /**
+     * Creates new advertisement
+     * @param advertisement entity, which represents new advertisement
+     * @return id of created advertisement on success, otherwise [Throwable]
+     */
+    suspend fun createAdvertisement(advertisement: Advertisement): Either<Throwable, Long>
 }
 

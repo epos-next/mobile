@@ -1,5 +1,6 @@
 package epos_next.app.network
 
+import epos_next.app.domain.entities.Advertisement
 import epos_next.app.domain.entities.BigDataObject
 import epos_next.app.domain.entities.ControlWork
 import epos_next.app.domain.entities.Lesson
@@ -9,9 +10,11 @@ import epos_next.app.domain.exceptions.InvalidDataException
 import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
+import epos_next.app.network.requests.data.CreateAdvertisementRequest
 import epos_next.app.network.requests.data.CreateControlWorkRequest
 import epos_next.app.network.responces.SuccessResponse
 import epos_next.app.network.responces.auth.AuthenticateResponse
+import epos_next.app.network.responces.data.CreateAdvertisementResponse
 import epos_next.app.network.responces.data.CreateControlWorkResponse
 import epos_next.app.network.responces.data.FetchLessonsResponse
 import epos_next.app.network.responces.data.GetDataResponse
@@ -83,6 +86,14 @@ class ApiImpl : Api, KoinComponent {
         return runApi {
             val body = CreateControlWorkRequest.fromControlWork(controlWork)
             val response: CreateControlWorkResponse = client.post(ApiRoutes.createControlWork, body)
+            Either.Right(response.id)
+        }
+    }
+
+    override suspend fun createAdvertisement(advertisement: Advertisement): Either<Throwable, Long> {
+        return runApi {
+            val body = CreateAdvertisementRequest.fromAdvertisement(advertisement)
+            val response: CreateAdvertisementResponse = client.post(ApiRoutes.createAdvertisement, body)
             Either.Right(response.id)
         }
     }

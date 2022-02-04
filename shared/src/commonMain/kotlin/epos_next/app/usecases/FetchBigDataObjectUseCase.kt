@@ -68,10 +68,6 @@ class FetchBigDataObjectUseCaseImpl : FetchBigDataObjectUseCase, KoinComponent {
     // cache new data
     @OptIn(ExperimentalTime::class)
     private fun cache(data: BigDataObject) {
-        data.lessons.forEach {
-            Napier.d(it.duration.toString(), tag = "lessons")
-        }
-
         lessonsDataSource.cacheMany(data.lessons)
         homeworkDataSource.cacheMany(data.homework)
         advertisementDataSource.cacheMany(data.advertisements)

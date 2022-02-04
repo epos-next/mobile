@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import epos_next.app.android.feats.home.sheets.AdvertisementBottomSheet
 import epos_next.app.android.feats.home.sheets.ControlWorkBottomSheet
 
 sealed class MainBottomSheetScreen {
@@ -117,7 +118,7 @@ fun MainSheetLayout(screen: MainBottomSheetScreen, close: () -> Unit) {
 
     BottomSheetWithCloseDialog {
         when (screen) {
-            MainBottomSheetScreen.Advertisement -> Text("ads")
+            MainBottomSheetScreen.Advertisement -> AdvertisementBottomSheet(close)
             MainBottomSheetScreen.ControlWork -> ControlWorkBottomSheet(close)
         }
     }

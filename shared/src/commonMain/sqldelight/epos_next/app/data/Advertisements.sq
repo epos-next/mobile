@@ -14,5 +14,10 @@ getFresh:
 SELECT * FROM advertisementModel
 WHERE targetDate >= datetime('now');
 
+replaceWithFakeId:
+UPDATE advertisementModel SET id = :realId
+WHERE id = :fakeId
+AND content LIKE :content;
+
 deleteAll:
 DELETE FROM advertisementModel;

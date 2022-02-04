@@ -12,4 +12,5 @@ object ApiRoutes {
     fun cancelCompleteHomework(id: Long) = "/api/1.0/homework/$id/cancel-complete"
 
     const val createControlWork = "/api/1.0/control-work"
+    const val createAdvertisement = "/api/1.0/advertisement"
 }

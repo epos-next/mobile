@@ -35,7 +35,7 @@ class SchoolTestsReducer : BaseProxyReducer<SchoolTestsState>(SchoolTestsState.L
 
             // push entity to api to get id of created entity
             api.createControlWork(controlWork).fold(
-                { Napier.e("failed to create school test", it) },
+                { Napier.e("failed to create school test", it, tag = "State") },
                 { id ->
                     // replace fake if of entity to real one
                     controlWorkDataSource.replaceFakeIdWithReal(name, id)

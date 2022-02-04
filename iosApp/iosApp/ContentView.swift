@@ -24,6 +24,7 @@ struct ContentView: View {
         FetchBigDataObjectUseCaseImpl().invoke(completionHandler: { [self] data, error in
             self.scheduleObservable.reducer.loadTodaySchedule()
             self.marksObservable.reducer.loadMarks()
+            self.nextLessonObservable.reducer.startCalculationProcess()
         })
     }
     
