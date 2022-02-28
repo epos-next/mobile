@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.profile.screens
+package epos_next.app.android.feats.profile.screens.profile_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,9 +14,9 @@ import androidx.navigation.NavHostController
 import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.feats.loading.LoadingScreen
-import epos_next.app.android.feats.profile.components.Tile
-import epos_next.app.android.feats.profile.components.UserAvatar
-import epos_next.app.android.feats.profile.components.UserName
+import epos_next.app.android.feats.profile.screens.profile_screen.components.Tile
+import epos_next.app.android.feats.profile.screens.profile_screen.components.UserAvatar
+import epos_next.app.android.feats.profile.screens.profile_screen.components.UserName
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import kotlinx.coroutines.launch

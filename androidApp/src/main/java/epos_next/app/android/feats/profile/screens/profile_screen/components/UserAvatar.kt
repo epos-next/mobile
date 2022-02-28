@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.profile.components
+package epos_next.app.android.feats.profile.screens.profile_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
