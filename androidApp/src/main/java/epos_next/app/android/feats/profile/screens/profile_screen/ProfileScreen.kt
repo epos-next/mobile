@@ -17,6 +17,7 @@ import epos_next.app.android.feats.loading.LoadingScreen
 import epos_next.app.android.feats.profile.screens.profile_screen.components.Tile
 import epos_next.app.android.feats.profile.screens.profile_screen.components.UserAvatar
 import epos_next.app.android.feats.profile.screens.profile_screen.components.UserName
+import epos_next.app.android.navigation.Routes
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import kotlinx.coroutines.launch
@@ -45,7 +46,11 @@ fun ProfileScreen(navController: NavHostController) {
 
                 UserAvatar(modifier = Modifier.padding(bottom = 20.dp, top = 50.dp))
                 UserName(user.name, modifier = Modifier.padding(bottom = 27.5.dp))
-                Tile("Профиль", icon = R.drawable.user_icon, color = Color(0xFF68D676)) {}
+                Tile(
+                    "Профиль",
+                    icon = R.drawable.user_icon,
+                    color = Color(0xFF68D676)
+                ) { navController.navigate(Routes.Main.Profile.user) }
                 Tile("Уведомление", icon = R.drawable.bell_icon, color = Color(0xFF6D73FD)) {}
                 Tile("Тема", icon = R.drawable.theme_icon, color = Color(0xFFF5A664)) {}
                 Tile("О разработчиках", icon = R.drawable.dev_icon, color = Color(0xFF83D4FC)) {}

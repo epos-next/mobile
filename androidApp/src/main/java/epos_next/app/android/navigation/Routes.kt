@@ -23,6 +23,7 @@ object Routes {
 
             const val main = "main/profile/main"
 
+            const val user = "main/profile/user"
         }
 
     }
