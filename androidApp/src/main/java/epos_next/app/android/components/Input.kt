@@ -56,6 +56,51 @@ fun Input(
 }
 
 @Composable
+fun Input(
+    value: String,
+    name: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    placeholder: String = "",
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    passwordMasking: Boolean = false,
+    trailingIcon: @Composable () -> Unit = {},
+) {
+    Column {
+        Text(
+            text = name,
+            fontSize = 14.sp,
+            color = MaterialTheme.colors.secondary,
+        )
+
+        Spacer(modifier = Modifier.height(7.dp))
+
+        OutlinedTextField(
+            value = value,
+            onValueChange = onValueChange,
+            modifier = Modifier
+                .fillMaxWidth()
+                .composed { modifier },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = MaterialTheme.colors.contrast,
+                unfocusedBorderColor = MaterialTheme.colors.lightPrimary,
+                focusedLabelColor = MaterialTheme.colors.contrast,
+                unfocusedLabelColor = MaterialTheme.colors.lightPrimary,
+                placeholderColor = MaterialTheme.colors.lightPrimary,
+            ),
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            visualTransformation = if (passwordMasking) PasswordVisualTransformation() else VisualTransformation.None,
+            shape = RoundedCornerShape(10.dp),
+            placeholder = { Text(text = placeholder) },
+            maxLines = 1,
+            trailingIcon = trailingIcon
+        )
+    }
+}
+
+@Composable
 fun FilledInput(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
