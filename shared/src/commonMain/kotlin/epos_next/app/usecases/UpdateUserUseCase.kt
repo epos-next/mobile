@@ -4,6 +4,7 @@ import epos_next.app.data.user.UserDataSource
 import epos_next.app.domain.entities.User
 import epos_next.app.lib.Either
 import epos_next.app.network.Api
+import kotlinx.datetime.LocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -16,10 +17,10 @@ interface UpdateUserUseCase {
      * @param dateOfBirth user birthday. Should be < now.
      * @return
      */
-    suspend fun invoke(
+    suspend operator fun invoke(
         name: String? = null,
         username: String? = null,
-        dateOfBirth: String? = null
+        dateOfBirth: LocalDateTime? = null
     ): Either<Throwable, User>
 }
 
@@ -30,9 +31,9 @@ internal class UpdateUserUseCaseImpl: UpdateUserUseCase, KoinComponent {
     override suspend fun invoke(
         name: String?,
         username: String?,
-        dateOfBirth: String?
+        dateOfBirth: LocalDateTime?
     ): Either<Throwable, User> {
-        return api.updateUser().fold(
+        return api.updateUser(name, username, dateOfBirth).fold(
             { Either.Left(it) },
             { user ->
                 userDataSource.save(user)
