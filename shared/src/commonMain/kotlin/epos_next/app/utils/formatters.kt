@@ -69,10 +69,13 @@ object FormatHelper {
         var d = date.dayOfMonth.toString()
         var m = date.month.number.toString()
 
+        val tz = TimeZone.currentSystemDefault()
+        val todayYear = Clock.System.now().toLocalDateTime(tz).year
+
         if (d.length == 1) d = "0$d"
         if (m.length == 1) m = "0$m"
 
-        return "$d.$m"
+        return "$d.$m" + (if(todayYear == date.year) "" else ".${date.year}")
     }
 }
 

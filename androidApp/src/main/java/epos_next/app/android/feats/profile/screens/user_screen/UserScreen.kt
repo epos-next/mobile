@@ -21,67 +21,90 @@ import epos_next.app.android.components.FilledInput
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
 import epos_next.app.android.feats.profile.screens.components.ProfileHeader
+import epos_next.app.state.user.UserReducer
+import epos_next.app.state.user.UserState
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
+import org.koin.androidx.compose.get
 
 @Composable
 fun UserScreen(
     rootNavController: NavHostController,
 ) {
-    var name by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") }
-    var dateOfBirth by remember { mutableStateOf<LocalDateTime?>(null) }
+    val reducer = get<UserReducer>()
+    val state = reducer.state.collectAsState().value
+    val coroutineScope = rememberCoroutineScope()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 65.dp)
-            .background(MaterialTheme.colors.background)
-    ) {
-        ProfileHeader(
-            image = R.drawable.user_icon_96,
-            color = Color(0xFF68D676),
-            text = "Профиль",
-            navController = rootNavController,
-        )
+    if (state is UserState.Authorized) {
+        print(state.user)
+        var name by remember { mutableStateOf(state.user.name) }
+        var username by remember { mutableStateOf(state.user.username) }
+        var dateOfBirth by remember { mutableStateOf<LocalDateTime?>(state.user.dateOfBirth) }
 
-        Column(modifier = Modifier.padding(horizontal = 20.dp)) {
-            val focusManager = LocalFocusManager.current
-            val actions = KeyboardActions(onGo = {
-                focusManager.moveFocus(FocusDirection.Down)
-            })
-            val options = KeyboardOptions.Default.copy(imeAction = ImeAction.Go)
+        var loading by remember { mutableStateOf(false) }
 
-            FilledInput(
-                value = name,
-                name = "Имя",
-                placeholder = "Введите ваше имя",
-                onValueChange = { name = it },
-                singleLine = true,
-                keyboardActions = actions,
-                keyboardOptions = options,
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 65.dp)
+                .background(MaterialTheme.colors.background)
+        ) {
+            ProfileHeader(
+                image = R.drawable.user_icon_96,
+                color = Color(0xFF68D676),
+                text = "Профиль",
+                navController = rootNavController,
             )
-            Spacer(modifier = Modifier.size(20.dp))
 
-            FilledInput(
-                value = username,
-                name = "Username",
-                placeholder = "Введите ваш username",
-                onValueChange = { username = it },
-                keyboardActions = actions,
-                keyboardOptions = options,
-            )
-            Spacer(modifier = Modifier.size(20.dp))
+            Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+                val focusManager = LocalFocusManager.current
+                val actions = KeyboardActions(onGo = {
+                    focusManager.moveFocus(FocusDirection.Down)
+                })
+                val options = KeyboardOptions.Default.copy(imeAction = ImeAction.Go)
 
-            FilledDatePickerInput(
-                placeholder = "Дата рождения",
-                name = "Введите вашу дату рождения",
-                onChange = { dateOfBirth = it },
-            )
-            Spacer(modifier = Modifier.weight(1f))
+                FilledInput(
+                    value = name,
+                    name = "Имя",
+                    placeholder = "Введите ваше имя",
+                    onValueChange = { name = it },
+                    singleLine = true,
+                    keyboardActions = actions,
+                    keyboardOptions = options,
+                )
+                Spacer(modifier = Modifier.size(20.dp))
 
-            PrimaryButton(
-                text = "Сохранить",
-            )
+                FilledInput(
+                    value = username,
+                    name = "Username",
+                    placeholder = "Введите ваш username",
+                    onValueChange = { username = it },
+                    keyboardActions = actions,
+                    keyboardOptions = options,
+                )
+                Spacer(modifier = Modifier.size(20.dp))
+
+                FilledDatePickerInput(
+                    placeholder = "Дата рождения",
+                    name = "Введите вашу дату рождения",
+                    onChange = { dateOfBirth = it },
+                    value = dateOfBirth,
+                    onlyPast = true,
+                )
+                Spacer(modifier = Modifier.weight(1f))
+
+                PrimaryButton(
+                    text = "Сохранить",
+                    loading = loading,
+                    onClick = {
+                        coroutineScope.launch {
+                            loading = true
+                            reducer.update(name, username, dateOfBirth)
+                            loading = false
+                        }
+                    }
+                )
+            }
         }
     }
 }

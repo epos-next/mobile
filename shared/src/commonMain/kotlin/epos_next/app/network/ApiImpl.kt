@@ -98,7 +98,7 @@ class ApiImpl : Api, KoinComponent {
     override suspend fun updateUser(name: String?, username: String?, dateOfBirth: LocalDateTime?): Either<Throwable, User> {
         return runApi {
             val body = UpdateUserRequest(name, username, dateOfBirth)
-            val response: User = client.post(ApiRoutes.updateUser, body)
+            val response: User = client.put(ApiRoutes.updateUser, body)
             Either.Right(response)
         }
     }

@@ -2,10 +2,7 @@ package epos_next.app.android.components
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -75,8 +72,10 @@ fun FilledDatePickerInput(
     placeholder: String,
     name: String,
     onChange: (LocalDateTime) -> Unit,
+    value: LocalDateTime? = null,
+    onlyFuture: Boolean = false,
+    onlyPast: Boolean = false,
 ) {
-    var date by remember { mutableStateOf<LocalDateTime?>(null) }
     val activity = LocalContext.current as AppCompatActivity
 
     Column {
@@ -89,7 +88,7 @@ fun FilledDatePickerInput(
         Spacer(modifier = Modifier.height(7.dp))
         Box {
             FilledInput(
-                value = TextFieldValue(formatDate(date)),
+                value = TextFieldValue(if (onlyFuture) formatFutureDate(value) else formatDate(value)),
                 onValueChange = {},
                 readOnly = true,
                 placeholder = placeholder,
@@ -116,10 +115,9 @@ fun FilledDatePickerInput(
                         picker.addOnPositiveButtonClickListener {
                             val instant = Instant.fromEpochMilliseconds(it)
 
-                            if (instant > Clock.System.now()) {
+                            if ((!onlyFuture && !onlyPast) || (onlyFuture && instant > Clock.System.now()) || (onlyPast && instant < Clock.System.now())) {
                                 val tz = TimeZone.currentSystemDefault()
                                 val newDate = instant.toLocalDateTime(tz)
-                                date = newDate
                                 onChange(newDate)
                             }
                         }
@@ -129,8 +127,12 @@ fun FilledDatePickerInput(
     }
 }
 
-
 private fun formatDate(date: LocalDateTime?): String {
+    if (date == null) return ""
+    return FormatHelper.formatMarkDate(date)
+}
+
+private fun formatFutureDate(date: LocalDateTime?): String {
     if (date == null) return ""
     return FormatHelper.futureDate(date)
 }
