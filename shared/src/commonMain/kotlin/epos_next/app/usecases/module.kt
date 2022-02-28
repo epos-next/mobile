@@ -8,4 +8,5 @@ val useCasesModule = module {
     single<LoginUseCase> { LoginUseCaseImpl() }
     single<FetchBigDataObjectUseCase> { FetchBigDataObjectUseCaseImpl() }
     single<ClearAppAfterLogoutUseCase> { ClearAppAfterLogoutUseCaseImpl() }
+    single<UpdateUserUseCase> { UpdateUserUseCaseImpl() }
 }

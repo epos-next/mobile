@@ -74,6 +74,7 @@ interface Api {
      * @param name displaying user name
      * @param username user username (like @zotov). With out '@' symbol
      * @param dateOfBirth user birthday. Should be < now.
+     * @return updated user on success or throwable error
      */
     suspend fun updateUser(
         name: String? = null,
