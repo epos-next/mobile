@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.profile
+package epos_next.app.android.feats.profile.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
-import epos_next.app.android.feats.profile.ProfileScreen
+import epos_next.app.android.feats.profile.screens.ProfileScreen
 
 @OptIn(ExperimentalAnimationApi::class)
 fun NavGraphBuilder.profileNavGraph(navController: NavHostController) {
