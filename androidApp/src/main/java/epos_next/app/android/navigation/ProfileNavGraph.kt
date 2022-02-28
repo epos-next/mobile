@@ -3,6 +3,7 @@ package epos_next.app.android.navigation
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.ScrollState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
@@ -11,7 +12,7 @@ import epos_next.app.android.feats.profile.screens.profile_screen.ProfileScreen
 import epos_next.app.android.feats.profile.screens.user_screen.UserScreen
 
 @OptIn(ExperimentalAnimationApi::class)
-fun NavGraphBuilder.profileNavGraph(navController: NavHostController) {
+fun NavGraphBuilder.profileNavGraph(navController: NavHostController, userScrollState: ScrollState) {
     navigation(
         startDestination = Routes.Main.Profile.main,
         route = Routes.Main.Profile.route,
@@ -33,6 +34,6 @@ fun NavGraphBuilder.profileNavGraph(navController: NavHostController) {
             if (this.targetState.destination.route == Routes.Main.Profile.main) slideExit()
             else fadeOut()
         },
-    ) { UserScreen(navController) }
+    ) { UserScreen(navController, userScrollState) }
 
 }

@@ -14,6 +14,7 @@ import epos_next.app.android.feats.home.HomeScreen
 fun MainNavGraph(navController: NavHostController, openSheet: (MainBottomSheetScreen) -> Unit) {
     val homeScreenScrollState = rememberScrollState()
     val marksScreenScrollState = rememberScrollState()
+    val userProfileScreenScrollState = rememberScrollState()
 
     AnimatedNavHost(navController = navController, startDestination = Routes.Main.home) {
 
@@ -26,6 +27,6 @@ fun MainNavGraph(navController: NavHostController, openSheet: (MainBottomSheetSc
         marksNavGraph(navController, scrollState = marksScreenScrollState)
 
         // Profile
-        profileNavGraph(navController)
+        profileNavGraph(navController, userScrollState = userProfileScreenScrollState)
     }
 }

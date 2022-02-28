@@ -1,15 +1,19 @@
 package epos_next.app.android.feats.profile.screens.user_screen
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -32,13 +36,13 @@ import org.koin.androidx.compose.get
 @Composable
 fun UserScreen(
     rootNavController: NavHostController,
+    scrollState: ScrollState,
 ) {
     val reducer = get<UserReducer>()
     val state = reducer.state.collectAsState().value
     val coroutineScope = rememberCoroutineScope()
 
     if (state is UserState.Authorized) {
-        print(state.user)
         var name by remember { mutableStateOf(state.user.name) }
         var username by remember { mutableStateOf(state.user.username) }
         var dateOfBirth by remember { mutableStateOf<LocalDateTime?>(state.user.dateOfBirth) }
@@ -51,6 +55,7 @@ fun UserScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(bottom = 65.dp)
                 .background(MaterialTheme.colors.background)
         ) {
@@ -98,7 +103,8 @@ fun UserScreen(
                     value = dateOfBirth,
                     onlyPast = true,
                 )
-                Spacer(modifier = Modifier.weight(1f))
+
+                Spacer(modifier = Modifier.height(20.dp))
 
                 PrimaryButton(
                     text = "Сохранить",
