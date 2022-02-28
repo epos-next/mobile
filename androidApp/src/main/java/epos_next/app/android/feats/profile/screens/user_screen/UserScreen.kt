@@ -1,22 +1,87 @@
 package epos_next.app.android.feats.profile.screens.user_screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import epos_next.app.android.R
+import epos_next.app.android.components.FilledDatePickerInput
+import epos_next.app.android.components.FilledInput
+import epos_next.app.android.components.Input
+import epos_next.app.android.components.PrimaryButton
 import epos_next.app.android.feats.profile.screens.components.ProfileHeader
+import kotlinx.datetime.LocalDateTime
 
 @Composable
-fun UserScreen(navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize()) {
+fun UserScreen(
+    rootNavController: NavHostController,
+) {
+    var name by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var dateOfBirth by remember { mutableStateOf<LocalDateTime?>(null) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 65.dp)
+            .background(MaterialTheme.colors.background)
+    ) {
         ProfileHeader(
             image = R.drawable.user_icon_96,
             color = Color(0xFF68D676),
             text = "Профиль",
-            navController = navController,
+            navController = rootNavController,
         )
+
+        Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+            val focusManager = LocalFocusManager.current
+            val actions = KeyboardActions(onGo = {
+                focusManager.moveFocus(FocusDirection.Down)
+            })
+            val options = KeyboardOptions.Default.copy(imeAction = ImeAction.Go)
+
+            FilledInput(
+                value = name,
+                name = "Имя",
+                placeholder = "Введите ваше имя",
+                onValueChange = { name = it },
+                singleLine = true,
+                keyboardActions = actions,
+                keyboardOptions = options,
+            )
+            Spacer(modifier = Modifier.size(20.dp))
+
+            FilledInput(
+                value = username,
+                name = "Username",
+                placeholder = "Введите ваш username",
+                onValueChange = { username = it },
+                keyboardActions = actions,
+                keyboardOptions = options,
+            )
+            Spacer(modifier = Modifier.size(20.dp))
+
+            FilledDatePickerInput(
+                placeholder = "Дата рождения",
+                name = "Введите вашу дату рождения",
+                onChange = { dateOfBirth = it },
+            )
+            Spacer(modifier = Modifier.weight(1f))
+
+            PrimaryButton(
+                text = "Сохранить",
+            )
+        }
     }
 }

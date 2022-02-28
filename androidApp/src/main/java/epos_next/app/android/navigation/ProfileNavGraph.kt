@@ -20,18 +20,19 @@ fun NavGraphBuilder.profileNavGraph(navController: NavHostController) {
         composable(
             route = Routes.Main.Profile.main,
         ) { ProfileScreen(navController) }
-
-        // Detail
-        composable(
-            route = Routes.Main.Profile.user,
-            enterTransition = {
-                if (this.initialState.destination.route == Routes.Main.Profile.main) slideEnter()
-                else fadeIn()
-            },
-            exitTransition = {
-                if (this.targetState.destination.route == Routes.Main.Profile.main) slideExit()
-                else fadeOut()
-            },
-        ) { UserScreen(navController) }
     }
+
+    // Detail
+    composable(
+        route = Routes.Main.Profile.user,
+        enterTransition = {
+            if (this.initialState.destination.route == Routes.Main.Profile.main) slideEnter()
+            else fadeIn()
+        },
+        exitTransition = {
+            if (this.targetState.destination.route == Routes.Main.Profile.main) slideExit()
+            else fadeOut()
+        },
+    ) { UserScreen(navController) }
+
 }

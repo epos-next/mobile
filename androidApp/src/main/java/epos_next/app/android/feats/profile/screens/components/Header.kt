@@ -33,6 +33,7 @@ fun ProfileHeader(
         modifier = Modifier
             .height(228.dp)
             .fillMaxWidth()
+            .padding(bottom = 30.dp)
             .background(color)
             .padding(20.dp)
     ) {

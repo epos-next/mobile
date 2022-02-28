@@ -56,7 +56,7 @@ fun Input(
 }
 
 @Composable
-fun Input(
+fun FilledInput(
     value: String,
     name: String,
     onValueChange: (String) -> Unit,
@@ -64,8 +64,8 @@ fun Input(
     placeholder: String = "",
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    passwordMasking: Boolean = false,
     trailingIcon: @Composable () -> Unit = {},
+    singleLine: Boolean = true,
 ) {
     Column {
         Text(
@@ -76,26 +76,33 @@ fun Input(
 
         Spacer(modifier = Modifier.height(7.dp))
 
-        OutlinedTextField(
+        TextField(
             value = value,
             onValueChange = onValueChange,
-            modifier = Modifier
-                .fillMaxWidth()
-                .composed { modifier },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colors.contrast,
-                unfocusedBorderColor = MaterialTheme.colors.lightPrimary,
-                focusedLabelColor = MaterialTheme.colors.contrast,
-                unfocusedLabelColor = MaterialTheme.colors.lightPrimary,
-                placeholderColor = MaterialTheme.colors.lightPrimary,
+            modifier = modifier.fillMaxWidth(),
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = MaterialTheme.colors.disabled,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
             ),
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            visualTransformation = if (passwordMasking) PasswordVisualTransformation() else VisualTransformation.None,
+            trailingIcon = trailingIcon,
+            textStyle = TextStyle(
+                fontSize = 16.sp,
+                color = MaterialTheme.colors.textPrimary
+            ),
+            placeholder = {
+                Text(
+                    placeholder,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        color = MaterialTheme.colors.lightPrimary
+                    )
+                )
+            },
             shape = RoundedCornerShape(10.dp),
-            placeholder = { Text(text = placeholder) },
-            maxLines = 1,
-            trailingIcon = trailingIcon
+            singleLine = singleLine,
         )
     }
 }
