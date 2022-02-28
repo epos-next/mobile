@@ -23,6 +23,8 @@ import epos_next.app.android.components.PrimaryButton
 import epos_next.app.android.feats.profile.screens.components.ProfileHeader
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
+import epos_next.app.utils.validateUserName
+import epos_next.app.utils.validateUserUsername
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import org.koin.androidx.compose.get
@@ -40,6 +42,9 @@ fun UserScreen(
         var name by remember { mutableStateOf(state.user.name) }
         var username by remember { mutableStateOf(state.user.username) }
         var dateOfBirth by remember { mutableStateOf<LocalDateTime?>(state.user.dateOfBirth) }
+
+        var nameError by remember { mutableStateOf<String?>(null) }
+        var usernameError by remember { mutableStateOf<String?>(null) }
 
         var loading by remember { mutableStateOf(false) }
 
@@ -71,6 +76,7 @@ fun UserScreen(
                     singleLine = true,
                     keyboardActions = actions,
                     keyboardOptions = options,
+                    error = nameError,
                 )
                 Spacer(modifier = Modifier.size(20.dp))
 
@@ -81,6 +87,7 @@ fun UserScreen(
                     onValueChange = { username = it },
                     keyboardActions = actions,
                     keyboardOptions = options,
+                    error = usernameError,
                 )
                 Spacer(modifier = Modifier.size(20.dp))
 
@@ -97,10 +104,16 @@ fun UserScreen(
                     text = "Сохранить",
                     loading = loading,
                     onClick = {
-                        coroutineScope.launch {
-                            loading = true
-                            reducer.update(name, username, dateOfBirth)
-                            loading = false
+                        // validation
+                        nameError = validateUserName(name)
+                        usernameError = validateUserUsername(username)
+
+                        if (nameError == null && usernameError == null) {
+                            coroutineScope.launch {
+                                loading = true
+                                reducer.update(name, username, dateOfBirth)
+                                loading = false
+                            }
                         }
                     }
                 )

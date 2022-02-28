@@ -34,9 +34,8 @@ fun Input(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        modifier = Modifier
-            .fillMaxWidth()
-            .composed { modifier },
+        modifier = modifier
+            .fillMaxWidth(),
         colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedBorderColor = MaterialTheme.colors.contrast,
             unfocusedBorderColor = MaterialTheme.colors.lightPrimary,
@@ -61,6 +60,7 @@ fun FilledInput(
     name: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    error: String? = null,
     placeholder: String = "",
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -101,9 +101,19 @@ fun FilledInput(
                     )
                 )
             },
+
             shape = RoundedCornerShape(10.dp),
             singleLine = singleLine,
         )
+
+        if (error != null) {
+            Text(
+                text = error,
+                fontSize = 12.sp,
+                color = MaterialTheme.colors.error,
+                modifier = Modifier.padding(top = 7.dp)
+            )
+        }
     }
 }
 
