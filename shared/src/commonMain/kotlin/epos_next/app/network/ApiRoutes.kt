@@ -13,4 +13,6 @@ object ApiRoutes {
 
     const val createControlWork = "/api/1.0/control-work"
     const val createAdvertisement = "/api/1.0/advertisement"
+
+    const val updateUser = "/api/1.0/user"
 }

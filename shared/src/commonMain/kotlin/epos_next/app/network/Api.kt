@@ -1,9 +1,6 @@
 package epos_next.app.network
 
-import epos_next.app.domain.entities.Advertisement
-import epos_next.app.domain.entities.BigDataObject
-import epos_next.app.domain.entities.ControlWork
-import epos_next.app.domain.entities.Lesson
+import epos_next.app.domain.entities.*
 import epos_next.app.domain.exceptions.InvalidAuthException
 import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.NetworkException
@@ -13,6 +10,7 @@ import epos_next.app.network.responces.auth.AuthenticateResponse
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -70,5 +68,17 @@ interface Api {
      * @return id of created advertisement on success, otherwise [Throwable]
      */
     suspend fun createAdvertisement(advertisement: Advertisement): Either<Throwable, Long>
+
+    /**
+     * Updates user with giving data. At least one parameter should be passed
+     * @param name displaying user name
+     * @param username user username (like @zotov). With out '@' symbol
+     * @param dateOfBirth user birthday. Should be < now.
+     */
+    suspend fun updateUser(
+        name: String? = null,
+        username: String? = null,
+        dateOfBirth: LocalDateTime? = null
+    ): Either<Throwable, User>
 }
 

@@ -1,10 +1,6 @@
 package epos_next.app.network
 
-import epos_next.app.domain.entities.Advertisement
-import epos_next.app.domain.entities.BigDataObject
-import epos_next.app.domain.entities.ControlWork
-import epos_next.app.domain.entities.Lesson
-import epos_next.app.domain.exceptions.InvalidAuthException
+import epos_next.app.domain.entities.*
 import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.InvalidDataException
 import epos_next.app.domain.exceptions.NetworkException
@@ -12,7 +8,7 @@ import epos_next.app.lib.Either
 import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.requests.data.CreateAdvertisementRequest
 import epos_next.app.network.requests.data.CreateControlWorkRequest
-import epos_next.app.network.responces.SuccessResponse
+import epos_next.app.network.requests.user.UpdateUserRequest
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import epos_next.app.network.responces.data.CreateAdvertisementResponse
 import epos_next.app.network.responces.data.CreateControlWorkResponse
@@ -22,6 +18,7 @@ import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -95,6 +92,14 @@ class ApiImpl : Api, KoinComponent {
             val body = CreateAdvertisementRequest.fromAdvertisement(advertisement)
             val response: CreateAdvertisementResponse = client.post(ApiRoutes.createAdvertisement, body)
             Either.Right(response.id)
+        }
+    }
+
+    override suspend fun updateUser(name: String?, username: String?, dateOfBirth: LocalDateTime?): Either<Throwable, User> {
+        return runApi {
+            val body = UpdateUserRequest(name, username, dateOfBirth)
+            val response: User = client.post(ApiRoutes.updateUser, body)
+            Either.Right(response)
         }
     }
 }
