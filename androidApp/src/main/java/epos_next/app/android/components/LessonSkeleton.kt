@@ -62,7 +62,7 @@ private fun Circle() {
             .padding(end = 15.dp)
             .size(36.dp)
             .clip(CircleShape)
-            .background(Color(0xFFF6F5F9))
+            .background(MaterialTheme.colors.skeleton)
     )
 }
 

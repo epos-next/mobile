@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,7 +18,6 @@ import androidx.compose.ui.unit.sp
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.domain.entities.Advertisement
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.DurationUnit
@@ -57,6 +57,6 @@ private fun Circle(modifier: Modifier = Modifier) {
             .composed { modifier }
             .size(5.dp)
             .clip(CircleShape)
-            .background(MaterialTheme.colors.lightPrimary)
+            .background(if (MaterialTheme.colors.isLight) MaterialTheme.colors.lightPrimary else MaterialTheme.colors.surface)
     )
 }

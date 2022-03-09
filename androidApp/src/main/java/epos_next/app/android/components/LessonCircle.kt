@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,9 +25,7 @@ fun LessonCircle(modifier: Modifier = Modifier, subject: String) {
             modifier = Modifier
                 .size(36.dp)
                 .clip(CircleShape)
-                .background(colors.color)
-
-
+                .background(if (MaterialTheme.colors.isLight) colors.color else MaterialTheme.colors.surface)
         ) {
             Text(
                 text = subject[0].toString(),

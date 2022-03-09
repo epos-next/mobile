@@ -1,6 +1,7 @@
 package epos_next.app.android.components.theme
 
 import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
@@ -9,7 +10,7 @@ val errorColor = Color(0xFFDE4844)
 
 @get:Composable
 val Colors.textPrimary: Color
-    get() = Color(0xFF313131)
+    get() = if (isLight) Color(0xFF313131) else Color(0xFFE9EBED)
 
 @get:Composable
 val Colors.contrast: Color
@@ -21,7 +22,7 @@ val Colors.lightContrast: Color
 
 @get:Composable
 val Colors.disabled: Color
-    get() = Color(0xFFF9F9FB)
+    get() = if (isLight) Color(0xFFF9F9FB) else Color(0xFF1D1A25)
 
 @get:Composable
 val Colors.lightError: Color
@@ -29,8 +30,8 @@ val Colors.lightError: Color
 
 @get:Composable
 val Colors.lightPrimary: Color
-    get() = Color(0xFFCBCBCB)
+    get() = if (isLight) Color(0xFFCBCBCB) else Color(0xFF888B8E)
 
 @get:Composable
 val Colors.skeleton: Color
-    get() = Color(0xFFF6F5F9)
+    get() = if (isLight) Color(0xFFF6F5F9) else Color(0xFF1C1923)

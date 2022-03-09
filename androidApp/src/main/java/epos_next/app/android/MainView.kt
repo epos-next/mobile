@@ -43,6 +43,7 @@ fun MainView() {
         }
     ) {
         Scaffold(
+            backgroundColor = MaterialTheme.colors.background,
             bottomBar = {
                 BottomNavBar(navController)
                 BarSheetShading(currentBottomSheet != null)

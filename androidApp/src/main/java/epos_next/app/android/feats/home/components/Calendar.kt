@@ -199,7 +199,9 @@ fun WeekdayRow() {
                 weekDay,
                 modifier = Modifier.weight(1f),
                 style = TextStyle(
-                    color = MaterialTheme.colors.secondary,
+                    color = if (MaterialTheme.colors.isLight) MaterialTheme.colors.secondary else Color(
+                        0xFF999EA4
+                    ),
                     fontSize = 15.sp
                 ),
                 textAlign = TextAlign.Center
@@ -285,8 +287,8 @@ private fun InnerCalendarCell(modifier: Modifier = Modifier, item: Item) {
     val textColor = animateColorAsState(
         targetValue = when {
             item.isSelected -> Color.White
-            item.active -> MaterialTheme.colors.textPrimary
-            else -> MaterialTheme.colors.lightPrimary
+            item.active -> if (MaterialTheme.colors.isLight) MaterialTheme.colors.textPrimary else Color(0xFFD0D2D5)
+            else -> if (MaterialTheme.colors.isLight) MaterialTheme.colors.lightPrimary else Color(0xFF676870)
         },
         animationSpec = tween(250)
     )

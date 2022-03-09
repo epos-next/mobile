@@ -42,6 +42,7 @@ fun Input(
             focusedLabelColor = MaterialTheme.colors.contrast,
             unfocusedLabelColor = MaterialTheme.colors.lightPrimary,
             placeholderColor = MaterialTheme.colors.lightPrimary,
+            backgroundColor = MaterialTheme.colors.surface,
         ),
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
