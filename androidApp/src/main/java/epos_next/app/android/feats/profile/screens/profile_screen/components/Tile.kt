@@ -25,6 +25,7 @@ fun Tile(
     @DrawableRes icon: Int,
     color: Color,
     onTap: () -> Unit,
+    suffix: @Composable () -> Unit = {}
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -42,6 +43,8 @@ fun Tile(
                 fontSize = 16.sp,
             )
         )
+        Spacer(modifier = Modifier.weight(1f))
+        suffix()
     }
 }
 
