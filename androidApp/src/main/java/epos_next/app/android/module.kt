@@ -8,4 +8,5 @@ import org.koin.dsl.module
 val androidModule = module {
     single { HomeViewModel() }
     single { MarksScreenViewModel() }
+    single { DarkModeViewModel() }
 }

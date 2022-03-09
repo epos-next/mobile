@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import epos_next.app.android.DarkModeViewModel
 import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.SwitchComponent
@@ -53,13 +54,14 @@ fun ProfileScreen(navController: NavHostController) {
                     onTap = { navController.navigate(Routes.Main.Profile.user) }
                 )
 
-                var isDark by remember { mutableStateOf(false) }
+                val darkModeViewModel = get<DarkModeViewModel>()
+                val isDark by get<DarkModeViewModel>().isDarkMode.collectAsState()
 
                 Tile(
                     "Тема",
                     icon = R.drawable.moon_icon,
                     color = Color(0xFF4957CD),
-                    onTap = { isDark = !isDark }
+                    onTap = { darkModeViewModel.changeDarkModeTo(!isDark) }
                 ) {
                     SwitchComponent(isDark)
                 }

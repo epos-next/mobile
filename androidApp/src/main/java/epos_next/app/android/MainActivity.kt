@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.navigation.RootNavGraph
@@ -18,6 +21,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
 import kotlinx.coroutines.flow.collect
+import org.koin.android.ext.android.get
 
 @ExperimentalTime
 @InternalCoroutinesApi
@@ -38,7 +42,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val navController = rememberAnimatedNavController()
 
-            ApplicationTheme {
+            val darkModeViewModel = get<DarkModeViewModel>()
+            val theme by darkModeViewModel.isDarkMode.collectAsState()
+
+            ApplicationTheme(darkTheme = theme) {
                 RootNavGraph(navController)
             }
 
