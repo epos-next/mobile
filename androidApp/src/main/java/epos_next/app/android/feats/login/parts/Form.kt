@@ -16,6 +16,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.R
+import epos_next.app.android.components.ButtonState
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
@@ -106,7 +107,7 @@ fun Form() {
         text = "Войти",
         onClick = { login() },
         disabled = disabled,
-        loading = loading,
+        state = if (loading) ButtonState.Loading else ButtonState.Idle,
     )
 
     Spacer(modifier = Modifier.height(10.dp))

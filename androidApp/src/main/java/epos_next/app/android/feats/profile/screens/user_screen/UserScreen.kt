@@ -20,15 +20,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import epos_next.app.android.R
-import epos_next.app.android.components.FilledDatePickerInput
-import epos_next.app.android.components.FilledInput
-import epos_next.app.android.components.Input
-import epos_next.app.android.components.PrimaryButton
+import epos_next.app.android.components.*
 import epos_next.app.android.feats.profile.screens.components.ProfileHeader
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import epos_next.app.utils.validateUserName
 import epos_next.app.utils.validateUserUsername
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import org.koin.androidx.compose.get
@@ -50,7 +48,7 @@ fun UserScreen(
         var nameError by remember { mutableStateOf<String?>(null) }
         var usernameError by remember { mutableStateOf<String?>(null) }
 
-        var loading by remember { mutableStateOf(false) }
+        var buttonState by remember { mutableStateOf<ButtonState>(ButtonState.Idle) }
 
         Column(
             modifier = Modifier
@@ -97,8 +95,8 @@ fun UserScreen(
                 Spacer(modifier = Modifier.size(20.dp))
 
                 FilledDatePickerInput(
-                    placeholder = "Дата рождения",
-                    name = "Введите вашу дату рождения",
+                    placeholder = "Введите вашу дату рождения",
+                    name = "Дата рождения",
                     onChange = { dateOfBirth = it },
                     value = dateOfBirth,
                     onlyPast = true,
@@ -108,7 +106,7 @@ fun UserScreen(
 
                 PrimaryButton(
                     text = "Сохранить",
-                    loading = loading,
+                    state = buttonState,
                     onClick = {
                         // validation
                         nameError = validateUserName(name)
@@ -116,9 +114,12 @@ fun UserScreen(
 
                         if (nameError == null && usernameError == null) {
                             coroutineScope.launch {
-                                loading = true
+                                buttonState = ButtonState.Loading
+                                delay(2000)
                                 reducer.update(name, username, dateOfBirth)
-                                loading = false
+                                buttonState = ButtonState.Done
+                                delay(2000)
+                                buttonState = ButtonState.Idle
                             }
                         }
                     }

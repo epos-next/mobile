@@ -46,18 +46,21 @@ class MainActivity : AppCompatActivity() {
                 userReducer.state.collect {
                     when (it) {
                         is UserState.Authorized -> {
-                            navController.navigate(Routes.Main.route) {
-                                navController.graph.startDestinationRoute?.let { screen_route ->
-                                    popUpTo(screen_route)
+                            if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
+                                navController.navigate(Routes.Main.route) {
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        popUpTo(screen_route)
+                                    }
                                 }
+                                fetchBigDataObjectUseCase()
                             }
-
-                            fetchBigDataObjectUseCase()
                         }
                         is UserState.NotAuthorized -> {
-                            navController.navigate(Routes.login) {
-                                navController.graph.startDestinationRoute?.let { screen_route ->
-                                    popUpTo(screen_route)
+                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
+                                navController.navigate(Routes.login) {
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        popUpTo(screen_route)
+                                    }
                                 }
                             }
                         }

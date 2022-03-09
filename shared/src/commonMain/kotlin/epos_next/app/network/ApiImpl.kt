@@ -52,7 +52,6 @@ class ApiImpl : Api, KoinComponent {
 
     override suspend fun getData(): Either<Exception, BigDataObject> = runApi {
         val response: GetDataResponse = client.get(ApiRoutes.data)
-        Napier.d("response.hw = ${response.data.homework}")
         Either.Right(response.data.toDomain())
     }
 
