@@ -38,7 +38,9 @@ fun BottomNavBar(navController: NavHostController) {
                         painter = painterResource(id = item.getIcon(route)),
                         contentDescription = item.description,
                         modifier = Modifier.size(32.dp),
-                        colorFilter = if (!item.selected(route)) ColorFilter.tint(Color(0xFF83848D)) else null,
+                        colorFilter = if (!item.selected(route) && !MaterialTheme.colors.isLight) ColorFilter.tint(
+                            Color(0xFF83848D)
+                        ) else null,
                     )
                 },
                 selected = item.selected(route),

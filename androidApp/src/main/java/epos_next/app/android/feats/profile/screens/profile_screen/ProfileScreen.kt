@@ -63,7 +63,9 @@ fun ProfileScreen(navController: NavHostController) {
                     color = Color(0xFF4957CD),
                     onTap = { darkModeViewModel.changeDarkModeTo(!isDark) }
                 ) {
-                    SwitchComponent(isDark)
+                    SwitchComponent(isDark) {
+                        darkModeViewModel.changeDarkModeTo(!isDark)
+                    }
                 }
 
                 Tile(

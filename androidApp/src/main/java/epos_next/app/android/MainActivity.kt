@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             val darkModeViewModel = get<DarkModeViewModel>()
             val theme by darkModeViewModel.isDarkMode.collectAsState()
 
-            ApplicationTheme(darkTheme = true) {
+            ApplicationTheme(darkTheme = theme) {
                 RootNavGraph(navController)
             }
 

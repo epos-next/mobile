@@ -4,12 +4,14 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -32,13 +34,19 @@ fun SwitchComponent(enabled: Boolean = false, onTap: (newState: Boolean) -> Unit
             .height(19.dp)
             .clip(RoundedCornerShape(15.dp))
             .background(color)
-            .clickable { onTap(!enabled) }
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            )
+            { onTap(!enabled) }
             .padding(2.dp)
     ) {
-        Box(modifier = Modifier
-            .padding(start = padding)
-            .size(14.dp)
-            .clip(CircleShape)
-            .background(Color.White))
+        Box(
+            modifier = Modifier
+                .padding(start = padding)
+                .size(14.dp)
+                .clip(CircleShape)
+                .background(Color.White)
+        )
     }
 }
