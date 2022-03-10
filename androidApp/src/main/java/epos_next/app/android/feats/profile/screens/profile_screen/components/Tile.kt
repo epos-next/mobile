@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -50,17 +51,21 @@ fun Tile(
 
 @Composable
 private fun Icon(@DrawableRes icon: Int, color: Color) {
+    val bg = if (MaterialTheme.colors.isLight) color else MaterialTheme.colors.surface
+    val filter = if (MaterialTheme.colors.isLight) null else ColorFilter.tint(color)
+
     Box(
         modifier = Modifier
             .size(32.dp)
             .clip(RoundedCornerShape(5.dp))
-            .background(color)
+            .background(bg)
             .padding(4.dp)
     ) {
         Image(
             painter = painterResource(id = icon),
             contentDescription = null,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
+            colorFilter = filter
         )
     }
 }
