@@ -39,67 +39,65 @@ fun MarksDetailScreen(navController: NavHostController, subject: String) {
     val reducer = get<MarksReducer>()
     val state = reducer.state.collectAsState().value
 
-    ApplicationTheme {
-        Scaffold {
-            Column(
-                Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(bottom = 75.dp)
-            ) {
+    Scaffold {
+        Column(
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = 75.dp)
+        ) {
 
-                when (state) {
-                    is MarksState.Idle -> {
-                        val lesson = state.marks.entries.firstOrNull { it.key == subject }
+            when (state) {
+                is MarksState.Idle -> {
+                    val lesson = state.marks.entries.firstOrNull { it.key == subject }
 
-                        SubjectName(subject, navController)
+                    SubjectName(subject, navController)
 
-                        if (lesson != null && lesson.value.periods.isNotEmpty()) {
-                            val periods = lesson.value.periods
+                    if (lesson != null && lesson.value.periods.isNotEmpty()) {
+                        val periods = lesson.value.periods
 
-                            val totalExpected = if (periods.isNotEmpty()) {
-                                periods.sumOf { it.total ?: 0.0 } /
-                                        periods.count { it.total != null }
-                            } else null
+                        val totalExpected = if (periods.isNotEmpty()) {
+                            periods.sumOf { it.total ?: 0.0 } /
+                                    periods.count { it.total != null }
+                        } else null
 
-                            val total = lesson.value.total?.roundToInt()
+                        val total = lesson.value.total?.roundToInt()
 
-                            if (totalExpected != null) {
-                                PrimaryMarkRow(
-                                    modifier = Modifier.padding(
-                                        top = 15.dp,
-                                        start = 20.dp,
-                                        end = 20.dp
-                                    ),
-                                    name = "Средняя оценка за год",
-                                    value = "%.2f".format(totalExpected).replace(',', '.')
-                                )
-                            }
+                        if (totalExpected != null) {
+                            PrimaryMarkRow(
+                                modifier = Modifier.padding(
+                                    top = 15.dp,
+                                    start = 20.dp,
+                                    end = 20.dp
+                                ),
+                                name = "Средняя оценка за год",
+                                value = "%.2f".format(totalExpected).replace(',', '.')
+                            )
+                        }
 
-                            if (total != null) {
-                                PrimaryMarkRow(
-                                    modifier = Modifier.padding(
-                                        top = 15.dp,
-                                        start = 20.dp,
-                                        end = 20.dp
-                                    ),
-                                    name = "Выставленная оценка за год",
-                                    value = "$total"
-                                )
-                            }
+                        if (total != null) {
+                            PrimaryMarkRow(
+                                modifier = Modifier.padding(
+                                    top = 15.dp,
+                                    start = 20.dp,
+                                    end = 20.dp
+                                ),
+                                name = "Выставленная оценка за год",
+                                value = "$total"
+                            )
+                        }
 
-                            LessonDivider(modifier = Modifier.padding(top = 30.dp))
-                            for ((i, period) in periods.withIndex()) {
-                                CollapsedPeriodMarks(
-                                    text = "${i + 1} четверть",
-                                    period = period,
-                                    initiallyOpen = i + 1 == periods.size,
-                                )
-                                LessonDivider()
-                            }
+                        LessonDivider(modifier = Modifier.padding(top = 30.dp))
+                        for ((i, period) in periods.withIndex()) {
+                            CollapsedPeriodMarks(
+                                text = "${i + 1} четверть",
+                                period = period,
+                                initiallyOpen = i + 1 == periods.size,
+                            )
+                            LessonDivider()
                         }
                     }
-                    else -> Unit
                 }
+                else -> Unit
             }
         }
     }
