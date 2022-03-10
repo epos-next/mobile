@@ -29,43 +29,39 @@ fun MarksScreen(navController: NavController, scrollState: ScrollState) {
     val viewModel = get<MarksScreenViewModel>()
     val state = reducer.state.collectAsState().value
 
-    ApplicationTheme {
-        Scaffold {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .padding(bottom = 75.dp)
-            ) {
-                SearchInput(viewModel.search) { viewModel.search = it }
+    Scaffold {
+        Column(
+            modifier = Modifier
+                .verticalScroll(scrollState)
+                .padding(bottom = 75.dp)
+        ) {
+            SearchInput(viewModel.search) { viewModel.search = it }
 
 
-                when (state) {
-                    is MarksState.Idle -> {
-                        // filter marks based on search
-                        val subjects = state.marks.filter {
-                            it.key.lowercase(Locale.getDefault()).contains(viewModel.search.text)
-                        }
-
-                        for (subject in subjects) {
-                            if (subject.value.periods.isEmpty()) continue
-                            LessonDivider()
-
-                            val marks = subject.value.periods.lastOrNull()?.all
-                                ?.map { mark -> mark.value }
-                                ?: listOf()
-
-                            LessonWithMarks(
-                                lessonName = subject.key,
-                                totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
-                                marks = marks,
-                                onClick = { navController.navigate(Routes.Main.Marks.detail(subject.key)) }
-                            )
-                        }
+            when (state) {
+                is MarksState.Idle -> {
+                    // filter marks based on search
+                    val subjects = state.marks.filter {
+                        it.key.lowercase(Locale.getDefault()).contains(viewModel.search.text)
                     }
-                    else -> Unit
+
+                    for (subject in subjects) {
+                        if (subject.value.periods.isEmpty()) continue
+                        LessonDivider()
+
+                        val marks = subject.value.periods.lastOrNull()?.all
+                            ?.map { mark -> mark.value }
+                            ?: listOf()
+
+                        LessonWithMarks(
+                            lessonName = subject.key,
+                            totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
+                            marks = marks,
+                            onClick = { navController.navigate(Routes.Main.Marks.detail(subject.key)) }
+                        )
+                    }
                 }
-
-
+                else -> Unit
             }
         }
     }

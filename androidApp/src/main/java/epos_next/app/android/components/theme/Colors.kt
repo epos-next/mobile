@@ -18,7 +18,7 @@ val Colors.contrast: Color
 
 @get:Composable
 val Colors.lightContrast: Color
-    get() = Color(0xFFDFD2FE)
+    get() = if (isLight) Color(0xFFDFD2FE) else Color(0xFF9569FD).copy(alpha = 0.3f)
 
 @get:Composable
 val Colors.disabled: Color
