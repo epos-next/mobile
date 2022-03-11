@@ -1,6 +1,7 @@
 package epos_next.app.state
 
 import epos_next.app.state.advertisements.AdvertisementsReducer
+import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.homework.HomeworkReducer
 import epos_next.app.state.marks.MarksReducer
@@ -17,4 +18,5 @@ val stateModule = module {
     single { SchoolTestsReducer() }
     single { NextLessonReducer() }
     single { MarksReducer() }
+    single { DarkModeReducer() }
 }

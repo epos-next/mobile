@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import epos_next.app.android.DarkModeViewModel
 import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.SwitchComponent
@@ -18,6 +17,7 @@ import epos_next.app.android.feats.profile.screens.profile_screen.components.Til
 import epos_next.app.android.feats.profile.screens.profile_screen.components.UserAvatar
 import epos_next.app.android.feats.profile.screens.profile_screen.components.UserName
 import epos_next.app.android.navigation.Routes
+import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import kotlinx.coroutines.launch
@@ -54,17 +54,17 @@ fun ProfileScreen(navController: NavHostController) {
                     onTap = { navController.navigate(Routes.Main.Profile.user) }
                 )
 
-                val darkModeViewModel = get<DarkModeViewModel>()
-                val isDark by get<DarkModeViewModel>().isDarkMode.collectAsState()
+                val darkModeReducer = get<DarkModeReducer>()
+                val isDark by darkModeReducer.state.collectAsState()
 
                 Tile(
                     "Тема",
                     icon = R.drawable.moon_icon,
                     color = Color(0xFF4957CD),
-                    onTap = { darkModeViewModel.changeDarkModeTo(!isDark) }
+                    onTap = { darkModeReducer.change(!isDark) }
                 ) {
                     SwitchComponent(isDark) {
-                        darkModeViewModel.changeDarkModeTo(!isDark)
+                        darkModeReducer.change(!isDark)
                     }
                 }
 

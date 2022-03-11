@@ -8,11 +8,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
+import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import epos_next.app.usecases.FetchBigDataObjectUseCase
@@ -20,14 +20,13 @@ import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
-import kotlinx.coroutines.flow.collect
-import org.koin.android.ext.android.get
 
 @ExperimentalTime
 @InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     private val userReducer: UserReducer by inject()
+    private val darkModeReducer: DarkModeReducer by inject()
     private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
 
     @OptIn(ExperimentalAnimationApi::class)
@@ -42,10 +41,9 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val navController = rememberAnimatedNavController()
 
-            val darkModeViewModel = get<DarkModeViewModel>()
-            val theme by darkModeViewModel.isDarkMode.collectAsState()
+            val isDarkMode by darkModeReducer.state.collectAsState()
 
-            ApplicationTheme(darkTheme = theme) {
+            ApplicationTheme(darkTheme = isDarkMode) {
                 RootNavGraph(navController)
             }
 
