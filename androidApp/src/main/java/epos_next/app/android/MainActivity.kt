@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
@@ -40,8 +42,16 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             val navController = rememberAnimatedNavController()
+            val systemUiController = rememberSystemUiController()
 
             val isDarkMode by darkModeReducer.state.collectAsState()
+
+            if (isDarkMode) {
+                systemUiController.setSystemBarsColor(Color(0xFF1D1A25))
+                systemUiController.setStatusBarColor(Color(0xFF11111B))
+            } else {
+                systemUiController.setSystemBarsColor(Color.White)
+            }
 
             ApplicationTheme(darkTheme = isDarkMode) {
                 RootNavGraph(navController)

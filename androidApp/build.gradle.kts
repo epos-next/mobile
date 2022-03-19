@@ -56,4 +56,5 @@ dependencies {
 
     implementation(libs.kotlinx.datetime)
     implementation(libs.accompanist.flowLayout)
+    implementation(libs.accompanist.systemUi)
 }

@@ -5,6 +5,7 @@ import epos_next.app.lib.BaseReducer
 import epos_next.app.usecases.*
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
 import org.koin.core.component.inject
 import kotlin.time.ExperimentalTime
@@ -39,7 +40,9 @@ class UserReducer : BaseReducer<UserState>(UserState.Loading) {
             { user ->
                 Napier.i("success login (user = $user)")
                 stateFlow.update { UserState.Authorized(user) }
-                fetchBigDataObject()
+                scope.launch {
+                    fetchBigDataObject()
+                }
                 null
             }
         )
