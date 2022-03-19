@@ -15,9 +15,13 @@ import epos_next.app.domain.entities.Lesson
 import epos_next.app.state.schedule.ScheduleReducer
 import epos_next.app.state.schedule.ScheduleState
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import java.lang.Integer.max
+import java.time.ZoneId
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
@@ -36,7 +40,15 @@ fun LessonPart() {
         onDaySelected = {
             coroutineScope.launch {
                 val amount = scheduleReducer.loadDateSchedule(it)
+                val kotlinDate =
+                    Instant.fromEpochSeconds(
+                        viewModel.calendarDate.value.atStartOfDay(ZoneId.systemDefault())
+                            .toEpochSecond()
+                    )
+                        .toLocalDateTime(TimeZone.currentSystemDefault()).date
+
                 if (amount != 0) viewModel.resetScheduleVisible()
+                else if (kotlinDate == it) scheduleReducer.loadDateSchedule(it)
             }
         }
     )

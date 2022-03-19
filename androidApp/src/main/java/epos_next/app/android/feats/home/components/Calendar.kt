@@ -104,7 +104,7 @@ private fun SelectedDateIndicator(index: Int) {
         animationSpec = tween(250)
     )
     val y = animateDpAsState(
-        (ceil(index.toDouble() / 7) * (if (index > 21) 44.0 else 43.75)).dp + 30.dp,
+        (ceil(index.toDouble() / 7) * (if (index > 21) 44.0 else 43.75)).dp + 24.dp,
         animationSpec = tween(250)
     )
 
@@ -121,7 +121,6 @@ private fun SelectedDateIndicator(index: Int) {
                     ),
                 )
             )
-
     )
 }
 

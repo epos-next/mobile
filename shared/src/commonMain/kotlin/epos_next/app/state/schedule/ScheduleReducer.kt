@@ -40,7 +40,7 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
         when {
             lessons == null -> {
                 stateFlow.update { ScheduleState.Loading }
-//                fetchNewLessons(date)
+                fetchNewLessons(date)
             }
             lessons.isEmpty() -> stateFlow.update { ScheduleState.NoLessons }
             else -> stateFlow.update { ScheduleState.Idle(lessons) }
@@ -70,9 +70,6 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
 
                 // for setCacheMarkers
                 lessonsDataSource.setCacheMarkers(from, to)
-
-                // update state
-                loadSchedule(date)
             }
         )
     }
