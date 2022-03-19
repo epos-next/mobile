@@ -55,4 +55,5 @@ dependencies {
     implementation(libs.napier)
 
     implementation(libs.kotlinx.datetime)
+    implementation(libs.accompanist.flowLayout)
 }

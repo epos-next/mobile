@@ -72,7 +72,8 @@ fun ProfileScreen(navController: NavHostController) {
                     "О разработчиках",
                     icon = R.drawable.dev_icon,
                     color = Color(0xFF83D4FC),
-                    onTap = {})
+                    onTap = { navController.navigate(Routes.Main.Profile.aboutDevs)  }
+                )
 
                 Tile(
                     "Выйти",

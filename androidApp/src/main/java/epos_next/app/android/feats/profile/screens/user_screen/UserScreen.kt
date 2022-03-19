@@ -2,26 +2,22 @@ package epos_next.app.android.feats.profile.screens.user_screen
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import epos_next.app.android.R
 import epos_next.app.android.components.*
-import epos_next.app.android.feats.profile.screens.components.ProfileHeader
+import epos_next.app.android.feats.profile.components.ProfileHeader
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import epos_next.app.utils.validateUserName

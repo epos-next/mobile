@@ -8,6 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.navigation
+import epos_next.app.android.feats.profile.screens.about_devs_screen.AboutDevsScreen
 import epos_next.app.android.feats.profile.screens.profile_screen.ProfileScreen
 import epos_next.app.android.feats.profile.screens.user_screen.UserScreen
 
@@ -23,7 +24,7 @@ fun NavGraphBuilder.profileNavGraph(navController: NavHostController, userScroll
         ) { ProfileScreen(navController) }
     }
 
-    // Detail
+    // Profile details screen
     composable(
         route = Routes.Main.Profile.user,
         enterTransition = {
@@ -35,5 +36,18 @@ fun NavGraphBuilder.profileNavGraph(navController: NavHostController, userScroll
             else fadeOut()
         },
     ) { UserScreen(navController, userScrollState) }
+
+    // Profile devs screen
+    composable(
+        route = Routes.Main.Profile.aboutDevs,
+        enterTransition = {
+            if (this.initialState.destination.route == Routes.Main.Profile.main) slideEnter()
+            else fadeIn()
+        },
+        exitTransition = {
+            if (this.targetState.destination.route == Routes.Main.Profile.main) slideExit()
+            else fadeOut()
+        },
+    ) { AboutDevsScreen(navController, userScrollState) }
 
 }

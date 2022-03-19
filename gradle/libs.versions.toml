@@ -14,6 +14,7 @@ lifecycle = "2.4.0"
 mockk = "1.9.1"
 sqlDelight = "1.5.3"
 settings = "0.8.1"
+accompanist = "0.24.4-alpha"
 
 [libraries]
 
@@ -75,5 +76,6 @@ sqlDelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extens
 sqlDelight-native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
 sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
 
-accompanist-navAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version = "0.24.0-alpha" }
+accompanist-navAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
+accompanist-flowLayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 

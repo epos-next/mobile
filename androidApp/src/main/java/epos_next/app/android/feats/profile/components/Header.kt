@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.profile.screens.components
+package epos_next.app.android.feats.profile.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.*
