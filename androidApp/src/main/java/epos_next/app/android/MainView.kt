@@ -43,6 +43,7 @@ fun MainView() {
         }
     ) {
         Scaffold(
+            modifier = Modifier.fillMaxSize(),
             backgroundColor = MaterialTheme.colors.background,
             bottomBar = {
                 BottomNavBar(navController)

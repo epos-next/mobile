@@ -2,6 +2,7 @@ package epos_next.app.android.feats.marks.main
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
@@ -32,6 +33,7 @@ fun MarksScreen(navController: NavController, scrollState: ScrollState) {
     Scaffold {
         Column(
             modifier = Modifier
+                .fillMaxHeight()
                 .verticalScroll(scrollState)
                 .padding(bottom = 75.dp)
         ) {

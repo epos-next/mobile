@@ -42,6 +42,7 @@ fun MarksDetailScreen(navController: NavHostController, subject: String) {
     Scaffold {
         Column(
             Modifier
+                .fillMaxHeight()
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = 75.dp)
         ) {
