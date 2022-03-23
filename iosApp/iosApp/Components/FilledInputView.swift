@@ -10,14 +10,20 @@ import SwiftUI
 
 struct FilledInputView: View {
     @Binding var text: String
+    var placeholder: String = ""
+    var suffixIcon: String? = nil
     
     var body: some View {
         HStack {
-            TextField("Поиск", text: $text)
+            TextField(placeholder, text: $text)
                 .textFieldStyle(CustomTextFieldStyle())
-            Image("search_icon")
-                .resizable()
-                .frame(width: 21, height: 21)
+            
+            if suffixIcon != nil {
+                Image(suffixIcon!)
+                    .resizable()
+                    .frame(width: 21, height: 21)
+            }
+           
         }
         .padding(.vertical, 13)
         .padding(.horizontal, 17)
@@ -34,6 +40,7 @@ private struct CustomTextFieldStyle: TextFieldStyle {
         configuration
             .frame(minWidth: 0, maxWidth: .infinity)
             .font(.custom("AvenirNext-Regular", size: 16))
+            .multilineTextAlignment(.leading)
             .foregroundColor(.textPrimary)
     }
 }

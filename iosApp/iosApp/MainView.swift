@@ -49,9 +49,7 @@ struct MainView: View {
         .ignoresSafeArea()
         .navigationTitle("")
         .navigationBarHidden(true)
-        .primaryBottomSheet(position: $bottomSheetPosition) {
-            Text("Hello")
-        }
+        .primaryBottomSheet(position: $bottomSheetPosition) { CreateTestReminderSheet() }
         
     }
 }
