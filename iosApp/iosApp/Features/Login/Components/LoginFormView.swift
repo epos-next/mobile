@@ -19,6 +19,12 @@ struct LoginFormView: View {
         get { return email.isEmpty || password.isEmpty || !error.isEmpty }
     }
     
+    private var state: ButtonState {
+        if isDisabled { return ButtonState.disabled }
+        else if loading { return ButtonState.loading }
+        return ButtonState.idle
+    }
+    
     @EnvironmentObject private var user: UserObservable
     
     var body: some View {
@@ -57,8 +63,7 @@ struct LoginFormView: View {
                         }
                     }
                 },
-                isDisabled: isDisabled,
-                isLoading: loading
+                state: state
             )
             
             

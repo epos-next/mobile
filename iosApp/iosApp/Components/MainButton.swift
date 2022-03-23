@@ -31,33 +31,50 @@ struct MainButtonStyle: ButtonStyle {
 }
 
 struct MainButton: View {
-    var isDisabled: Bool = false
-    var isLoading: Bool = false
     let content: String
+    var state: ButtonState
     var action: () -> ()
     
-    public init (_ content : String, action: @escaping () -> (), isDisabled: Bool = false, isLoading: Bool = false) {
+    public init (_ content : String, action: @escaping () -> (), state: ButtonState = .idle) {
         self.content = content
         self.action = action
-        self.isDisabled = isDisabled
-        self.isLoading = isLoading
+        self.state = state
     }
+    
+    private let animation: AnyTransition = .asymmetric(
+        insertion: .move(edge: .top).combined(with: .opacity),
+        removal: .move(edge: .bottom).combined(with: .opacity)
+    )
     
     var body: some View {
         Button(action: {
-            if !isLoading && !isDisabled { action() }
+            if state != .loading && state != .disabled { action() }
         }) {
-            if isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-            }
-            else {
-                Text(content)
+            ZStack {
+                if state == .loading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                        .transition(animation)
+                }
+                else if state == .done {
+                    Image("tick")
+                        .resizable()
+                        .frame(width: 18, height: 18)
+                        .transition(animation)
+                }
+                else {
+                    Text(content)
+                        .transition(animation)
+                }
             }
         }
-        .buttonStyle(MainButtonStyle(isDisabled: isDisabled))
+        .buttonStyle(MainButtonStyle(isDisabled: state == .disabled))
         
     }
+}
+
+public enum ButtonState: Int {
+    case idle = 1, loading = 2, done = 3, disabled = 4
 }
 
 struct MainButton_Previews: PreviewProvider {

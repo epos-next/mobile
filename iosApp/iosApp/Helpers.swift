@@ -22,3 +22,15 @@ func dateToKtx(_ date: Date) -> Kotlinx_datetimeLocalDateTime {
         nanosecond: 0
     )
 }
+
+func KtxToDate(_ date: Kotlinx_datetimeLocalDateTime) -> Date {
+    var dateComponents = DateComponents()
+    dateComponents.year = Int(date.year)
+    dateComponents.month = Int(date.monthNumber)
+    dateComponents.day = Int(date.dayOfMonth)
+    dateComponents.hour = Int(date.hour)
+    dateComponents.minute = Int(date.minute)
+    dateComponents.second = Int(date.second)
+    
+    return Calendar(identifier: .gregorian).date(from: dateComponents)!
+}

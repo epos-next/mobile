@@ -12,25 +12,36 @@ struct FilledInputView: View {
     @Binding var text: String
     var placeholder: String = ""
     var suffixIcon: String? = nil
+    var label: String? = nil
     
     var body: some View {
-        HStack {
-            TextField(placeholder, text: $text)
-                .textFieldStyle(CustomTextFieldStyle())
+        VStack(alignment: .leading, spacing: 0) {
             
-            if suffixIcon != nil {
-                Image(suffixIcon!)
-                    .resizable()
-                    .frame(width: 21, height: 21)
+            if label != nil {
+                Text(label!)
+                    .font(.custom("AvenirNext-Regular", size: 14))
+                    .foregroundColor(Color.secondary)
+                    .padding(.bottom, 7)
             }
-           
+            
+            HStack {
+                TextField(placeholder, text: $text)
+                    .textFieldStyle(CustomTextFieldStyle())
+                
+                if suffixIcon != nil {
+                    Image(suffixIcon!)
+                        .resizable()
+                        .frame(width: 21, height: 21)
+                }
+               
+            }
+            .padding(.vertical, 13)
+            .padding(.horizontal, 17)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.disabled)
+            )
         }
-        .padding(.vertical, 13)
-        .padding(.horizontal, 17)
-        .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color.disabled)
-        )
     }
 }
 

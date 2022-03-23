@@ -40,7 +40,7 @@ struct CreateTestReminderSheet: View {
             FilledInputView(text: $name, placeholder: "Название")
             MenuView(text: $subject, options: marksObservable.reducer.getSubjectNames(), placeholder: "Предмет")
             DateInputView(date: $date, placeholder: "Дата")
-            MainButton("Создать", action: { handleSubmit() }, isDisabled: false, isLoading: loading)
+            MainButton("Создать", action: { handleSubmit() })
         }.frame(
             minHeight: 0,
             maxHeight: .infinity,

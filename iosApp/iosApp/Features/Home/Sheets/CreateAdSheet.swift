@@ -36,7 +36,7 @@ struct CreateAdSheet: View {
             SheetTitleView("Новое объявление")
             FilledInputView(text: $content, placeholder: "Объявление")
             DateInputView(date: $date, placeholder: "Дата")
-            MainButton("Создать", action: { handleSubmit() }, isDisabled: false, isLoading: loading)
+            MainButton("Создать", action: { handleSubmit() })
         }.frame(
             minHeight: 0,
             maxHeight: .infinity,
