@@ -30,6 +30,7 @@
 		F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */; };
 		F226837A27EB15AB00FFD7D5 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = F226837927EB15AB00FFD7D5 /* BottomSheet */; };
 		F226837C27EB193100FFD7D5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226837B27EB193100FFD7D5 /* BottomSheet.swift */; };
+		F226838027EB1B5800FFD7D5 /* SheetTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226837F27EB1B5800FFD7D5 /* SheetTitleView.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -97,6 +98,7 @@
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
 		F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTimeLeftView.swift; sourceTree = "<group>"; };
 		F226837B27EB193100FFD7D5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		F226837F27EB1B5800FFD7D5 /* SheetTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTitleView.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */,
 				F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */,
 				F226837B27EB193100FFD7D5 /* BottomSheet.swift */,
+				F226837F27EB1B5800FFD7D5 /* SheetTitleView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,
 				F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */,
 				F209D10B27A800D7001E38C9 /* PrimaryMarkRowView.swift in Sources */,
+				F226838027EB1B5800FFD7D5 /* SheetTitleView.swift in Sources */,
 				F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */,
 				F26F34E227A5D005006141BC /* LessonWithRoomAndTimeView.swift in Sources */,
 				F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */,
