@@ -38,6 +38,10 @@
 		F226838D27EB316400FFD7D5 /* BottomSheetsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */; };
 		F226838F27EB43FC00FFD7D5 /* CreateAdSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */; };
 		F226839127EB5D5600FFD7D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F226839027EB5D5600FFD7D5 /* LaunchScreen.storyboard */; };
+		F226839527EB7D1900FFD7D5 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839427EB7D1900FFD7D5 /* ProfileScreenView.swift */; };
+		F226839827EB7DA000FFD7D5 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */; };
+		F226839A27EB7E1300FFD7D5 /* UserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839927EB7E1300FFD7D5 /* UserNameView.swift */; };
+		F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839B27EB80C600FFD7D5 /* MenuTileView.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -113,6 +117,10 @@
 		F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsObservable.swift; sourceTree = "<group>"; };
 		F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdSheet.swift; sourceTree = "<group>"; };
 		F226839027EB5D5600FFD7D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F226839427EB7D1900FFD7D5 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
+		F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
+		F226839927EB7E1300FFD7D5 /* UserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameView.swift; sourceTree = "<group>"; };
+		F226839B27EB80C600FFD7D5 /* MenuTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTileView.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -292,6 +300,33 @@
 			path = Sheets;
 			sourceTree = "<group>";
 		};
+		F226839227EB7CF600FFD7D5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F226839327EB7CFF00FFD7D5 /* Main */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F226839327EB7CFF00FFD7D5 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F226839627EB7D9400FFD7D5 /* Components */,
+				F226839427EB7D1900FFD7D5 /* ProfileScreenView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F226839627EB7D9400FFD7D5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */,
+				F226839927EB7E1300FFD7D5 /* UserNameView.swift */,
+				F226839B27EB80C600FFD7D5 /* MenuTileView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F23B74F227A660BC00FDDC4A /* Parts */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +410,7 @@
 		F2E8B756276F3B1D00058A24 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				F226839227EB7CF600FFD7D5 /* Profile */,
 				F209D0F427A7E81D001E38C9 /* Marks */,
 				F2A2B53427A53B4700233DC9 /* Home */,
 				F2E8B757276F3B2D00058A24 /* Login */,
@@ -553,6 +589,7 @@
 				F2809F6327A99E21005F183C /* HomeScreenView.swift in Sources */,
 				F209D10427A7FACD001E38C9 /* TappableButtonStyle.swift in Sources */,
 				F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */,
+				F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */,
 				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
@@ -564,6 +601,7 @@
 				F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */,
 				F209D10B27A800D7001E38C9 /* PrimaryMarkRowView.swift in Sources */,
 				F226838027EB1B5800FFD7D5 /* SheetTitleView.swift in Sources */,
+				F226839527EB7D1900FFD7D5 /* ProfileScreenView.swift in Sources */,
 				F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */,
 				F26F34E227A5D005006141BC /* LessonWithRoomAndTimeView.swift in Sources */,
 				F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */,
@@ -579,11 +617,13 @@
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
 				F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */,
 				F226837C27EB193100FFD7D5 /* BottomSheet.swift in Sources */,
+				F226839827EB7DA000FFD7D5 /* UserAvatarView.swift in Sources */,
 				F26F34E027A5CB49006141BC /* HomeworkView.swift in Sources */,
 				F226838927EB29E700FFD7D5 /* DateInputView.swift in Sources */,
 				F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */,
 				F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */,
 				F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */,
+				F226839A27EB7E1300FFD7D5 /* UserNameView.swift in Sources */,
 				F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */,
 				F226838327EB1D1B00FFD7D5 /* CreateTestReminderSheet.swift in Sources */,
 				F26F34E427A5D368006141BC /* LessonWithRoomAndTimeLeftView.swift in Sources */,
