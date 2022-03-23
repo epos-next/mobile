@@ -9,19 +9,6 @@
 import SwiftUI
 import BottomSheet
 
-struct ProfileView: View {
-    //    @EnvironmentObject var user: UserObservable
-    
-    init() {
-        print("test")
-    }
-    
-    var body: some View {
-        Button("logout") {
-            //            user.reducer.logout()
-        }
-    }
-}
 
 struct MainView: View {
     @State var selectedTab: String
@@ -38,7 +25,7 @@ struct MainView: View {
             TabView (selection: $selectedTab) {
                 HomeScreenView().tag("home")
                 MarksScreenView().tag("marks")
-                ProfileView().tag("profile")
+                ProfileScreenView().tag("profile")
             }
             TabBarView(selectedTab: $selectedTab)
         }
@@ -47,7 +34,6 @@ struct MainView: View {
         .navigationBarHidden(true)
         .primaryBottomSheet(position: $bottomSheetObservable.advertisement) { CreateAdSheet() }
         .primaryBottomSheet(position: $bottomSheetObservable.controlWork) { CreateTestReminderSheet() }
-
         .environmentObject(bottomSheetObservable)
     }
 }

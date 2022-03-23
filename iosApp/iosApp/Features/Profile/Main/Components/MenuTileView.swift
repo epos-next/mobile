@@ -29,7 +29,7 @@ struct MenuTileView<Content>: View where Content : View {
                 Image(icon)
                     .resizable()
                     .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 10).fill(color))
+                    .background(RoundedRectangle(cornerRadius: 5).fill(color))
                     .frame(width: 32, height: 32)
                 
                 Text(text)
@@ -39,9 +39,8 @@ struct MenuTileView<Content>: View where Content : View {
                 Spacer()
                 
                 suffix
-                
             }.padding(.horizontal, 20)
-        }
+        }.buttonStyle(PlainButtonStyle())
     }
 }
 
