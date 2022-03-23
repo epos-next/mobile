@@ -37,6 +37,7 @@
 		F226838B27EB2B2300FFD7D5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838A27EB2B2300FFD7D5 /* Helpers.swift */; };
 		F226838D27EB316400FFD7D5 /* BottomSheetsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */; };
 		F226838F27EB43FC00FFD7D5 /* CreateAdSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */; };
+		F226839127EB5D5600FFD7D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F226839027EB5D5600FFD7D5 /* LaunchScreen.storyboard */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -111,6 +112,7 @@
 		F226838A27EB2B2300FFD7D5 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsObservable.swift; sourceTree = "<group>"; };
 		F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdSheet.swift; sourceTree = "<group>"; };
+		F226839027EB5D5600FFD7D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				F2C08DC82778ABA5004EE815 /* Koin.swift */,
 				F22857072779ECD700513F97 /* MainView.swift */,
 				F226838A27EB2B2300FFD7D5 /* Helpers.swift */,
+				F226839027EB5D5600FFD7D5 /* LaunchScreen.storyboard */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				F2E8B762276F3D7A00058A24 /* AvenirNext_Regular.ttf in Resources */,
 				F2E8B764276F3D7A00058A24 /* AvenirNext_Medium.ttf in Resources */,
+				F226839127EB5D5600FFD7D5 /* LaunchScreen.storyboard in Resources */,
 				F2E8B763276F3D7A00058A24 /* AvenirNext_Demi.ttf in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
