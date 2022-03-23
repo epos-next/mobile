@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,8 @@
 		F21F42EC27A5190500C61A5F /* LessonSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */; };
 		F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */; };
 		F21F42F027A51DD700C61A5F /* LessonTimeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */; };
+		F226837A27EB15AB00FFD7D5 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = F226837927EB15AB00FFD7D5 /* BottomSheet */; };
+		F226837C27EB193100FFD7D5 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226837B27EB193100FFD7D5 /* BottomSheet.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -94,6 +96,7 @@
 		F21F42EB27A5190500C61A5F /* LessonSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubjectView.swift; sourceTree = "<group>"; };
 		F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSubtitleView.swift; sourceTree = "<group>"; };
 		F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTimeLeftView.swift; sourceTree = "<group>"; };
+		F226837B27EB193100FFD7D5 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D89F509A96DE1F9C5839410 /* Pods_iosApp.framework in Frameworks */,
+				F226837A27EB15AB00FFD7D5 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +290,7 @@
 				F21F42ED27A51C8D00C61A5F /* LessonSubtitleView.swift */,
 				F21F42EF27A51DD700C61A5F /* LessonTimeLeftView.swift */,
 				F2BCBD6127A5DD5300F01E70 /* TextErrorView.swift */,
+				F226837B27EB193100FFD7D5 /* BottomSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -403,6 +408,9 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				F226837927EB15AB00FFD7D5 /* BottomSheet */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -431,6 +439,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				F226837827EB15AB00FFD7D5 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -530,6 +541,7 @@
 				F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */,
 				F288D611276F546800FA9144 /* MainButton.swift in Sources */,
 				F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */,
+				F226837C27EB193100FFD7D5 /* BottomSheet.swift in Sources */,
 				F26F34E027A5CB49006141BC /* HomeworkView.swift in Sources */,
 				F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */,
 				F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */,
@@ -759,6 +771,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F226837827EB15AB00FFD7D5 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F226837927EB15AB00FFD7D5 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F226837827EB15AB00FFD7D5 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

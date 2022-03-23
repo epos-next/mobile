@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import BottomSheet
 
 struct ProfileView: View {
     //    @EnvironmentObject var user: UserObservable
@@ -25,10 +26,16 @@ struct ProfileView: View {
 struct MainView: View {
     @State var selectedTab: String
     
+    @State var bottomSheetPosition: BottomSheetPosition = .middle
+    
     init() {
         UITabBar.appearance().isHidden = false
         selectedTab = "home"
     }
+    
+    let backgroundColors: [Color] = [Color(red: 0.17, green: 0.17, blue: 0.33), Color(red: 0.80, green: 0.38, blue: 0.2)]
+    let songs: [String] = ["One Dance (feat. Wizkid & Kyla)", "God's Plan", "SICKO MODE", "In My Feelings", "Work (feat. Drake)", "Nice For What", "Hotline Bling", "Too Good (feat. Rihanna)", "Life Is Good (feat. Drake)"]
+
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -42,6 +49,9 @@ struct MainView: View {
         .ignoresSafeArea()
         .navigationTitle("")
         .navigationBarHidden(true)
+        .primaryBottomSheet(position: $bottomSheetPosition) {
+            Text("Hello")
+        }
         
     }
 }

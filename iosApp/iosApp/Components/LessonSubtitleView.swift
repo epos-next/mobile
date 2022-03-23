@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct LessonSubtitleView: View {
     let text: String
     
