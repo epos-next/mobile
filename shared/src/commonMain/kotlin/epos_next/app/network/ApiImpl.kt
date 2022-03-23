@@ -19,6 +19,7 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.SerializationException
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -127,7 +128,11 @@ private suspend fun <T> runApi(
 
         Napier.e("API reply $statusCode", e, tag = "API")
         Either.Left(InvalidDataException(e))
-    } catch (e: Throwable) {
+    } catch (e: SerializationException) {
+        Napier.e("Failed to serialize", e, tag = "API")
+        Either.Left(e)
+    }
+    catch (e: Throwable) {
         Napier.e("Network exception", e, tag = "API")
         Napier.e(e.toString(), tag = "API")
         Either.Left(NetworkException(e))
