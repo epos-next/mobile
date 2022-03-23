@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.SwitchComponent

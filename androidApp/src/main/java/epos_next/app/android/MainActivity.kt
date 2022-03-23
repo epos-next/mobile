@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                 systemUiController.setStatusBarColor(Color(0xFF11111B))
             } else {
                 systemUiController.setSystemBarsColor(Color.White)
+                systemUiController.setStatusBarColor(Color.Black)
             }
 
             ApplicationTheme(darkTheme = isDarkMode) {
