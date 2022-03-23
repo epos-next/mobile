@@ -42,6 +42,8 @@
 		F226839827EB7DA000FFD7D5 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */; };
 		F226839A27EB7E1300FFD7D5 /* UserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839927EB7E1300FFD7D5 /* UserNameView.swift */; };
 		F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839B27EB80C600FFD7D5 /* MenuTileView.swift */; };
+		F226839F27EB8B2100FFD7D5 /* UserProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839E27EB8B2100FFD7D5 /* UserProfileScreenView.swift */; };
+		F22683A227EB8B3600FFD7D5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22683A127EB8B3600FFD7D5 /* HeaderView.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -121,6 +123,8 @@
 		F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		F226839927EB7E1300FFD7D5 /* UserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameView.swift; sourceTree = "<group>"; };
 		F226839B27EB80C600FFD7D5 /* MenuTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTileView.swift; sourceTree = "<group>"; };
+		F226839E27EB8B2100FFD7D5 /* UserProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileScreenView.swift; sourceTree = "<group>"; };
+		F22683A127EB8B3600FFD7D5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		F226839227EB7CF600FFD7D5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F22683A027EB8B2C00FFD7D5 /* Components */,
+				F226839D27EB8B1100FFD7D5 /* User */,
 				F226839327EB7CFF00FFD7D5 /* Main */,
 			);
 			path = Profile;
@@ -323,6 +329,22 @@
 				F226839727EB7DA000FFD7D5 /* UserAvatarView.swift */,
 				F226839927EB7E1300FFD7D5 /* UserNameView.swift */,
 				F226839B27EB80C600FFD7D5 /* MenuTileView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F226839D27EB8B1100FFD7D5 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F226839E27EB8B2100FFD7D5 /* UserProfileScreenView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		F22683A027EB8B2C00FFD7D5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F22683A127EB8B3600FFD7D5 /* HeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -589,12 +611,14 @@
 				F2809F6327A99E21005F183C /* HomeScreenView.swift in Sources */,
 				F209D10427A7FACD001E38C9 /* TappableButtonStyle.swift in Sources */,
 				F26F34E627A5D59B006141BC /* NowSummerView.swift in Sources */,
+				F226839F27EB8B2100FFD7D5 /* UserProfileScreenView.swift in Sources */,
 				F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */,
 				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
+				F22683A227EB8B3600FFD7D5 /* HeaderView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				F209D0FD27A7E950001E38C9 /* LessonWithMarksView.swift in Sources */,
 				F2E8B769276F3F2700058A24 /* Colors.swift in Sources */,

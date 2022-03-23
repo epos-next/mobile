@@ -28,40 +28,54 @@ struct ProfileScreenView: View {
                         UserNameView(name)
                     }
                     
-                    MenuTileView<EmptyView>(
+                    MenuTileView(
                         text: "Профиль",
                         icon: "user_icon",
                         color: Color(hex: 0xFF68D676),
-                        onTap: {  }
+                        route: { UserProfileScreenView() }
                     )
+                    
+                    HStack(spacing: 15) {
+                        Image("moon_icon")
+                            .resizable()
+                            .padding(4)
+                            .background(RoundedRectangle(cornerRadius: 5).fill(Color(hex: 0xFF4957CD)))
+                            .frame(width: 32, height: 32)
+                        
+                        Text("Темная тема")
+                            .font(.custom("AvenirNext-Regular", size: 16))
+                            .foregroundColor(Color.textPrimary)
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: $isDark)
+                            .labelsHidden()
+                            .contentShape(Rectangle())
+                            .frame(width: 30, height: 10)
+                    }.padding(.horizontal, 20)
                     
                     MenuTileView(
-                        text: "Темная тема",
-                        icon: "moon_icon",
-                        color: Color(hex: 0xFF4957CD),
-                        onTap: {  },
-                        suffix: {
-                            Toggle("", isOn: $isDark)
-                                .labelsHidden()
-                                .contentShape(Rectangle())
-                                .frame(width: 30, height: 10)
-                                
-                        }
-                    )
-                    
-                    MenuTileView<EmptyView>(
                         text: "О разработчиках",
                         icon: "dev_icon",
                         color: Color(hex: 0xFF83D4FC),
-                        onTap: {  }
+                        route: { Text("test") }
                     )
                     
-                    MenuTileView<EmptyView>(
-                        text: "Выйти",
-                        icon: "exit_icon",
-                        color: Color(hex: 0xFFF18477),
-                        onTap: {  }
-                    )
+                    Button(action: {}) {
+                        HStack(spacing: 15) {
+                            Image("exit_icon")
+                                .resizable()
+                                .padding(4)
+                                .background(RoundedRectangle(cornerRadius: 5).fill(Color(hex: 0xFFF18477)))
+                                .frame(width: 32, height: 32)
+                            
+                            Text("Выйти")
+                                .font(.custom("AvenirNext-Regular", size: 16))
+                                .foregroundColor(Color.textPrimary)
+                            
+                            Spacer()
+                        }.padding(.horizontal, 20)
+                    }.buttonStyle(PlainButtonStyle())
                 }
             }
             .navigationBarHidden(true)

@@ -8,23 +8,21 @@
 
 import SwiftUI
 
-struct MenuTileView<Content>: View where Content : View {
+struct MenuTileView<Route>: View where Route : View {
     var text: String
     var icon: String
     var color: Color
-    var onTap: () -> ()
-    var suffix: Content
+    var route: Route
     
-    init(text: String, icon: String, color: Color, onTap: @escaping () -> (),  @ViewBuilder suffix: () -> Content = { EmptyView() as! Content }) {
+    init(text: String, icon: String, color: Color, @ViewBuilder route: () -> Route) {
         self.text = text
         self.icon = icon
         self.color = color
-        self.onTap = onTap
-        self.suffix = suffix()
+        self.route = route()
     }
     
     var body: some View {
-        Button(action: { onTap() }) {
+        NavigationLink(destination: route) {
             HStack(spacing: 15) {
                 Image(icon)
                     .resizable()
@@ -37,8 +35,6 @@ struct MenuTileView<Content>: View where Content : View {
                     .foregroundColor(Color.textPrimary)
                 
                 Spacer()
-                
-                suffix
             }.padding(.horizontal, 20)
         }.buttonStyle(PlainButtonStyle())
     }
@@ -46,11 +42,13 @@ struct MenuTileView<Content>: View where Content : View {
 
 struct MenuTileView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuTileView<EmptyView>(
+        MenuTileView(
             text: "Профиль",
             icon: "user_icon_96",
             color: Color(hex: 0xFF68D676),
-            onTap: {  }
+            route: {
+                Text("lol")
+            }
         )
     }
 }
