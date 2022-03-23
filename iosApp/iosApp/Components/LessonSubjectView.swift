@@ -18,7 +18,7 @@ struct LessonSubjectView: View {
     
     var body: some View {
         Text(FormatHelper.shared.formatSubjectName(name: subject))
-            .font(.custom("AvenirNext-Regular", size: 20))
+            .font(.custom("AvenirNext-Regular", size: 16))
             .foregroundColor(Color.textPrimary)
     }
 }
