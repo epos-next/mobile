@@ -44,6 +44,7 @@
 		F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839B27EB80C600FFD7D5 /* MenuTileView.swift */; };
 		F226839F27EB8B2100FFD7D5 /* UserProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226839E27EB8B2100FFD7D5 /* UserProfileScreenView.swift */; };
 		F22683A227EB8B3600FFD7D5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22683A127EB8B3600FFD7D5 /* HeaderView.swift */; };
+		F22683A427EBA54E00FFD7D5 /* DarkModeObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22683A327EBA54E00FFD7D5 /* DarkModeObservable.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -125,6 +126,7 @@
 		F226839B27EB80C600FFD7D5 /* MenuTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTileView.swift; sourceTree = "<group>"; };
 		F226839E27EB8B2100FFD7D5 /* UserProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileScreenView.swift; sourceTree = "<group>"; };
 		F22683A127EB8B3600FFD7D5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		F22683A327EBA54E00FFD7D5 /* DarkModeObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeObservable.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				F209D0F527A7E834001E38C9 /* MarksObservable.swift */,
 				F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */,
 				F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */,
+				F22683A327EBA54E00FFD7D5 /* DarkModeObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				F226839C27EB80C600FFD7D5 /* MenuTileView.swift in Sources */,
 				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
+				F22683A427EBA54E00FFD7D5 /* DarkModeObservable.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
