@@ -31,7 +31,6 @@ struct FilledInputView: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Color.disabled)
         )
-        .padding(.horizontal, 20)
     }
 }
 

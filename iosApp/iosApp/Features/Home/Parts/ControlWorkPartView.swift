@@ -11,10 +11,18 @@ import shared
 
 struct ControlWorkPartView: View {
     @EnvironmentObject var observable: ControlWorkObservable
+    @EnvironmentObject var bottomSheetObservable: BottomSheetObservable
     
     @ViewBuilder
     var body: some View {
-        TitleWithCreateButtonView(text: "Контрольные работы", onTap: { }).padding(.horizontal, 20)
+        TitleWithCreateButtonView(
+            text: "Контрольные работы",
+            onTap: {
+                withAnimation(.spring()) {
+                    bottomSheetObservable.controlWork = .middle
+                }
+            }
+        ).padding(.horizontal, 20)
         
         let state = observable.state
         

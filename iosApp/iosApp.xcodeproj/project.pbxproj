@@ -35,6 +35,8 @@
 		F226838727EB23E000FFD7D5 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838627EB23E000FFD7D5 /* MenuView.swift */; };
 		F226838927EB29E700FFD7D5 /* DateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838827EB29E700FFD7D5 /* DateInputView.swift */; };
 		F226838B27EB2B2300FFD7D5 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838A27EB2B2300FFD7D5 /* Helpers.swift */; };
+		F226838D27EB316400FFD7D5 /* BottomSheetsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */; };
+		F226838F27EB43FC00FFD7D5 /* CreateAdSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */; };
 		F22857082779ECD700513F97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22857072779ECD700513F97 /* MainView.swift */; };
 		F231495127A7055000C23888 /* HomeworkPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495027A7055000C23888 /* HomeworkPartView.swift */; };
 		F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495227A7057300C23888 /* HomeworkObservable.swift */; };
@@ -107,6 +109,8 @@
 		F226838627EB23E000FFD7D5 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		F226838827EB29E700FFD7D5 /* DateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateInputView.swift; sourceTree = "<group>"; };
 		F226838A27EB2B2300FFD7D5 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetsObservable.swift; sourceTree = "<group>"; };
+		F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAdSheet.swift; sourceTree = "<group>"; };
 		F22857072779ECD700513F97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F231495027A7055000C23888 /* HomeworkPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPartView.swift; sourceTree = "<group>"; };
 		F231495227A7057300C23888 /* HomeworkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkObservable.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				F226838227EB1D1B00FFD7D5 /* CreateTestReminderSheet.swift */,
+				F226838E27EB43FC00FFD7D5 /* CreateAdSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				F209D0EE27A7DDD0001E38C9 /* AdvertisementObservable.swift */,
 				F209D0F527A7E834001E38C9 /* MarksObservable.swift */,
 				F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */,
+				F226838C27EB316400FFD7D5 /* BottomSheetsObservable.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -536,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F226838D27EB316400FFD7D5 /* BottomSheetsObservable.swift in Sources */,
 				F2BCBD6227A5DD5300F01E70 /* TextErrorView.swift in Sources */,
 				F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */,
 				F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */,
@@ -595,6 +602,7 @@
 				F2E8B76C276F488900058A24 /* TextInput.swift in Sources */,
 				F2E8B75E276F3CAF00058A24 /* LoginAppNameView.swift in Sources */,
 				F26F34DE27A5C9B1006141BC /* ControlWorkView.swift in Sources */,
+				F226838F27EB43FC00FFD7D5 /* CreateAdSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

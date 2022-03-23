@@ -19,7 +19,6 @@ struct DateInputView: View {
     var body: some View {
             DatePicker(placeholder, selection: $date, displayedComponents: .date)
             .foregroundColor(Color.secondary)
-            .padding(.horizontal, 20)
     }
 }
 

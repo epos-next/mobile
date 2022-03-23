@@ -11,12 +11,20 @@ import shared
 
 struct AdvertisementPartView: View {
     @EnvironmentObject var observable: AdvertisementObservable
+    @EnvironmentObject var bottomSheetObservable: BottomSheetObservable
     
     @ViewBuilder
     var body: some View {
         let state = observable.state
         
-        TitleWithCreateButtonView(text: "Объявления", onTap: {}).padding(.horizontal, 20)
+        TitleWithCreateButtonView(
+            text: "Объявления",
+            onTap: {
+                withAnimation(.spring()) {
+                    bottomSheetObservable.advertisement = .middle
+                }
+            }
+        ).padding(.horizontal, 20)
         
         if let advertisements = (state as? AdvertisementsState.Idle)?.advertisements {
             VStack(spacing: 10) {

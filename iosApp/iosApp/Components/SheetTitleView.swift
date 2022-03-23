@@ -20,7 +20,6 @@ struct SheetTitleView: View {
             .font(.custom("AvenirNext-Medium", size: 16))
             .multilineTextAlignment(.center)
             .foregroundColor(Color.textPrimary)
-            .padding(.top, 20)
     }
 }
 

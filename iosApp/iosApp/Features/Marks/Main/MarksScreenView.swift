@@ -32,7 +32,11 @@ struct MarksScreenView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    FilledInputView(text: $searchText)
+                    FilledInputView(
+                        text: $searchText,
+                        placeholder: "Поиск",
+                        suffixIcon: "search_icon"
+                    )
                     
                     ForEach(keys, id: \.self) { lesson in
                         LessonView(lesson: lesson, unit: lessons[lesson]!)

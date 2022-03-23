@@ -21,7 +21,10 @@ public extension View {
                 .swipeToDismiss,
                 .tapToDismiss,
                 .background(AnyView(Color.white)),
-                .backgroundBlur(effect: .dark)
+                .backgroundBlur(effect: .dark),
+                .cornerRadius(20),
+                .noBottomPosition,
+                .absolutePositionValue
             ],
             content: content
         )
