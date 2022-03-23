@@ -73,7 +73,10 @@ fun LessonPart() {
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
 private fun LessonsList(count: Int, lessons: List<Lesson>, state: ScheduleState) {
-    AnimatedList(state) {
+    Column(
+        modifier = Modifier
+            .animateContentSize()
+    ) {
         AnimatedTitle(state)
 
         repeat(count) { i ->
@@ -100,20 +103,6 @@ private fun LessonsList(count: Int, lessons: List<Lesson>, state: ScheduleState)
             }
         }
     }
-}
-
-@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
-@Composable
-private fun AnimatedList(state: ScheduleState, content: @Composable ColumnScope.() -> Unit) {
-    val needPadding = state is ScheduleState.Idle || state is ScheduleState.Loading
-    val padding by animateDpAsState(if (needPadding) 25.dp else 0.dp)
-
-    Column(
-        modifier = Modifier
-            .padding(bottom = padding)
-            .animateContentSize(),
-        content = content
-    )
 }
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)

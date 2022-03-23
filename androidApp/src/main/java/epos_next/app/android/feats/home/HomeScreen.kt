@@ -26,7 +26,6 @@ fun HomeScreen(scrollState: ScrollState, openSheet: (MainBottomSheetScreen) -> U
             modifier = Modifier.padding(
                 start = 20.dp,
                 end = 20.dp,
-                top = 20.dp,
                 bottom = 75.dp
             )
         ) {
