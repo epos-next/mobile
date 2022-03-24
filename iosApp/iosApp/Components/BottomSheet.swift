@@ -13,6 +13,7 @@ public extension View {
     
     func primaryBottomSheet<mContent: View, bottomSheetPositionEnum: RawRepresentable>(
         position: Binding<bottomSheetPositionEnum>,
+        colorScheme: ColorScheme,
         @ViewBuilder content: () -> mContent
     ) -> some View where bottomSheetPositionEnum.RawValue == CGFloat, bottomSheetPositionEnum: CaseIterable {
         self.bottomSheet(
@@ -20,11 +21,12 @@ public extension View {
             options: [
                 .swipeToDismiss,
                 .tapToDismiss,
-                .background(AnyView(Color.white)),
                 .backgroundBlur(effect: .dark),
                 .cornerRadius(20),
                 .noBottomPosition,
-                .absolutePositionValue
+                .absolutePositionValue,
+                
+                colorScheme == .light ? .background(AnyView(Color.white)) : .tapToDismiss,
             ],
             content: content
         )

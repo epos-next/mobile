@@ -39,8 +39,8 @@ struct MainView: View {
         .ignoresSafeArea()
         .navigationTitle("")
         .navigationBarHidden(true)
-        .primaryBottomSheet(position: $bottomSheetObservable.advertisement) { CreateAdSheet() }
-        .primaryBottomSheet(position: $bottomSheetObservable.controlWork) { CreateTestReminderSheet() }
+        .primaryBottomSheet(position: $bottomSheetObservable.advertisement, colorScheme: colorScheme) { CreateAdSheet() }
+        .primaryBottomSheet(position: $bottomSheetObservable.controlWork, colorScheme: colorScheme) { CreateTestReminderSheet() }
         .environmentObject(bottomSheetObservable)
     }
 }
