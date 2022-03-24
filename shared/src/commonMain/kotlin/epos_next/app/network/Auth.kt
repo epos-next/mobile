@@ -9,9 +9,9 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-suspend fun handleUnauthorizedStatus(e: ResponseException): Boolean {
+suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
     Napier.d("status = ${e.response.status}")
-    if (e.response.status != HttpStatusCode.Unauthorized) return false
+    if (e.response.status != HttpStatusCode.Unauthorized) return null
 
     val authDataStore = AuthDataStoreImpl()
     val token = authDataStore.getRefreshToken()
@@ -19,7 +19,7 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): Boolean {
 
     Napier.i("need to refresh tokens. Id is $id, refresh token is $token")
 
-    return try {
+    try {
         if (token != null && id != null) {
             val updateResponse: ReauthenticateResponse =
                 tokenClient.post(ApiRoutes.reauthenticate) {
@@ -35,13 +35,13 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): Boolean {
                 val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
                 authDataStore.setTokens(setPayload)
                 authDataStore.setId(updateResponse.id)
-                return true
+                return setPayload.access
             }
         }
-        return false
+        return null
     } catch (e: Exception) {
         Napier.e("failed to refresh auth tokens", e, tag = "HTTP")
         Napier.e(e.toString(), tag = "HTTP")
-        false
+        return null
     }
 }

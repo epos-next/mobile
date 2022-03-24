@@ -52,7 +52,7 @@ class ApiImpl : Api, KoinComponent {
 
 
     override suspend fun getData(): Either<Exception, BigDataObject> = runApi {
-        val response: GetDataResponse = client.get(ApiRoutes.data)
+        val response: GetDataResponse = httpClient.get(ApiRoutes.data)
         Either.Right(response.data.toDomain())
     }
 
@@ -61,7 +61,7 @@ class ApiImpl : Api, KoinComponent {
         to: LocalDate
     ): Either<Exception, List<Lesson>> = runApi {
         val route = ApiRoutes.fetchLesson(from.toString(), to.toString())
-        val response: FetchLessonsResponse = client.get(route)
+        val response: FetchLessonsResponse = httpClient.get(route)
 
         val lessons = response.data.map { it.toDomain() }
         Either.Right(lessons)
@@ -69,13 +69,13 @@ class ApiImpl : Api, KoinComponent {
 
     override suspend fun completeHomework(id: Long): Either<Exception, Nothing?> = runApi {
         val route = ApiRoutes.completeHomework(id)
-        client.put<String>(route)
+        httpClient.put<String>(route)
         Either.Right(null)
     }
 
     override suspend fun cancelCompleteHomework(id: Long): Either<Exception, Nothing?> = runApi {
         val route = ApiRoutes.cancelCompleteHomework(id)
-        client.put<String>(route)
+        httpClient.put<String>(route)
         Either.Right(null)
     }
 
@@ -108,23 +108,22 @@ private suspend fun <T> runApi(
     content: suspend () -> Either<Exception, T>,
 ): Either<Exception, T> {
     return try {
-        val c = content()
-        c
+        content()
     } catch (e: ResponseException) {
         val statusCode = e.response.status.value
 
-//        if (handleUnauthorizedStatus(e)) {
-//            try {
-//                content()
-//            } catch (e: ResponseException) {
-//                Napier.e("API reply $statusCode", e, tag = "API")
-//                Either.Left(InvalidDataException(e))
-//            } catch (e: Throwable) {
-//                Napier.e("Network exception", e, tag = "API")
-//                Napier.e(e.toString(), tag = "API")
-//                Either.Left(NetworkException(e))
-//            }
-//        }
+        if (handleUnauthorizedStatus(e) != null) {
+            try {
+                content()
+            } catch (e: ResponseException) {
+                Napier.e("API reply $statusCode", e, tag = "API")
+                Either.Left(InvalidDataException(e))
+            } catch (e: Throwable) {
+                Napier.e("Network exception", e, tag = "API")
+                Napier.e(e.toString(), tag = "API")
+                Either.Left(NetworkException(e))
+            }
+        }
 
         Napier.e("API reply $statusCode", e, tag = "API")
         Either.Left(InvalidDataException(e))
@@ -148,18 +147,18 @@ private suspend fun <T> runApi(
     } catch (e: ResponseException) {
         val statusCode = e.response.status.value
 
-//        if (handleUnauthorizedStatus(e)) {
-//            try {
-//                content()
-//            } catch (e: ResponseException) {
-//                Napier.e("API reply $statusCode", e, tag = "API")
-//                handleResponseException(e) ?: Either.Left(InvalidDataException(e))
-//            } catch (e: Throwable) {
-//                Napier.e("Network exception", e, tag = "API")
-//                Napier.e(e.toString(), tag = "API")
-//                Either.Left(NetworkException(e))
-//            }
-//        }
+        if (handleUnauthorizedStatus(e) != null) {
+            try {
+                content()
+            } catch (e: ResponseException) {
+                Napier.e("API reply $statusCode", e, tag = "API")
+                handleResponseException(e) ?: Either.Left(InvalidDataException(e))
+            } catch (e: Throwable) {
+                Napier.e("Network exception", e, tag = "API")
+                Napier.e(e.toString(), tag = "API")
+                Either.Left(NetworkException(e))
+            }
+        }
 
         Napier.e("API reply $statusCode", e, tag = "API")
         handleResponseException(e) ?: Either.Left(InvalidDataException(e))
