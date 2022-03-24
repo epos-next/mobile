@@ -25,6 +25,12 @@ struct LoginFormView: View {
         return ButtonState.idle
     }
     
+    private enum Field: Int, Hashable {
+        case email, password
+    }
+    
+    @FocusState private var focucedField: Field?
+    
     @EnvironmentObject private var user: UserObservable
     
     var body: some View {
@@ -32,15 +38,23 @@ struct LoginFormView: View {
             TextInput(placeholder: "Email", text: $email)
                 .textContentType(.emailAddress)
                 .keyboardType(.emailAddress)
+                .submitLabel(.next)
                 .onChange(of: email, perform: { _ in
                     if !error.isEmpty { withAnimation { error = "" } }
                 })
+                .focused($focucedField, equals: .email)
+                .onSubmit {
+                    self.focusNextField($focucedField)
+                }
+            
             
             SecureInput(placeholder: "Password", text: $password)
                 .textContentType(.password)
                 .onChange(of: password, perform: { _ in
                     if !error.isEmpty { withAnimation { error = "" } }
                 })
+                .submitLabel(.done)
+                .focused($focucedField, equals: .password)
             
             MainButton(
                 "Login",
@@ -68,6 +82,18 @@ struct LoginFormView: View {
             
             
             LoginErrorText(error: error)
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button(action: { focusPreviousField($focucedField) }) {
+                    Image(systemName: "chevron.up")
+                }
+            }
+            ToolbarItem(placement: .keyboard) {
+                Button(action: { focusNextField($focucedField) }) {
+                    Image(systemName: "chevron.down")
+                }
+            }
         }
     }
 }

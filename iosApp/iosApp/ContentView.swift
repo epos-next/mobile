@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var marksObservable: MarksObservable
     @ObservedObject var nextLessonObservable: NextLessonObservable
     @ObservedObject var darkModeObservable: DarkModeObservable
+    @Environment(\.colorScheme) var colorScheme
     
     init() {
         user = UserObservable()

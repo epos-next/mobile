@@ -53,6 +53,7 @@ struct TextInput: View {
     @Binding var text: String
     
     @State private var editing: Bool = false
+
     
     var body: some View {
         TextField(placeholder, text: $text, onEditingChanged: {edit in self.editing = edit})

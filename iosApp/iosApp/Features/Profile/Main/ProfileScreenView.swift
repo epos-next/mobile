@@ -12,6 +12,8 @@ import shared
 struct ProfileScreenView: View {
     
     @EnvironmentObject var userObservable: UserObservable
+    @EnvironmentObject var darkModeObservable: DarkModeObservable
+    
     @State private var isDark = false
     
     @ViewBuilder
@@ -35,24 +37,6 @@ struct ProfileScreenView: View {
                         route: { UserProfileScreenView() }
                     )
                     
-                    HStack(spacing: 15) {
-                        Image("moon_icon")
-                            .resizable()
-                            .padding(4)
-                            .background(RoundedRectangle(cornerRadius: 5).fill(Color(hex: 0xFF4957CD)))
-                            .frame(width: 32, height: 32)
-                        
-                        Text("Темная тема")
-                            .font(.custom("AvenirNext-Regular", size: 16))
-                            .foregroundColor(Color.textPrimary)
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: $isDark)
-                            .labelsHidden()
-                            .contentShape(Rectangle())
-                            .frame(width: 30, height: 10)
-                    }.padding(.horizontal, 20)
                     
                     MenuTileView(
                         text: "О разработчиках",
@@ -61,25 +45,40 @@ struct ProfileScreenView: View {
                         route: { Text("test") }
                     )
                     
-                    Button(action: {}) {
-                        HStack(spacing: 15) {
-                            Image("exit_icon")
-                                .resizable()
-                                .padding(4)
-                                .background(RoundedRectangle(cornerRadius: 5).fill(Color(hex: 0xFFF18477)))
-                                .frame(width: 32, height: 32)
-                            
-                            Text("Выйти")
-                                .font(.custom("AvenirNext-Regular", size: 16))
-                                .foregroundColor(Color.textPrimary)
-                            
-                            Spacer()
-                        }.padding(.horizontal, 20)
-                    }.buttonStyle(PlainButtonStyle())
+                    LogoutButton()
                 }
+            }
+            .onAppear {
+                print(darkModeObservable.state)
+                isDark = darkModeObservable.state
             }
             .navigationBarHidden(true)
         }
+    }
+}
+
+
+private struct LogoutButton: View {
+    @EnvironmentObject var userObservable: UserObservable
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        Button(action: { userObservable.reducer.logout { _, __ in } }) {
+            HStack(spacing: 15) {
+                Image("exit_icon")
+                    .resizable()
+                    .padding(4)
+                    .foregroundColor(colorScheme == .light ? Color.white : Color(hex: 0xFFF18477))
+                    .background(RoundedRectangle(cornerRadius: 5).fill(colorScheme == .light ? Color(hex: 0xFFF18477) : Color.white.opacity(0.04)))
+                    .frame(width: 32, height: 32)
+                
+                Text("Выйти")
+                    .font(.custom("AvenirNext-Regular", size: 16))
+                    .foregroundColor(Color.textPrimary)
+                
+                Spacer()
+            }.padding(.horizontal, 20)
+        }.buttonStyle(PlainButtonStyle())
     }
 }
 

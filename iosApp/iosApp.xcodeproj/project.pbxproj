@@ -52,6 +52,7 @@
 		F231495727A72ABD00C23888 /* ControlWorkObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231495627A72ABD00C23888 /* ControlWorkObservable.swift */; };
 		F23640A327A859D100E4AEC2 /* NextLessonPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */; };
 		F23640A527A85A2300E4AEC2 /* NextLessonObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */; };
+		F236A0E927EC30750051B59B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236A0E827EC30750051B59B /* View.swift */; };
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
 		F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */; };
@@ -134,6 +135,7 @@
 		F231495627A72ABD00C23888 /* ControlWorkObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkObservable.swift; sourceTree = "<group>"; };
 		F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonPartView.swift; sourceTree = "<group>"; };
 		F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonObservable.swift; sourceTree = "<group>"; };
+		F236A0E827EC30750051B59B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
 		F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSkeletonView.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				F209D10227A7FAC3001E38C9 /* Styles */,
 				F2E8B765276F3D8B00058A24 /* Fonts */,
 				F2E8B768276F3F2700058A24 /* Colors.swift */,
+				F236A0E827EC30750051B59B /* View.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				F2A2B53927A54BA200233DC9 /* CalendarView.swift in Sources */,
 				F2A2B53727A53B7000233DC9 /* AdvertisementComponentView.swift in Sources */,
 				F209D0F627A7E834001E38C9 /* MarksObservable.swift in Sources */,
+				F236A0E927EC30750051B59B /* View.swift in Sources */,
 				F2BCBD6427A5DEB700F01E70 /* HomeTitleView.swift in Sources */,
 				F226838527EB1E6800FFD7D5 /* FilledInputView.swift in Sources */,
 				F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */,
@@ -806,9 +810,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 569YGXTVY2;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -835,9 +841,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 569YGXTVY2;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

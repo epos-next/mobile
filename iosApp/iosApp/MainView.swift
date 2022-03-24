@@ -11,21 +11,28 @@ import BottomSheet
 
 
 struct MainView: View {
-    @State var selectedTab: String
+    @State var selectedTab: String = "home"
     
     @ObservedObject var bottomSheetObservable = BottomSheetObservable()
+    @Environment(\.colorScheme) var colorScheme
+
     
     init() {
         UITabBar.appearance().isHidden = false
-        selectedTab = "home"
+    }
+    
+    private var bg: Color {
+        get {
+            colorScheme == .light ? Color.white : Color(hex: 0xFF0F0F17)
+        }
     }
     
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView (selection: $selectedTab) {
                 HomeScreenView().tag("home")
-                MarksScreenView().tag("marks")
-                ProfileScreenView().tag("profile")
+                MarksScreenView().tag("marks").background(bg)
+                ProfileScreenView().tag("profile").background(bg)
             }
             TabBarView(selectedTab: $selectedTab)
         }

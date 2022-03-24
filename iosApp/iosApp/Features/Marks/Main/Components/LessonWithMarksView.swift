@@ -55,6 +55,8 @@ private struct TotalNumber: View {
     var number: Int
     var active: Bool = true
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @ViewBuilder
     var body: some View {
         let color = active ? Color.contrast : Color.lightContrast

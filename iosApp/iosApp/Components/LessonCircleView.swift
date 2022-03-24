@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct LessonCircleView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     let subject: String
     
     private var color: Color {
         get {
+            if colorScheme == .dark { return Color.white.opacity(0.04) }
+            
             if (subject.lowercased().contains("физика")) { return Color(hex: 0xFFBBEDBF) }
             if (subject.lowercased().contains("геометрия")) { return Color(hex: 0xFFFBDDC3) }
             if (subject.lowercased().contains("география")) { return Color(hex: 0xFFFEF0C5) }
@@ -34,6 +38,8 @@ struct LessonCircleView: View {
     
     private var colorAccent: Color {
         get {
+            
+            
             if (subject.lowercased().contains("физика")) { return Color(hex: 0xFF68D676) }
             if (subject.lowercased().contains("геометрия")) { return Color(hex: 0xFFF5A664) }
             if (subject.lowercased().contains("география")) { return Color(hex: 0xFFFCCF62) }

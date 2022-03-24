@@ -170,6 +170,8 @@ private struct CalendarHeader: View {
 }
 
 private struct WeekdayRow: View {
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         HStack(spacing: 0) {
             ForEach(0..<ConstantsKt.weekDays.count) { i in
@@ -178,6 +180,7 @@ private struct WeekdayRow: View {
                 Text(weekDay)
                     .font(.custom("AvenirNext-Regular", size: 15))
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(colorScheme == .light ? .secondary : Color(hex: 0xFF999EA4))
             }
         }
     }

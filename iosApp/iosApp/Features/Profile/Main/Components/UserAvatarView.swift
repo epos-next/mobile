@@ -10,7 +10,7 @@ import SwiftUI
 
 struct UserAvatarView: View {
     var body: some View {
-        Image("user")
+        Image("user_placeholder")
             .resizable()
             .frame(width: 100, height: 100)
     }

@@ -36,7 +36,7 @@ struct MarksScreenView: View {
                         text: $searchText,
                         placeholder: "Поиск",
                         suffixIcon: "search_icon"
-                    )
+                    ).padding(.horizontal, 20)
                     
                     ForEach(keys, id: \.self) { lesson in
                         LessonView(lesson: lesson, unit: lessons[lesson]!)

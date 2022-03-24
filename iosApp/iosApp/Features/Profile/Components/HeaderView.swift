@@ -14,6 +14,7 @@ struct ProfileHeaderView: View {
     var icon: String
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var titleAnimation = false
     
@@ -29,6 +30,7 @@ struct ProfileHeaderView: View {
             HStack {
                 Image(icon)
                     .resizable()
+                    .foregroundColor(colorScheme == .light ? Color.white : color)
                     .frame(width: 48, height: 48)
                     .padding(.trailing, 10)
                 
@@ -48,7 +50,7 @@ struct ProfileHeaderView: View {
         }
         .frame(height: 228)
         .padding(20)
-        .background(color)
+        .background(colorScheme == .light ? color : Color.white.opacity(0.05))
         .onAppear {
             withAnimation(.spring()) {
                 titleAnimation = true

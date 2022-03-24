@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct MainButtonStyle: ButtonStyle {
-    
+    @Environment(\.colorScheme) var colorScheme
     let isDisabled: Bool
     
     func makeBody(configuration: Self.Configuration) -> some View {
         let bg = isDisabled
-            ? Color.lightPrimary
+            ? colorScheme == .light ? Color.lightPrimary : Color.white.opacity(0.1)
             : configuration.isPressed
                 ? Color.contrast.opacity(0.9)
                 : Color.contrast

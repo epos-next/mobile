@@ -21,13 +21,16 @@ struct MenuTileView<Route>: View where Route : View {
         self.route = route()
     }
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         NavigationLink(destination: route) {
             HStack(spacing: 15) {
                 Image(icon)
                     .resizable()
                     .padding(4)
-                    .background(RoundedRectangle(cornerRadius: 5).fill(color))
+                    .foregroundColor(colorScheme == .light ? Color.white : color)
+                    .background(RoundedRectangle(cornerRadius: 5).fill(colorScheme == .light ? color : Color.white.opacity(0.04)))
                     .frame(width: 32, height: 32)
                 
                 Text(text)

@@ -14,6 +14,8 @@ struct FilledInputView: View {
     var suffixIcon: String? = nil
     var label: String? = nil
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             
@@ -39,7 +41,7 @@ struct FilledInputView: View {
             .padding(.horizontal, 17)
             .background(
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.disabled)
+                    .fill(colorScheme == .light ? Color.disabled : Color.white.opacity(0.05))
             )
         }
     }
