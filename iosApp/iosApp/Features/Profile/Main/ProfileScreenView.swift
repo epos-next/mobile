@@ -42,7 +42,7 @@ struct ProfileScreenView: View {
                         text: "О разработчиках",
                         icon: "dev_icon",
                         color: Color(hex: 0xFF83D4FC),
-                        route: { Text("test") }
+                        route: { AboutDevsScreenView() }
                     )
                     
                     LogoutButton()

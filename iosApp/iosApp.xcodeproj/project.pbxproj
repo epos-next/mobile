@@ -53,6 +53,7 @@
 		F23640A327A859D100E4AEC2 /* NextLessonPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */; };
 		F23640A527A85A2300E4AEC2 /* NextLessonObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */; };
 		F236A0E927EC30750051B59B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236A0E827EC30750051B59B /* View.swift */; };
+		F236A0EC27EC31A40051B59B /* AboutDevsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236A0EB27EC31A40051B59B /* AboutDevsScreenView.swift */; };
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
 		F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */; };
@@ -136,6 +137,7 @@
 		F23640A227A859D100E4AEC2 /* NextLessonPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonPartView.swift; sourceTree = "<group>"; };
 		F23640A427A85A2300E4AEC2 /* NextLessonObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLessonObservable.swift; sourceTree = "<group>"; };
 		F236A0E827EC30750051B59B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		F236A0EB27EC31A40051B59B /* AboutDevsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDevsScreenView.swift; sourceTree = "<group>"; };
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
 		F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSkeletonView.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		F226839227EB7CF600FFD7D5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F236A0EA27EC31960051B59B /* About Devs */,
 				F22683A027EB8B2C00FFD7D5 /* Components */,
 				F226839D27EB8B1100FFD7D5 /* User */,
 				F226839327EB7CFF00FFD7D5 /* Main */,
@@ -351,6 +354,14 @@
 				F22683A127EB8B3600FFD7D5 /* HeaderView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F236A0EA27EC31960051B59B /* About Devs */ = {
+			isa = PBXGroup;
+			children = (
+				F236A0EB27EC31A40051B59B /* AboutDevsScreenView.swift */,
+			);
+			path = "About Devs";
 			sourceTree = "<group>";
 		};
 		F23B74F227A660BC00FDDC4A /* Parts */ = {
@@ -622,6 +633,7 @@
 				F209D10927A7FF05001E38C9 /* SubjectNameView.swift in Sources */,
 				F22857082779ECD700513F97 /* MainView.swift in Sources */,
 				F22683A427EBA54E00FFD7D5 /* DarkModeObservable.swift in Sources */,
+				F236A0EC27EC31A40051B59B /* AboutDevsScreenView.swift in Sources */,
 				F21F42EE27A51C8D00C61A5F /* LessonSubtitleView.swift in Sources */,
 				F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */,
 				F231495327A7057300C23888 /* HomeworkObservable.swift in Sources */,
