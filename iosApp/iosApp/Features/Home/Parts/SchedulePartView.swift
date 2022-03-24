@@ -22,6 +22,9 @@ struct SchedulePartView: View {
                         if amount != 0 {
                             homeViewModel.resetScheduleVisible()
                         }
+                        else if homeViewModel.calendarDate == date {
+                            scheduleObservable.reducer.loadDateSchedule(date: date) { _, err in}
+                        }
                     })
             }).padding(.top, 20)
             

@@ -19,6 +19,7 @@ class ScheduleObservable: ObservableObject {
         reducer = ScheduleReducer()
         reducer.onChange { [weak self] newState in
             self?.state = newState!
+            print(self?.state)
             
             if let lessons = (newState as? ScheduleState.Idle)?.lessons {
                 self?.prevScheduleList = lessons

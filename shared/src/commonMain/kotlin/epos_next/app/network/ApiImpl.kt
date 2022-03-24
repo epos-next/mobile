@@ -52,7 +52,7 @@ class ApiImpl : Api, KoinComponent {
 
 
     override suspend fun getData(): Either<Exception, BigDataObject> = runApi {
-        val response: GetDataResponse = httpClient.get(ApiRoutes.data)
+        val response: GetDataResponse = client.get(ApiRoutes.data)
         Either.Right(response.data.toDomain())
     }
 
@@ -61,7 +61,7 @@ class ApiImpl : Api, KoinComponent {
         to: LocalDate
     ): Either<Exception, List<Lesson>> = runApi {
         val route = ApiRoutes.fetchLesson(from.toString(), to.toString())
-        val response: FetchLessonsResponse = httpClient.get(route)
+        val response: FetchLessonsResponse = client.get(route)
 
         val lessons = response.data.map { it.toDomain() }
         Either.Right(lessons)
@@ -69,13 +69,13 @@ class ApiImpl : Api, KoinComponent {
 
     override suspend fun completeHomework(id: Long): Either<Exception, Nothing?> = runApi {
         val route = ApiRoutes.completeHomework(id)
-        httpClient.put<String>(route)
+        client.put<String>(route)
         Either.Right(null)
     }
 
     override suspend fun cancelCompleteHomework(id: Long): Either<Exception, Nothing?> = runApi {
         val route = ApiRoutes.cancelCompleteHomework(id)
-        httpClient.put<String>(route)
+        client.put<String>(route)
         Either.Right(null)
     }
 
