@@ -119,7 +119,7 @@ private fun AnimatedTitle(state: ScheduleState) {
                 modifier = Modifier.padding(
                     start = 20.dp,
                     end = 20.dp,
-                    top = 20.dp,
+                    top = 10.dp,
                 ),
                 text = "Уроки"
             )

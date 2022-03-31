@@ -19,16 +19,16 @@ import org.koin.androidx.compose.get
 @Composable
 fun HomeworkPart() {
     val reducer = get<HomeworkReducer>()
-    var coroutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
 
     when (val state = reducer.collectAsState()) {
         is HomeworkState.Idle -> {
             if (state.homework.isNotEmpty()) {
-                HomeTitle(text = "Домашнее задание")
+                HomeTitle(Modifier.padding(top = 20.dp), text = "Домашнее задание")
 
                 for (homework in state.homework) {
                     HomeworkComponent(
-                        modifier = Modifier.padding(top = 10.dp),
+                        modifier = Modifier.padding(top = 5.dp),
                         homework = homework,
                         onTap = {
                             coroutineScope.launch {
@@ -39,9 +39,9 @@ fun HomeworkPart() {
                 }
             }
         }
-        is HomeworkState.Error -> TextError(Modifier.padding(top = 10.dp), state.message)
+        is HomeworkState.Error -> TextError(Modifier.padding(top = 20.dp), state.message)
         is HomeworkState.Loading -> {
-            HomeTitle(text = "Домашнее задание")
+            HomeTitle(Modifier.padding(top = 20.dp), text = "Домашнее задание")
             LessonSkeletonList(count = 3) { LessonSkeletonWithCheckbox() }
         }
     }
