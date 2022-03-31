@@ -83,18 +83,6 @@ struct LoginFormView: View {
             
             LoginErrorText(error: error)
         }
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button(action: { focusPreviousField($focucedField) }) {
-                    Image(systemName: "chevron.up")
-                }
-            }
-            ToolbarItem(placement: .keyboard) {
-                Button(action: { focusNextField($focucedField) }) {
-                    Image(systemName: "chevron.down")
-                }
-            }
-        }
     }
 }
 

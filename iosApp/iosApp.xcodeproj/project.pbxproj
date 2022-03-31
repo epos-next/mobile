@@ -76,6 +76,7 @@
 		F2BCBD6627A5DF2700F01E70 /* TitleWithCreateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BCBD6527A5DF2700F01E70 /* TitleWithCreateButtonView.swift */; };
 		F2C08DC92778ABA5004EE815 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DC82778ABA5004EE815 /* Koin.swift */; };
 		F2C08DCC2778B3F4004EE815 /* UserObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C08DCB2778B3F4004EE815 /* UserObservable.swift */; };
+		F2E177A727ED938300A1466A /* Focuser in Frameworks */ = {isa = PBXBuildFile; productRef = F2E177A627ED938300A1466A /* Focuser */; };
 		F2E8B759276F3B4300058A24 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8B758276F3B4300058A24 /* LoginScreenView.swift */; };
 		F2E8B75C276F3BA900058A24 /* LoginLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8B75B276F3BA900058A24 /* LoginLogoView.swift */; };
 		F2E8B75E276F3CAF00058A24 /* LoginAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E8B75D276F3CAF00058A24 /* LoginAppNameView.swift */; };
@@ -177,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2E177A727ED938300A1466A /* Focuser in Frameworks */,
 				2D89F509A96DE1F9C5839410 /* Pods_iosApp.framework in Frameworks */,
 				F226837A27EB15AB00FFD7D5 /* BottomSheet in Frameworks */,
 			);
@@ -517,6 +519,7 @@
 			name = iosApp;
 			packageProductDependencies = (
 				F226837927EB15AB00FFD7D5 /* BottomSheet */,
+				F2E177A627ED938300A1466A /* Focuser */,
 			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
@@ -548,6 +551,7 @@
 			mainGroup = 7555FF72242A565900829871;
 			packageReferences = (
 				F226837827EB15AB00FFD7D5 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+				F2E177A527ED938300A1466A /* XCRemoteSwiftPackageReference "swift-focuser" */,
 			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
@@ -821,7 +825,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L5X4PNCA32;
 				ENABLE_PREVIEWS = YES;
@@ -844,7 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.zotov.epos-next";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -854,7 +858,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = L5X4PNCA32;
 				ENABLE_PREVIEWS = YES;
@@ -877,7 +881,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.zotov.epos-next";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -913,6 +917,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		F2E177A527ED938300A1466A /* XCRemoteSwiftPackageReference "swift-focuser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/art-technologies/swift-focuser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -920,6 +932,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F226837827EB15AB00FFD7D5 /* XCRemoteSwiftPackageReference "BottomSheet" */;
 			productName = BottomSheet;
+		};
+		F2E177A627ED938300A1466A /* Focuser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2E177A527ED938300A1466A /* XCRemoteSwiftPackageReference "swift-focuser" */;
+			productName = Focuser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
