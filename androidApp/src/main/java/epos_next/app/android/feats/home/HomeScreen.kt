@@ -4,7 +4,9 @@ import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,10 @@ fun HomeScreen(scrollState: ScrollState, openSheet: (MainBottomSheetScreen) -> U
             .background(MaterialTheme.colors.background)
             .verticalScroll(scrollState)
     ) {
+
+        Button({ throw RuntimeException("Test Crash") }) {
+            Text("Crash")
+        }
         NextLessonPart()
         LessonPart()
 

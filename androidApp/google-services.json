@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980324178066",
+    "project_id": "epos-next",
+    "storage_bucket": "epos-next.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980324178066:android:6911684e98abe10c7e6e4b",
+        "android_client_info": {
+          "package_name": "epos_next.app.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980324178066-bq4fj1e1g62k8dvbs3o7821722i21og9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Vh3BcExUFMKg3-_4_PuPrztwFiZbAt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980324178066-bq4fj1e1g62k8dvbs3o7821722i21og9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

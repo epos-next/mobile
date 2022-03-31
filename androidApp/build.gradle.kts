@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -57,4 +59,10 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.accompanist.flowLayout)
     implementation(libs.accompanist.systemUi)
+
+    implementation(platform("com.google.firebase:firebase-bom:29.2.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
 }
