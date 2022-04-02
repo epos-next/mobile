@@ -13,7 +13,6 @@ import epos_next.app.android.lib.collectAsState
 import epos_next.app.state.advertisements.AdvertisementsReducer
 import epos_next.app.state.advertisements.AdvertisementsState
 import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun AdvertisementPart(openBottomSheet: (MainBottomSheetScreen) -> Unit) {

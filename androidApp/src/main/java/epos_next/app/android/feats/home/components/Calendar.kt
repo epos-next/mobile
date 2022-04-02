@@ -41,7 +41,7 @@ import io.github.aakira.napier.Napier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.get
 import java.time.ZoneId
 import kotlin.math.ceil
 
@@ -52,7 +52,7 @@ fun Calendar(
     onDaySelected: (date: KotlinLocalDate) -> Any = {}
 ) {
     // State
-    val date = getViewModel<HomeViewModel>().calendarDate
+    val date = get<HomeViewModel>().calendarDate
     val dates = daysInMonthArray(date.value)
 
     // handlers

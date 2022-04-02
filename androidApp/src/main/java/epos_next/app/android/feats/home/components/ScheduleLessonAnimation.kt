@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import epos_next.app.android.feats.home.HomeViewModel
 import epos_next.app.domain.entities.Lesson
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.get
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -17,7 +17,7 @@ fun ScheduleLessonComponent(
     lesson: Lesson,
     index: Int = 0,
 ) {
-    val viewModel = getViewModel<HomeViewModel>()
+    val viewModel = get<HomeViewModel>()
 
     val density = LocalDensity.current
 

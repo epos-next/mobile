@@ -19,7 +19,6 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
 import java.lang.Integer.max
 import java.time.ZoneId
 
@@ -29,7 +28,7 @@ fun LessonPart() {
     val scheduleReducer = get<ScheduleReducer>()
     val state = scheduleReducer.state.collectAsState().value
 
-    val viewModel = getViewModel<HomeViewModel>()
+    val viewModel = get<HomeViewModel>()
 
     val coroutineScope = rememberCoroutineScope()
 

@@ -13,7 +13,6 @@ import epos_next.app.android.lib.collectAsState
 import epos_next.app.state.schoolTests.SchoolTestsReducer
 import epos_next.app.state.schoolTests.SchoolTestsState
 import org.koin.androidx.compose.get
-import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun ControlWorkPart(openBottomSheet: (MainBottomSheetScreen) -> Unit) {
