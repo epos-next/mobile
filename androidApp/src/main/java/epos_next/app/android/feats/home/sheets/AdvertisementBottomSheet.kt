@@ -34,7 +34,7 @@ fun ColumnScope.AdvertisementBottomSheet(close: () -> Unit) {
         close()
     }
 
-    SheetTitle("Новая контрольная работа")
+    SheetTitle("Новое объявление")
     FilledInput(
         value = content,
         onValueChange = { content = it},
