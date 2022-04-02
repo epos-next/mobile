@@ -44,8 +44,6 @@ fun NextLessonPart() {
                         ),
                     )
                 }
-
-
             }
             else -> Unit
         }

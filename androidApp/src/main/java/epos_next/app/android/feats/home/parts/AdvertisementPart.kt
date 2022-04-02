@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.MainBottomSheetScreen
 import epos_next.app.android.feats.home.components.AdvertisementComponent
 import epos_next.app.android.feats.home.components.AdvertisementSkeletonList
@@ -21,7 +25,13 @@ fun AdvertisementPart(openBottomSheet: (MainBottomSheetScreen) -> Unit) {
     TitleWithCreateButton(
         text = "Объявления",
         modifier = Modifier.padding(top = 25.dp),
-        onTap = { openBottomSheet(MainBottomSheetScreen.Advertisement) },
+        onTap = {
+            Firebase.analytics.logEvent("open_sheet") {
+                param(FirebaseAnalytics.Param.ITEM_NAME, "Open Advertisement Bottom Sheet")
+            }
+
+            openBottomSheet(MainBottomSheetScreen.Advertisement)
+        },
     )
 
     when (val state = reducer.collectAsState()) {

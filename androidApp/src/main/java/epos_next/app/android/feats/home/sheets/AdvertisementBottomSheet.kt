@@ -8,6 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.*
 import epos_next.app.android.feats.home.components.SheetTitle
 import epos_next.app.state.advertisements.AdvertisementsReducer
@@ -30,6 +34,12 @@ fun ColumnScope.AdvertisementBottomSheet(close: () -> Unit) {
             content = content.text,
             date = date!!,
         )
+
+        Firebase.analytics.logEvent("create_ad") {
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Create Advertisement")
+            param(FirebaseAnalytics.Param.VALUE, content.text)
+            param("date", date.toString())
+        }
 
         close()
     }

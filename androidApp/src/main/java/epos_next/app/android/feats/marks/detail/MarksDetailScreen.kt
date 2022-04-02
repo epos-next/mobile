@@ -93,6 +93,7 @@ fun MarksDetailScreen(navController: NavHostController, subject: String) {
                                 text = "${i + 1} четверть",
                                 period = period,
                                 initiallyOpen = i + 1 == periods.size,
+                                lesson = lesson.key
                             )
                             LessonDivider()
                         }

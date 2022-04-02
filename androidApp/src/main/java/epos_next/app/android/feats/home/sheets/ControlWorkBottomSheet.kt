@@ -9,6 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.*
 import epos_next.app.android.feats.home.components.SheetTitle
 import epos_next.app.state.marks.MarksReducer
@@ -37,6 +41,13 @@ fun ColumnScope.ControlWorkBottomSheet(close: () -> Unit) {
             subject = subject,
             date = date!!,
         )
+
+        Firebase.analytics.logEvent("create_school_test") {
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Create School Test")
+            param("name", name.text)
+            param("subject", subject)
+            param("date", date.toString())
+        }
 
         close()
     }

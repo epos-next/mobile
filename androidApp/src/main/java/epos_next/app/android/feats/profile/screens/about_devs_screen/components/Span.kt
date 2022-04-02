@@ -10,6 +10,10 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun UriSpan(
@@ -38,7 +42,12 @@ fun UriSpan(
             annotatedText
                 .getStringAnnotations("URL", it, it)
                 .firstOrNull()
-                ?.let { url -> uriHandler.openUri(url.item)  }
+                ?.let { url ->
+                    Firebase.analytics.logEvent("visit_website") {
+                        param(FirebaseAnalytics.Param.VALUE, url.item)
+                    }
+                    uriHandler.openUri(url.item)
+                }
         }
     )
 }

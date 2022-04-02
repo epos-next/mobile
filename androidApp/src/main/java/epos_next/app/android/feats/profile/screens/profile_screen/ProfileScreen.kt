@@ -10,6 +10,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.SwitchComponent
@@ -32,6 +36,9 @@ fun ProfileScreen(navController: NavHostController) {
 
     fun handleClick() {
         coroutineScope.launch {
+            Firebase.analytics.logEvent("logout") {
+                param(FirebaseAnalytics.Param.ITEM_NAME, "Logout")
+            }
             reducer.logout()
         }
     }
@@ -65,6 +72,10 @@ fun ProfileScreen(navController: NavHostController) {
                     onTap = { darkModeReducer.change(!isDark) }
                 ) {
                     SwitchComponent(isDark) {
+                        Firebase.analytics.logEvent("change_theme") {
+                            param(FirebaseAnalytics.Param.ITEM_NAME, "Change theme")
+                            param(FirebaseAnalytics.Param.VALUE, if (!isDark) "Dark" else "Light")
+                        }
                         darkModeReducer.change(!isDark)
                     }
                 }

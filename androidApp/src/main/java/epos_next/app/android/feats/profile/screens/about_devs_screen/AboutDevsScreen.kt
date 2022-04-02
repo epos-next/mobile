@@ -12,6 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.feats.profile.components.ProfileHeader
 import epos_next.app.android.feats.profile.screens.about_devs_screen.components.DeveloperComponent
@@ -42,7 +46,11 @@ fun AboutDevsScreen(
             name = "Ярослав Зотов",
             role = "Создатель",
             image = R.drawable.yaroslav_zotov
-        ) { uriHandler.openUri("https://zotov.dev") }
+        ) {
+            Firebase.analytics.logEvent("visit_developer_website") {
+                param(FirebaseAnalytics.Param.ITEM_NAME, "Visit zotov.dev")
+            }
+            uriHandler.openUri("https://zotov.dev") }
         Spacer(modifier = Modifier.height(20.dp))
 
         UriSpan(

@@ -27,6 +27,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.Grid
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
@@ -60,6 +65,13 @@ fun Calendar(
         val kotlinDate =
             Instant.fromEpochSeconds(day.atStartOfDay(ZoneId.systemDefault()).toEpochSecond())
                 .toLocalDateTime(TimeZone.currentSystemDefault()).date
+
+        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Calendar Date")
+            param(FirebaseAnalytics.Param.CONTENT_TYPE, kotlinDate.toString())
+            param(FirebaseAnalytics.Param.CONTENT_TYPE, "date")
+        }
+
         onDaySelected(kotlinDate)
     }
 
@@ -67,7 +79,6 @@ fun Calendar(
         SelectedDateIndicator(dates.selectedIndex)
 
         Column {
-
             CalendarHeader(date.value, onDateChanged = { onDaySelectedHandler(it) })
 
             WeekdayRow()

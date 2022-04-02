@@ -15,6 +15,10 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.components.ButtonState
 import epos_next.app.android.components.ErrorText
@@ -48,7 +52,12 @@ fun Form() {
         coroutineScope.launch {
             val failure = authStatusReducer.login(email, password)
             if (failure != null) error = translateException(failure)
-            else print("success")
+            else {
+                Firebase.analytics.logEvent(FirebaseAnalytics.Event.LOGIN) {
+                    param(FirebaseAnalytics.Param.ITEM_NAME, "Login user")
+                    param("email", email)
+                }
+            }
             loading = false
         }
     }

@@ -11,6 +11,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.theme.ApplicationTheme
@@ -23,6 +26,8 @@ import epos_next.app.usecases.FetchBigDataObjectUseCase
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
+
+private lateinit var firebaseAnalytics: FirebaseAnalytics
 
 @ExperimentalTime
 @InternalCoroutinesApi
@@ -40,6 +45,12 @@ class MainActivity : AppCompatActivity() {
 
         // remove top bar
         supportActionBar?.hide()
+
+        firebaseAnalytics = Firebase.analytics
+
+        Firebase.analytics.logEvent(FirebaseAnalytics.Event.APP_OPEN) {
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Open app")
+        }
 
         setContent {
             val navController = rememberAnimatedNavController()
@@ -67,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                                 navController.navigate(Routes.Main.route) {
                                     navController.graph.startDestinationRoute?.let { screen_route ->
                                         Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
+                                        Firebase.analytics.setUserId("${it.user.username}-${it.user.id}")
                                         popUpTo(screen_route)
                                     }
                                 }
@@ -78,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                                 navController.navigate(Routes.login) {
                                     navController.graph.startDestinationRoute?.let { screen_route ->
                                         Firebase.crashlytics.setUserId("")
+                                        Firebase.analytics.setUserId("")
                                         popUpTo(screen_route)
                                     }
                                 }

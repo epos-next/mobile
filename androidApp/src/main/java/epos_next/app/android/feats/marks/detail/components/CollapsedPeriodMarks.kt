@@ -19,6 +19,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.components.theme.contrast
 import epos_next.app.android.components.theme.lightPrimary
@@ -33,11 +37,19 @@ import kotlin.math.roundToInt
 fun CollapsedPeriodMarks(
     text: String = "1 четверть",
     period: MarkUnitPeriods,
+    lesson: String = "",
     initiallyOpen: Boolean = false
 ) {
     val isOpen = remember { mutableStateOf(initiallyOpen) }
 
-    Header(text, isOpen.value) { isOpen.value = isOpen.value.not() }
+    Header(text, isOpen.value) {
+        isOpen.value = isOpen.value.not()
+        Firebase.analytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+            param(FirebaseAnalytics.Param.ITEM_NAME, "Open marks period")
+            param(FirebaseAnalytics.Param.VALUE, text)
+            param("lesson", lesson)
+        }
+    }
     CollapsedContent(isOpen.value) {
         for (mark in period.all) {
             val date = LocalDate.of(mark.date.year, mark.date.month, mark.date.dayOfMonth)

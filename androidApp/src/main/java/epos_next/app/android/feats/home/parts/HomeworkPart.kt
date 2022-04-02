@@ -5,6 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.lib.collectAsState
 import epos_next.app.android.components.LessonSkeletonList
 import epos_next.app.android.components.LessonSkeletonWithCheckbox
@@ -31,6 +35,11 @@ fun HomeworkPart() {
                         modifier = Modifier.padding(top = 5.dp),
                         homework = homework,
                         onTap = {
+                            Firebase.analytics.logEvent("set_homework_status") {
+                                param(FirebaseAnalytics.Param.ITEM_NAME, "Change homework ${homework.id}-${homework.lesson} status")
+                                param(FirebaseAnalytics.Param.VALUE, if (it) "Done" else "Not done")
+                            }
+
                             coroutineScope.launch {
                                 reducer.updateDone(homework.id, it)
                             }

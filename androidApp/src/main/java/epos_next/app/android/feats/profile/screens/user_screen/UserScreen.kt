@@ -15,6 +15,10 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.components.*
 import epos_next.app.android.feats.profile.components.ProfileHeader
@@ -111,7 +115,12 @@ fun UserScreen(
                         if (nameError == null && usernameError == null) {
                             coroutineScope.launch {
                                 buttonState = ButtonState.Loading
-                                delay(2000)
+                                Firebase.analytics.logEvent("update_user") {
+                                    param(FirebaseAnalytics.Param.ITEM_NAME, "Update user")
+                                    param("name", name)
+                                    param("username", username)
+                                    param("dateOfBirth", dateOfBirth.toString())
+                                }
                                 reducer.update(name, username, dateOfBirth)
                                 buttonState = ButtonState.Done
                                 delay(2000)

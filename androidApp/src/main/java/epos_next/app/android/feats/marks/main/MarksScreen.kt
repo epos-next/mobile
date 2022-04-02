@@ -12,6 +12,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.R
 import epos_next.app.android.components.FilledInput
 import epos_next.app.android.components.LessonDivider
@@ -59,7 +63,13 @@ fun MarksScreen(navController: NavController, scrollState: ScrollState) {
                             lessonName = subject.key,
                             totalMark = subject.value.periods.lastOrNull()?.total?.roundToInt(),
                             marks = marks,
-                            onClick = { navController.navigate(Routes.Main.Marks.detail(subject.key)) }
+                            onClick = {
+                                Firebase.analytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM) {
+                                    param(FirebaseAnalytics.Param.ITEM_NAME, "Select Lesson")
+                                    param(FirebaseAnalytics.Param.VALUE, subject.key)
+                                }
+                                navController.navigate(Routes.Main.Marks.detail(subject.key))
+                            }
                         )
                     }
                 }
