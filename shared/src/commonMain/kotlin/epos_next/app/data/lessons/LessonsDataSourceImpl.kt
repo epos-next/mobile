@@ -1,11 +1,10 @@
 package epos_next.app.data.lessons
 
+import co.touchlab.kermit.Logger
 import epos_next.app.domain.entities.Lesson
 import epos_next.db.AppDatabase
-import io.github.aakira.napier.Napier
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.plus
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -13,6 +12,7 @@ import org.koin.core.component.inject
 
 class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
 
+    private val logger = Logger.withTag("LessonsDataSource")
     private val database: AppDatabase by inject()
 
     override fun cacheMany(lessons: Iterable<Lesson>) {
@@ -25,7 +25,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
 
                 // delete previously cached
                 database.lessonQueries.deleteByDate(from, to)
-                Napier.i("deleteByDate($from, $to)", tag = "DB")
+                logger.i { "deleteByDate($from, $to)" }
             }
         }
 
@@ -40,7 +40,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
                     date = it.date,
                     duration = it.duration,
                 )
-                Napier.i("insert($it)", tag = "DB")
+               logger.i { "insert($it)" }
             }
         }
     }
@@ -50,7 +50,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
         val to = date.plus(1, DateTimeUnit.DAY).toString()
 
         val exists = database.lessonDatesQueries.isCached(date).executeAsOne()
-        Napier.i("isCached($date) = $exists", tag = "DB")
+        logger.i { "isCached($date) = $exists" }
 
         // If nothing is known about this date, null is returned
         if (!exists) return null
@@ -60,7 +60,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
             .executeAsList()
             .map { LessonMapper.mapDatabase(it) }
             .let {
-                Napier.i("getByDate($from, $to) = $it", tag = "DB")
+                logger.i { "getByDate($from, $to) = $it" }
                 it
             }
     }
@@ -69,7 +69,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
         database.lessonDatesQueries.transaction {
             var date = from
             while (date <= to) {
-                Napier.i("cache($date)", tag = "DB")
+                logger.i {"cache($date)" }
                 database.lessonDatesQueries.cache(date)
                 date = date.plus(1, DateTimeUnit.DAY)
             }

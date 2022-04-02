@@ -39,7 +39,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.napier)
                 implementation(libs.multiplatformSettings.core)
                 implementation(libs.multiplatformSettings.serialization)
                 implementation(libs.koin.core)
@@ -50,6 +49,8 @@ kotlin {
                 implementation(libs.ktor.client.logging)
                 implementation(libs.sqlDelight.runtime)
                 implementation(libs.sqlDelight.coroutinesExt)
+                implementation(libs.kermit.log)
+                implementation(libs.kermit.crashlytics)
             }
         }
         val commonTest by getting {

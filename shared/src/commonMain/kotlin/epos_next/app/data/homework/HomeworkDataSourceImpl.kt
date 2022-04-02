@@ -1,19 +1,18 @@
 package epos_next.app.data.homework
 
+import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import epos_next.app.domain.entities.Homework
 import epos_next.db.AppDatabase
-import io.github.aakira.napier.Napier
-import io.ktor.utils.io.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
 
+    private val logger = Logger.withTag("HomeworkDataSource")
     private val database: AppDatabase by inject()
 
     override fun get(): Flow<List<Homework>> {
@@ -25,7 +24,7 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
                 list
                     .map { HomeworkMapper.mapDatabase(it) }
                     .let {
-                        Napier.i("getFresh() = $it", tag = "DB")
+                        logger.i{"getFresh() = $it"}
                         it
                     }
             }
@@ -34,13 +33,13 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
     override fun cacheMany(homework: Iterable<Homework>) {
         // delete all cache
         database.homeworkQueries.deleteAll()
-        Napier.i("deleteAll()", tag = "DB")
+        logger.i { "deleteAll()" }
 
         database.homeworkQueries.transaction {
 
             // replace with new
             homework.forEach {
-                Napier.i("insert($it)", tag = "DB")
+                logger.i { "insert($it)" }
                 database.homeworkQueries.insert(
                     id = it.id,
                     lesson = it.lesson,
@@ -54,7 +53,7 @@ class HomeworkDataSourceImpl : HomeworkDataSource, KoinComponent {
 
     override fun updateDone(id: Long, done: Boolean) {
         database.homeworkQueries.updateDone(id = id, done = done)
-        Napier.i("updateDone($id, $done)", tag = "DB")
+        logger.i {"updateDone($id, $done)" }
     }
 
     override fun clearAll() {

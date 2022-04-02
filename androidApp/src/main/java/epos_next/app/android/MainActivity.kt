@@ -18,7 +18,6 @@ import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
 import epos_next.app.usecases.FetchBigDataObjectUseCase
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.android.inject
 import kotlin.time.ExperimentalTime
@@ -82,8 +81,6 @@ class MainActivity : AppCompatActivity() {
                         }
                         else -> Unit
                     }
-
-                    Napier.d("authStatusReducer changed!! Calling FetchBigDataObject!!")
                 }
 
             }

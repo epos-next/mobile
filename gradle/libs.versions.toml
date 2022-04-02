@@ -15,10 +15,9 @@ mockk = "1.9.1"
 sqlDelight = "1.5.3"
 settings = "0.8.1"
 accompanist = "0.24.4-alpha"
+kermit = "1.0.0"
 
 [libraries]
-
-napier = { module = "io.github.aakira:napier", version = "2.2.0" }
 
 multiplatformSettings-core = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "settings" }
 multiplatformSettings-serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "settings" }
@@ -79,4 +78,9 @@ sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref =
 accompanist-navAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanist-flowLayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
 accompanist-systemUi = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+
+kermit-log = { module = "co.touchlab:kermit", version.ref = "kermit" }
+kermit-crashlytics = { module = "co.touchlab:kermit-crashlytics", version.ref = "kermit" }
+
+
 

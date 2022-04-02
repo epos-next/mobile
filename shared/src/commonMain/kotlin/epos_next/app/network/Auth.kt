@@ -1,23 +1,23 @@
 package epos_next.app.network
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.auth.AuthDataStoreImpl
 import epos_next.app.models.SetAuthTokens
 import epos_next.app.network.requests.auth.ReauthenticateRequest
 import epos_next.app.network.responces.auth.ReauthenticateResponse
-import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
 suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
-    Napier.d("status = ${e.response.status}")
+    Logger.d("status = ${e.response.status}")
     if (e.response.status != HttpStatusCode.Unauthorized) return null
 
     val authDataStore = AuthDataStoreImpl()
     val token = authDataStore.getRefreshToken()
     val id = authDataStore.getId()
 
-    Napier.i("need to refresh tokens. Id is $id, refresh token is $token")
+    Logger.i("need to refresh tokens. Id is $id, refresh token is $token")
 
     try {
         if (token != null && id != null) {
@@ -29,7 +29,7 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
                     )
                 }
 
-            Napier.i("update token response = `$updateResponse")
+            Logger.i("update token response = `$updateResponse")
 
             if (updateResponse.success) {
                 val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
@@ -40,8 +40,7 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
         }
         return null
     } catch (e: Exception) {
-        Napier.e("failed to refresh auth tokens", e, tag = "HTTP")
-        Napier.e(e.toString(), tag = "HTTP")
+        Logger.e("failed to refresh auth tokens", e)
         return null
     }
 }

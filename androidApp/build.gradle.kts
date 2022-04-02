@@ -54,11 +54,11 @@ dependencies {
 
     implementation(libs.lifecycle.runtime)
 
-    implementation(libs.napier)
-
     implementation(libs.kotlinx.datetime)
     implementation(libs.accompanist.flowLayout)
     implementation(libs.accompanist.systemUi)
+
+    implementation(libs.kermit.log)
 
     implementation(platform("com.google.firebase:firebase-bom:29.2.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")

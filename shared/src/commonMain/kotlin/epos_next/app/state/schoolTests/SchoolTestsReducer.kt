@@ -1,11 +1,11 @@
 package epos_next.app.state.schoolTests
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.controlWork.ControlWorkDataSource
 import epos_next.app.domain.entities.ControlWork
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.lib.BaseProxyReducer
 import epos_next.app.network.Api
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -16,6 +16,7 @@ import org.koin.core.component.inject
 class SchoolTestsReducer : BaseProxyReducer<SchoolTestsState>(SchoolTestsState.Loading) {
     private val controlWorkDataSource: ControlWorkDataSource by inject()
     private val api: Api by inject()
+    private val logger = Logger.withTag("SchoolTestsReducer")
 
     override val state: Flow<SchoolTestsState> = controlWorkDataSource
         .get()
@@ -35,14 +36,14 @@ class SchoolTestsReducer : BaseProxyReducer<SchoolTestsState>(SchoolTestsState.L
 
             // push entity to api to get id of created entity
             api.createControlWork(controlWork).fold(
-                { Napier.e("failed to create school test", it, tag = "State") },
+                { logger.e("failed to create school test", it) },
                 { id ->
                     // replace fake if of entity to real one
                     controlWorkDataSource.replaceFakeIdWithReal(name, id)
                 }
             )
         } catch (e: Throwable) {
-            Napier.e("Failed to create school test", e, tag = "State")
+            logger.e("Failed to create school test", e)
         }
     }
 }

@@ -8,7 +8,6 @@
 
     <application
         android:name=".App"
-        android:allowBackup="false"
         android:label="Эпос"
         android:supportsRtl="true"
         android:icon="@mipmap/ic_launcher"

@@ -1,11 +1,11 @@
 package epos_next.app.state.advertisements
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.advertisement.AdvertisementDataSource
 import epos_next.app.domain.entities.Advertisement
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.lib.BaseProxyReducer
 import epos_next.app.network.Api
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -16,6 +16,7 @@ import org.koin.core.component.inject
 class AdvertisementsReducer: BaseProxyReducer<AdvertisementsState>(AdvertisementsState.Loading) {
     private val advertisementDataSource: AdvertisementDataSource by inject()
     private val api: Api by inject()
+    private val logger = Logger.withTag("AdvertisementsReducer")
 
     override val state: Flow<AdvertisementsState> = advertisementDataSource
         .get()
@@ -35,14 +36,14 @@ class AdvertisementsReducer: BaseProxyReducer<AdvertisementsState>(Advertisement
 
             // push entity to api to get id of created entity
             api.createAdvertisement(ad).fold(
-                { Napier.e("failed to create advertisement", it, tag = "State") },
+                { logger.e("failed to create advertisement", it) },
                 { id ->
                     // replace fake if of entity to real one
                     advertisementDataSource.replaceFakeIdWithReal(content, id)
                 }
             )
         } catch (e: Throwable) {
-            Napier.e("Failed to create ad", e, tag = "State")
+            logger.e("Failed to create ad", e)
         }
     }
 }

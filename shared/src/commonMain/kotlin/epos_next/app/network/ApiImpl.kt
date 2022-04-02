@@ -1,5 +1,6 @@
 package epos_next.app.network
 
+import co.touchlab.kermit.Logger
 import epos_next.app.domain.entities.*
 import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.InvalidDataException
@@ -14,7 +15,6 @@ import epos_next.app.network.responces.data.CreateAdvertisementResponse
 import epos_next.app.network.responces.data.CreateControlWorkResponse
 import epos_next.app.network.responces.data.FetchLessonsResponse
 import epos_next.app.network.responces.data.GetDataResponse
-import io.github.aakira.napier.Napier
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
@@ -25,6 +25,7 @@ import org.koin.core.component.inject
 
 class ApiImpl : Api, KoinComponent {
 
+    private val logger = Logger.withTag("API")
     private val client: NetworkClient by inject()
 
     override suspend fun authenticate(
@@ -37,14 +38,14 @@ class ApiImpl : Api, KoinComponent {
                     body = AuthenticateRequest(email, password)
                 }
 
-            Napier.i("API reply 200 on $email, $password. Response is $response", tag = "API")
+            logger.i("API reply 200 on $email, $password. Response is $response")
 
             Either.Right(response)
         },
         handleResponseException = { e ->
             val statusCode = e.response.status.value
             if (statusCode == 400) {
-                Napier.w("API reply 400 on $email, $password", e, tag = "API")
+                logger.w("API reply 400 on $email, $password", e)
                 Either.Left(InvalidCredentials())
             } else null
         }
@@ -116,24 +117,24 @@ private suspend fun <T> runApi(
             try {
                 content()
             } catch (e: ResponseException) {
-                Napier.e("API reply $statusCode", e, tag = "API")
+                Logger.e("API reply $statusCode", e)
                 Either.Left(InvalidDataException(e))
             } catch (e: Throwable) {
-                Napier.e("Network exception", e, tag = "API")
-                Napier.e(e.toString(), tag = "API")
+                Logger.e("Network exception", e)
+                Logger.e(e.toString())
                 Either.Left(NetworkException(e))
             }
         }
 
-        Napier.e("API reply $statusCode", e, tag = "API")
+        Logger.e("API reply $statusCode", e)
         Either.Left(InvalidDataException(e))
     } catch (e: SerializationException) {
-        Napier.e("Failed to serialize", e, tag = "API")
+        Logger.e("Failed to serialize", e)
         Either.Left(e)
     }
     catch (e: Throwable) {
-        Napier.e("Network exception", e, tag = "API")
-        Napier.e(e.toString(), tag = "API")
+        Logger.e("Network exception", e)
+        Logger.e(e.toString())
         Either.Left(NetworkException(e))
     }
 }
@@ -151,20 +152,20 @@ private suspend fun <T> runApi(
             try {
                 content()
             } catch (e: ResponseException) {
-                Napier.e("API reply $statusCode", e, tag = "API")
+                Logger.e("API reply $statusCode", e)
                 handleResponseException(e) ?: Either.Left(InvalidDataException(e))
             } catch (e: Throwable) {
-                Napier.e("Network exception", e, tag = "API")
-                Napier.e(e.toString(), tag = "API")
+                Logger.e("Network exception", e)
+                Logger.e(e.toString())
                 Either.Left(NetworkException(e))
             }
         }
 
-        Napier.e("API reply $statusCode", e, tag = "API")
+        Logger.e("API reply $statusCode", e)
         handleResponseException(e) ?: Either.Left(InvalidDataException(e))
     } catch (e: Throwable) {
-        Napier.e("Network exception", e, tag = "API")
-        Napier.e(e.toString(), tag = "API")
+        Logger.e("Network exception", e)
+        Logger.e(e.toString())
         Either.Left(NetworkException(e))
     }
 }

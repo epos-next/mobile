@@ -1,10 +1,10 @@
 package epos_next.app.network
 
-import io.github.aakira.napier.Napier
-import io.ktor.client.features.logging.Logger
+import co.touchlab.kermit.Logger
+import io.ktor.client.features.logging.Logger as KtorLogger
 
-class CustomHttpLogger: Logger {
+class CustomHttpLogger: KtorLogger {
     override fun log(message: String) {
-        Napier.i(message, tag = "HTTP")
+        Logger.i(message)
     }
 }

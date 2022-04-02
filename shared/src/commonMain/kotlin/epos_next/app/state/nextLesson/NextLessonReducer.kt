@@ -1,9 +1,9 @@
 package epos_next.app.state.nextLesson
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.domain.entities.Lesson
 import epos_next.app.lib.BaseReducer
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.update
@@ -17,7 +17,7 @@ import kotlin.time.toDuration
 class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) {
 
     private val lessonsDataSource: LessonsDataSource by inject()
-
+    private val logger = Logger.withTag("NextLessonReducer")
     private var nextLessonCalculationJob: Job? = null
 
     fun startCalculationProcess() {
@@ -27,7 +27,7 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
 
         nextLessonCalculationJob = scope.launch {
             calculateNextLesson(lessons)
-            Napier.d("finished!")
+            logger.d("finished!")
         }
     }
 
@@ -53,7 +53,7 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
         // checking is next lesson in nearest 1 hours.
         // That's need to not show "Next lesson is biology" in 3am
         if ((nearestLesson.date.toInstant(tz) - now).toDouble(DurationUnit.HOURS) > 1) {
-            Napier.d(nearestLesson.date.toInstant(tz).toString(), tag = "calculateNextLesson")
+            logger.d(nearestLesson.date.toInstant(tz).toString())
             return stateFlow.update { NextLessonState.NotStudyingTime }
         }
 
@@ -84,7 +84,7 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
             return calculateNextLesson(lessons)
         }
 
-        Napier.d("not lesson", tag = "calculateNextLesson")
+        logger.d("not lesson")
 
         now = Clock.System.now()
 
@@ -118,7 +118,7 @@ class NextLessonReducer : BaseReducer<NextLessonState>(NextLessonState.Loading) 
             return calculateNextLesson(lessons)
         }
 
-        Napier.d("not break", tag = "calculateNextLesson")
+        logger.d("not break")
 
         stateFlow.update { NextLessonState.NotStudyingTime }
     }

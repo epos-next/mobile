@@ -37,7 +37,6 @@ import java.time.Month
 import epos_next.app.android.R
 import epos_next.app.android.feats.home.HomeViewModel
 import epos_next.app.utils.FormatHelper
-import io.github.aakira.napier.Napier
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -63,8 +62,6 @@ fun Calendar(
                 .toLocalDateTime(TimeZone.currentSystemDefault()).date
         onDaySelected(kotlinDate)
     }
-
-    Napier.d(dates.selectedIndex.toString(), tag = "SelectedIndex")
 
     Box(modifier = modifier) {
         SelectedDateIndicator(dates.selectedIndex)

@@ -1,9 +1,9 @@
 package epos_next.app.state.user
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.user.UserDataSource
 import epos_next.app.lib.BaseReducer
 import epos_next.app.usecases.*
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
@@ -17,6 +17,7 @@ class UserReducer : BaseReducer<UserState>(UserState.Loading) {
     private val fetchBigDataObject: FetchBigDataObjectUseCase by inject()
     private val userDataSource: UserDataSource by inject()
     private val updateUserUseCase: UpdateUserUseCase by inject()
+    private val logger = Logger.withTag("SchoolTestsReducer")
 
     init {
         try {
@@ -29,7 +30,7 @@ class UserReducer : BaseReducer<UserState>(UserState.Loading) {
                 } else UserState.NotAuthorized
             }
         } catch (e: Throwable) {
-            Napier.e("error when init UserReducer", e)
+            logger.e("error when init UserReducer", e)
         }
     }
 
@@ -38,7 +39,7 @@ class UserReducer : BaseReducer<UserState>(UserState.Loading) {
         return loginUseCase.execute(email, password).fold(
             { it },
             { user ->
-                Napier.i("success login (user = $user)")
+                logger.i("success login (user = $user)")
                 stateFlow.update { UserState.Authorized(user) }
                 scope.launch {
                     fetchBigDataObject()

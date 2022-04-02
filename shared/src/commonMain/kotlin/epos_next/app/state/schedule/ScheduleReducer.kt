@@ -1,10 +1,10 @@
 package epos_next.app.state.schedule
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.lessons.LessonsDataSource
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.lib.BaseReducer
 import epos_next.app.network.Api
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.update
 import kotlinx.datetime.*
 import org.koin.core.component.inject
@@ -13,6 +13,7 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
 
     private val lessonsDataSource: LessonsDataSource by inject()
     private val api: Api by inject()
+    private val logger = Logger.withTag("ScheduleReducer")
 
     fun loadTodaySchedule() {
         val today = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
@@ -46,8 +47,8 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
             else -> stateFlow.update { ScheduleState.Idle(lessons) }
         }
     } catch (e: Exception) {
-        Napier.e("failed to load schedule", e, tag = "Reducer")
-        Napier.e(e.stackTraceToString(), tag = "Reducer")
+        logger.e("failed to load schedule", e)
+        logger.e(e.stackTraceToString())
 
         val message = translateException(e)
         stateFlow.update { ScheduleState.Error(message) }
@@ -57,7 +58,7 @@ class ScheduleReducer : BaseReducer<ScheduleState>(ScheduleState.Loading) {
         val from = date.minus(date.dayOfWeek.ordinal, DateTimeUnit.DAY)
         val to = from.plus(6, DateTimeUnit.DAY)
 
-        Napier.d("from = $from, to = $to")
+        logger.d("from = $from, to = $to")
 
         api.fetchLessons(from, to).fold(
             {

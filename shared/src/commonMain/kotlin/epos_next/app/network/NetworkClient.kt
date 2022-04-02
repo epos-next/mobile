@@ -1,22 +1,14 @@
 package epos_next.app.network
 
 import epos_next.app.data.auth.AuthDataStore
-import epos_next.app.data.auth.AuthDataStoreImpl
-import epos_next.app.models.SetAuthTokens
-import epos_next.app.network.requests.auth.ReauthenticateRequest
-import epos_next.app.network.responces.auth.ReauthenticateResponse
-import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.features.*
-import io.ktor.client.features.auth.*
-import io.ktor.client.features.auth.providers.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.utils.*
 import io.ktor.http.*
-import io.ktor.http.cio.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.native.concurrent.SharedImmutable

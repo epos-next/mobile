@@ -21,10 +21,6 @@ fun HomeScreen(scrollState: ScrollState, openSheet: (MainBottomSheetScreen) -> U
             .background(MaterialTheme.colors.background)
             .verticalScroll(scrollState)
     ) {
-
-        Button({ throw RuntimeException("Test Crash") }) {
-            Text("Crash")
-        }
         NextLessonPart()
         LessonPart()
 

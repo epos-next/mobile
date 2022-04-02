@@ -1,10 +1,10 @@
 package epos_next.app.data.advertisement
 
+import co.touchlab.kermit.Logger
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import epos_next.app.domain.entities.Advertisement
 import epos_next.db.AppDatabase
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
@@ -13,6 +13,7 @@ import org.koin.core.component.inject
 class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
 
     private val database: AppDatabase by inject()
+    private val logger = Logger.withTag("AdvertisementDataSource")
 
     override fun get(): Flow<List<Advertisement>> {
         return database.advertisementsQueries
@@ -22,7 +23,7 @@ class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
             .map { list ->
                 list.map { AdvertisementMapper.mapDatabase(it) }
                     .let {
-                        Napier.i("getFresh() = $it", tag = "DB")
+                        logger.i("getFresh() = $it")
                         it
                     }
             }
@@ -32,11 +33,11 @@ class AdvertisementDataSourceImpl : AdvertisementDataSource, KoinComponent {
         database.advertisementsQueries.transaction {
             // delete old cache
             database.advertisementsQueries.deleteAll()
-            Napier.i("deleteAll()", tag = "DB")
+            logger.i("deleteAll()")
 
             // save new
             advertisements.forEach {
-                Napier.i("insert($it)", tag = "DB")
+                logger.i("insert($it)")
                 database.advertisementsQueries.insert(
                     id = it.id,
                     content = it.content,

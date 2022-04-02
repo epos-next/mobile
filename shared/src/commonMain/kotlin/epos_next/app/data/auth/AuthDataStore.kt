@@ -1,5 +1,6 @@
 package epos_next.app.data.auth
 
+import co.touchlab.kermit.Logger
 import epos_next.app.data.settings
 import epos_next.app.models.AuthTokens
 import epos_next.app.models.SetAuthTokens
@@ -8,7 +9,6 @@ import epos_next.app.domain.exceptions.InvalidTokenFoundException
 import epos_next.app.domain.exceptions.NoTokenFoundException
 import epos_next.app.domain.exceptions.TokenException
 import epos_next.app.lib.Either
-import io.github.aakira.napier.Napier
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlin.time.Duration
@@ -61,6 +61,8 @@ interface AuthDataStore {
 
 class AuthDataStoreImpl: AuthDataStore {
 
+    private val logger = Logger.withTag("AuthDataStore")
+
     private object Keys {
         const val accessToken = "auth_token"
         const val authTokenSetDate = "auth_token_set_date"
@@ -91,23 +93,19 @@ class AuthDataStoreImpl: AuthDataStore {
 
         if (refresh == null || access == null) return Either.Left(NoTokenFoundException())
 
-        Napier.i("successfully return 2 tokens")
-
         return Either.Right(AuthTokens(access, refresh))
     }
 
     override fun getRefreshToken(): String? {
-        Napier.i("running")
         return settings.getStringOrNull(Keys.refreshToken)
     }
 
     override fun getId(): Int? {
-        Napier.i("running")
         return settings.getIntOrNull(Keys.id)
     }
 
     override fun setTokens(tokens: SetAuthTokens) {
-        Napier.i("running $tokens")
+        logger.i { "setting tokens $tokens" }
 
         val setDate = Clock.System.now().toString()
 
@@ -118,19 +116,16 @@ class AuthDataStoreImpl: AuthDataStore {
         // save set date
         settings.putString(Keys.authTokenSetDate, setDate)
         settings.putString(Keys.refreshTokenSetDate, setDate)
-
-        Napier.i("successful")
     }
 
     override fun setId(id: Int) {
-        Napier.i("running")
+        logger.i { "setting $id" }
         settings.putInt(Keys.id, id)
-        Napier.i("successful")
     }
 
     override fun isAuthorized(): Boolean {
         val value = isAuthorizedInner()
-        Napier.i("$value")
+        logger.d { "isAuthorized = value" }
         return value
     }
 
@@ -157,13 +152,12 @@ class AuthDataStoreImpl: AuthDataStore {
     )
 
     override fun clearAll() {
-        Napier.i("running")
         settings.remove(Keys.accessToken)
         settings.remove(Keys.authTokenSetDate)
         settings.remove(Keys.id)
         settings.remove(Keys.refreshToken)
         settings.remove(Keys.refreshTokenSetDate)
-        Napier.i("successful")
+        logger.i { "clear all" }
     }
 
     /**
@@ -176,7 +170,6 @@ class AuthDataStoreImpl: AuthDataStore {
         tokenDateKey: String,
         lifetime: Duration
     ): Either<TokenException, Boolean> {
-        Napier.i("shouldUpdateToken($tokenDateKey, $lifetime) - running")
 
         // get date from store as ISO string
         // if no set date found --> there's no token --> user not authorize --> can't update token
@@ -197,7 +190,7 @@ class AuthDataStoreImpl: AuthDataStore {
         // if after --> token isn't expired, else need to update it
         val should = expiresAt >= Clock.System.now()
 
-        Napier.i("shouldUpdateToken($tokenDateKey, $lifetime) = $should")
+        logger.i { "shouldUpdateToken($tokenDateKey, $lifetime) = $should" }
         return Either.Right(should)
     }
 }
