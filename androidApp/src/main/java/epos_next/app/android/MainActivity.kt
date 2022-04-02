@@ -11,6 +11,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
@@ -64,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                             if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
                                 navController.navigate(Routes.Main.route) {
                                     navController.graph.startDestinationRoute?.let { screen_route ->
+                                        Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
                                         popUpTo(screen_route)
                                     }
                                 }
@@ -74,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                             if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
                                 navController.navigate(Routes.login) {
                                     navController.graph.startDestinationRoute?.let { screen_route ->
+                                        Firebase.crashlytics.setUserId("")
                                         popUpTo(screen_route)
                                     }
                                 }
