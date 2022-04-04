@@ -9,15 +9,17 @@ import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
+private val httpLogger = Logger.withTag("HTTP")
+
 suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
-    Logger.d("status = ${e.response.status}")
+    httpLogger.d("status = ${e.response.status}")
     if (e.response.status != HttpStatusCode.Unauthorized) return null
 
     val authDataStore = AuthDataStoreImpl()
     val token = authDataStore.getRefreshToken()
     val id = authDataStore.getId()
 
-    Logger.i("need to refresh tokens. Id is $id, refresh token is $token")
+    httpLogger.i("need to refresh tokens. Id is $id, refresh token is $token")
 
     try {
         if (token != null && id != null) {
@@ -29,7 +31,7 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
                     )
                 }
 
-            Logger.i("update token response = `$updateResponse")
+            httpLogger.i("update token response = `$updateResponse")
 
             if (updateResponse.success) {
                 val setPayload = SetAuthTokens.fromAuthTokens(updateResponse.tokens)
@@ -40,7 +42,7 @@ suspend fun handleUnauthorizedStatus(e: ResponseException): String? {
         }
         return null
     } catch (e: Exception) {
-        Logger.e("failed to refresh auth tokens", e)
+        httpLogger.e("failed to refresh auth tokens", e)
         return null
     }
 }

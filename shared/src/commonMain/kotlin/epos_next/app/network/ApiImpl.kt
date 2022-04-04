@@ -114,7 +114,7 @@ private suspend fun <T> runApi(
         val statusCode = e.response.status.value
 
         if (handleUnauthorizedStatus(e) != null) {
-            try {
+            return try {
                 content()
             } catch (e: ResponseException) {
                 Logger.e("API reply $statusCode", e)
@@ -127,15 +127,15 @@ private suspend fun <T> runApi(
         }
 
         Logger.e("API reply $statusCode", e)
-        Either.Left(InvalidDataException(e))
+        return Either.Left(InvalidDataException(e))
     } catch (e: SerializationException) {
         Logger.e("Failed to serialize", e)
-        Either.Left(e)
+        return Either.Left(e)
     }
     catch (e: Throwable) {
         Logger.e("Network exception", e)
         Logger.e(e.toString())
-        Either.Left(NetworkException(e))
+        return Either.Left(NetworkException(e))
     }
 }
 

@@ -40,17 +40,16 @@ class HttpLogging {
         val body = request.body as OutgoingContent
         val charset = body.contentType?.charset() ?: Charsets.UTF_8
 
-        var message = "REQUEST:" +
-                "${request.method} ${Url(request.url)}" +
-                "Authorization: ${request.headers["Authorization"]}"
+        var message = "REQUEST:\n" +
+                "${request.method.value} ${Url(request.url)}\n" +
+                "Authorization: ${request.headers["Authorization"]}\n"
 
         val channel = ByteChannel()
         GlobalScope.launch(Dispatchers.Unconfined) {
             val text = channel.tryReadText(charset) ?: ""
             if (text != "") {
                 val json = JSONObject(message)
-                message += "BODY:\n${json.toString(2)}"
-
+                message += "BODY:\n${json.toString(2).substring(0..1000)}"
             }
         }
 
@@ -61,9 +60,8 @@ class HttpLogging {
 
     private fun logResponse(response: HttpResponse) {
         logger.i {
-            "RESPONSE:" +
-                    "${response.call.request.method} ${response.call.request.url}" +
-                    ""
+            "RESPONSE:\n" +
+                    "${response.call.request.method.value} ${response.call.request.url}\n"
         }
     }
 
@@ -86,6 +84,7 @@ class HttpLogging {
     }
 
     private fun logResponseException(context: HttpClientCall, cause: Throwable) {
+        if (context.response.status == HttpStatusCode.Forbidden) return
         logger.w("RESPONSE ${context.request.url} failed with exception: $cause")
     }
 

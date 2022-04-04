@@ -14,7 +14,7 @@
     </base-config>
 
     <domain-config>
-        <domain includeSubdomains="true">https://1df840c4-2bfd-4ec4-b2bd-5ec06716e007.mock.pstmn.io</domain>
+        <domain includeSubdomains="true">https://epos-api.zotov.dev</domain>
         <trust-anchors>
             <certificates src="user"/>
             <certificates src="system"/>
