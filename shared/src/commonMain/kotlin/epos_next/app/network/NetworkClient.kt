@@ -5,7 +5,6 @@ import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.utils.*
 import io.ktor.http.*
@@ -25,10 +24,7 @@ val tokenClient = HttpClient {
     install(JsonFeature) {
         serializer = KotlinxSerializer()
     }
-    install(Logging) {
-        logger = CustomHttpLogger()
-        level = LogLevel.ALL
-    }
+    install(HttpLogging)
 }
 
 @SharedImmutable
@@ -42,10 +38,7 @@ val authClient = HttpClient {
     install(JsonFeature) {
         serializer = KotlinxSerializer()
     }
-    install(Logging) {
-        logger = CustomHttpLogger()
-        level = LogLevel.ALL
-    }
+    install(HttpLogging) {}
 }
 
 @SharedImmutable
@@ -60,10 +53,7 @@ val httpClient: HttpClient = HttpClient {
     install(JsonFeature) {
         serializer = KotlinxSerializer()
     }
-    install(Logging) {
-        logger = CustomHttpLogger()
-        level = LogLevel.ALL
-    }
+    install(HttpLogging)
 }
 
 class NetworkClient : KoinComponent {

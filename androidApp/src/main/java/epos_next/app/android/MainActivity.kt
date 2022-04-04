@@ -9,8 +9,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import co.touchlab.kermit.Logger
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -46,11 +50,16 @@ class MainActivity : AppCompatActivity() {
         // remove top bar
         supportActionBar?.hide()
 
+        // Firebase
         firebaseAnalytics = Firebase.analytics
+        Firebase.crashlytics.setCrashlyticsCollectionEnabled(!BuildConfig.DEBUG)
+        Firebase.analytics.setAnalyticsCollectionEnabled(!BuildConfig.DEBUG)
 
         Firebase.analytics.logEvent(FirebaseAnalytics.Event.APP_OPEN) {
             param(FirebaseAnalytics.Param.ITEM_NAME, "Open app")
         }
+
+        checkForUpdates()
 
         setContent {
             val navController = rememberAnimatedNavController()
@@ -103,4 +112,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun checkForUpdates() {
+        val appUpdateManager = AppUpdateManagerFactory.create(this)
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        println("\n\n\n")
+        println(appUpdateManager.toString())
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            println("\n\n\n")
+            println(appUpdateInfo.toString())
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
+            ) {
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    UPDATE_REQUEST_CODE
+                )
+            }
+        }
+    }
 }
+
+private const val UPDATE_REQUEST_CODE = 176

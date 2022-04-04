@@ -64,7 +64,7 @@ fun LessonPart() {
             )
         }
 
-        is ScheduleState.Error -> TextError(Modifier.padding(top = 10.dp), state.message)
+//        is ScheduleState.Error -> TextError(Modifier.padding(top = 10.dp), state.message)
         is ScheduleState.ItsSummer -> NowSummerMessage()
     }
 }
