@@ -1,7 +1,7 @@
 package epos_next.app.data.lessons
 
 import epos_next.app.domain.entities.Lesson
-import eposnext.app.data.LessonModel
+import epos_next.db.LessonModel
 
 object LessonMapper {
 
@@ -13,5 +13,6 @@ object LessonMapper {
         date = db.date,
         lessonNumber = db.lessonNumber,
         duration = db.duration,
+        marks = db.marks,
     )
 }

@@ -1,0 +1,3 @@
+import kotlin.collections.List;
+
+ALTER TABLE lessonModel ADD COLUMN marks TEXT AS List<Float> NOT NULL DEFAULT "";

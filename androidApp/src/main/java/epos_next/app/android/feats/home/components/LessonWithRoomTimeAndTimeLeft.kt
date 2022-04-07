@@ -30,6 +30,7 @@ private val defaultProps = LessonWithRoomTimeAndTimeLeftProps(
         room = "202",
         subject = "Английский язык",
         lessonNumber = 3,
+        marks = listOf(4F, 5F)
     ),
     timeLeft = 21.toDuration(DurationUnit.MINUTES),
 )

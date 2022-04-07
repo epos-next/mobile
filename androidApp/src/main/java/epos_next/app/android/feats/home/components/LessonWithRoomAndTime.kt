@@ -33,6 +33,7 @@ private val defaultProps = Lesson(
     room = "202",
     subject = "Английский язык",
     lessonNumber = 3,
+    marks = listOf(4F, 3F)
 )
 
 @Preview

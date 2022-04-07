@@ -1,6 +1,7 @@
 package epos_next.app.data
 
 import epos_next.app.data.adapters.durationAdapter
+import epos_next.app.data.adapters.floatListAdapter
 import epos_next.app.data.adapters.localDateAdapter
 import epos_next.app.data.adapters.localDateTimeAdapter
 import epos_next.app.data.advertisement.AdvertisementDataSource
@@ -19,6 +20,7 @@ import epos_next.app.data.marks.marksAdapter
 import epos_next.app.data.user.UserDataSource
 import epos_next.app.data.user.UserDataSourceImpl
 import epos_next.db.AppDatabase
+import epos_next.db.LessonModel
 import eposnext.app.data.*
 import org.koin.dsl.module
 
@@ -30,6 +32,7 @@ val dataModule = module {
             lessonModelAdapter = LessonModel.Adapter(
                 dateAdapter = localDateTimeAdapter,
                 durationAdapter = durationAdapter,
+                marksAdapter = floatListAdapter,
             ),
             homeworkModelAdapter = HomeworkModel.Adapter(
                 dateAdapter = localDateTimeAdapter,

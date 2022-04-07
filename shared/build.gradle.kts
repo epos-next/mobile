@@ -114,5 +114,9 @@ android {
 sqldelight {
     database("AppDatabase") {
         packageName = "epos_next.db"
+        verifyMigrations = true
+        schemaOutputDirectory = file("epos_next.app.shared.sqldelight.epos_next.app.data")
+        migrationOutputDirectory = file("epos_next.app.shared.sqldelight.epos_next.app.data")
+        deriveSchemaFromMigrations = true
     }
 }
