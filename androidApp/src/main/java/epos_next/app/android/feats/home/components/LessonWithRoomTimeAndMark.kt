@@ -1,22 +1,12 @@
 package epos_next.app.android.feats.home.components
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import epos_next.app.android.components.LessonCircle
-import epos_next.app.android.components.LessonSubject
-import epos_next.app.android.components.LessonSubtitle
-import epos_next.app.android.components.LessonSubtitleDot
+import epos_next.app.android.components.*
 import epos_next.app.android.helpers.UiHelper
 import epos_next.app.domain.entities.Lesson
 import kotlinx.datetime.Clock
@@ -38,19 +28,22 @@ private val defaultProps = Lesson(
 
 @Preview
 @Composable
-fun LessonWithRoomAndTime(
+fun LessonWithRoomTimeAndMark(
     modifier: Modifier = Modifier,
     lesson: Lesson = defaultProps
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth().height(40.dp)
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
     ) {
         LessonCircle(subject = lesson.subject)
 
         Column(
             modifier = Modifier
                 .padding(start = 15.dp)
+                .weight(1f)
         ) {
             LessonSubject(text = lesson.subject)
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -65,5 +58,11 @@ fun LessonWithRoomAndTime(
             }
         }
 
+        for (mark in lesson.marks) {
+            TotalNumber(
+                modifier = Modifier.padding(start = 10.dp),
+                number = mark.toInt()
+            )
+        }
     }
 }

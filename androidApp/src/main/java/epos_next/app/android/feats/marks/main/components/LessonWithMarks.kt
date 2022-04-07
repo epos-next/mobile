@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import epos_next.app.android.components.LessonCircle
 import epos_next.app.android.components.LessonSubject
 import epos_next.app.android.components.LessonSubtitle
+import epos_next.app.android.components.TotalNumber
 import epos_next.app.android.components.theme.contrast
 import epos_next.app.android.components.theme.lightContrast
 import kotlin.math.round
@@ -56,20 +57,11 @@ fun LessonWithMarks(
 
         Spacer(modifier = Modifier.weight(1f))
         if (totalExpected != 0 || totalMark != null) {
-            TotalNumber(totalMark ?: totalExpected, totalMark != null)
+            TotalNumber(
+                totalMark ?: totalExpected,
+                active = totalMark != null
+            )
         }
     }
 
-}
-
-@Composable
-private fun TotalNumber(number: Int, active: Boolean = true) {
-    Text(
-        text = number.toString(),
-        style = TextStyle(
-            fontSize = 18.sp,
-            fontWeight = FontWeight.W500,
-            color = if (active) MaterialTheme.colors.contrast else MaterialTheme.colors.lightContrast
-        )
-    )
 }
