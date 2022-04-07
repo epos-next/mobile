@@ -10,5 +10,6 @@ data class Lesson(
     val room: String,
     val date: LocalDateTime,
     val lessonNumber: Long,
-    val duration: Duration
+    val duration: Duration,
+    val marks: List<Float>,
 )

@@ -14,7 +14,8 @@ data class LessonDto(
     val room: String,
     val date: LocalDateTime,
     val lessonNumber: Long,
-    val duration: Int
+    val duration: Int,
+    val marks: List<Float>,
 ) {
     fun toDomain(): Lesson {
         return Lesson(
@@ -24,7 +25,8 @@ data class LessonDto(
             room = room,
             date = date,
             lessonNumber = lessonNumber,
-            duration = duration.toDuration(DurationUnit.MINUTES)
+            duration = duration.toDuration(DurationUnit.MINUTES),
+            marks = marks,
         )
     }
 }
