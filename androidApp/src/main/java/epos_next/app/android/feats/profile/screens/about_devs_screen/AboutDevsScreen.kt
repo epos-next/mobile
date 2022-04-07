@@ -6,20 +6,25 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
+import epos_next.app.android.BuildConfig
 import epos_next.app.android.R
 import epos_next.app.android.feats.profile.components.ProfileHeader
 import epos_next.app.android.feats.profile.screens.about_devs_screen.components.DeveloperComponent
 import epos_next.app.android.feats.profile.screens.about_devs_screen.components.UriSpan
+import epos_next.app.android.feats.profile.screens.about_devs_screen.components.VersionText
 
 @Composable
 fun AboutDevsScreen(
@@ -50,7 +55,8 @@ fun AboutDevsScreen(
             Firebase.analytics.logEvent("visit_developer_website") {
                 param(FirebaseAnalytics.Param.ITEM_NAME, "Visit zotov.dev")
             }
-            uriHandler.openUri("https://zotov.dev") }
+            uriHandler.openUri("https://zotov.dev")
+        }
         Spacer(modifier = Modifier.height(20.dp))
 
         UriSpan(
@@ -77,5 +83,7 @@ fun AboutDevsScreen(
             link = "https://t.me/zotovy"
         )
         Spacer(modifier = Modifier.height(20.dp))
+
+        VersionText()
     }
 }
