@@ -5,6 +5,8 @@ object Routes {
 
     const val loading = "loading"
 
+    const val majorUpdate = "major-update"
+
     object Main {
         const val route = "main"
 
