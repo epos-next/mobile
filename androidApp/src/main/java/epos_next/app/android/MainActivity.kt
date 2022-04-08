@@ -21,6 +21,7 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.theme.ApplicationTheme
+import epos_next.app.android.feats.version.screens.MajorUpdateScreen
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
 import epos_next.app.state.dark_mode.DarkModeReducer
@@ -76,40 +77,41 @@ class MainActivity : AppCompatActivity() {
             }
 
             ApplicationTheme(darkTheme = isDarkMode) {
-                RootNavGraph(navController)
+//                RootNavGraph(navController)
+                MajorUpdateScreen(navController)
             }
 
-            lifecycleScope.launchWhenStarted {
-                userReducer.state.collect {
-                    when (it) {
-                        is UserState.Authorized -> {
-                            if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
-                                navController.navigate(Routes.Main.route) {
-                                    navController.graph.startDestinationRoute?.let { screen_route ->
-                                        Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
-                                        Firebase.analytics.setUserId("${it.user.username}-${it.user.id}")
-                                        popUpTo(screen_route)
-                                    }
-                                }
-                                fetchBigDataObjectUseCase()
-                            }
-                        }
-                        is UserState.NotAuthorized -> {
-                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
-                                navController.navigate(Routes.login) {
-                                    navController.graph.startDestinationRoute?.let { screen_route ->
-                                        Firebase.crashlytics.setUserId("")
-                                        Firebase.analytics.setUserId("")
-                                        popUpTo(screen_route)
-                                    }
-                                }
-                            }
-                        }
-                        else -> Unit
-                    }
-                }
-
-            }
+//            lifecycleScope.launchWhenStarted {
+//                userReducer.state.collect {
+//                    when (it) {
+//                        is UserState.Authorized -> {
+//                            if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
+//                                navController.navigate(Routes.Main.route) {
+//                                    navController.graph.startDestinationRoute?.let { screen_route ->
+//                                        Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
+//                                        Firebase.analytics.setUserId("${it.user.username}-${it.user.id}")
+//                                        popUpTo(screen_route)
+//                                    }
+//                                }
+//                                fetchBigDataObjectUseCase()
+//                            }
+//                        }
+//                        is UserState.NotAuthorized -> {
+//                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
+//                                navController.navigate(Routes.login) {
+//                                    navController.graph.startDestinationRoute?.let { screen_route ->
+//                                        Firebase.crashlytics.setUserId("")
+//                                        Firebase.analytics.setUserId("")
+//                                        popUpTo(screen_route)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        else -> Unit
+//                    }
+//                }
+//
+//            }
         }
     }
 
