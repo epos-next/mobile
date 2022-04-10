@@ -1,4 +1,3 @@
 import kotlin.collections.List;
 
 ALTER TABLE lessonModel ADD COLUMN marks TEXT AS List<Float> NOT NULL DEFAULT "";
-ALTER TABLE lessonModel ADD COLUMN truancy INTEGER AS Boolean NOT NULL DEFAULT 0;

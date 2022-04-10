@@ -1,0 +1,1 @@
+ALTER TABLE lessonModel ADD COLUMN truancy INTEGER AS Boolean NOT NULL DEFAULT 0;

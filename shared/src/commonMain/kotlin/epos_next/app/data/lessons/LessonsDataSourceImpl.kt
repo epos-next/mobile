@@ -40,6 +40,7 @@ class LessonsDataSourceImpl: LessonsDataSource, KoinComponent {
                     date = it.date,
                     duration = it.duration,
                     marks = it.marks,
+                    truancy = it.truancy,
                 )
                logger.i { "insert($it)" }
             }

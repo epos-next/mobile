@@ -1,7 +1,7 @@
 
 insert:
-INSERT OR IGNORE INTO lessonModel(id, subject, groupId, room, lessonNumber, date, duration, marks)
-VALUES (?, ?, ?, ? , ?, ?, ?, ?);
+INSERT OR IGNORE INTO lessonModel(id, subject, groupId, room, lessonNumber, date, duration, marks, truancy)
+VALUES (?, ?, ?, ? , ?, ?, ?, ?, ?);
 
 deleteByDate:
 DELETE FROM lessonModel
