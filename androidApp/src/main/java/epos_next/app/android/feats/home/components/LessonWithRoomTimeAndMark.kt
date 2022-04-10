@@ -1,12 +1,20 @@
 package epos_next.app.android.feats.home.components
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import epos_next.app.android.components.*
+import epos_next.app.android.components.theme.contrast
+import epos_next.app.android.components.theme.lightContrast
 import epos_next.app.android.helpers.UiHelper
 import epos_next.app.domain.entities.Lesson
 import kotlinx.datetime.Clock
@@ -59,6 +67,10 @@ fun LessonWithRoomTimeAndMark(
             }
         }
 
+        if (lesson.truancy) {
+            Truancy()
+        }
+
         for (mark in lesson.marks) {
             TotalNumber(
                 modifier = Modifier.padding(start = 10.dp),
@@ -66,4 +78,15 @@ fun LessonWithRoomTimeAndMark(
             )
         }
     }
+}
+
+@Composable
+private fun Truancy() {
+    Text(
+        text = "Н",
+        style = TextStyle(
+            fontSize = 18.sp,
+            color = Color(0xFFff6700),
+        ),
+    )
 }
