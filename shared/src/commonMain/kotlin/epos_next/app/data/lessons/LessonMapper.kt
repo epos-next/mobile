@@ -14,5 +14,6 @@ object LessonMapper {
         lessonNumber = db.lessonNumber,
         duration = db.duration,
         marks = db.marks,
+        truancy = db.truancy
     )
 }

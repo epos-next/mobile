@@ -16,6 +16,7 @@ data class LessonDto(
     val lessonNumber: Long,
     val duration: Int,
     val marks: List<Float>,
+    val truancy: Boolean,
 ) {
     fun toDomain(): Lesson {
         return Lesson(
@@ -27,6 +28,7 @@ data class LessonDto(
             lessonNumber = lessonNumber,
             duration = duration.toDuration(DurationUnit.MINUTES),
             marks = marks,
+            truancy = truancy,
         )
     }
 }

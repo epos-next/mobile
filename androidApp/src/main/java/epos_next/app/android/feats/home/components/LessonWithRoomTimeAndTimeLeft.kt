@@ -30,7 +30,8 @@ private val defaultProps = LessonWithRoomTimeAndTimeLeftProps(
         room = "202",
         subject = "Английский язык",
         lessonNumber = 3,
-        marks = listOf(4F, 5F)
+        marks = listOf(4F, 5F),
+        truancy = false,
     ),
     timeLeft = 21.toDuration(DurationUnit.MINUTES),
 )
@@ -38,7 +39,7 @@ private val defaultProps = LessonWithRoomTimeAndTimeLeftProps(
 @Preview
 @Composable
 fun LessonWithRoomTimeAndTimeLeft(
-    modifier: Modifier = Modifier.fillMaxWidth(),
+    modifier: Modifier = Modifier,
     props: LessonWithRoomTimeAndTimeLeftProps = defaultProps
 ) {
 
@@ -48,6 +49,7 @@ fun LessonWithRoomTimeAndTimeLeft(
 
             Box(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(start = 15.dp)
             ) {
                 Column {

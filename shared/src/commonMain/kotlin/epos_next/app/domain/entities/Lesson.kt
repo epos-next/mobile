@@ -12,4 +12,5 @@ data class Lesson(
     val lessonNumber: Long,
     val duration: Duration,
     val marks: List<Float>,
+    val truancy: Boolean,
 )
