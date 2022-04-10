@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import co.touchlab.kermit.Logger
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -24,6 +26,7 @@ import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.feats.version.screens.MajorUpdateScreen
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
+import epos_next.app.network.Api
 import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
 import epos_next.app.state.user.UserState
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     private val userReducer: UserReducer by inject()
     private val darkModeReducer: DarkModeReducer by inject()
     private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
+    private val api: Api by inject()
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,11 +64,14 @@ class MainActivity : AppCompatActivity() {
             param(FirebaseAnalytics.Param.ITEM_NAME, "Open app")
         }
 
-        checkForUpdates()
 
         setContent {
             val navController = rememberAnimatedNavController()
             val systemUiController = rememberSystemUiController()
+
+            LaunchedEffect("on-start") {
+                checkForUpdates(navController)
+            }
 
             val isDarkMode by darkModeReducer.state.collectAsState()
 
@@ -77,50 +84,46 @@ class MainActivity : AppCompatActivity() {
             }
 
             ApplicationTheme(darkTheme = isDarkMode) {
-//                RootNavGraph(navController)
-                MajorUpdateScreen(navController)
+                RootNavGraph(navController)
             }
 
-//            lifecycleScope.launchWhenStarted {
-//                userReducer.state.collect {
-//                    when (it) {
-//                        is UserState.Authorized -> {
-//                            if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
-//                                navController.navigate(Routes.Main.route) {
-//                                    navController.graph.startDestinationRoute?.let { screen_route ->
-//                                        Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
-//                                        Firebase.analytics.setUserId("${it.user.username}-${it.user.id}")
-//                                        popUpTo(screen_route)
-//                                    }
-//                                }
-//                                fetchBigDataObjectUseCase()
-//                            }
-//                        }
-//                        is UserState.NotAuthorized -> {
-//                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
-//                                navController.navigate(Routes.login) {
-//                                    navController.graph.startDestinationRoute?.let { screen_route ->
-//                                        Firebase.crashlytics.setUserId("")
-//                                        Firebase.analytics.setUserId("")
-//                                        popUpTo(screen_route)
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        else -> Unit
-//                    }
-//                }
-//
-//            }
+            lifecycleScope.launchWhenStarted {
+                userReducer.state.collect {
+                    when (it) {
+                        is UserState.Authorized -> {
+                            if (navController.currentBackStackEntry?.destination?.route != Routes.Main.route) {
+                                navController.navigate(Routes.Main.route) {
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        Firebase.crashlytics.setUserId("${it.user.username}-${it.user.id}")
+                                        Firebase.analytics.setUserId("${it.user.username}-${it.user.id}")
+                                        popUpTo(screen_route)
+                                    }
+                                }
+                                fetchBigDataObjectUseCase()
+                            }
+                        }
+                        is UserState.NotAuthorized -> {
+                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
+                                navController.navigate(Routes.login) {
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        Firebase.crashlytics.setUserId("")
+                                        Firebase.analytics.setUserId("")
+                                        popUpTo(screen_route)
+                                    }
+                                }
+                            }
+                        }
+                        else -> Unit
+                    }
+                }
+            }
         }
     }
 
-    private fun checkForUpdates() {
+    private suspend fun checkForUpdates(navController: NavController) {
+        println("\n\n\n\n\n running checkForUpdates")
         val appUpdateManager = AppUpdateManagerFactory.create(this)
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
-
-        println("\n\n\n")
-        println(appUpdateManager.toString())
 
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
             println("\n\n\n")
@@ -136,6 +139,14 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+
+        val versionId = BuildConfig.VERSION_CODE
+        api.getVersionUrgency(versionId).fold(
+            { Logger.withTag("checkForUpdates").e("failed to check app update", it) },
+            {
+                navController.navigate(Routes.majorUpdate)
+            }
+        )
     }
 }
 

@@ -43,7 +43,7 @@ fun MajorUpdateScreen(navController: NavHostController) {
         Description()
         PrimaryButton(text = "Обновить")
         Spacer(modifier = Modifier.weight(1f))
-        SkipButton()
+        SkipButton(navController)
     }
 }
 
@@ -113,11 +113,13 @@ private fun Description() {
 }
 
 @Composable
-private fun SkipButton() {
+private fun SkipButton(navController: NavHostController) {
     Text(
         modifier = Modifier
             .padding(bottom = 30.dp)
-            .noRippleClickable { },
+            .noRippleClickable {
+                navController.popBackStack()
+            },
         text = "Проигнорировать",
         style = TextStyle(
             color = MaterialTheme.colors.lightPrimary,

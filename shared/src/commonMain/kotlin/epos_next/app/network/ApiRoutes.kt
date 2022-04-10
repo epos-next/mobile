@@ -15,4 +15,6 @@ object ApiRoutes {
     const val createAdvertisement = "/api/1.0/advertisement"
 
     const val updateUser = "/api/1.0/user"
+
+    fun appVersion(versionId: Int) = "/api/1.0/app-version?platform=0&versionId=$versionId"
 }

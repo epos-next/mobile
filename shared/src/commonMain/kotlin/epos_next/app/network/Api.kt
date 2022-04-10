@@ -1,18 +1,10 @@
 package epos_next.app.network
 
 import epos_next.app.domain.entities.*
-import epos_next.app.domain.exceptions.InvalidAuthException
-import epos_next.app.domain.exceptions.InvalidCredentials
-import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
-import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.responces.auth.AuthenticateResponse
-import io.ktor.client.features.*
-import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 interface Api {
 
@@ -81,5 +73,12 @@ interface Api {
         username: String? = null,
         dateOfBirth: LocalDateTime? = null
     ): Either<Throwable, User>
+
+    /**
+     * Check current app version
+     * @param versionId the app versionCode (gradle buildscript)
+     * @return information about current version (up to date or there is new updates)
+     */
+    suspend fun getVersionUrgency(versionId: Int): Either<Throwable, AppVersion>
 }
 

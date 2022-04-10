@@ -1,5 +1,6 @@
 package epos_next.app.android.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -31,15 +32,24 @@ fun RootNavGraph(navController: NavHostController) {
         // Main route
         composable(
             route = Routes.Main.route,
-            enterTransition = { slideEnter() },
-            exitTransition = { slideExit() },
+            enterTransition = {
+                if (this.initialState.destination.route == Routes.majorUpdate) fadeIn()
+                else slideEnter()
+            },
+            exitTransition = {
+                if (this.targetState.destination.route == Routes.majorUpdate) fadeOut()
+                else slideExit()
+            },
         ) { MainView() }
 
         // Major update route
         composable(
             route = Routes.majorUpdate,
-            enterTransition = { slideInVertically() },
-            exitTransition = { slideOutVertically() },
-        ) { MajorUpdateScreen(navController = navController) }
+            enterTransition = { slideInVertically(initialOffsetY = { height -> height }) },
+            exitTransition = { slideOutVertically(targetOffsetY = { height -> height }) },
+        ) {
+            BackHandler(true) {}
+            MajorUpdateScreen(navController = navController)
+        }
     }
 }

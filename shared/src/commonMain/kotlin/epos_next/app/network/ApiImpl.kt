@@ -10,11 +10,13 @@ import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.requests.data.CreateAdvertisementRequest
 import epos_next.app.network.requests.data.CreateControlWorkRequest
 import epos_next.app.network.requests.user.UpdateUserRequest
+import epos_next.app.network.responces.AppVersionDtoResource
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import epos_next.app.network.responces.data.CreateAdvertisementResponse
 import epos_next.app.network.responces.data.CreateControlWorkResponse
 import epos_next.app.network.responces.data.FetchLessonsResponse
 import epos_next.app.network.responces.data.GetDataResponse
+import epos_next.app.network.responces.parseAppVersionDto
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.datetime.LocalDate
@@ -102,6 +104,12 @@ class ApiImpl : Api, KoinComponent {
             val response: User = client.put(ApiRoutes.updateUser, body)
             Either.Right(response)
         }
+    }
+
+    override suspend fun getVersionUrgency(versionId: Int): Either<Throwable, AppVersion> = runApi {
+        val route = ApiRoutes.appVersion(versionId)
+        val response: AppVersionDtoResource = client.get(route)
+        Either.Right(parseAppVersionDto(response))
     }
 }
 
