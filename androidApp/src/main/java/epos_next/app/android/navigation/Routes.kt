@@ -5,7 +5,13 @@ object Routes {
 
     const val loading = "loading"
 
-    const val majorUpdate = "major-update"
+    object MajorUpdate {
+        const val route = "major?version={version}"
+
+        fun build(version: String) = "major?version=$version"
+
+        fun match(route: String?) = route?.startsWith("major?") ?: false
+    }
 
     object Main {
         const val route = "main"

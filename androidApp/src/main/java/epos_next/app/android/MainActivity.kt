@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
@@ -23,9 +21,11 @@ import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import epos_next.app.android.components.theme.ApplicationTheme
+import epos_next.app.android.feats.version.dialogs.UpdateDialog
 import epos_next.app.android.feats.version.screens.MajorUpdateScreen
 import epos_next.app.android.navigation.RootNavGraph
 import epos_next.app.android.navigation.Routes
+import epos_next.app.domain.entities.AppVersion
 import epos_next.app.network.Api
 import epos_next.app.state.dark_mode.DarkModeReducer
 import epos_next.app.state.user.UserReducer
@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
     private val darkModeReducer: DarkModeReducer by inject()
     private val fetchBigDataObjectUseCase: FetchBigDataObjectUseCase by inject()
     private val api: Api by inject()
+    private val logger = Logger.withTag("MainActivity")
+
+    // Global state
+    private var updateDialogOpen by mutableStateOf(false)
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +91,8 @@ class MainActivity : AppCompatActivity() {
                 RootNavGraph(navController)
             }
 
+            UpdateDialog(updateDialogOpen) { updateDialogOpen = false }
+
             lifecycleScope.launchWhenStarted {
                 userReducer.state.collect {
                     when (it) {
@@ -121,7 +127,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun checkForUpdates(navController: NavController) {
-        println("\n\n\n\n\n running checkForUpdates")
         val appUpdateManager = AppUpdateManagerFactory.create(this)
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
 
@@ -144,7 +149,14 @@ class MainActivity : AppCompatActivity() {
         api.getVersionUrgency(versionId).fold(
             { Logger.withTag("checkForUpdates").e("failed to check app update", it) },
             {
-                navController.navigate(Routes.majorUpdate)
+                when (it) {
+                    is AppVersion.NewMajorUpdate -> navController.navigate(
+                        Routes.MajorUpdate.build(it.version)
+                    )
+                    is AppVersion.NewUpdate -> updateDialogOpen = true
+                    is AppVersion.UpToDate -> logger.i { "No new version of app is found" }
+                }
+
             }
         )
     }

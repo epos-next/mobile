@@ -4,6 +4,8 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import epos_next.app.android.MainView
@@ -33,23 +35,27 @@ fun RootNavGraph(navController: NavHostController) {
         composable(
             route = Routes.Main.route,
             enterTransition = {
-                if (this.initialState.destination.route == Routes.majorUpdate) fadeIn()
+                if (Routes.MajorUpdate.match(this.initialState.destination.route)) fadeIn()
                 else slideEnter()
             },
             exitTransition = {
-                if (this.targetState.destination.route == Routes.majorUpdate) fadeOut()
+                if (Routes.MajorUpdate.match(this.targetState.destination.route)) fadeOut()
                 else slideExit()
             },
         ) { MainView() }
 
         // Major update route
         composable(
-            route = Routes.majorUpdate,
+            route = Routes.MajorUpdate.route,
             enterTransition = { slideInVertically(initialOffsetY = { height -> height }) },
             exitTransition = { slideOutVertically(targetOffsetY = { height -> height }) },
-        ) {
+            arguments = listOf(navArgument("version") { type = NavType.StringType })
+        ) { backStackEntry ->
             BackHandler(true) {}
-            MajorUpdateScreen(navController = navController)
+            MajorUpdateScreen(
+                navController = navController,
+                version = backStackEntry.arguments?.getString("version") ?: "",
+            )
         }
     }
 }

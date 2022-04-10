@@ -40,9 +40,10 @@ fun PrimaryButton(
     onClick: () -> Unit = {},
     disabled: Boolean = false,
     state: ButtonState = ButtonState.Idle,
+    color: Color = MaterialTheme.colors.contrast
 ) {
     val background by animateColorAsState(
-        if (disabled) MaterialTheme.colors.lightPrimary else MaterialTheme.colors.contrast
+        if (disabled) MaterialTheme.colors.lightPrimary else color
     )
 
     Box(

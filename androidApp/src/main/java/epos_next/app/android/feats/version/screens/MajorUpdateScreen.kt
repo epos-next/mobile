@@ -31,7 +31,7 @@ import epos_next.app.utils.playMarketAppMarketUrl
 import epos_next.app.utils.playMarketAppUrl
 
 @Composable
-fun MajorUpdateScreen(navController: NavHostController) {
+fun MajorUpdateScreen(navController: NavHostController, version: String) {
     val uriHandler = LocalUriHandler.current
 
     Column(
@@ -44,7 +44,7 @@ fun MajorUpdateScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.weight(1f))
         Icon()
         Title()
-        Subtitle("v1.0.1")
+        Subtitle(if(version.isEmpty()) "" else "v$version")
         Description()
         PrimaryButton(
             text = "Обновить",
