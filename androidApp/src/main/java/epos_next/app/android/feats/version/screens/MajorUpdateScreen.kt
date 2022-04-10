@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -26,9 +27,13 @@ import epos_next.app.android.components.theme.contrast
 import epos_next.app.android.components.theme.lightPrimary
 import epos_next.app.android.components.theme.textPrimary
 import epos_next.app.android.lib.noRippleClickable
+import epos_next.app.utils.playMarketAppMarketUrl
+import epos_next.app.utils.playMarketAppUrl
 
 @Composable
 fun MajorUpdateScreen(navController: NavHostController) {
+    val uriHandler = LocalUriHandler.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +46,16 @@ fun MajorUpdateScreen(navController: NavHostController) {
         Title()
         Subtitle("v1.0.1")
         Description()
-        PrimaryButton(text = "Обновить")
+        PrimaryButton(
+            text = "Обновить",
+            onClick = {
+                try {
+                    uriHandler.openUri(playMarketAppMarketUrl)
+                } catch (e: Throwable) {
+                    uriHandler.openUri(playMarketAppUrl)
+                }
+            }
+        )
         Spacer(modifier = Modifier.weight(1f))
         SkipButton(navController)
     }
