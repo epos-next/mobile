@@ -39,7 +39,7 @@ private val defaultProps = LessonWithRoomTimeAndTimeLeftProps(
 @Preview
 @Composable
 fun LessonWithRoomTimeAndTimeLeft(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.fillMaxWidth(),
     props: LessonWithRoomTimeAndTimeLeftProps = defaultProps
 ) {
 
@@ -48,9 +48,7 @@ fun LessonWithRoomTimeAndTimeLeft(
             LessonCircle(subject = props.lesson.subject)
 
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 15.dp)
+                modifier = Modifier.padding(start = 15.dp)
             ) {
                 Column {
                     LessonSubject(text = props.lesson.subject)
