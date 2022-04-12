@@ -37,6 +37,7 @@ fun MajorUpdateScreen(navController: NavHostController, version: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colors.background)
             .padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

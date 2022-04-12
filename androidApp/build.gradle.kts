@@ -12,8 +12,8 @@ android {
         applicationId = "epos_next.app.android"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 7
-        versionName = "1.0.3"
+        versionCode = 9
+        versionName = "1.0.3-3"
     }
     buildTypes {
         getByName("release") {
