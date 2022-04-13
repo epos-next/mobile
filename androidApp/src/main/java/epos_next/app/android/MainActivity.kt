@@ -145,8 +145,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        navController.navigate(Routes.MajorUpdate.build("1.0.3"))
-
         val versionId = BuildConfig.VERSION_CODE
         api.getVersionUrgency(versionId).fold(
             { Logger.withTag("checkForUpdates").e("failed to check app update", it) },
