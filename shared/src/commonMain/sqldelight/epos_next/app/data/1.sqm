@@ -1,4 +1,7 @@
+import epos_next.app.domain.entities.MarkUnitPeriods;
+import kotlin.collections.List;
 import kotlin.time.Duration;
+import kotlinx.datetime.LocalDate;
 import kotlinx.datetime.LocalDateTime;
 
 CREATE TABLE IF NOT EXISTS lessonModel(
@@ -9,4 +12,35 @@ CREATE TABLE IF NOT EXISTS lessonModel(
     lessonNumber INTEGER NOT NULL,
     date TEXT AS LocalDateTime NOT NULL,
     duration INTEGER AS Duration NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS lessonMarkModel(
+    lesson TEXT UNIQUE NOT NULL PRIMARY KEY,
+    periods TEXT AS List<MarkUnitPeriods> NOT NULL,
+    total INTEGER AS Int
+);
+
+CREATE TABLE IF NOT EXISTS lessonsDates(
+     date TEXT AS LocalDate NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS homeworkModel(
+    id INTEGER NOT NULL PRIMARY KEY,
+    lesson TEXT NOT NULL,
+    content TEXT NOT NULL,
+    done INTEGER AS Boolean NOT NULL,
+    date TEXT AS LocalDateTime NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS controlWorkModel(
+     id INTEGER NOT NULL PRIMARY KEY,
+     lesson TEXT NOT NULL,
+     date TEXT AS LocalDateTime NOT NULL,
+     name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS advertisementModel(
+    id INTEGER NOT NULL PRIMARY KEY,
+    content TEXT NOT NULL,
+    targetDate TEXT AS LocalDateTime NOT NULL
 );

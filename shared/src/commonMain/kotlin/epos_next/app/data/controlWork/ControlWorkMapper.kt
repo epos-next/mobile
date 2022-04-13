@@ -1,7 +1,7 @@
 package epos_next.app.data.controlWork
 
 import epos_next.app.domain.entities.ControlWork
-import eposnext.app.data.ControlWorkModel
+import epos_next.db.ControlWorkModel
 
 object ControlWorkMapper {
 

@@ -2,7 +2,7 @@ package epos_next.app.data.marks
 
 import epos_next.app.domain.entities.MarkUnit
 import epos_next.app.domain.entities.Marks
-import eposnext.app.data.LessonMarkModel
+import epos_next.db.LessonMarkModel
 
 object MarksMapper {
 

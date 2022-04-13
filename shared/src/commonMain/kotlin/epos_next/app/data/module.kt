@@ -19,8 +19,7 @@ import epos_next.app.data.marks.MarksDataSourceImpl
 import epos_next.app.data.marks.marksAdapter
 import epos_next.app.data.user.UserDataSource
 import epos_next.app.data.user.UserDataSourceImpl
-import epos_next.db.AppDatabase
-import epos_next.db.LessonModel
+import epos_next.db.*
 import eposnext.app.data.*
 import org.koin.dsl.module
 

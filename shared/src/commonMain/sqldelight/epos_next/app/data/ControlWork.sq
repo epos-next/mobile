@@ -1,6 +1,6 @@
 import kotlinx.datetime.LocalDateTime;
 
-CREATE TABLE controlWorkModel(
+CREATE TABLE IF NOT EXISTS controlWorkModel(
      id INTEGER NOT NULL PRIMARY KEY,
      lesson TEXT NOT NULL,
      date TEXT AS LocalDateTime NOT NULL,

@@ -1,7 +1,7 @@
 package epos_next.app.data.advertisement
 
 import epos_next.app.domain.entities.Advertisement
-import eposnext.app.data.AdvertisementModel
+import epos_next.db.AdvertisementModel
 
 object AdvertisementMapper {
 

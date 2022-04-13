@@ -1,6 +1,6 @@
 import kotlinx.datetime.LocalDateTime;
 
-CREATE TABLE homeworkModel(
+CREATE TABLE IF NOT EXISTS homeworkModel(
     id INTEGER NOT NULL PRIMARY KEY,
     lesson TEXT NOT NULL,
     content TEXT NOT NULL,

@@ -1,6 +1,6 @@
 import kotlinx.datetime.LocalDateTime;
 
-CREATE TABLE advertisementModel(
+CREATE TABLE IF NOT EXISTS advertisementModel(
     id INTEGER NOT NULL PRIMARY KEY,
     content TEXT NOT NULL,
     targetDate TEXT AS LocalDateTime NOT NULL

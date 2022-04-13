@@ -1,3 +1,15 @@
+import kotlin.time.Duration;
+import kotlinx.datetime.LocalDateTime;
+
+CREATE TABLE IF NOT EXISTS lessonModel(
+    id INTEGER NOT NULL PRIMARY KEY,
+    subject TEXT NOT NULL,
+    groupId INTEGER NOT NULL,
+    room TEXT NOT NULL,
+    lessonNumber INTEGER NOT NULL,
+    date TEXT AS LocalDateTime NOT NULL,
+    duration INTEGER AS Duration NOT NULL
+);
 
 insert:
 INSERT OR IGNORE INTO lessonModel(id, subject, groupId, room, lessonNumber, date, duration, marks, truancy)

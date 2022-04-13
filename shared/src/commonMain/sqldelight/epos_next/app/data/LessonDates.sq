@@ -1,6 +1,6 @@
 import kotlinx.datetime.LocalDate;
 
-CREATE TABLE lessonsDates(
+CREATE TABLE IF NOT EXISTS lessonsDates(
      date TEXT AS LocalDate NOT NULL UNIQUE
 );
 

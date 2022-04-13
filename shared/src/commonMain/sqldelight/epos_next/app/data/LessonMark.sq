@@ -1,7 +1,7 @@
 import epos_next.app.domain.entities.MarkUnitPeriods;
 import kotlin.collections.List;
 
-CREATE TABLE lessonMarkModel(
+CREATE TABLE IF NOT EXISTS lessonMarkModel(
     lesson TEXT UNIQUE NOT NULL PRIMARY KEY,
     periods TEXT AS List<MarkUnitPeriods> NOT NULL,
     total INTEGER AS Int
