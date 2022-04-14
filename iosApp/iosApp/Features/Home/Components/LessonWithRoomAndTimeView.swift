@@ -12,6 +12,7 @@ import shared
 struct LessonWithRoomAndTimeView: View {
     var lesson: Lesson
     
+    @ViewBuilder
     var body: some View {
         HStack(spacing: 0) {
             LessonCircleView(subject: lesson.subject)
@@ -23,9 +24,27 @@ struct LessonWithRoomAndTimeView: View {
                     LessonSubtitleView(lesson.room)
                     LessonSubtitleDotView()
                     LessonSubtitleView(FormatHelper.shared.formatLessonTime(startDate: lesson.date, duration: lesson.duration))
+                    
+                    Spacer()
+                    
+                    if lesson.truancy {
+                        TruancyView()
+                    }
+                    
+                    ForEach(0 ..< lesson.marks.count, id: \.self) { index in
+                        TotalNumber(number: Int(truncating: lesson.marks[index]))
+                    }
                 }
             }.padding(.leading, 15)
         }.frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+private struct TruancyView: View {
+    var body: some View {
+        Text("H")
+            .font(.custom("AvenirNext-Regular", size: 18))
+            .foregroundColor(Color(hex: 0xFFff6700))
     }
 }
 

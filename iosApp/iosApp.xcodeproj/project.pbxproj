@@ -57,6 +57,7 @@
 		F23B74F427A660D500FDDC4A /* SchedulePartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F327A660D500FDDC4A /* SchedulePartView.swift */; };
 		F23B74F627A6610300FDDC4A /* ScheduleObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */; };
 		F23B74FA27A668F400FDDC4A /* LessonSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */; };
+		F23D937428089C0200A8ED7F /* TotalNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23D937328089C0200A8ED7F /* TotalNumber.swift */; };
 		F25A2D2527A47AED00161390 /* LessonCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A2D2427A47AED00161390 /* LessonCircleView.swift */; };
 		F264F2AD276E6E7300B217B9 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264F2AC276E6E7300B217B9 /* TabBarView.swift */; };
 		F26F34DE27A5C9B1006141BC /* ControlWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26F34DD27A5C9B1006141BC /* ControlWorkView.swift */; };
@@ -142,6 +143,7 @@
 		F23B74F327A660D500FDDC4A /* SchedulePartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePartView.swift; sourceTree = "<group>"; };
 		F23B74F527A6610300FDDC4A /* ScheduleObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleObservable.swift; sourceTree = "<group>"; };
 		F23B74F927A668F400FDDC4A /* LessonSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSkeletonView.swift; sourceTree = "<group>"; };
+		F23D937328089C0200A8ED7F /* TotalNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalNumber.swift; sourceTree = "<group>"; };
 		F25A2D2427A47AED00161390 /* LessonCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCircleView.swift; sourceTree = "<group>"; };
 		F264F2AC276E6E7300B217B9 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		F26F34DD27A5C9B1006141BC /* ControlWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlWorkView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				F226838427EB1E6800FFD7D5 /* FilledInputView.swift */,
 				F226838627EB23E000FFD7D5 /* MenuView.swift */,
 				F226838827EB29E700FFD7D5 /* DateInputView.swift */,
+				F23D937328089C0200A8ED7F /* TotalNumber.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				F209D0EF27A7DDD0001E38C9 /* AdvertisementObservable.swift in Sources */,
 				F209D0F327A7E06E001E38C9 /* AdvertisementComponentSkeletonView.swift in Sources */,
 				F26F34E827A5D684006141BC /* ScheduleLessonView.swift in Sources */,
+				F23D937428089C0200A8ED7F /* TotalNumber.swift in Sources */,
 				F226839A27EB7E1300FFD7D5 /* UserNameView.swift in Sources */,
 				F231495527A72AAF00C23888 /* ControlWorkPartView.swift in Sources */,
 				F226838327EB1D1B00FFD7D5 /* CreateTestReminderSheet.swift in Sources */,

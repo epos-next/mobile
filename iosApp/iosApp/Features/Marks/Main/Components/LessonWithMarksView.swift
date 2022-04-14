@@ -50,28 +50,3 @@ struct LessonWithMarksView: View {
         .contentShape(Rectangle())
     }
 }
-
-private struct TotalNumber: View {
-    var number: Int
-    var active: Bool = true
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    @ViewBuilder
-    var body: some View {
-        let color = active ? Color.contrast : Color.lightContrast
-        
-        Text(String(number))
-            .font(.custom("AvenirNext-Medium", size: 18))
-            .foregroundColor(color)
-    }
-}
-
-struct LessonWithMarksView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            LessonWithMarksView(lessonName: "Физика", marks: [5, 4, 5, 3, 2], totalMark: 4, onTap: {})
-            LessonWithMarksView(lessonName: "Физика", marks: [5, 4, 5, 3, 2], totalMark: nil, onTap: {})
-        }
-    }
-}
