@@ -50,7 +50,6 @@ kotlin {
                 implementation(libs.sqlDelight.runtime)
                 implementation(libs.sqlDelight.coroutinesExt)
                 implementation(libs.kermit.log)
-                implementation(libs.kermit.crashlytics)
             }
         }
         val commonTest by getting {
@@ -61,6 +60,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.kermit.crashlytics)
                 implementation(libs.ktor.client.android)
                 implementation(libs.sqlDelight.android)
                 implementation(libs.sqlDelight.coroutinesExt)

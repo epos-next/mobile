@@ -15,7 +15,12 @@ import io.ktor.utils.io.charsets.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.*
-import org.json.*
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+
+private val format = Json { prettyPrint = true }
 
 /**
  * [HttpClient] logging feature.
@@ -48,8 +53,9 @@ class HttpLogging {
         GlobalScope.launch(Dispatchers.Unconfined) {
             val text = channel.tryReadText(charset) ?: ""
             if (text != "") {
-                val json = JSONObject(message)
-                message += "BODY:\n${json.toString(2).substring(0..1000)}"
+                val json = Json.decodeFromString<JsonObject>(message)
+                val prettyMessage = format.encodeToString(json)
+                message += "BODY:\n$prettyMessage"
             }
         }
 
@@ -71,9 +77,10 @@ class HttpLogging {
                 ?: ""
 
             if (message != "") {
-                val json = JSONObject(message)
+                val json = Json.decodeFromString<JsonObject>(message)
+                val prettyMessage = format.encodeToString(json)
                 logger.i {
-                    "BODY:\n${json.toString(2)}"
+                    "BODY:\n$prettyMessage"
                 }
             }
 

@@ -46,7 +46,9 @@ struct ScheduleLessonView_Previews: PreviewProvider {
                 nanosecond: 0
             ),
             lessonNumber: 3,
-            duration: 2323333
+            duration: 2323333,
+            marks: [],
+            truancy: false
         )
         
         VStack {

@@ -6,7 +6,6 @@ struct iOSApp: App {
     
     init() {
         startKoin()
-        NapierKt.debugBuild()
     }
     
 	var body: some Scene {
