@@ -23,6 +23,7 @@ data class AllMarkUnitPeriods(
     val date: LocalDateTime,
     val topic: String,
     val name: String,
+    val weight: Int = 1,
 )
 
 

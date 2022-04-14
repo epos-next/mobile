@@ -63,7 +63,10 @@ fun CollapsedPeriodMarks(
         }
 
         if (period.all.isNotEmpty()) {
-            val totalExpected = period.all.sumOf { it.value }.toDouble() / period.all.size
+
+            val totalExpected = period.all.sumOf { it.value * it.weight }
+                .toDouble() / period.all.sumOf { it.weight }
+
             PrimaryMarkRow(
                 modifier = Modifier.padding(bottom = 15.dp),
                 name = "Средний балл",
