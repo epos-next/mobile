@@ -74,7 +74,7 @@ private struct OpenSourceView: View {
 
 private struct ContributeView: View {
     var body: some View {
-        Text("Понравился проект? Вы можете присоединитесь к нашей команду! Напишите в телеграм [@zotovy](https://t.me/zotovy)")
+        Text("Понравился проект? Вы можете присоединиться к нашей команде! Напишите в телеграм [@zotovy](https://t.me/zotovy)")
             .font(.custom("AvenirNext-Regular", size: 14))
             .foregroundColor(.secondary)
     }
