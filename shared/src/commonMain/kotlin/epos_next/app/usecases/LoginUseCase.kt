@@ -4,6 +4,7 @@ import epos_next.app.data.auth.AuthDataStore
 import epos_next.app.data.user.UserDataSource
 import epos_next.app.domain.entities.User
 import epos_next.app.lib.Either
+import epos_next.app.models.VkCookies
 import epos_next.app.network.Api
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import org.koin.core.component.KoinComponent
@@ -18,7 +19,15 @@ interface LoginUseCase {
      *  @return user id on success login, otherwise [Exception]
      */
     @ExperimentalTime
-    suspend fun loginWithEmailAndPassword(email: String, password: String): Either<Exception, User>
+    suspend fun loginWithEmailAndPassword(email: String, password: String): Either<Throwable, User>
+
+    /**
+     * Login user by vk
+     *  @param cookies vk cookies that is used to log in to EPOS
+     *  @return user id on success login, otherwise [Exception]
+     */
+    @ExperimentalTime
+    suspend fun loginWithVk(cookies: VkCookies): Either<Throwable, User>
 }
 
 class LoginUseCaseImpl : LoginUseCase, KoinComponent {
@@ -31,14 +40,22 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
     override suspend fun loginWithEmailAndPassword(
         email: String,
         password: String
-    ): Either<Exception, User> {
+    ): Either<Throwable, User> {
         return api.authenticate(email, password).fold(
             { Either.Left(it) },
             ::handleSuccess
         )
     }
 
-    private fun handleSuccess(response: AuthenticateResponse): Either<Exception, User> {
+    @ExperimentalTime
+    override suspend fun loginWithVk(cookies: VkCookies): Either<Throwable, User> {
+        return api.authenticateWithVk(cookies).fold(
+            { Either.Left(it) },
+            ::handleSuccess
+        )
+    }
+
+    private fun handleSuccess(response: AuthenticateResponse): Either<Throwable, User> {
         authDataStore.setId(response.user.id)
         authDataStore.setTokens(response.tokens)
         userDataSource.save(response.user)
