@@ -18,7 +18,7 @@ interface LoginUseCase {
      *  @return user id on success login, otherwise [Exception]
      */
     @ExperimentalTime
-    suspend fun execute(email: String, password: String): Either<Exception, User>
+    suspend fun loginWithEmailAndPassword(email: String, password: String): Either<Exception, User>
 }
 
 class LoginUseCaseImpl : LoginUseCase, KoinComponent {
@@ -28,7 +28,10 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
     private val userDataSource: UserDataSource by inject()
 
     @ExperimentalTime
-    override suspend fun execute(email: String, password: String): Either<Exception, User> {
+    override suspend fun loginWithEmailAndPassword(
+        email: String,
+        password: String
+    ): Either<Exception, User> {
         return api.authenticate(email, password).fold(
             { Either.Left(it) },
             {
