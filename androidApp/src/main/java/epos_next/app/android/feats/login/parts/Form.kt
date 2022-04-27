@@ -24,6 +24,7 @@ import epos_next.app.android.components.ButtonState
 import epos_next.app.android.components.ErrorText
 import epos_next.app.android.components.Input
 import epos_next.app.android.components.PrimaryButton
+import epos_next.app.android.feats.login.components.SignInWithVkButton
 import epos_next.app.domain.exceptions.translateException
 import epos_next.app.state.user.UserReducer
 import kotlinx.coroutines.launch
@@ -119,6 +120,10 @@ fun Form() {
         state = if (loading) ButtonState.Loading else ButtonState.Idle,
     )
 
+
+    Spacer(modifier = Modifier.height(18.dp))
+    SignInWithVkButton()
+
     Spacer(modifier = Modifier.height(10.dp))
 
     AnimatedContent(
@@ -145,5 +150,4 @@ fun Form() {
             textAlign = TextAlign.Center,
         )
     }
-
 }

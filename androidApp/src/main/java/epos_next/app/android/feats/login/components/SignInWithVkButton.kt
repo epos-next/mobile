@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import epos_next.app.android.R
+import epos_next.app.android.components.theme.ApplicationTheme
 
 @Composable
 fun SignInWithVkButton(modifier: Modifier = Modifier) {
@@ -57,8 +58,20 @@ private fun ButtonText() {
 
 @Composable
 @Preview
-private fun Preview() {
-    Box(modifier = Modifier.width(365.dp)) {
-        SignInWithVkButton()
+private fun PreviewLight() {
+    ApplicationTheme(darkTheme = false) {
+        Box(modifier = Modifier.width(365.dp)) {
+            SignInWithVkButton()
+        }
+    }
+}
+
+@Composable
+@Preview
+private fun PreviewDark() {
+    ApplicationTheme(darkTheme = true) {
+        Box(modifier = Modifier.width(365.dp)) {
+            SignInWithVkButton()
+        }
     }
 }
