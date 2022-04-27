@@ -19,6 +19,8 @@ private val LightColorPalette = lightColors(
     error = errorColor,
 )
 
+const val BackgroundPreviewColor = 0xFFFFFFFF
+
 @Composable
 fun ApplicationTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
 
