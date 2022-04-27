@@ -35,8 +35,8 @@ class UserReducer : BaseReducer<UserState>(UserState.Loading) {
     }
 
     @ExperimentalTime
-    suspend fun login(email: String, password: String): Exception? {
-        return loginUseCase.execute(email, password).fold(
+    suspend fun login(email: String, password: String): Throwable? {
+        return loginUseCase.loginWithEmailAndPassword(email, password).fold(
             { it },
             { user ->
                 logger.i("success login (user = $user)")
