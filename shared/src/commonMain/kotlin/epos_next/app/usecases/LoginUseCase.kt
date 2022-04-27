@@ -34,12 +34,14 @@ class LoginUseCaseImpl : LoginUseCase, KoinComponent {
     ): Either<Exception, User> {
         return api.authenticate(email, password).fold(
             { Either.Left(it) },
-            {
-                authDataStore.setId(it.user.id)
-                authDataStore.setTokens(it.tokens)
-                userDataSource.save(it.user)
-                Either.Right(it.user)
-            }
+            ::handleSuccess
         )
+    }
+
+    private fun handleSuccess(response: AuthenticateResponse): Either<Exception, User> {
+        authDataStore.setId(response.user.id)
+        authDataStore.setTokens(response.tokens)
+        userDataSource.save(response.user)
+        return Either.Right(response.user)
     }
 }
