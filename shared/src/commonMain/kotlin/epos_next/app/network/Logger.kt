@@ -31,11 +31,12 @@ class HttpLogging {
 
     private suspend fun beginLogging() {
         mutex.lock()
-
     }
 
     private fun doneLogging() {
-        mutex.unlock()
+        if (mutex.isLocked) {
+            mutex.unlock()
+        }
     }
 
     class Config

@@ -11,7 +11,7 @@ val marksAdapter = object : ColumnAdapter<List<MarkUnitPeriods>, String> {
         return databaseValue
             .split("(splitter)")
             .map { Json.decodeFromString(MarkUnitPeriods.serializer(), it) }
-            .sortedBy { it.all.first().date }
+            .sortedBy { it.all.firstOrNull()?.date }
     }
 
     override fun encode(value: List<MarkUnitPeriods>): String {
