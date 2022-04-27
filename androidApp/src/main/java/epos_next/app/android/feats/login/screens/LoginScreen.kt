@@ -1,4 +1,4 @@
-package epos_next.app.android.feats.login
+package epos_next.app.android.feats.login.screens
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable

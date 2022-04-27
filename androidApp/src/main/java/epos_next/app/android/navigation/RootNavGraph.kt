@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import epos_next.app.android.MainView
 import epos_next.app.android.feats.loading.LoadingScreen
-import epos_next.app.android.feats.login.LoginScreen
+import epos_next.app.android.feats.login.screens.LoginScreen
 import epos_next.app.android.feats.version.screens.MajorUpdateScreen
 
 @OptIn(ExperimentalAnimationApi::class)
