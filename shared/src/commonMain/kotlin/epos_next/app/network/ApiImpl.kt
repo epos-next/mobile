@@ -6,6 +6,7 @@ import epos_next.app.domain.exceptions.InvalidCredentials
 import epos_next.app.domain.exceptions.InvalidDataException
 import epos_next.app.domain.exceptions.NetworkException
 import epos_next.app.lib.Either
+import epos_next.app.models.VkCookies
 import epos_next.app.network.requests.auth.AuthenticateRequest
 import epos_next.app.network.requests.data.CreateAdvertisementRequest
 import epos_next.app.network.requests.data.CreateControlWorkRequest
@@ -93,12 +94,17 @@ class ApiImpl : Api, KoinComponent {
     override suspend fun createAdvertisement(advertisement: Advertisement): Either<Throwable, Long> {
         return runApi {
             val body = CreateAdvertisementRequest.fromAdvertisement(advertisement)
-            val response: CreateAdvertisementResponse = client.post(ApiRoutes.createAdvertisement, body)
+            val response: CreateAdvertisementResponse =
+                client.post(ApiRoutes.createAdvertisement, body)
             Either.Right(response.id)
         }
     }
 
-    override suspend fun updateUser(name: String?, username: String?, dateOfBirth: LocalDateTime?): Either<Throwable, User> {
+    override suspend fun updateUser(
+        name: String?,
+        username: String?,
+        dateOfBirth: LocalDateTime?
+    ): Either<Throwable, User> {
         return runApi {
             val body = UpdateUserRequest(name, username, dateOfBirth)
             val response: User = client.put(ApiRoutes.updateUser, body)
@@ -111,6 +117,25 @@ class ApiImpl : Api, KoinComponent {
         val response: AppVersionDtoResource = client.get(route)
         Either.Right(parseAppVersionDto(response))
     }
+
+    override suspend fun authenticateWithVk(vkCookies: VkCookies): Either<Throwable, AuthenticateResponse> =
+        runApi(
+            content = {
+                val response: AuthenticateResponse =
+                    authClient.post(ApiRoutes.authenticateWithVk) {
+                        body = vkCookies
+                    }
+
+                Either.Right(response)
+            },
+            handleResponseException = { e ->
+                val statusCode = e.response.status.value
+                if (statusCode == 400) {
+                    logger.w("API reply 400 on vk auth", e)
+                    Either.Left(InvalidCredentials())
+                } else null
+            }
+        )
 }
 
 private suspend fun <T> runApi(
@@ -139,8 +164,7 @@ private suspend fun <T> runApi(
     } catch (e: SerializationException) {
         Logger.e("Failed to serialize", e)
         return Either.Left(e)
-    }
-    catch (e: Throwable) {
+    } catch (e: Throwable) {
         Logger.e("Network exception", e)
         Logger.e(e.toString())
         return Either.Left(NetworkException(e))

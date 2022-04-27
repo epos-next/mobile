@@ -2,6 +2,7 @@ package epos_next.app.network
 
 import epos_next.app.domain.entities.*
 import epos_next.app.lib.Either
+import epos_next.app.models.VkCookies
 import epos_next.app.network.responces.auth.AuthenticateResponse
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -80,5 +81,12 @@ interface Api {
      * @return information about current version (up to date or there is new updates)
      */
     suspend fun getVersionUrgency(versionId: Int): Either<Throwable, AppVersion>
+
+    /**
+     * Perform `POST /authenticate-with-vk` request to API in order to get personal JWT tokens
+     * @param vkCookies cookies for login.vk.com, oauth.vk.com and vk.com
+     * @return Either: [AuthenticateResponse] if success, otherwise [Throwable]
+     */
+    suspend fun authenticateWithVk(vkCookies: VkCookies): Either<Throwable, AuthenticateResponse>
 }
 
