@@ -1,7 +1,12 @@
 package epos_next.app.android.navigation
 
 object Routes {
-    const val login = "login"
+
+    object Login {
+        const val route = "login"
+
+        const val vk = "login/vk"
+    }
 
     const val loading = "loading"
 

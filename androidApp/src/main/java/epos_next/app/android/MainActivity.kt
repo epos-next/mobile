@@ -109,8 +109,8 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                         is UserState.NotAuthorized -> {
-                            if (navController.currentBackStackEntry?.destination?.route != Routes.login) {
-                                navController.navigate(Routes.login) {
+                            if (navController.currentBackStackEntry?.destination?.route != Routes.Login.route) {
+                                navController.navigate(Routes.Login.route) {
                                     navController.graph.startDestinationRoute?.let { screen_route ->
                                         Firebase.crashlytics.setUserId("")
                                         Firebase.analytics.setUserId("")

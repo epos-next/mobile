@@ -11,6 +11,7 @@ import com.google.accompanist.navigation.animation.composable
 import epos_next.app.android.MainView
 import epos_next.app.android.feats.loading.LoadingScreen
 import epos_next.app.android.feats.login.screens.LoginScreen
+import epos_next.app.android.feats.login.screens.SignInWithVkScreen
 import epos_next.app.android.feats.version.screens.MajorUpdateScreen
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -26,10 +27,16 @@ fun RootNavGraph(navController: NavHostController) {
 
         // Login route
         composable(
-            route = Routes.login,
-            enterTransition = { slideEnter() },
-            exitTransition = { slideExit() },
-        ) { LoginScreen() }
+            route = Routes.Login.route,
+            enterTransition = {
+                if (this.initialState.destination.route == Routes.Login.vk) fadeIn()
+                else slideEnter() + fadeIn()
+            },
+            exitTransition = {
+                if (this.targetState.destination.route == Routes.Login.vk) fadeOut()
+                else slideExit() + fadeOut()
+            },
+        ) { LoginScreen(navController) }
 
         // Main route
         composable(
@@ -57,5 +64,11 @@ fun RootNavGraph(navController: NavHostController) {
                 version = backStackEntry.arguments?.getString("version") ?: "",
             )
         }
+
+        composable(
+            route = Routes.Login.vk,
+            enterTransition = { slideInVertically(initialOffsetY = { height -> height }) + fadeIn() },
+            exitTransition = { slideOutVertically(targetOffsetY = { height -> height }) + fadeOut() },
+        ) { SignInWithVkScreen(navController) }
     }
 }

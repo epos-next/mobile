@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import epos_next.app.android.components.theme.ApplicationTheme
 import epos_next.app.android.feats.login.parts.Form
 import epos_next.app.android.feats.login.parts.LogoAndName
@@ -22,7 +23,7 @@ import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class, ExperimentalAnimationApi::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     ApplicationTheme {
         val focusManager = LocalFocusManager.current
 
@@ -41,7 +42,7 @@ fun LoginScreen() {
                 verticalArrangement = Arrangement.Center,
             ) {
                 LogoAndName()
-                Form()
+                Form(navController)
             }
         }
     }

@@ -15,6 +15,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -34,7 +35,7 @@ import kotlin.time.ExperimentalTime
 @ExperimentalTime
 @ExperimentalAnimationApi
 @Composable
-fun Form() {
+fun Form(navController: NavController) {
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -122,7 +123,7 @@ fun Form() {
 
 
     Spacer(modifier = Modifier.height(18.dp))
-    SignInWithVkButton()
+    SignInWithVkButton(navController)
 
     Spacer(modifier = Modifier.height(10.dp))
 
